@@ -1,20 +1,20 @@
 const navigationBarItems = [
   {
-    name: "Home",
-    path: "/",
+    name: 'Home',
+    path: '/',
   },
   {
-    name: "About",
-    path: "/about",
+    name: 'About',
+    path: '/about',
   },
   {
-    name: "Contact",
-    path: "/contact",
+    name: 'Contact',
+    path: '/contact',
   },
   {
-    name: "Blog",
-    path: "/blog",
+    name: 'Blog',
+    path: '/blog',
   },
-];
+]
 
-export default navigationBarItems;
+export default navigationBarItems

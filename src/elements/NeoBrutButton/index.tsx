@@ -4,8 +4,8 @@ interface NeoBrutButtonProps {
 }
 
 const NeoBrutButton: FC<NeoBrutButtonProps> = ({ children }) => (
-  <button className="border border-black border-2 bg-green-200 text-black px-6 rounded-md sm:px-8 sm:py-1 sm:text-lg neoblutshadow">
-  <span>{children}</span>
+  <button className="border-black border-2 bg-green-200 text-black rounded-md sm:text-lg neoblutshadow flex items-center justify-center">
+  {children}
 </button>
   );
 

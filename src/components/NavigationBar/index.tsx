@@ -9,10 +9,10 @@ import navigationBarItems from "@/data/navigationBarItems";
 import { usePathname } from 'next/navigation';
 import NeoBrutButton from "@/elements/NeoBrutButton";
 import navigationBarAuthItems from "@/data/navigationBarAuthItems";
-const Navbar = () => {
+const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-
+  isOpen ? document.getElementsByTagName('body')[0].classList.add('overflow-hidden') : document.getElementsByTagName('body')[0].classList.remove('overflow-hidden');
   return (
     <nav className="bg-white ">
       <div className="mx-auto h-20 px-4 sm:px-6 lg:px-8">
@@ -50,32 +50,26 @@ const Navbar = () => {
             <div className="hidden md:flex md:items-center md:space-x-4">
             {navigationBarAuthItems.map((item) => (
             <NeoBrutButton key={item.name}>
-            {item.name}
+              <p className="w-[130px] h-[40px] flex items-center justify-center">
+                {item.name}
+              </p>
           </NeoBrutButton>
             ))}
 
             </div>
-            <div className="flex md:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-900 hover:text-gray-600 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 focus:text-gray-600 transition duration-200"
-                aria-controls="mobile-menu"
-                aria-expanded={isOpen}
-              >
+            <div className="flex md:hidden" onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? (
                   <FaTimes className="w-6 h-6" aria-hidden="true" />
                 ) : (
                   <FaBars className="w-6 h-6" aria-hidden="true" />
                 )}
-              </button>
             </div>
           </div>
         </div>
       </div>
       {isOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="px-2 pt-2 pb-3 space-y-1 h-screen">
             {navigationBarItems.map((item) => (
               <NavigationBarItem key={item.path} href={item.path} activePath={pathname} >
                 {item.name}
@@ -83,8 +77,10 @@ const Navbar = () => {
             ))}
             {navigationBarAuthItems.map((item) => (
               <div className='w-50 h-10 ml-8 ' key={item.name}>
-                <NeoBrutButton >
+                <NeoBrutButton>
+                <p className="w-[130px] h-[40px] flex items-center justify-center">
                 {item.name}
+              </p>
               </NeoBrutButton>
               </div>
             ))}
@@ -95,4 +91,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavigationBar;

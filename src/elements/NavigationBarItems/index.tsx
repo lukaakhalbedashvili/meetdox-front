@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FC } from 'react'
+import React, { FC } from 'react'
 interface NavigationBarItemProps {
   href: string
   children: React.ReactNode

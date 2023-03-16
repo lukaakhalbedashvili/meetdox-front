@@ -1,10 +1,10 @@
 const navigationBarAuthItems = [
   {
-    name: "Login",
+    name: 'Login',
   },
   {
-    name: "Sign Up",
+    name: 'Sign Up',
   },
-];
+]
 
-export default navigationBarAuthItems;
+export default navigationBarAuthItems

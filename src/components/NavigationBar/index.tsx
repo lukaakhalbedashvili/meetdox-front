@@ -1,22 +1,19 @@
-'use client' // this is a client component 👈🏽
+'use client'
 
 import Link from 'next/link'
 import { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import NavigationBarItem from '@/elements/NavigationBarItems'
 import navigationBarItems from '@/data/navigationBarItems'
-import { usePathname } from 'next/navigation'
 import NeoBrutButton from '@/elements/NeoBrutButton'
 import navigationBarAuthItems from '@/data/navigationBarAuthItems'
+
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
-  isOpen
-    ? document.getElementsByTagName('body')[0].classList.add('overflow-hidden')
-    : document
-        .getElementsByTagName('body')[0]
-        .classList.remove('overflow-hidden')
+
   return (
     <nav className="bg-white ">
       <div className="mx-auto h-20 px-4 sm:px-6 lg:px-8">
@@ -48,19 +45,6 @@ const NavigationBar = () => {
             </div>
           </div>
           <div className="flex items-center">
-            {/* <form className="hidden md:block mr-4">
-              <input
-                type="text"
-                placeholder="Search"
-                className="py-1 px-2 border rounded"
-              />
-              <button
-                type="submit"
-                className="py-1 px-2 bg-gray-800 text-white rounded ml-2"
-              >
-                Search
-              </button>
-            </form> */}
             <div className="hidden md:flex md:items-center md:space-x-4">
               {navigationBarAuthItems.map((item) => (
                 <NeoBrutButton key={item.name}>
@@ -80,6 +64,7 @@ const NavigationBar = () => {
           </div>
         </div>
       </div>
+
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 h-screen">

@@ -18,7 +18,7 @@ const NavigationBarItem: FC<NavigationBarItemProps> = ({
       </p>
       <span
         className={`absolute left-1/2 top-1/2 h-[13px] w-1/2 ${
-          href === activePath && 'bg-green-400 z-10'
+          href === activePath && 'bg-lime z-10'
         }`}
       >
         &nbsp;

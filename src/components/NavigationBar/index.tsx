@@ -15,7 +15,7 @@ const NavigationBar = () => {
   const pathname = usePathname()
 
   return (
-    <nav className="bg-white ">
+    <nav className="bg-vannila ">
       <div className="mx-auto h-20 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           <div className="flex items-center">

@@ -14,6 +14,16 @@ module.exports = {
         ubuntu: ['var(--ubuntu)'],
       },
     },
+    colors: {
+      transparent: 'transparent',
+      vannila: '#fffff5',
+      lime: '#dafc3b',
+      caramel: '#fdeeb9',
+      sky: '#a3e8fe',
+      bubblegum: '#ffbce5',
+      peach: '#fcccb8',
+      grape: '#7249ef',
+    }
   },
   plugins: [],
 }

@@ -26,11 +26,11 @@ const NavigationBar = () => {
                 <span className="flex items-center">
                   <div className="mr-2">
                     <Image
-                      className="hover:rotate-45"
-                      src="/apple.png"
+                      className="hover:rotate-12"
+                      src="/cow.svg"
                       alt="My Logo"
-                      width={40}
-                      height={40}
+                      width={65}
+                      height={65}
                     />
                   </div>
                 </span>

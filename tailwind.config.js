@@ -13,6 +13,10 @@ module.exports = {
       fontFamily: {
         ubuntu: ['var(--ubuntu)'],
       },
+      zIndex: {
+        '-1': '-1',
+        1: '1',
+      },
     },
     colors: {
       transparent: 'transparent',
@@ -23,7 +27,8 @@ module.exports = {
       bubblegum: '#ffbce5',
       peach: '#fcccb8',
       grape: '#7249ef',
-    }
+      black: '#000000',
+    },
   },
   plugins: [],
 }

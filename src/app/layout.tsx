@@ -9,7 +9,7 @@ export const metadata = {
 }
 
 const ubuntu = Ubuntu({
-  weight: ['400', '700'],
+  weight: ['400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--ubuntu',

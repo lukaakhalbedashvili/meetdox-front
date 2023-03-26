@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import navigationBarItems from '@/data/navigationBarItems'
-import NeoBrutButton from '@/elements/NeoBrutButton'
+import Button from '@/elements/Button'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SignUp from '../SignUp'
 
@@ -18,7 +18,7 @@ const NavigationBar = () => {
 
   return (
     <>
-      <nav className="bg-vannila">
+      <nav className="bg-gray border-border_gray border-b-2">
         <div className="mx-auto h-20 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20">
             <div className="flex items-center">
@@ -48,20 +48,27 @@ const NavigationBar = () => {
               </div>
             </div>
             <div className="flex items-center">
-              <div className="hidden md:flex md:items-center md:space-x-4">
-                <NeoBrutButton
+              <div className="hidden md:flex md:items-center md:space-x-4 mr-5">
+                <Button
+                  bgColor={'transparent'}
+                  borderColor={'transparent'}
+                  textColor={'sky'}
                   onClickHandler={() => setIsSignUpPopupOpen(true)}
                 >
-                  <p className="w-[130px] h-[40px] flex items-center justify-center">
+                  <p className="font-medium	w-[130px] h-[45px] flex items-center justify-center">
                     Sign up
                   </p>
-                </NeoBrutButton>
+                </Button>
 
-                <NeoBrutButton>
-                  <p className="w-[130px] h-[40px] flex items-center justify-center">
-                    Sign in
+                <Button
+                  bgColor={'sky'}
+                  borderColor={'transparent'}
+                  textColor={'white'}
+                >
+                  <p className="font-medium w-[130px] h-[45px] flex items-center justify-center">
+                    Log In
                   </p>
-                </NeoBrutButton>
+                </Button>
               </div>
 
               <div
@@ -92,19 +99,23 @@ const NavigationBar = () => {
               ))}
 
               <div className="w-50 h-10 ml-8">
-                <NeoBrutButton>
+                <Button
+                  bgColor={'transparent'}
+                  borderColor={'transparent'}
+                  textColor={'sky'}
+                >
                   <p className="w-32 h-[40px] flex items-center justify-center">
                     SignUp
                   </p>
-                </NeoBrutButton>
+                </Button>
               </div>
 
               <div className="w-50 h-10 ml-8">
-                <NeoBrutButton>
+                <Button>
                   <p className="w- h-10 flex items-center justify-center">
                     SignIn
                   </p>
-                </NeoBrutButton>
+                </Button>
               </div>
             </div>
           </div>

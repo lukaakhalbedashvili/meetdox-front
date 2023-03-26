@@ -15,18 +15,12 @@ const NavigationBarItem: FC<NavigationBarItemProps> = ({
   <Link href={href}>
     <div className="relative w-[95px] z-0">
       <p
-        className={`relative block px-8 py-2 text-black text-xl hover:text-gray-400 rounded transition duration-200`}
+        className={`relative font-medium block px-8 py-2 text-xl hover:text-gray-400 rounded transition duration-200 ${
+          href === activePath ? 'text-sky' : 'text-black'
+        }`}
       >
         {children}
       </p>
-
-      <span
-        className={`absolute left-1/2 top-1/2 h-[13px] w-1/2 -z-1 ${
-          href === activePath && `bg-lime`
-        }`}
-      >
-        &nbsp;
-      </span>
     </div>
   </Link>
 )

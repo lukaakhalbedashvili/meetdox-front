@@ -2,21 +2,16 @@ import React, { FC } from 'react'
 interface ButtonProps {
   children: React.ReactNode
   onClickHandler?: () => void
-  bgColor?: string
-  textColor?: string
-  borderColor?: string
+  customTailwindClasses?: string
 }
 
 const Button: FC<ButtonProps> = ({
   children,
   onClickHandler,
-  bgColor = 'white',
-  textColor = 'black',
-  borderColor = 'black',
+  customTailwindClasses = 'bg-white text-black border-black',
 }) => (
   <button
-    className={`text-${textColor} bg-${bgColor} border-${borderColor} border-2 rounded-md sm:text-xl flex items-center justify-center w-full h-full`}
-    style={{ borderColor }}
+    className={`border-2 rounded-md sm:text-sm flex items-center justify-center ${customTailwindClasses}`}
     onClick={onClickHandler}
   >
     {children}

@@ -12,7 +12,6 @@ interface InputProps {
 }
 
 const Input: FC<InputProps> = ({
-  children,
   value,
   errorMessage,
   name,
@@ -22,9 +21,9 @@ const Input: FC<InputProps> = ({
   type,
 }) => {
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative border-2 border-border_gray flex align-center justify-center rounded-md">
       <input
-        className="h-full w-full rounded-md pl-14 bg-sky neoblutshadow"
+        className="h-full w-full rounded-md pl-5 text-sm bg-white"
         type={type}
         value={value}
         onBlur={onBlurHandler}
@@ -32,12 +31,9 @@ const Input: FC<InputProps> = ({
         placeholder={placeholder}
         onChange={onChange}
       />
-
-      <div className="absolute top-0 w-fit h-full flex items-center justify-center left-4">
-        {children}
+      <div className="absolute text-error top-[42px] right-[0px] w-fit text-sm">
+        {errorMessage}
       </div>
-
-      <div className="absolute bg-lime top-0 right-0 w-fit">{errorMessage}</div>
     </div>
   )
 }

@@ -65,7 +65,7 @@ const NavigationBar = () => {
                   borderColor={'transparent'}
                   textColor={'white'}
                 >
-                  <p className="font-medium w-[130px] h-[45px] flex items-center justify-center">
+                  <p className="font-medium w-[130px] h-[45px] flex items-center justify-center text-white">
                     Log In
                   </p>
                 </Button>

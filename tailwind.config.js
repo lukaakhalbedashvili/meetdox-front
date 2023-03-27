@@ -22,10 +22,11 @@ module.exports = {
       transparent: 'transparent',
       black: '#000000',
       white: '#ffffff',
-
       sky: '#427ef6',
       gray: '#f8f8fa',
-      border_gray: '#ebebf1',
+      border_gray: '#dae1e7',
+      error: '#ff0000',
+
     },
   },
   plugins: [],

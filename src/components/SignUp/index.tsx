@@ -14,7 +14,7 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
   const { SignUpFormValidation } = useSignUp()
 
   return (
-    <div className=" w-[550px] bg-white rounded-md h-[700px] ">
+    <div className=" w-[400px] bg-white rounded-md h-[550px] ">
       <div className="flex justify-end items-center">
         <FaTimes
           className="w-6 h-6 mr-3 mt-3 cursor-pointer"
@@ -23,21 +23,19 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
       </div>
 
       <div className="flex items-center justify-center">
-        <h1 className="text-4xl">Join Us!</h1>
+        <h1 className="text-2xl">Join Us!</h1>
       </div>
       <div className="flex justify-center w-full mt-8">
         <Button
-          bgColor={'transparent'}
-          borderColor={'border_gray'}
-          textColor={'black'}
+          customTailwindClasses="bg-transparent border-border_gray text-black"
           // onClickHandler={() => console.log(true)}
         >
-          <div className="flex items-center justify-center w-[450px] h-[50px]">
+          <div className="flex items-center justify-center w-[320px] h-[40px]">
             <Image
               src="/google_logo.png"
               alt="Google Logo"
-              width={30}
-              height={30}
+              width={25}
+              height={25}
             />
             <p className="ml-5 flex items-center justify-center">
               Sign up with Google
@@ -46,18 +44,18 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
         </Button>
       </div>
       <div className="flex justify-center items-center w-full mt-5">
-        <div className="flex justify-center items-center w-[450px]">
+        <div className="flex justify-center items-center w-[320px]">
           <div className="flex-1 h-0.5 bg-border_gray"></div>
-          <div className="px-5">Sign up with your Email</div>
+          <div className="px-5 text-xs">Sign up with your Email</div>
           <div className="flex-1 h-0.5 bg-border_gray"></div>
         </div>
       </div>
 
       <div className="w-full flex justify-center align-center">
-        <form className="mt-5 w-[450px]">
-          <p className="text-lg  text-black mb-1 ">Email Address</p>
+        <form className="mt-5 w-[320px]">
+          <p className="text-sm  text-black mb-1 ">Email Address</p>
 
-          <div className="h-[60px]">
+          <div className="h-[44px]">
             <Input
               type="email"
               value={SignUpFormValidation.values.email}
@@ -70,9 +68,9 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
               onBlurHandler={SignUpFormValidation.handleBlur}
             ></Input>
           </div>
-          <p className="text-lg  text-black mb-1 mt-5">Password</p>
+          <p className="text-sm  text-black mb-1 mt-3">Password</p>
 
-          <div className="h-[60px]">
+          <div className="h-[44px]">
             <Input
               type="password"
               value={SignUpFormValidation.values.password}
@@ -85,9 +83,9 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
               onBlurHandler={SignUpFormValidation.handleBlur}
             ></Input>
           </div>
-          <p className="text-lg  text-black mb-1 mt-5 ">Repeat Password</p>
+          <p className="text-sm  text-black mb-1 mt-3 ">Repeat Password</p>
 
-          <div className="h-[60px] ">
+          <div className="h-[44px] ">
             <Input
               type="password"
               value={SignUpFormValidation.values.confirmPassword}
@@ -101,9 +99,9 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
             ></Input>
           </div>
 
-          <div className="h-12 mt-8">
-            <Button bgColor={'sky'} textColor={'white'} borderColor={'sky'}>
-              <p className="text-xl flex items-center justify-center w-[450px] h-[50px]">
+          <div className="h-12 mt-7">
+            <Button customTailwindClasses="bg-sky border-sky text-white">
+              <p className="text-sm flex items-center justify-center w-[320px] h-[36px]">
                 Sign Up
               </p>
             </Button>
@@ -111,7 +109,7 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
         </form>
       </div>
       <div className="flex items-center w-full justify-center">
-        <p className="text-lg text-black mt-8 w-[450px]">
+        <p className="text-sm text-black mt-1 w-[320px]">
           Already have an account?{' '}
           <span className="text-sky cursor-pointer"> &nbsp; Log In</span>
         </p>

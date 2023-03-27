@@ -23,7 +23,7 @@ const Input: FC<InputProps> = ({
   return (
     <div className="w-full h-full relative border-2 border-border_gray flex align-center justify-center rounded-md">
       <input
-        className="h-full w-full rounded-md pl-5 text-xl bg-white"
+        className="h-full w-full rounded-md pl-5 text-sm bg-white"
         type={type}
         value={value}
         onBlur={onBlurHandler}
@@ -31,7 +31,7 @@ const Input: FC<InputProps> = ({
         placeholder={placeholder}
         onChange={onChange}
       />
-      <div className="absolute text-error top-[15px] right-[10px] w-fit">
+      <div className="absolute text-error top-[42px] right-[0px] w-fit text-sm">
         {errorMessage}
       </div>
     </div>

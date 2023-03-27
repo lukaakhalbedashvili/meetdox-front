@@ -19,8 +19,8 @@ const NavigationBar = () => {
   return (
     <>
       <nav className="bg-gray border-border_gray border-b-2">
-        <div className="mx-auto h-20 px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20">
+        <div className="mx-auto h-[60px] px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-[60px]">
             <div className="flex items-center">
               <Link href="/">
                 <span className="flex items-center">
@@ -35,7 +35,7 @@ const NavigationBar = () => {
                   </div>
                 </span>
               </Link>
-              <div className="hidden ml-8 md:flex md:items-center md:space-x-8">
+              <div className="hidden ml-2 md:flex md:items-center md:space-x-8">
                 {navigationBarItems.map((item) => (
                   <NavigationBarItem
                     key={item.path}
@@ -50,22 +50,16 @@ const NavigationBar = () => {
             <div className="flex items-center">
               <div className="hidden md:flex md:items-center md:space-x-4 mr-5">
                 <Button
-                  bgColor={'transparent'}
-                  borderColor={'transparent'}
-                  textColor={'sky'}
+                  customTailwindClasses="bg-transparent border-transparent text-sky"
                   onClickHandler={() => setIsSignUpPopupOpen(true)}
                 >
-                  <p className="font-medium	w-[130px] h-[45px] flex items-center justify-center">
+                  <p className="font-medium	w-[90px] h-[45px] flex items-center justify-center">
                     Sign up
                   </p>
                 </Button>
 
-                <Button
-                  bgColor={'sky'}
-                  borderColor={'transparent'}
-                  textColor={'white'}
-                >
-                  <p className="font-medium w-[130px] h-[45px] flex items-center justify-center text-white">
+                <Button customTailwindClasses="bg-sky border-sky text-black">
+                  <p className="font-medium w-[90px] h-[30px] flex items-center justify-center text-white">
                     Log In
                   </p>
                 </Button>
@@ -99,11 +93,7 @@ const NavigationBar = () => {
               ))}
 
               <div className="w-50 h-10 ml-8">
-                <Button
-                  bgColor={'transparent'}
-                  borderColor={'transparent'}
-                  textColor={'sky'}
-                >
+                <Button customTailwindClasses="bg-sky border-sky text-white">
                   <p className="w-32 h-[40px] flex items-center justify-center">
                     SignUp
                   </p>
@@ -111,7 +101,7 @@ const NavigationBar = () => {
               </div>
 
               <div className="w-50 h-10 ml-8">
-                <Button>
+                <Button customTailwindClasses="bg-sky border-sky text-white">
                   <p className="w- h-10 flex items-center justify-center">
                     SignIn
                   </p>

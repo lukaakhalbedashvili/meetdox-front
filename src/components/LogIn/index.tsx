@@ -23,11 +23,11 @@ const LogIn: FC<LogInProps> = ({ onClose }) => {
       </div>
 
       <div className="flex items-center justify-center">
-        <h1 className="text-2xl">Welcome Back!</h1>
+        <h1 className="text-2xl text-text_gray">Welcome Back!</h1>
       </div>
       <div className="flex justify-center w-full mt-8">
         <Button
-          customTailwindClasses="bg-transparent border-border_gray text-black"
+          customTailwindClasses="bg-transparent border-border_gray text-text_gray"
           // onClickHandler={() => console.log(true)}
         >
           <div className="flex items-center justify-center w-[320px] h-[40px]">
@@ -37,7 +37,7 @@ const LogIn: FC<LogInProps> = ({ onClose }) => {
               width={25}
               height={25}
             />
-            <p className="ml-5 flex items-center justify-center">
+            <p className="ml-5 flex items-center justify-center text-text_gray">
               Sign in with Google
             </p>
           </div>
@@ -46,14 +46,16 @@ const LogIn: FC<LogInProps> = ({ onClose }) => {
       <div className="flex justify-center items-center w-full mt-5">
         <div className="flex justify-center items-center w-[320px]">
           <div className="flex-1 h-0.5 bg-border_gray"></div>
-          <div className="px-5 text-xs">Sign in with your Email</div>
+          <div className="px-5 text-xs text-text_gray">
+            Sign in with your Email
+          </div>
           <div className="flex-1 h-0.5 bg-border_gray"></div>
         </div>
       </div>
 
       <div className="w-full flex justify-center align-center">
         <form className="mt-5 w-[320px]">
-          <p className="text-sm  text-black mb-1 ">Email Address</p>
+          <p className="text-sm  text-text_gray mb-1 ">Email Address</p>
 
           <div className="h-[44px]">
             <Input
@@ -68,7 +70,7 @@ const LogIn: FC<LogInProps> = ({ onClose }) => {
               onBlurHandler={LogInFormValidation.handleBlur}
             ></Input>
           </div>
-          <p className="text-sm  text-black mb-1 mt-3">Password</p>
+          <p className="text-sm  text-text_gray mb-1 mt-3">Password</p>
 
           <div className="h-[44px]">
             <Input
@@ -89,7 +91,7 @@ const LogIn: FC<LogInProps> = ({ onClose }) => {
                 type="checkbox"
                 className="w-4 h-4 border border-border_gray rounded-md"
               />
-              <p className="text-sm text-black ml-2">Keep me logged in </p>
+              <p className="text-sm text-text_gray ml-2">Keep me logged in </p>
             </div>
             <p className="text-sm text-sky cursor-pointer">Forgot Password?</p>
           </div>
@@ -104,7 +106,7 @@ const LogIn: FC<LogInProps> = ({ onClose }) => {
         </form>
       </div>
       <div className="flex items-center w-full justify-center">
-        <p className="text-sm text-black mt-1 w-[320px]">
+        <p className="text-sm text-text_gray mt-1 w-[320px]">
           {`Don't have an account?`}
           <span className="text-sky cursor-pointer"> &nbsp; Sign Up</span>
         </p>

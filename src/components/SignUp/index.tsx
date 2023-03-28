@@ -23,11 +23,11 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
       </div>
 
       <div className="flex items-center justify-center">
-        <h1 className="text-2xl">Join Us!</h1>
+        <h1 className="text-2xl text-text_gray">Join Us!</h1>
       </div>
       <div className="flex justify-center w-full mt-8">
         <Button
-          customTailwindClasses="bg-transparent border-border_gray text-black"
+          customTailwindClasses="bg-transparent border-border_gray text-text_gray"
           // onClickHandler={() => console.log(true)}
         >
           <div className="flex items-center justify-center w-[320px] h-[40px]">
@@ -37,7 +37,7 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
               width={25}
               height={25}
             />
-            <p className="ml-5 flex items-center justify-center">
+            <p className="ml-5 flex items-center justify-center text-text_gray">
               Sign up with Google
             </p>
           </div>
@@ -46,14 +46,16 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
       <div className="flex justify-center items-center w-full mt-5">
         <div className="flex justify-center items-center w-[320px]">
           <div className="flex-1 h-0.5 bg-border_gray"></div>
-          <div className="px-5 text-xs">Sign up with your Email</div>
+          <div className="px-5 text-xs text-text_gray">
+            Sign up with your Email
+          </div>
           <div className="flex-1 h-0.5 bg-border_gray"></div>
         </div>
       </div>
 
       <div className="w-full flex justify-center align-center">
         <form className="mt-5 w-[320px]">
-          <p className="text-sm  text-black mb-1 ">Email Address</p>
+          <p className="text-sm  text-text_gray mb-1 ">Email Address</p>
 
           <div className="h-[44px]">
             <Input
@@ -68,7 +70,7 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
               onBlurHandler={SignUpFormValidation.handleBlur}
             ></Input>
           </div>
-          <p className="text-sm  text-black mb-1 mt-3">Password</p>
+          <p className="text-sm  text-text_gray mb-1 mt-3">Password</p>
 
           <div className="h-[44px]">
             <Input
@@ -83,7 +85,7 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
               onBlurHandler={SignUpFormValidation.handleBlur}
             ></Input>
           </div>
-          <p className="text-sm  text-black mb-1 mt-3 ">Repeat Password</p>
+          <p className="text-sm  text-text_gray mb-1 mt-3 ">Repeat Password</p>
 
           <div className="h-[44px] ">
             <Input
@@ -109,7 +111,7 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
         </form>
       </div>
       <div className="flex items-center w-full justify-center">
-        <p className="text-sm text-black mt-1 w-[320px]">
+        <p className="text-sm text-text_gray mt-1 w-[320px]">
           Already have an account?{' '}
           <span className="text-sky cursor-pointer"> &nbsp; Log In</span>
         </p>

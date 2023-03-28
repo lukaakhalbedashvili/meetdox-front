@@ -8,7 +8,7 @@ interface ButtonProps {
 const Button: FC<ButtonProps> = ({
   children,
   onClickHandler,
-  customTailwindClasses = 'bg-white text-black border-black',
+  customTailwindClasses = 'bg-white text-text_gray border-text_gray',
 }) => (
   <button
     className={`border-2 rounded-md sm:text-sm flex items-center justify-center ${customTailwindClasses}`}

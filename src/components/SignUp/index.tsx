@@ -1,10 +1,11 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import Image from 'next/image'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
 import useSignUp from './useSignUp'
 import { SignUpFormFields } from './signUp.interface'
+import EmailVerifyStage from './emailVerifyStage'
 
 interface SignUpProps {
   onClose: () => void
@@ -12,9 +13,12 @@ interface SignUpProps {
 
 const SignUp: FC<SignUpProps> = ({ onClose }) => {
   const { SignUpFormValidation } = useSignUp()
+  const [registrationStage, setRegistrationStage] = useState('email')
 
+  if (registrationStage === 'email')
+    return <EmailVerifyStage onClose={onClose} />
   return (
-    <div className=" w-[400px] bg-white rounded-md h-[550px] ">
+    <div className=" w-[400px] bg-white rounded-md h-[630px] ">
       <div className="flex justify-end items-center">
         <FaTimes
           className="w-6 h-6 mr-3 mt-3 cursor-pointer"
@@ -54,7 +58,10 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
       </div>
 
       <div className="w-full flex justify-center align-center">
-        <form className="mt-5 w-[320px]">
+        <form
+          className="mt-5 w-[320px]"
+          onSubmit={SignUpFormValidation.handleSubmit}
+        >
           <p className="text-sm  text-text_gray mb-1 ">Email Address</p>
 
           <div className="h-[44px]">
@@ -66,6 +73,21 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
               errorMessage={
                 SignUpFormValidation.touched.email &&
                 SignUpFormValidation.errors.email
+              }
+              onBlurHandler={SignUpFormValidation.handleBlur}
+            ></Input>
+          </div>
+          <p className="text-sm  text-text_gray mb-1 mt-3 ">Username</p>
+
+          <div className="h-[44px]">
+            <Input
+              type="username"
+              value={SignUpFormValidation.values.username}
+              name={SignUpFormFields.USERNAME}
+              onChange={SignUpFormValidation.handleChange}
+              errorMessage={
+                SignUpFormValidation.touched.username &&
+                SignUpFormValidation.errors.username
               }
               onBlurHandler={SignUpFormValidation.handleBlur}
             ></Input>
@@ -102,7 +124,10 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
           </div>
 
           <div className="h-12 mt-7">
-            <Button customTailwindClasses="bg-sky border-sky text-white">
+            <Button
+              type="submit"
+              customTailwindClasses="bg-sky border-sky text-white"
+            >
               <p className="text-sm flex items-center justify-center w-[320px] h-[36px]">
                 Sign Up
               </p>

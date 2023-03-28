@@ -6,6 +6,7 @@ const useSignup = () => {
   const SignUpFormValidation = useFormik({
     initialValues: {
       [SignUpFormFields.EMAIL]: '',
+      [SignUpFormFields.USERNAME]: '',
       [SignUpFormFields.PASSWORD]: '',
       [SignUpFormFields.CONFIRM_PASSWORD]: '',
     },
@@ -14,6 +15,11 @@ const useSignup = () => {
       [SignUpFormFields.EMAIL]: Yup.string()
         .max(35, 'must be less than 35')
         .email('invalid email')
+        .required('required'),
+
+      [SignUpFormFields.USERNAME]: Yup.string()
+        .max(35, 'must be less than 35')
+        .min(3, 'must be more than 2')
         .required('required'),
 
       [SignUpFormFields.PASSWORD]: Yup.string()
@@ -28,10 +34,12 @@ const useSignup = () => {
         .required('required'),
     }),
 
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm, setSubmitting }) => {
       const { confirmPassword, password, email } = values
 
-      console.error('values', confirmPassword, password, email)
+      console.log('values', confirmPassword, password, email)
+      resetForm()
+      setSubmitting(false)
     },
   })
   return { SignUpFormValidation }

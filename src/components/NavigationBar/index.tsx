@@ -20,7 +20,7 @@ const NavigationBar = () => {
 
   return (
     <>
-      <nav className="bg-white border-border_gray border-b-2">
+      <nav className="bg-white border-border_gray border-b-[1px]">
         <div className="mx-auto h-[60px] px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-[60px]">
             <div className="flex items-center">

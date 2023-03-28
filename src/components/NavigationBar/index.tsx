@@ -10,11 +10,13 @@ import navigationBarItems from '@/data/navigationBarItems'
 import Button from '@/elements/Button'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SignUp from '../SignUp'
+import LogIn from '../LogIn'
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false)
+  const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
 
   return (
     <>
@@ -58,7 +60,10 @@ const NavigationBar = () => {
                   </p>
                 </Button>
 
-                <Button customTailwindClasses="bg-sky border-sky text-black">
+                <Button
+                  customTailwindClasses="bg-sky border-sky text-black"
+                  onClickHandler={() => setIsLogInPopupOpen(true)}
+                >
                   <p className="font-medium w-[90px] h-[30px] flex items-center justify-center text-white">
                     Log In
                   </p>
@@ -117,6 +122,13 @@ const NavigationBar = () => {
           onOutsideClickHandler={() => setIsSignUpPopupOpen(false)}
         >
           <SignUp onClose={() => setIsSignUpPopupOpen(false)} />
+        </PopupItemWrapper>
+      )}
+      {isLogInPopupOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsLogInPopupOpen(false)}
+        >
+          <LogIn onClose={() => setIsLogInPopupOpen(false)} />
         </PopupItemWrapper>
       )}
     </>

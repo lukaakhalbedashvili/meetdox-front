@@ -3,7 +3,7 @@ import { FaTimes } from 'react-icons/fa'
 import Image from 'next/image'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
-import useSignUp from './useSignUp'
+import useSignUp from './useSignUpStage'
 import { SignUpFormFields } from './signUp.interface'
 import { RegistrationStages, User } from '../registrationStages.interface'
 

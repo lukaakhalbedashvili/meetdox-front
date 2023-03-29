@@ -1,40 +1,16 @@
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import { SignUpFormFields } from './signUp.interface'
+import { useState } from 'react'
+import { RegistrationStages, User } from './registrationStages.interface'
 
-const useSignup = () => {
-  const SignUpFormValidation = useFormik({
-    initialValues: {
-      [SignUpFormFields.EMAIL]: '',
-      [SignUpFormFields.PASSWORD]: '',
-      [SignUpFormFields.CONFIRM_PASSWORD]: '',
-    },
+const useSignUp = () => {
+  const [registrationStage, setRegistrationStage] =
+    useState<RegistrationStages>(RegistrationStages.ACCOUNT_DETAILS)
 
-    validationSchema: Yup.object({
-      [SignUpFormFields.EMAIL]: Yup.string()
-        .max(35, 'must be less than 35')
-        .email('invalid email')
-        .required('required'),
-
-      [SignUpFormFields.PASSWORD]: Yup.string()
-        .max(35, 'must be less than 35')
-        .min(8, 'must be more than 8')
-        .required('required'),
-
-      [SignUpFormFields.CONFIRM_PASSWORD]: Yup.string()
-        .max(35, 'must be less than 35')
-        .min(8, 'must be more than 8')
-        .oneOf([Yup.ref('password')], 'passwords must match')
-        .required('required'),
-    }),
-
-    onSubmit: async (values) => {
-      const { confirmPassword, password, email } = values
-
-      console.error('values', confirmPassword, password, email)
-    },
+  const [userInfo, setUserInfo] = useState<User>({
+    email: '',
+    username: '',
+    password: '',
   })
-  return { SignUpFormValidation }
+  return { registrationStage, setRegistrationStage, userInfo, setUserInfo }
 }
 
-export default useSignup
+export default useSignUp

@@ -10,15 +10,17 @@ import navigationBarItems from '@/data/navigationBarItems'
 import Button from '@/elements/Button'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SignUp from '../SignUp'
+import LogIn from '../LogIn'
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false)
+  const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
 
   return (
     <>
-      <nav className="bg-gray border-border_gray border-b-2">
+      <nav className="bg-white border-border_gray border-b-[1px]">
         <div className="mx-auto h-[60px] px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-[60px]">
             <div className="flex items-center">
@@ -58,7 +60,10 @@ const NavigationBar = () => {
                   </p>
                 </Button>
 
-                <Button customTailwindClasses="bg-sky border-sky text-black">
+                <Button
+                  customTailwindClasses="bg-sky border-sky text-text_gray"
+                  onClickHandler={() => setIsLogInPopupOpen(true)}
+                >
                   <p className="font-medium w-[90px] h-[30px] flex items-center justify-center text-white">
                     Log In
                   </p>
@@ -116,7 +121,20 @@ const NavigationBar = () => {
         <PopupItemWrapper
           onOutsideClickHandler={() => setIsSignUpPopupOpen(false)}
         >
-          <SignUp onClose={() => setIsSignUpPopupOpen(false)} />
+          <SignUp
+            onLogInClickHandler={() => setIsLogInPopupOpen(true)}
+            onClose={() => setIsSignUpPopupOpen(false)}
+          />
+        </PopupItemWrapper>
+      )}
+      {isLogInPopupOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsLogInPopupOpen(false)}
+        >
+          <LogIn
+            onSignUpClickHandler={() => setIsSignUpPopupOpen(true)}
+            onClose={() => setIsLogInPopupOpen(false)}
+          />
         </PopupItemWrapper>
       )}
     </>

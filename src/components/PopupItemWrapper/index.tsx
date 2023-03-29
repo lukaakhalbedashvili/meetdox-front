@@ -18,7 +18,7 @@ const PopupItemWrapper: FC<PopupItemWrapperPros> = ({
   }, [onOutsideClickHandler, isOutsideClick])
 
   return (
-    <div className="w-screen absolute top-0 h-full bg-black bg-opacity-70 flex items-center justify-center">
+    <div className="w-screen absolute top-0 h-full bg-text_gray bg-opacity-70 flex items-center justify-center">
       <div ref={childrenWrapperRef}>{children}</div>
     </div>
   )

@@ -1,18 +1,15 @@
-import React, { FC } from 'react'
+import React, { Dispatch, FC, SetStateAction } from 'react'
 import { FaTimes, FaArrowLeft } from 'react-icons/fa'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
 import useEmailVerify from './useEmailVerify'
 import { VerifyField } from './emailVerify.interface'
-import { RegistrationStages } from '../registrationStages.interface'
+import { RegistrationStages, User } from '../registrationStages.interface'
+
 interface EmailVerifyStageProps {
   onClose: () => void
-  setRegistrationStage: React.Dispatch<React.SetStateAction<RegistrationStages>>
-  userInfo: {
-    email: string
-    username: string
-    password: string
-  }
+  setRegistrationStage: Dispatch<SetStateAction<RegistrationStages>>
+  userInfo: User
   onLogInClickHandler: () => void
 }
 
@@ -93,13 +90,9 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
           <div className="mt-3">
             <small className="text-text_gray text-center">
               By clicking verify you agree to our
-              <span className="text-sky cursor-pointer">
-                {' Terms of Service '}
-              </span>
+              <span className="text-sky cursor-pointer">Terms of Service</span>
               and
-              <span className="text-sky cursor-pointer">
-                {' Privacy Policy '}
-              </span>
+              <span className="text-sky cursor-pointer">Privacy Policy</span>
             </small>
           </div>
         </form>

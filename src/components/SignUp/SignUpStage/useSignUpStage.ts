@@ -1,12 +1,12 @@
-import React from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { SignUpFormFields } from './signUp.interface'
 import { RegistrationStages } from '../registrationStages.interface'
 interface SignupProps {
-  setRegistrationStage: React.Dispatch<React.SetStateAction<RegistrationStages>>
-  setUserInfo: React.Dispatch<
-    React.SetStateAction<{
+  setRegistrationStage: Dispatch<SetStateAction<RegistrationStages>>
+  setUserInfo: Dispatch<
+    SetStateAction<{
       email: string
       username: string
       password: string

@@ -1,23 +1,17 @@
-import React, { FC } from 'react'
+import React, { Dispatch, FC, SetStateAction } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import Image from 'next/image'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
 import useSignUp from './useSignUp'
 import { SignUpFormFields } from './signUp.interface'
-import { RegistrationStages } from '../registrationStages.interface'
+import { RegistrationStages, User } from '../registrationStages.interface'
 
 interface SignUpStageProps {
   onClose: () => void
   onLogInClickHandler: () => void
-  setRegistrationStage: React.Dispatch<React.SetStateAction<RegistrationStages>>
-  setUserInfo: React.Dispatch<
-    React.SetStateAction<{
-      email: string
-      username: string
-      password: string
-    }>
-  >
+  setRegistrationStage: Dispatch<SetStateAction<RegistrationStages>>
+  setUserInfo: Dispatch<SetStateAction<User>>
 }
 
 const SignUpStage: FC<SignUpStageProps> = ({
@@ -159,7 +153,6 @@ const SignUpStage: FC<SignUpStageProps> = ({
             }}
             className="text-sky cursor-pointer"
           >
-            {' '}
             &nbsp; Log In
           </span>
         </p>

@@ -1,21 +1,17 @@
-import React, { FC, useState } from 'react'
-import SignUpStage from './signUp/signUp'
-import EmailVerifyStage from './emailVerify/emailVerify'
+import React, { FC } from 'react'
+import SignUpStage from './SignUpStage'
+import EmailVerifyStage from './EmailVerify'
 import { RegistrationStages } from './registrationStages.interface'
+import useSignUp from './useSignUp'
+
 interface SignUpProps {
   onClose: () => void
   onLogInClickHandler: () => void
 }
 
 const SignUp: FC<SignUpProps> = ({ onClose, onLogInClickHandler }) => {
-  const [registrationStage, setRegistrationStage] =
-    useState<RegistrationStages>(RegistrationStages.ACCOUNT_DETAILS)
-
-  const [userInfo, setUserInfo] = useState({
-    email: '',
-    username: '',
-    password: '',
-  })
+  const { registrationStage, setRegistrationStage, setUserInfo, userInfo } =
+    useSignUp()
 
   if (registrationStage === RegistrationStages.ACCOUNT_DETAILS)
     return (

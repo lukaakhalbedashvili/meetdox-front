@@ -26,8 +26,7 @@ module.exports = {
       gray: '#f8f8fa',
       border_gray: '#dae1e7',
       error: '#ff0000',
-      text_gray: '#414755'
-
+      text_gray: '#414755',
     },
   },
   plugins: [],

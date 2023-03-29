@@ -1,8 +1,20 @@
+import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { SignUpFormFields } from './signUp.interface'
+import { RegistrationStages } from '../registrationStages.interface'
+interface SignupProps {
+  setRegistrationStage: React.Dispatch<React.SetStateAction<RegistrationStages>>
+  setUserInfo: React.Dispatch<
+    React.SetStateAction<{
+      email: string
+      username: string
+      password: string
+    }>
+  >
+}
 
-const useSignup = () => {
+const useSignup = ({ setRegistrationStage, setUserInfo }: SignupProps) => {
   const SignUpFormValidation = useFormik({
     initialValues: {
       [SignUpFormFields.EMAIL]: '',
@@ -20,6 +32,7 @@ const useSignup = () => {
       [SignUpFormFields.USERNAME]: Yup.string()
         .max(35, 'must be less than 35')
         .min(3, 'must be more than 2')
+        .matches(/^[a-zA-Z0-9]+$/, 'only letters and numbers')
         .required('required'),
 
       [SignUpFormFields.PASSWORD]: Yup.string()
@@ -34,12 +47,18 @@ const useSignup = () => {
         .required('required'),
     }),
 
-    onSubmit: async (values, { resetForm, setSubmitting }) => {
-      const { confirmPassword, password, email } = values
+    onSubmit: async (values) => {
+      const { email, username, password } = values
 
-      console.log('values', confirmPassword, password, email)
-      resetForm()
-      setSubmitting(false)
+      setUserInfo({ email, username, password })
+      setRegistrationStage(RegistrationStages.EMAIL_VERIFY)
+
+      // http://localhost:8000/api/users/authentication/verify-email
+      /*
+      {
+        "email": email
+      }
+      */
     },
   })
   return { SignUpFormValidation }

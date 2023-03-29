@@ -2,7 +2,15 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { VerifyField } from './emailVerify.interface'
 
-const useEmailVerify = () => {
+interface EmailVerifyProps {
+  userInfo: {
+    email: string
+    username: string
+    password: string
+  }
+}
+
+const useEmailVerify = ({ userInfo }: EmailVerifyProps) => {
   const EmailVerifyCodeValidation = useFormik({
     initialValues: {
       [VerifyField.CODE]: '',
@@ -15,12 +23,15 @@ const useEmailVerify = () => {
         .required('required'),
     }),
 
-    onSubmit: async (values, { resetForm, setSubmitting }) => {
-      const { code } = values
-
-      console.log('values', code)
-      resetForm()
-      setSubmitting(false)
+    onSubmit: async (values) => {
+      // http://localhost:8000/api/users/authentication/registration
+      /*
+      {
+        "email": userInfo.email,
+        "username": userInfo.username,
+        "password": userInfo.password,
+        "code": values.code
+      */
     },
   })
   return { EmailVerifyCodeValidation }

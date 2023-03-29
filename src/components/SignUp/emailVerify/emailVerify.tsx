@@ -1,20 +1,36 @@
 import React, { FC } from 'react'
-import { FaTimes } from 'react-icons/fa'
+import { FaTimes, FaArrowLeft } from 'react-icons/fa'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
-import { VerifyField } from './emailVerify.interface'
 import useEmailVerify from './useEmailVerify'
-
+import { VerifyField } from './emailVerify.interface'
+import { RegistrationStages } from '../registrationStages.interface'
 interface EmailVerifyStageProps {
   onClose: () => void
+  setRegistrationStage: React.Dispatch<React.SetStateAction<RegistrationStages>>
+  userInfo: {
+    email: string
+    username: string
+    password: string
+  }
 }
 
-const EmailVerifyStage: FC<EmailVerifyStageProps> = ({ onClose }) => {
-  const { EmailVerifyCodeValidation } = useEmailVerify()
+const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
+  onClose,
+  setRegistrationStage,
+  userInfo,
+}) => {
+  const { EmailVerifyCodeValidation } = useEmailVerify({ userInfo })
 
   return (
     <div className=" w-[400px] bg-white rounded-md h-[420px] ">
-      <div className="flex justify-end items-center">
+      <div className="flex justify-between items-center">
+        <FaArrowLeft
+          className="w-6 h-6 ml-3 mt-3 cursor-pointer"
+          onClick={() =>
+            setRegistrationStage(RegistrationStages.ACCOUNT_DETAILS)
+          }
+        />
         <FaTimes
           className="w-6 h-6 mr-3 mt-3 cursor-pointer"
           onClick={onClose}

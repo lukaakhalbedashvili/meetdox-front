@@ -13,14 +13,20 @@ interface EmailVerifyStageProps {
     username: string
     password: string
   }
+  onLogInClickHandler: () => void
 }
 
 const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
   onClose,
   setRegistrationStage,
   userInfo,
+  onLogInClickHandler,
 }) => {
-  const { EmailVerifyCodeValidation } = useEmailVerify({ userInfo })
+  const { EmailVerifyCodeValidation } = useEmailVerify({
+    userInfo,
+    onClose,
+    onLogInClickHandler,
+  })
 
   return (
     <div className=" w-[400px] bg-white rounded-md h-[420px] ">

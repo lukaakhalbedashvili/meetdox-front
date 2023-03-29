@@ -9,6 +9,7 @@ import { RegistrationStages } from '../registrationStages.interface'
 
 interface SignUpStageProps {
   onClose: () => void
+  onLogInClickHandler: () => void
   setRegistrationStage: React.Dispatch<React.SetStateAction<RegistrationStages>>
   setUserInfo: React.Dispatch<
     React.SetStateAction<{
@@ -21,6 +22,7 @@ interface SignUpStageProps {
 
 const SignUpStage: FC<SignUpStageProps> = ({
   onClose,
+  onLogInClickHandler,
   setRegistrationStage,
   setUserInfo,
 }) => {
@@ -150,7 +152,16 @@ const SignUpStage: FC<SignUpStageProps> = ({
       <div className="flex items-center w-full justify-center">
         <p className="text-sm text-text_gray mt-1 w-[320px]">
           Already have an account?{' '}
-          <span className="text-sky cursor-pointer"> &nbsp; Log In</span>
+          <span
+            onClick={() => {
+              onClose()
+              onLogInClickHandler()
+            }}
+            className="text-sky cursor-pointer"
+          >
+            {' '}
+            &nbsp; Log In
+          </span>
         </p>
       </div>
     </div>

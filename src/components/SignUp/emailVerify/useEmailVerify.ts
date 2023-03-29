@@ -8,9 +8,15 @@ interface EmailVerifyProps {
     username: string
     password: string
   }
+  onClose: () => void
+  onLogInClickHandler: () => void
 }
 
-const useEmailVerify = ({ userInfo }: EmailVerifyProps) => {
+const useEmailVerify = ({
+  userInfo,
+  onClose,
+  onLogInClickHandler,
+}: EmailVerifyProps) => {
   const EmailVerifyCodeValidation = useFormik({
     initialValues: {
       [VerifyField.CODE]: '',
@@ -32,6 +38,9 @@ const useEmailVerify = ({ userInfo }: EmailVerifyProps) => {
         "password": userInfo.password,
         "code": values.code
       */
+      // if SUCCESS OPEN LOGIN POPUP
+      onClose()
+      onLogInClickHandler()
     },
   })
   return { EmailVerifyCodeValidation }

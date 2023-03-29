@@ -8,9 +8,10 @@ import { LogInFormFields } from './logIn.interface'
 
 interface LogInProps {
   onClose: () => void
+  onSignUpClickHandler: () => void
 }
 
-const LogIn: FC<LogInProps> = ({ onClose }) => {
+const LogIn: FC<LogInProps> = ({ onClose, onSignUpClickHandler }) => {
   const { LogInFormValidation } = useLogIn()
 
   return (
@@ -23,7 +24,7 @@ const LogIn: FC<LogInProps> = ({ onClose }) => {
       </div>
 
       <div className="flex items-center justify-center">
-        <h1 className="text-2xl text-text_gray">Welcome Back!</h1>
+        <h1 className="text-2xl text-text_gray">Welcome!</h1>
       </div>
       <div className="flex justify-center w-full mt-8">
         <Button
@@ -108,7 +109,16 @@ const LogIn: FC<LogInProps> = ({ onClose }) => {
       <div className="flex items-center w-full justify-center">
         <p className="text-sm text-text_gray mt-1 w-[320px]">
           {`Don't have an account?`}
-          <span className="text-sky cursor-pointer"> &nbsp; Sign Up</span>
+          <span
+            onClick={() => {
+              onClose()
+              onSignUpClickHandler()
+            }}
+            className="text-sky cursor-pointer"
+          >
+            {' '}
+            &nbsp; Sign Up
+          </span>
         </p>
       </div>
     </div>

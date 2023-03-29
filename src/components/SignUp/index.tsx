@@ -4,9 +4,10 @@ import EmailVerifyStage from './emailVerify/emailVerify'
 import { RegistrationStages } from './registrationStages.interface'
 interface SignUpProps {
   onClose: () => void
+  onLogInClickHandler: () => void
 }
 
-const SignUp: FC<SignUpProps> = ({ onClose }) => {
+const SignUp: FC<SignUpProps> = ({ onClose, onLogInClickHandler }) => {
   const [registrationStage, setRegistrationStage] =
     useState<RegistrationStages>(RegistrationStages.ACCOUNT_DETAILS)
 
@@ -24,6 +25,7 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
           setRegistrationStage(RegistrationStages.EMAIL_VERIFY)
         }
         setUserInfo={setUserInfo}
+        onLogInClickHandler={onLogInClickHandler}
       />
     )
 
@@ -34,6 +36,7 @@ const SignUp: FC<SignUpProps> = ({ onClose }) => {
         setRegistrationStage(RegistrationStages.ACCOUNT_DETAILS)
       }
       userInfo={userInfo}
+      onLogInClickHandler={onLogInClickHandler}
     />
   )
 }

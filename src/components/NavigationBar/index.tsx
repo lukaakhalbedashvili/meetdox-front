@@ -121,14 +121,20 @@ const NavigationBar = () => {
         <PopupItemWrapper
           onOutsideClickHandler={() => setIsSignUpPopupOpen(false)}
         >
-          <SignUp onClose={() => setIsSignUpPopupOpen(false)} />
+          <SignUp
+            onLogInClickHandler={() => setIsLogInPopupOpen(true)}
+            onClose={() => setIsSignUpPopupOpen(false)}
+          />
         </PopupItemWrapper>
       )}
       {isLogInPopupOpen && (
         <PopupItemWrapper
           onOutsideClickHandler={() => setIsLogInPopupOpen(false)}
         >
-          <LogIn onClose={() => setIsLogInPopupOpen(false)} />
+          <LogIn
+            onSignUpClickHandler={() => setIsSignUpPopupOpen(true)}
+            onClose={() => setIsLogInPopupOpen(false)}
+          />
         </PopupItemWrapper>
       )}
     </>

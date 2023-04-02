@@ -3,6 +3,7 @@ import { FaTimes } from 'react-icons/fa'
 import Image from 'next/image'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
+import googleAuth from '@/utils/firebase/googleAuth'
 import useLogIn from './useLogIn'
 import { LogInFormFields } from './logIn.interface'
 
@@ -31,7 +32,10 @@ const LogIn: FC<LogInProps> = ({ onClose, onSignUpClickHandler }) => {
           customTailwindClasses="bg-transparent border-border_gray text-text_gray"
           // onClickHandler={() => console.log(true)}
         >
-          <div className="flex items-center justify-center w-[320px] h-[40px]">
+          <div
+            className="flex items-center justify-center w-[320px] h-[40px]"
+            onClick={googleAuth}
+          >
             <Image
               src="/google_logo.png"
               alt="Google Logo"
@@ -55,7 +59,10 @@ const LogIn: FC<LogInProps> = ({ onClose, onSignUpClickHandler }) => {
       </div>
 
       <div className="w-full flex justify-center align-center">
-        <form className="mt-5 w-[320px]">
+        <form
+          className="mt-5 w-[320px]"
+          onSubmit={LogInFormValidation.handleSubmit}
+        >
           <p className="text-sm  text-text_gray mb-1 ">Email Address</p>
 
           <div className="h-[44px]">
@@ -90,6 +97,8 @@ const LogIn: FC<LogInProps> = ({ onClose, onSignUpClickHandler }) => {
             <div className="flex items-center">
               <input
                 type="checkbox"
+                name={LogInFormFields.REMEMBER_ME}
+                onChange={LogInFormValidation.handleChange}
                 className="w-4 h-4 border border-border_gray rounded-md"
               />
               <p className="text-sm text-text_gray ml-2">Keep me logged in </p>
@@ -98,7 +107,10 @@ const LogIn: FC<LogInProps> = ({ onClose, onSignUpClickHandler }) => {
           </div>
 
           <div className="h-12 mt-7">
-            <Button customTailwindClasses="bg-sky border-sky text-white">
+            <Button
+              type="submit"
+              customTailwindClasses="bg-sky border-sky text-white"
+            >
               <p className="text-sm flex items-center justify-center w-[320px] h-[36px]">
                 Log In
               </p>

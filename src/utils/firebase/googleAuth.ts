@@ -7,7 +7,15 @@ const googleAuth = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       if (result._tokenResponse.isNewUser) {
-        // FIRSTLY INITALIZE USER DATA
+        // REQUEST POST TO CREATE NEW USER FROM GOOGLE
+        // /authentication/google-registration
+        // {
+        //   "email": result.user.email,
+        //   "displayName": result.user.displayName,
+        //   "photoURL": result.user.photoURL,
+        //   "uid": result.user.uid,
+        // }
+        // THEN RELOAD PAGE
       } else {
         window.location.reload()
       }

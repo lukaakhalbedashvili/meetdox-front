@@ -10,8 +10,14 @@ interface SignUpProps {
 }
 
 const SignUp: FC<SignUpProps> = ({ onClose, onLogInClickHandler }) => {
-  const { registrationStage, setRegistrationStage, setUserInfo, userInfo } =
-    useSignUp()
+  const {
+    registrationStage,
+    setRegistrationStage,
+    setUserInfo,
+    userInfo,
+    handleResend,
+    isResendClicked,
+  } = useSignUp()
 
   if (registrationStage === RegistrationStages.ACCOUNT_DETAILS)
     return (
@@ -33,6 +39,8 @@ const SignUp: FC<SignUpProps> = ({ onClose, onLogInClickHandler }) => {
       }
       userInfo={userInfo}
       onLogInClickHandler={onLogInClickHandler}
+      isResendClicked={isResendClicked}
+      handleResend={(email) => handleResend(email)}
     />
   )
 }

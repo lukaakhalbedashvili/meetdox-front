@@ -1,0 +1,5 @@
+export enum ForgotPasswordStages {
+  ENTER_EMAIL = 'ENTER_EMAIL',
+  EMAIL_VERIFY = 'EMAIL_VERIFY',
+  RESET_PASSWORD = 'RESET_PASSWORD',
+}

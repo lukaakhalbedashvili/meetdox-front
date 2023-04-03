@@ -4,39 +4,38 @@ import Button from '@/elements/Button'
 import Input from '@/elements/Input'
 import useEmailVerify from './useEmailVerify'
 import { VerifyField } from './emailVerify.interface'
-import { RegistrationStages, User } from '../registrationStages.interface'
+import { ForgotPasswordStages } from '../forgot.interface'
 
 interface EmailVerifyStageProps {
   onClose: () => void
-  setRegistrationStage: Dispatch<SetStateAction<RegistrationStages>>
-  userInfo: User
-  onLogInClickHandler: () => void
+  setForgotPasswordStage: Dispatch<SetStateAction<ForgotPasswordStages>>
+  setPrevStage: Dispatch<SetStateAction<ForgotPasswordStages>>
+  setCode: Dispatch<SetStateAction<string>>
+  email: string
   isResendClicked: boolean
   handleResend: (email: string) => void
 }
 
 const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
   onClose,
-  setRegistrationStage,
-  userInfo,
-  onLogInClickHandler,
-  isResendClicked,
+  setForgotPasswordStage,
+  setCode,
+  setPrevStage,
+  email,
   handleResend,
+  isResendClicked,
 }) => {
   const { EmailVerifyCodeValidation } = useEmailVerify({
-    userInfo,
-    onClose,
-    onLogInClickHandler,
+    setForgotPasswordStage,
+    setCode,
   })
 
   return (
-    <div className=" w-[400px] bg-white rounded-md h-[420px] ">
+    <div className=" w-[400px] bg-white rounded-md h-[370px] ">
       <div className="flex justify-between items-center">
         <FaArrowLeft
           className="w-6 h-6 ml-3 mt-3 cursor-pointer"
-          onClick={() =>
-            setRegistrationStage(RegistrationStages.ACCOUNT_DETAILS)
-          }
+          onClick={() => setPrevStage(ForgotPasswordStages.ENTER_EMAIL)}
         />
         <FaTimes
           className="w-6 h-6 mr-3 mt-3 cursor-pointer"
@@ -93,20 +92,12 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
                   !isResendClicked ? 'text-sky cursor-pointer' : 'text-gray'
                 } `}
                 onClick={() => {
-                  if (!isResendClicked) handleResend(userInfo.email)
+                  if (!isResendClicked) handleResend(email)
                 }}
               >
                 {' '}
                 &nbsp; Resend
               </span>
-            </small>
-          </div>
-          <div className="mt-3">
-            <small className="text-text_gray text-center">
-              By clicking verify you agree to our &nbsp;
-              <span className="text-sky cursor-pointer">Terms of Service </span>
-              &nbsp; and &nbsp;
-              <span className="text-sky cursor-pointer">Privacy Policy</span>
             </small>
           </div>
         </form>

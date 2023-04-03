@@ -11,12 +11,15 @@ import Button from '@/elements/Button'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SignUp from '../SignUp'
 import LogIn from '../LogIn'
+import ForgotPassword from '../ForgotPassword'
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false)
   const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
+  const [isForgotPasswordPopupOpen, setIsForgotPasswordPopupOpen] =
+    useState(false)
 
   return (
     <>
@@ -134,6 +137,20 @@ const NavigationBar = () => {
           <LogIn
             onSignUpClickHandler={() => setIsSignUpPopupOpen(true)}
             onClose={() => setIsLogInPopupOpen(false)}
+            onForgotPasswordClickHandler={() =>
+              setIsForgotPasswordPopupOpen(true)
+            }
+          />
+        </PopupItemWrapper>
+      )}
+
+      {isForgotPasswordPopupOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsForgotPasswordPopupOpen(false)}
+        >
+          <ForgotPassword
+            onLogInClickHandler={() => setIsLogInPopupOpen(true)}
+            onClose={() => setIsForgotPasswordPopupOpen(false)}
           />
         </PopupItemWrapper>
       )}

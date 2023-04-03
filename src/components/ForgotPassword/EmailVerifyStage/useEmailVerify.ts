@@ -1,19 +1,16 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { VerifyField } from './emailVerify.interface'
-import { User } from '../registrationStages.interface'
-import { registrationApiRequest } from '../../../utils/api/authentication'
+import { ForgotPasswordStages } from '../forgot.interface'
 
 interface EmailVerifyProps {
-  userInfo: User
-  onClose: () => void
-  onLogInClickHandler: () => void
+  setCode: (code: string) => void
+  setForgotPasswordStage: (stage: ForgotPasswordStages) => void
 }
 
 const useEmailVerify = ({
-  userInfo,
-  onClose,
-  onLogInClickHandler,
+  setCode,
+  setForgotPasswordStage,
 }: EmailVerifyProps) => {
   const EmailVerifyCodeValidation = useFormik({
     initialValues: {
@@ -29,10 +26,8 @@ const useEmailVerify = ({
 
     onSubmit: async (values) => {
       const { code } = values
-      await registrationApiRequest(userInfo.email, userInfo.username, code)
-
-      onClose()
-      onLogInClickHandler()
+      setForgotPasswordStage(ForgotPasswordStages.RESET_PASSWORD)
+      setCode(code)
     },
   })
   return { EmailVerifyCodeValidation }

@@ -40,13 +40,11 @@ const useLogIn = () => {
       )
         .then(() => {
           signInWithEmailAndPassword(auth, email, password).then(() => {
-            // refresh page
             window.location.reload()
           })
         })
         .catch(() => {
           resetForm()
-          // NOTIFICATION: INCORRECT EMAIL OR PASSWORD
         })
     },
   })

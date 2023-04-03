@@ -1,28 +1,42 @@
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  UserCredential,
+} from 'firebase/auth'
 
 import { auth } from './init'
+import { googleRegistrationApiRequest } from '../api/authentication'
+
+interface GoogleAuthResponse {
+  _tokenResponse: {
+    isNewUser: boolean
+  }
+  user: {
+    email: string
+    displayName: string
+    photoURL: string
+    uid: string
+  }
+}
 
 const googleAuth = () => {
   const provider = new GoogleAuthProvider()
   signInWithPopup(auth, provider)
-    .then((result) => {
-      if (result._tokenResponse.isNewUser) {
-        // REQUEST POST TO CREATE NEW USER FROM GOOGLE
-        // /authentication/google-registration
-        // {
-        //   "email": result.user.email,
-        //   "displayName": result.user.displayName,
-        //   "photoURL": result.user.photoURL,
-        //   "uid": result.user.uid,
-        // }
-        // THEN RELOAD PAGE
+    .then((result: GoogleAuthResponse | UserCredential) => {
+      if ('_tokenResponse' in result && result._tokenResponse.isNewUser) {
+        googleRegistrationApiRequest(
+          result.user.email,
+          result.user.displayName,
+          result.user.photoURL,
+          result.user.uid
+        ).then(() => {
+          window.location.reload()
+        })
       } else {
         window.location.reload()
       }
     })
-    .catch((error) => {
-      console.log(error)
-    })
+    .catch(() => {})
 
   return { googleAuth }
 }

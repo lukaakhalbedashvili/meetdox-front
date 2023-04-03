@@ -10,9 +10,14 @@ import { LogInFormFields } from './logIn.interface'
 interface LogInProps {
   onClose: () => void
   onSignUpClickHandler: () => void
+  onForgotPasswordClickHandler: () => void
 }
 
-const LogIn: FC<LogInProps> = ({ onClose, onSignUpClickHandler }) => {
+const LogIn: FC<LogInProps> = ({
+  onClose,
+  onSignUpClickHandler,
+  onForgotPasswordClickHandler,
+}) => {
   const { LogInFormValidation } = useLogIn()
 
   return (
@@ -103,7 +108,15 @@ const LogIn: FC<LogInProps> = ({ onClose, onSignUpClickHandler }) => {
               />
               <p className="text-sm text-text_gray ml-2">Keep me logged in </p>
             </div>
-            <p className="text-sm text-sky cursor-pointer">Forgot Password?</p>
+            <p
+              onClick={() => {
+                onClose()
+                onForgotPasswordClickHandler()
+              }}
+              className="text-sm text-sky cursor-pointer"
+            >
+              Forgot Password?
+            </p>
           </div>
 
           <div className="h-12 mt-7">

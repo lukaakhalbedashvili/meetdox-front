@@ -3,6 +3,8 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { SignUpFormFields } from './signUp.interface'
 import { RegistrationStages } from '../registrationStages.interface'
+import { sendEmailCodeApiRequest } from '../../../utils/api/authentication'
+
 interface SignupProps {
   setRegistrationStage: Dispatch<SetStateAction<RegistrationStages>>
   setUserInfo: Dispatch<
@@ -49,16 +51,10 @@ const useSignup = ({ setRegistrationStage, setUserInfo }: SignupProps) => {
 
     onSubmit: async (values) => {
       const { email, username, password } = values
+      await sendEmailCodeApiRequest(email, 'registration')
 
       setUserInfo({ email, username, password })
       setRegistrationStage(RegistrationStages.EMAIL_VERIFY)
-
-      // http://localhost:8000/api/users/authentication/verify-email
-      /*
-      {
-        "email": email
-      }
-      */
     },
   })
   return { SignUpFormValidation }

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { VerifyEmailCodeType } from './api.interface'
 import { API_URL } from '../consts/consts'
 
 export const registrationApiRequest = async (
@@ -18,24 +19,26 @@ export const registrationApiRequest = async (
 }
 
 export const googleRegistrationApiRequest = async (
-  email: string,
-  displayName: string,
-  photoURL: string,
-  uid: string
+  email?: string,
+  displayName?: string,
+  photoURL?: string,
+  uid?: string
 ) => {
-  const response = await axios.post(
-    `${API_URL}/users/authentication/google-registration`,
-    {
+  const response = await axios
+    .post(`${API_URL}/users/authentication/google-registration`, {
       email,
       displayName,
       photoURL,
       uid,
-    }
-  )
+    })
+    .then((res) => res.data)
   return response
 }
 
-export const sendEmailCodeApiRequest = async (email: string, type: string) => {
+export const sendEmailCodeApiRequest = async (
+  email: string,
+  type?: VerifyEmailCodeType
+) => {
   const response = await axios.post(
     `${API_URL}/users/authentication/send-email-code?type=${type}`,
     {
@@ -45,7 +48,7 @@ export const sendEmailCodeApiRequest = async (email: string, type: string) => {
   return response
 }
 
-export const resetPassword = async (
+export const resetPasswordApiRequest = async (
   email: string,
   code: string,
   password: string
@@ -56,6 +59,17 @@ export const resetPassword = async (
       email,
       code,
       password,
+    }
+  )
+  return response
+}
+
+export const checkEmailCodeApiRequest = async (email: string, code: string) => {
+  const response = await axios.post(
+    `${API_URL}/users/authentication/check-email-code`,
+    {
+      email,
+      code,
     }
   )
   return response

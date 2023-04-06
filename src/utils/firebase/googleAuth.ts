@@ -3,9 +3,8 @@ import {
   GoogleAuthProvider,
   UserCredential,
 } from 'firebase/auth'
-
+import { useRegisterGoogleUserQuery } from '@/reactQuery/authQueries/registerGoogleUser'
 import { auth } from './init'
-import { googleRegistrationApiRequest } from '../api/authentication'
 
 interface GoogleAuthResponse {
   _tokenResponse: {
@@ -19,26 +18,29 @@ interface GoogleAuthResponse {
   }
 }
 
-const googleAuth = () => {
+export const useGoogleAuth = () => {
   const provider = new GoogleAuthProvider()
-  signInWithPopup(auth, provider)
-    .then((result: GoogleAuthResponse | UserCredential) => {
-      if ('_tokenResponse' in result && result._tokenResponse.isNewUser) {
-        googleRegistrationApiRequest(
-          result.user.email,
-          result.user.displayName,
-          result.user.photoURL,
-          result.user.uid
-        ).then(() => {
+  const { mutate } = useRegisterGoogleUserQuery()
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result: GoogleAuthResponse | UserCredential) => {
+        if ('_tokenResponse' in result && result._tokenResponse.isNewUser) {
+          try {
+            mutate({
+              displayName: result?.user.displayName,
+              email: result?.user.email,
+              photoURL: result?.user.photoURL,
+              uid: result?.user.uid,
+            })
+            window.location.reload()
+          } catch (error) {
+            console.error(error)
+          }
+        } else {
           window.location.reload()
-        })
-      } else {
-        window.location.reload()
-      }
-    })
-    .catch(() => {})
-
-  return { googleAuth }
+        }
+      })
+      .catch(() => {})
+  }
+  return { signInWithGoogle }
 }
-
-export default googleAuth

@@ -3,7 +3,7 @@ import { FaTimes } from 'react-icons/fa'
 import Image from 'next/image'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
-import googleAuth from '@/utils/firebase/googleAuth'
+import { useGoogleAuth } from '@/utils/firebase/googleAuth'
 import useSignUp from './useSignUpStage'
 import { SignUpFormFields } from './signUp.interface'
 import { RegistrationStages, User } from '../registrationStages.interface'
@@ -26,6 +26,8 @@ const SignUpStage: FC<SignUpStageProps> = ({
     setUserInfo,
   })
 
+  const { signInWithGoogle } = useGoogleAuth()
+
   return (
     <div className=" w-[400px] bg-white rounded-md h-[630px] ">
       <div className="flex justify-end items-center">
@@ -39,13 +41,10 @@ const SignUpStage: FC<SignUpStageProps> = ({
         <h1 className="text-2xl text-text_gray">Join Us!</h1>
       </div>
       <div className="flex justify-center w-full mt-8">
-        <Button
-          customTailwindClasses="bg-transparent border-border_gray text-text_gray"
-          // onClickHandler={() => console.log(true)}
-        >
+        <Button customTailwindClasses="bg-transparent border-border_gray text-text_gray">
           <div
             className="flex items-center justify-center w-[320px] h-[40px]"
-            onClick={googleAuth}
+            onClick={signInWithGoogle}
           >
             <Image
               src="/google_logo.png"

@@ -27,7 +27,7 @@ const useEnterEmail = ({
 
     onSubmit: async (values) => {
       const { email } = values
-      await sendEmailCodeApiRequest(email, 'forgot-password')
+      await sendEmailCodeApiRequest(email)
       setEmail(email)
       setForgotPasswordStage(ForgotPasswordStages.EMAIL_VERIFY)
     },

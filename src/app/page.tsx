@@ -2,13 +2,13 @@
 
 import React, { useEffect, useState } from 'react'
 import { auth } from '../utils/firebase/init'
+
 const Home = () => {
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState<string>()
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log(user)
-        setUser(user.email)
+        user.email && setUser(user.email)
       } else {
         setUser('No user')
       }

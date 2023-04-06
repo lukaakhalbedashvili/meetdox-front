@@ -28,6 +28,7 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
   const { EmailVerifyCodeValidation } = useEmailVerify({
     setForgotPasswordStage,
     setCode,
+    email,
   })
 
   return (

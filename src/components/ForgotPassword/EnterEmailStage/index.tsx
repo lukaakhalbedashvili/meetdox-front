@@ -38,7 +38,7 @@ const EnterEmailStage: FC<EnterEmailStageProps> = ({
       </div>
       <div className="flex justify-center items-center w-full mt-5">
         <div className="flex justify-center items-center w-[320px] text-center">
-          <small className="text-text_gray">
+          <small className="text-text_gray ">
             Please enter your email address and we&apos;ll send you a code to
             reset your password.
           </small>

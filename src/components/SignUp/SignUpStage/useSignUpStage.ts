@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { VerifyEmailCodeType } from '@/utils/api/api.interface'
+import { useSendEmailVerificationCodeQuery } from '@/reactQuery/authQueries/sendEmailVerificationCode'
 import { SignUpFormFields } from './signUp.interface'
 import { RegistrationStages } from '../registrationStages.interface'
-import { sendEmailCodeApiRequest } from '../../../utils/api/authentication'
 
 interface SignupProps {
   setRegistrationStage: Dispatch<SetStateAction<RegistrationStages>>
@@ -17,6 +18,8 @@ interface SignupProps {
 }
 
 const useSignup = ({ setRegistrationStage, setUserInfo }: SignupProps) => {
+  const { mutate } = useSendEmailVerificationCodeQuery()
+
   const SignUpFormValidation = useFormik({
     initialValues: {
       [SignUpFormFields.EMAIL]: '',
@@ -51,10 +54,9 @@ const useSignup = ({ setRegistrationStage, setUserInfo }: SignupProps) => {
 
     onSubmit: async (values) => {
       const { email, username, password } = values
-      await sendEmailCodeApiRequest(email, 'registration')
-
       setUserInfo({ email, username, password })
       setRegistrationStage(RegistrationStages.EMAIL_VERIFY)
+      mutate({ email, type: VerifyEmailCodeType.REGISTRATION })
     },
   })
   return { SignUpFormValidation }

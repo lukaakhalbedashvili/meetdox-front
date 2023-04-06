@@ -3,7 +3,7 @@ import { FaTimes } from 'react-icons/fa'
 import Image from 'next/image'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
-import googleAuth from '@/utils/firebase/googleAuth'
+import { useGoogleAuth } from '@/utils/firebase/googleAuth'
 import useLogIn from './useLogIn'
 import { LogInFormFields } from './logIn.interface'
 
@@ -18,6 +18,7 @@ const LogIn: FC<LogInProps> = ({
   onSignUpClickHandler,
   onForgotPasswordClickHandler,
 }) => {
+  const { signInWithGoogle } = useGoogleAuth()
   const { LogInFormValidation } = useLogIn()
 
   return (
@@ -33,13 +34,10 @@ const LogIn: FC<LogInProps> = ({
         <h1 className="text-2xl text-text_gray">Welcome!</h1>
       </div>
       <div className="flex justify-center w-full mt-8">
-        <Button
-          customTailwindClasses="bg-transparent border-border_gray text-text_gray"
-          // onClickHandler={() => console.log(true)}
-        >
+        <Button customTailwindClasses="bg-transparent border-border_gray text-text_gray">
           <div
             className="flex items-center justify-center w-[320px] h-[40px]"
-            onClick={googleAuth}
+            onClick={signInWithGoogle}
           >
             <Image
               src="/google_logo.png"

@@ -1,17 +1,21 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useCheckForgotPasswordCode } from '@/reactQuery/authQueries/checkForgotPasswordCode'
 import { VerifyField } from './emailVerify.interface'
 import { ForgotPasswordStages } from '../forgot.interface'
 
 interface EmailVerifyProps {
   setCode: (code: string) => void
   setForgotPasswordStage: (stage: ForgotPasswordStages) => void
+  email: string
 }
 
 const useEmailVerify = ({
   setCode,
   setForgotPasswordStage,
+  email,
 }: EmailVerifyProps) => {
+  const { mutate } = useCheckForgotPasswordCode()
   const EmailVerifyCodeValidation = useFormik({
     initialValues: {
       [VerifyField.CODE]: '',
@@ -26,8 +30,15 @@ const useEmailVerify = ({
 
     onSubmit: async (values) => {
       const { code } = values
-      setForgotPasswordStage(ForgotPasswordStages.RESET_PASSWORD)
-      setCode(code)
+      mutate(
+        { code, email },
+        {
+          onSuccess: () => {
+            setForgotPasswordStage(ForgotPasswordStages.RESET_PASSWORD)
+            setCode(code)
+          },
+        }
+      )
     },
   })
   return { EmailVerifyCodeValidation }

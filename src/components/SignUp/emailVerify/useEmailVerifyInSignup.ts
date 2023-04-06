@@ -1,8 +1,8 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useRegisterUserQuery } from '@/reactQuery/authQueries/registerUser'
 import { VerifyField } from './emailVerify.interface'
 import { User } from '../registrationStages.interface'
-import { registrationApiRequest } from '../../../utils/api/authentication'
 
 interface EmailVerifyProps {
   userInfo: User
@@ -15,6 +15,8 @@ const useEmailVerify = ({
   onClose,
   onLogInClickHandler,
 }: EmailVerifyProps) => {
+  const { mutate } = useRegisterUserQuery()
+
   const EmailVerifyCodeValidation = useFormik({
     initialValues: {
       [VerifyField.CODE]: '',
@@ -28,13 +30,16 @@ const useEmailVerify = ({
     }),
 
     onSubmit: async (values) => {
-      const { code } = values
-      await registrationApiRequest(userInfo.email, userInfo.username, code)
-
+      mutate({
+        email: userInfo.email,
+        username: userInfo.username,
+        code: values[VerifyField.CODE],
+      })
       onClose()
       onLogInClickHandler()
     },
   })
+
   return { EmailVerifyCodeValidation }
 }
 

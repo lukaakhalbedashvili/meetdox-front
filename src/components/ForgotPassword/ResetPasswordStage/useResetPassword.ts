@@ -1,7 +1,8 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useResetPasswordQuery } from '@/reactQuery/authQueries/resetPassword'
 import { PasswordField } from './resetPassword.interface'
-import { resetPassword } from '../../../utils/api/authentication'
+
 interface ResetPasswordProps {
   code: string
   email: string
@@ -15,6 +16,8 @@ const useResetPassword = ({
   onClose,
   onLoginClickHandler,
 }: ResetPasswordProps) => {
+  const { mutate } = useResetPasswordQuery()
+
   const EmailVerifyCodeValidation = useFormik({
     initialValues: {
       [PasswordField.PASSWORD]: '',
@@ -35,7 +38,7 @@ const useResetPassword = ({
     }),
     onSubmit: async (values) => {
       const { password } = values
-      await resetPassword(email, code, password)
+      mutate({ email, code, password })
       onClose()
       onLoginClickHandler()
     },

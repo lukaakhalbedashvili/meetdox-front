@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { VerifyEmailCodeType } from '@/utils/api/api.interface'
 import { ForgotPasswordStages } from './forgot.interface'
 import { sendEmailCodeApiRequest } from '../../utils/api/authentication'
 
@@ -13,7 +14,7 @@ const useForgotPassword = () => {
 
   const handleResend = async (email: string) => {
     if (!isResendClicked) {
-      await sendEmailCodeApiRequest(email, 'forgot-password')
+      await sendEmailCodeApiRequest(email, VerifyEmailCodeType.FORGOT_PASSWORD)
     }
     setIsResendClicked(true)
     setTimeout(() => {

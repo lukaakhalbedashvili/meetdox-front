@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
-import useResetPassword from './useResetEmail'
+import useResetPassword from './useResetPassword'
 import { PasswordField } from './resetPassword.interface'
 
 interface ResetPasswordStageProps {

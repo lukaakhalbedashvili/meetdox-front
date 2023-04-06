@@ -19,10 +19,10 @@ export const registrationApiRequest = async (
 }
 
 export const googleRegistrationApiRequest = async (
-  email: string,
-  displayName: string,
-  photoURL: string,
-  uid: string
+  email?: string,
+  displayName?: string,
+  photoURL?: string,
+  uid?: string
 ) => {
   const response = await axios
     .post(`${API_URL}/users/authentication/google-registration`, {

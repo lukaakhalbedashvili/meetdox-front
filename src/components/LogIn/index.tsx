@@ -11,15 +11,17 @@ interface LogInProps {
   onClose: () => void
   onSignUpClickHandler: () => void
   onForgotPasswordClickHandler: () => void
+  setIsLogInPopupOpen: (value: boolean) => void
 }
 
 const LogIn: FC<LogInProps> = ({
   onClose,
   onSignUpClickHandler,
   onForgotPasswordClickHandler,
+  setIsLogInPopupOpen,
 }) => {
   const { signInWithGoogle } = useGoogleAuth()
-  const { LogInFormValidation } = useLogIn()
+  const { LogInFormValidation } = useLogIn({ setIsLogInPopupOpen })
 
   return (
     <div className=" w-[400px] bg-white rounded-md h-[550px] ">

@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef } from 'react'
-import useOnOutsideClick from '@/app/hooks/useDetectOutsideClick'
+import useOnOutsideClick from '@/hooks/useDetectOutsideClick'
 
 interface PopupItemWrapperPros {
   children: React.ReactNode

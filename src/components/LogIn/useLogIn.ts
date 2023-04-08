@@ -6,10 +6,18 @@ import {
   browserLocalPersistence,
   browserSessionPersistence,
 } from 'firebase/auth'
+import { useZustandStore } from '@/zustand'
+import { NotificationType } from '@/zustand/zustand.interface'
 import { LogInFormFields } from './logIn.interface'
 import { auth } from '../../utils/firebase/init'
 
-const useLogIn = () => {
+interface UseLoginProps {
+  setIsLogInPopupOpen: (value: boolean) => void
+}
+
+const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
+  const { setNotifications } = useZustandStore()
+
   const LogInFormValidation = useFormik({
     initialValues: {
       [LogInFormFields.EMAIL]: '',
@@ -40,7 +48,12 @@ const useLogIn = () => {
       )
         .then(() => {
           signInWithEmailAndPassword(auth, email, password).then(() => {
-            window.location.reload()
+            setIsLogInPopupOpen(false)
+            setNotifications({
+              message: 'user created successfully ',
+              type: NotificationType.SUCCESS,
+              onClick: () => console.error('clicked'),
+            })
           })
         })
         .catch(() => {

@@ -39,7 +39,9 @@ module.exports = {
       error_bg_red: '#fef7f6',
       error_border_red: '#FEB8AE',
       icon_gray: '#5F6D7E',
+      teacher_template_border: '#EAEBF0',
+      star_gold: '#ffbe5b',
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 }

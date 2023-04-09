@@ -149,6 +149,7 @@ const NavigationBar = () => {
           />
         </PopupItemWrapper>
       )}
+
       {isLogInPopupOpen && (
         <PopupItemWrapper
           onOutsideClickHandler={() => setIsLogInPopupOpen(false)}
@@ -159,6 +160,7 @@ const NavigationBar = () => {
             onForgotPasswordClickHandler={() =>
               setIsForgotPasswordPopupOpen(true)
             }
+            setIsLogInPopupOpen={setIsLogInPopupOpen}
           />
         </PopupItemWrapper>
       )}

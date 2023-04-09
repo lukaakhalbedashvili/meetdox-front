@@ -27,7 +27,11 @@ module.exports = {
       border_gray: '#dae1e7',
       error: '#ff0000',
       text_gray: '#414755',
+      empty_gray: '#eeeef0',
+      lite : '#ccccce',
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }

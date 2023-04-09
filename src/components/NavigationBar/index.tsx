@@ -1,26 +1,38 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import navigationBarItems from '@/data/navigationBarItems'
 import Button from '@/elements/Button'
+import { auth } from '@/utils/firebase/init'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SignUp from '../SignUp'
 import LogIn from '../LogIn'
 import ForgotPassword from '../ForgotPassword'
+import NavigationLoggedIn from '../NavigationLoggedIn'
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false)
   const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
+  const [loggedInUser, setLoggedInUser] = useState<any>(null)
   const [isForgotPasswordPopupOpen, setIsForgotPasswordPopupOpen] =
     useState(false)
 
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        user && setLoggedInUser(user)
+      } else {
+        setLoggedInUser(null)
+      }
+    })
+  }, [])
   return (
     <>
       <nav className="bg-white border-border_gray border-b-[1px]">
@@ -52,38 +64,45 @@ const NavigationBar = () => {
                 ))}
               </div>
             </div>
-            <div className="flex items-center">
-              <div className="hidden md:flex md:items-center md:space-x-4 mr-5">
-                <Button
-                  customTailwindClasses="bg-transparent border-transparent text-sky"
-                  onClickHandler={() => setIsSignUpPopupOpen(true)}
-                >
-                  <p className="font-medium	w-[90px] h-[45px] flex items-center justify-center">
-                    Sign up
-                  </p>
-                </Button>
+            {loggedInUser ? (
+              <NavigationLoggedIn
+                photoUrl={loggedInUser.photoURL}
+                username={loggedInUser.displayName}
+              />
+            ) : (
+              <div className="flex items-center">
+                <div className="hidden md:flex md:items-center md:space-x-4 mr-5">
+                  <Button
+                    customTailwindClasses="bg-transparent border-transparent text-sky"
+                    onClickHandler={() => setIsSignUpPopupOpen(true)}
+                  >
+                    <p className="font-medium	w-[90px] h-[45px] flex items-center justify-center">
+                      Sign up
+                    </p>
+                  </Button>
 
-                <Button
-                  customTailwindClasses="bg-sky border-sky text-text_gray"
-                  onClickHandler={() => setIsLogInPopupOpen(true)}
-                >
-                  <p className="font-medium w-[90px] h-[30px] flex items-center justify-center text-white">
-                    Log In
-                  </p>
-                </Button>
-              </div>
+                  <Button
+                    customTailwindClasses="bg-sky border-sky text-text_gray"
+                    onClickHandler={() => setIsLogInPopupOpen(true)}
+                  >
+                    <p className="font-medium w-[90px] h-[30px] flex items-center justify-center text-white">
+                      Log In
+                    </p>
+                  </Button>
+                </div>
 
-              <div
-                className="flex md:hidden"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                {isOpen ? (
-                  <FaTimes className="w-6 h-6" aria-hidden="true" />
-                ) : (
-                  <FaBars className="w-6 h-6" aria-hidden="true" />
-                )}
+                <div
+                  className="flex md:hidden"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {isOpen ? (
+                    <FaTimes className="w-6 h-6" aria-hidden="true" />
+                  ) : (
+                    <FaBars className="w-6 h-6" aria-hidden="true" />
+                  )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
 

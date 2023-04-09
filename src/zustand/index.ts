@@ -2,12 +2,19 @@ import { create } from 'zustand'
 import { BearState } from './zustand.interface'
 
 export const useZustandStore = create<BearState>((set) => ({
-  notification: undefined,
+  alert: undefined,
 
-  setNotifications: (notification) =>
-    set(() => {
+  setAlert: (alert) => {
+    setTimeout(() => {
+      set(() => ({
+        alert: undefined,
+      }))
+    }, alert?.duration)
+
+    return set(() => {
       return {
-        notification,
+        alert,
       }
-    }),
+    })
+  },
 }))

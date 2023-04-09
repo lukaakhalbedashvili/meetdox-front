@@ -1,5 +1,5 @@
 import { IoCloseOutline } from 'react-icons/io5'
-import useNotifications from './useNotifications'
+import useNotifications from './useAlert'
 
 const Notification = () => {
   const {
@@ -13,7 +13,7 @@ const Notification = () => {
 
   return (
     <div
-      className={`rounded ${selectedNotificationBG} ${selectedNotificationBorder} border-2 p-6 flex items-center cursor-pointer justify-between `}
+      className={`rounded ${selectedNotificationBG} ${selectedNotificationBorder} border-2  p-3  flex items-center cursor-pointer justify-between `}
       onClick={onClick}
     >
       <div className="flex items-center">

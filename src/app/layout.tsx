@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import NavigationBar from '@/components/NavigationBar'
-import Notification from '@/components/Notification'
+import Alert from '@/components/Alert'
 import { useZustandStore } from '@/zustand'
 
 const inter = Inter({
@@ -16,16 +16,16 @@ const inter = Inter({
 })
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-  const { notification } = useZustandStore((state) => state)
+  const { alert } = useZustandStore((state) => state)
   const queryClient = new QueryClient()
 
   return (
     <html lang="en" className={inter.className}>
       <body>
         <QueryClientProvider client={queryClient}>
-          {notification && (
+          {alert && (
             <div className="absolute top-20 right-6">
-              <Notification />
+              <Alert />
             </div>
           )}
           <NavigationBar />

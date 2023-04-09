@@ -41,6 +41,8 @@ module.exports = {
       icon_gray: '#5F6D7E',
       teacher_template_border: '#EAEBF0',
       star_gold: '#ffbe5b',
+      empty_gray: '#eeeef0',
+      lite: '#ccccce',
     },
   },
   plugins: [require('@tailwindcss/line-clamp')],

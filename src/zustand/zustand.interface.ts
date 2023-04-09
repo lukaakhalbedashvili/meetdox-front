@@ -9,6 +9,7 @@ export interface AlertStructure {
   message: string
   type: AlertType
   onClick: () => void
+  duration: number
 }
 
 export interface BearState {

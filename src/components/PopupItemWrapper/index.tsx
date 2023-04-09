@@ -11,7 +11,7 @@ const PopupItemWrapper: FC<PopupItemWrapperPros> = ({
   onOutsideClickHandler,
 }) => {
   const childrenWrapperRef = useRef<HTMLDivElement>(null)
-  useOnOutsideClick(childrenWrapperRef, onOutsideClickHandler)
+  useOnOutsideClick([childrenWrapperRef], onOutsideClickHandler)
 
   return (
     <div className="w-screen absolute top-0 h-full bg-text_gray bg-opacity-70 flex items-center justify-center">

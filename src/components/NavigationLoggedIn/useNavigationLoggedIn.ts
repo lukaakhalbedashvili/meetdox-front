@@ -6,13 +6,22 @@ import { NotificationStructure } from './navigationLoggedIn.interface'
 
 const useNavigationLoggedIn = () => {
   const profileDropdownRef = useRef<HTMLDivElement>(null)
+  const notificationsDropDownRef = useRef<HTMLDivElement>(null)
+  const userAvatarRef = useRef<HTMLButtonElement>(null)
+  const notificationsIconRef = useRef<HTMLButtonElement>(null)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [notifications, setNotifications] = useState<NotificationStructure[]>(
     []
   )
 
-  useOnOutsideClick(profileDropdownRef, () => setIsProfileOpen(false))
+  useOnOutsideClick([profileDropdownRef, userAvatarRef], () =>
+    setIsProfileOpen(false)
+  )
+
+  useOnOutsideClick([notificationsDropDownRef, notificationsIconRef], () =>
+    setIsNotificationsOpen(false)
+  )
 
   const handleNotificationsClick = () => {
     setIsNotificationsOpen(!isNotificationsOpen)
@@ -43,6 +52,9 @@ const useNavigationLoggedIn = () => {
     notifications,
     setNotifications,
     profileDropdownRef,
+    userAvatarRef,
+    notificationsDropDownRef,
+    notificationsIconRef,
   }
 }
 

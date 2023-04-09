@@ -9,6 +9,7 @@ import {
   profileBtnsSectionTwo,
 } from '@/data/profileModuleItems'
 import useNavigationLoggedIn from './useNavigationLoggedIn'
+
 interface NavigationLoggedInProps {
   photoUrl: string
   username: string
@@ -26,7 +27,11 @@ const NavigationLoggedIn = ({
     isProfileOpen,
     notifications,
     profileDropdownRef,
+    userAvatarRef,
+    notificationsDropDownRef,
+    notificationsIconRef,
   } = useNavigationLoggedIn()
+
   return (
     <>
       <div className="flex items-center">
@@ -34,16 +39,21 @@ const NavigationLoggedIn = ({
           <button
             className="flex items-center justify-center bg-gray-700 rounded-full h-10 w-10 mr-4 hover:bg-blue-500 transition-colors duration-300 "
             onClick={handleNotificationsClick}
+            ref={notificationsIconRef}
           >
             <BiBell
               className={` h-6 w-6 transition-colors hover:text-sky duration-300 ${
                 isNotificationsOpen ? ' text-sky' : 'text-text_gray'
               }`}
             />
+
             <div className="absolute right-5 top-1 h-2 w-2 bg-error rounded-full"></div>
           </button>
           {isNotificationsOpen && (
-            <div className="absolute right-0 w-96 mt-1 py-2 bg-white  rounded-sm border-[1px] border-border_gray z-10">
+            <div
+              className="absolute right-0 w-96 mt-1 py-2 bg-white  rounded-sm border-[1px] border-border_gray z-10"
+              ref={notificationsDropDownRef}
+            >
               <div className="px-4 py-1 pb-2 flex items-start border-1 border-border_gray border-solid border-b-[1px]">
                 <BiBell className="h-5 w-5 text-text_gray mr-2" />
                 <p
@@ -69,8 +79,9 @@ const NavigationLoggedIn = ({
         </div>
         <div className="relative">
           <button
-            className="flex items-center justify-center bg-gray-700 rounded-full h-10 w-10 hover:bg-blue-500 transition-colors duration-300"
+            className="flex items-center justify-center bg-gray-700 rounded-full h-10 w-10 hover:bg-blue-500 transition-colors duration-300 bg-sky"
             onClick={handleProfileClick}
+            ref={userAvatarRef}
           >
             <ProfileCircledPic
               photoUrl={photoUrl}

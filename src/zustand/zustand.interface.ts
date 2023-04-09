@@ -1,17 +1,17 @@
-export enum NotificationType {
+export enum AlertType {
   SUCCESS = 'success',
   ERROR = 'error',
   INFO = 'info',
   WARNING = 'warning',
 }
 
-export interface NotificationStructure {
+export interface AlertStructure {
   message: string
-  type: NotificationType
+  type: AlertType
   onClick: () => void
 }
 
 export interface BearState {
-  notification: NotificationStructure | undefined
-  setNotifications: (payload: NotificationStructure | undefined) => void
+  alert: AlertStructure | undefined
+  setAlert: (payload: AlertStructure | undefined) => void
 }

@@ -1,5 +1,5 @@
 import { IoCloseOutline } from 'react-icons/io5'
-import useNotifications from './useNotifications'
+import useNotifications from './useAlert'
 
 const Notification = () => {
   const {

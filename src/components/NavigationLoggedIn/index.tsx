@@ -1,17 +1,14 @@
 'use client'
-import { useState } from 'react'
-// react icons for BELL, HEART
+
 import { BiBell, BiLogOut } from 'react-icons/bi'
-import { signOut } from 'firebase/auth'
 import NotificationModuleSingleBtn from '@/elements/NotificationModuleSingleBtn'
 import ProfileModuleSingleBtn from '@/elements/ProfileModuleSingleBtn'
 import ProfileCircledPic from '@/elements/ProfileCircledPic'
-import { auth } from '@/utils/firebase/init'
 import {
   profileBtnsSectionOne,
   profileBtnsSectionTwo,
 } from '@/data/profileModuleItems'
-import { Notification } from './navigationLoggedIn.interface'
+import useNavigationLoggedIn from './useNavigationLoggedIn'
 interface NavigationLoggedInProps {
   photoUrl: string
   username: string
@@ -21,30 +18,15 @@ const NavigationLoggedIn = ({
   photoUrl,
   username,
 }: NavigationLoggedInProps) => {
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
-  const [isProfileOpen, setIsProfileOpen] = useState(false)
-  const [notifications, setNotifications] = useState<Notification[]>([])
-
-  const handleNotificationsClick = () => {
-    setIsNotificationsOpen(!isNotificationsOpen)
-    setIsProfileOpen(false)
-  }
-
-  const handleProfileClick = () => {
-    setIsProfileOpen(!isProfileOpen)
-    setIsNotificationsOpen(false)
-  }
-
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        window.location.reload()
-      })
-      .catch(() => {
-        // ALERT
-      })
-  }
-
+  const {
+    handleLogout,
+    handleNotificationsClick,
+    handleProfileClick,
+    isNotificationsOpen,
+    isProfileOpen,
+    notifications,
+    profileDropdownRef,
+  } = useNavigationLoggedIn()
   return (
     <>
       <div className="flex items-center">
@@ -97,7 +79,10 @@ const NavigationLoggedIn = ({
             />
           </button>
           {isProfileOpen && (
-            <div className="absolute right-0 w-64 mt-1 py-2 bg-white  rounded-sm border-[1px] border-border_gray z-10">
+            <div
+              className="absolute right-0 w-64 mt-1 py-2 bg-white rounded-sm border-[1px] border-border_gray z-10"
+              ref={profileDropdownRef}
+            >
               <div className="flex flex-col items-center pt-2 pb-2 px-4  bg-white">
                 <ProfileCircledPic
                   photoUrl={photoUrl}

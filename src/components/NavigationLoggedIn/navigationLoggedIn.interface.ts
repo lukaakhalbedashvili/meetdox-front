@@ -1,4 +1,4 @@
-export interface Notification {
+export interface NotificationStructure {
   id: number
   text: string
   msTime: number

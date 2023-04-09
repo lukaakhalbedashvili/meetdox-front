@@ -1,15 +1,16 @@
-import { useEffect, useCallback, useState, RefObject } from 'react'
+import { useEffect, useCallback, RefObject } from 'react'
 
-const useOnOutsideClick = (ref: RefObject<HTMLDivElement> | null) => {
-  const [isOutsideClick, setIsOutsideClick] = useState(false)
-
+const useOnOutsideClick = (
+  ref: RefObject<HTMLDivElement> | null,
+  outsideClickHandler: () => void
+) => {
   const handleClickOutside = useCallback(
     (event: MouseEvent) => {
       if (ref?.current && !ref.current.contains(event.target as Node)) {
-        setIsOutsideClick(true)
+        outsideClickHandler()
       }
     },
-    [ref]
+    [ref, outsideClickHandler]
   )
 
   useEffect(() => {
@@ -18,8 +19,6 @@ const useOnOutsideClick = (ref: RefObject<HTMLDivElement> | null) => {
       document.removeEventListener('click', handleClickOutside, true)
     }
   }, [handleClickOutside])
-
-  return { isOutsideClick }
 }
 
 export default useOnOutsideClick

@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import NavigationBar from '@/components/NavigationBar'
 import Alert from '@/components/Alert'
 import { useZustandStore } from '@/zustand'
+import Footer from '@/components/Footer'
 
 const inter = Inter({
   weight: ['400', '500', '700'],
@@ -30,6 +31,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           )}
           <NavigationBar />
           {children}
+          <Footer />
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </body>

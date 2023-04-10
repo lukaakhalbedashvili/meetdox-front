@@ -43,6 +43,9 @@ module.exports = {
       star_gold: '#ffbe5b',
       empty_gray: '#eeeef0',
       lite: '#ccccce',
+      footer_blue: '#151b28',
+      footer_text: '#9ea4b3',
+      footer_blue_lite: '#2d3544'
     },
   },
   plugins: [require('@tailwindcss/line-clamp')],

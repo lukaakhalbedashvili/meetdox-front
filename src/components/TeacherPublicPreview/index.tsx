@@ -22,7 +22,7 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
   lastName,
 }) => {
   return (
-    <div className="w-64 h-80 border border-teacher_template_border cursor-pointer m-2 ">
+    <div className="w-64 h-80 border border-teacher_template_border cursor-pointer m-2 -z-30">
       <div className="relative w-full h-3/5">
         <Image src={image} alt={title} fill style={{ objectFit: 'cover' }} />
       </div>

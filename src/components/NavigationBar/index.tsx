@@ -14,6 +14,7 @@ import SignUp from '../SignUp'
 import LogIn from '../LogIn'
 import ForgotPassword from '../ForgotPassword'
 import NavigationLoggedIn from '../NavigationLoggedIn'
+import NavigationSearchBar from '../NavigationSearchBar'
 
 const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -37,8 +38,8 @@ const NavigationBar = () => {
     <>
       <nav className="bg-white border-border_gray border-b-[1px]">
         <div className="mx-auto h-[60px] px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-[60px]">
-            <div className="flex items-center">
+          <div className="flex justify-between h-[60px] w-full">
+            <div className="flex items-center ">
               <Link href="/">
                 <span className="flex items-center">
                   <div className="mr-2">
@@ -63,6 +64,9 @@ const NavigationBar = () => {
                   </NavigationBarItem>
                 ))}
               </div>
+            </div>
+            <div className="hidden md:flex md:items-center md:space-x-8">
+              <NavigationSearchBar />
             </div>
             {loggedInUser ? (
               <NavigationLoggedIn

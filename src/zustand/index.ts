@@ -1,3 +1,4 @@
+import { User } from 'firebase/auth'
 import { create } from 'zustand'
 import { BearState } from './zustand.interface'
 
@@ -17,4 +18,14 @@ export const useZustandStore = create<BearState>((set) => ({
       }
     })
   },
+
+  loggedInUser: undefined,
+
+  setLoggedInUser: (loggedInUser: User) =>
+    set((state) => {
+      return {
+        ...state,
+        loggedInUser,
+      }
+    }),
 }))

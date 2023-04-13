@@ -1,14 +1,13 @@
 'use client'
-
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import navigationBarItems from '@/data/navigationBarItems'
 import Button from '@/elements/Button'
-import { auth } from '@/utils/firebase/init'
+import { useZustandStore } from '@/zustand'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SignUp from '../SignUp'
 import LogIn from '../LogIn'
@@ -21,19 +20,10 @@ const NavigationBar = () => {
   const pathname = usePathname()
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false)
   const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
-  const [loggedInUser, setLoggedInUser] = useState<any>(null)
+  const loggedInUser = useZustandStore((state) => state.loggedInUser)!
   const [isForgotPasswordPopupOpen, setIsForgotPasswordPopupOpen] =
     useState(false)
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        user && setLoggedInUser(user)
-      } else {
-        setLoggedInUser(null)
-      }
-    })
-  }, [])
   return (
     <>
       <nav className="bg-white border-border_gray border-b-[1px]">
@@ -70,8 +60,8 @@ const NavigationBar = () => {
             </div>
             {loggedInUser ? (
               <NavigationLoggedIn
-                photoUrl={loggedInUser.photoURL}
-                username={loggedInUser.displayName}
+                photoUrl={loggedInUser.photoURL!}
+                username={loggedInUser.displayName!}
               />
             ) : (
               <div className="flex items-center">

@@ -1,25 +1,11 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { teachersDummyData } from '@/data/teachersDummyData'
 import TeacherPublicPreview from '@/components/TeacherPublicPreview'
-import { auth } from '../utils/firebase/init'
 
 const Home = () => {
-  const [user, setUser] = useState<string>()
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        user.email && setUser(user.email)
-      } else {
-        setUser('No user')
-      }
-    })
-  }, [])
-
   return (
     <main className="bg-white h-[500px] font-ubuntu">
-      {user}
-
       <div className="flex items-center">
         {teachersDummyData.map((item) => (
           <TeacherPublicPreview

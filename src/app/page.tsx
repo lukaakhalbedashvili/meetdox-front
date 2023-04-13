@@ -19,6 +19,7 @@ const Home = () => {
               lastName="Akhalbedashvili"
               name="Luka"
               title="I am a teacher, with 12 years of experience I am a teacher, with 12 years of experience"
+              tags={['Math', 'Physics', 'Chemistry']}
             />
           </SwiperSlide>
         ))}

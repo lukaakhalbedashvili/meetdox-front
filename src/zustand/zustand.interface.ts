@@ -14,5 +14,5 @@ export interface AlertStructure {
 
 export interface BearState {
   alert: AlertStructure | undefined
-  setAlert: (payload: AlertStructure | undefined) => void
+  setAlert: (alert: AlertStructure | undefined) => void
 }

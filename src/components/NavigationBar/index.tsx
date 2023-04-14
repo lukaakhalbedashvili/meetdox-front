@@ -67,10 +67,12 @@ const NavigationBar = () => {
               <NavigationSearchBar />
             </div>
             {loggedInUser ? (
-              <NavigationLoggedIn
-                photoUrl={loggedInUser.photoURL}
-                username={loggedInUser.displayName}
-              />
+              <div className="z-20 flex items-center">
+                <NavigationLoggedIn
+                  photoUrl={loggedInUser.photoURL}
+                  username={loggedInUser.displayName}
+                />
+              </div>
             ) : (
               <div className="flex items-center">
                 <div className="hidden md:flex md:items-center md:space-x-4 mr-5">

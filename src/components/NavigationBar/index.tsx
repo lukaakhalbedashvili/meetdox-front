@@ -7,7 +7,7 @@ import Image from 'next/image'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import navigationBarItems from '@/data/navigationBarItems'
 import Button from '@/elements/Button'
-import { useZustandStore } from '@/zustand'
+import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SignUp from '../SignUp'
 import LogIn from '../LogIn'
@@ -20,9 +20,12 @@ const NavigationBar = () => {
   const pathname = usePathname()
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false)
   const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
-  const loggedInUser = useZustandStore((state) => state.loggedInUser)!
   const [isForgotPasswordPopupOpen, setIsForgotPasswordPopupOpen] =
     useState(false)
+
+  const { data } = useFetchLoggedInUserData()
+
+  const loggedInUser = data?.data.data
 
   return (
     <>
@@ -58,8 +61,8 @@ const NavigationBar = () => {
             </div>
             {loggedInUser ? (
               <NavigationLoggedIn
-                photoUrl={loggedInUser.photoURL!}
-                username={loggedInUser.username!}
+                photoUrl={loggedInUser.photoURL}
+                username={loggedInUser.username}
               />
             ) : (
               <div className="flex items-center">

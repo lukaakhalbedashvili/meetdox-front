@@ -1,6 +1,6 @@
 'use client'
 import './globals.css'
-import React, { useEffect } from 'react'
+import React from 'react'
 import 'swiper/css'
 import { Inter } from 'next/font/google'
 import { QueryClientProvider, QueryClient } from 'react-query'
@@ -9,8 +9,6 @@ import NavigationBar from '@/components/NavigationBar'
 import Alert from '@/components/Alert'
 import { useZustandStore } from '@/zustand'
 import Footer from '@/components/Footer'
-import { auth } from '@/utils/firebase/init'
-import { myData } from '../utils/api/user'
 
 const inter = Inter({
   weight: ['400', '500', '700'],
@@ -22,16 +20,6 @@ const inter = Inter({
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   const { alert } = useZustandStore((state) => state)
   const queryClient = new QueryClient()
-  const setLoggedInUser = useZustandStore((state) => state.setLoggedInUser)
-
-  useEffect(() => {
-    auth.onAuthStateChanged(async (user) => {
-      user &&
-        myData(await user.getIdToken()).then((data: any) =>
-          setLoggedInUser(data.data.data)
-        )
-    })
-  }, [setLoggedInUser])
 
   return (
     <html lang="en" className={inter.className}>

@@ -4,8 +4,11 @@ import { SwiperSlide } from 'swiper/react'
 import LandingCategorySwiper from '@/components/SwiperWrapper'
 import { teachersDummyData } from '@/data/teachersDummyData'
 import TeacherPublicPreview from '@/components/TeacherPublicPreview'
+import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 
 const Home = () => {
+  useFetchLoggedInUserData()
+
   return (
     <main className="bg-white h-[500px] font-ubuntu">
       <LandingCategorySwiper categoryName="Doctors">

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { BearState, UserData } from './zustand.interface'
+import { BearState } from './zustand.interface'
 
 export const useZustandStore = create<BearState>((set) => ({
   alert: undefined,
@@ -17,14 +17,4 @@ export const useZustandStore = create<BearState>((set) => ({
       }
     })
   },
-
-  loggedInUser: undefined,
-
-  setLoggedInUser: (loggedInUser: UserData) =>
-    set((state) => {
-      return {
-        ...state,
-        loggedInUser,
-      }
-    }),
 }))

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 const Footer = () => {
@@ -7,7 +8,14 @@ const Footer = () => {
         <div className="flex flex-wrap justify-between mt-5">
           <div className="w-full md:w-1/3 lg:w-auto mb-8 md:mb-0">
             <div className="flex items-center">
-              <img src="/cow.svg" alt="Logo" className="h-12 w-12 mr-2" />
+              <Image
+                src="/cow.png"
+                width={35}
+                height={35}
+                alt="cow"
+                className="mr-2"
+              />
+
               <span className="text-white text-lg font-normal">My Website</span>
             </div>
             <p className="text-footer_text text-sm mt-2">

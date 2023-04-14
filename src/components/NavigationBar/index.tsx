@@ -37,21 +37,19 @@ const NavigationBar = () => {
   return (
     <>
       <nav className="bg-white border-border_gray border-b-[1px]">
-        <div className="mx-auto h-[60px] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto h-[60px] px-4 sm:px-6 lg:px-12">
           <div className="flex justify-between h-[60px] w-full">
-            <div className="flex items-center ">
+            <div className="flex items-center">
               <Link href="/">
-                <span className="flex items-center">
-                  <div className="mr-2">
-                    <Image
-                      className="hover:rotate-12"
-                      src="/cow.svg"
-                      alt="My Logo"
-                      width={65}
-                      height={65}
-                    />
-                  </div>
-                </span>
+                <div className="mr-6">
+                  <Image
+                    className="hover:rotate-12"
+                    src="/cow.png"
+                    alt="My Logo"
+                    width={40}
+                    height={40}
+                  />
+                </div>
               </Link>
               <div className="hidden ml-2 md:flex md:items-center md:space-x-8">
                 {navigationBarItems.map((item) => (

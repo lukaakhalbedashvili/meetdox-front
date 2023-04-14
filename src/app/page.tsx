@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SwiperSlide } from 'swiper/react'
 import LandingCategorySwiper from '@/components/SwiperWrapper'
 import { teachersDummyData } from '@/data/teachersDummyData'
@@ -7,7 +7,11 @@ import TeacherPublicPreview from '@/components/TeacherPublicPreview'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 
 const Home = () => {
-  useFetchLoggedInUserData()
+  const { refetch } = useFetchLoggedInUserData()
+
+  useEffect(() => {
+    refetch()
+  }, [refetch])
 
   return (
     <main className="bg-white h-[500px] font-ubuntu">

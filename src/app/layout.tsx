@@ -1,6 +1,7 @@
 'use client'
 import './globals.css'
 import React, { useEffect } from 'react'
+import 'swiper/css'
 import { Inter } from 'next/font/google'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'

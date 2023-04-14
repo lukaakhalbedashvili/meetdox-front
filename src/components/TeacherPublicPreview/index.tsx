@@ -10,6 +10,7 @@ interface TeacherPublicPreviewProps {
   price: number
   name: string
   lastName: string
+  tags: string[]
 }
 
 const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
@@ -20,14 +21,26 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
   totalReviews,
   name,
   lastName,
+  tags,
 }) => {
   return (
-    <div className="w-64 h-80 border border-teacher_template_border cursor-pointer m-2 ">
-      <div className="relative w-full h-3/5">
+    <div className="w-64 h-80 border border-teacher_template_border cursor-pointer m-2 -z-30">
+      <div className="relative w-full h-1/2">
         <Image src={image} alt={title} fill style={{ objectFit: 'cover' }} />
       </div>
 
       <div className="p-3">
+        <div className="flex items-center mb-2">
+          {tags.map((tag) => (
+            <p
+              key={tag}
+              className="text-xs rounded bg-info_notification_bg pt-1 pb-1 pl-3 pr-3 text-info_icon_blue mr-1"
+            >
+              {tag}
+            </p>
+          ))}
+        </div>
+
         <p className="mb-2">
           {name} {lastName}
         </p>

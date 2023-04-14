@@ -1,5 +1,3 @@
-import { User } from 'firebase/auth'
-
 export enum AlertType {
   SUCCESS = 'success',
   ERROR = 'error',
@@ -17,6 +15,13 @@ export interface AlertStructure {
 export interface BearState {
   alert: AlertStructure | undefined
   setAlert: (alert: AlertStructure | undefined) => void
-  loggedInUser: User | undefined
-  setLoggedInUser: (loggedInUser: User) => void
+  loggedInUser: UserData | undefined
+  setLoggedInUser: (loggedInUser: UserData) => void
+}
+
+export interface UserData {
+  email: string
+  username: string
+  photoURL: string
+  uid: string
 }

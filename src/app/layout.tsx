@@ -10,6 +10,7 @@ import Alert from '@/components/Alert'
 import { useZustandStore } from '@/zustand'
 import Footer from '@/components/Footer'
 import { auth } from '@/utils/firebase/init'
+import { myData } from '../utils/api/user'
 
 const inter = Inter({
   weight: ['400', '500', '700'],
@@ -24,8 +25,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   const setLoggedInUser = useZustandStore((state) => state.setLoggedInUser)
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      user && setLoggedInUser(user)
+    auth.onAuthStateChanged(async (user) => {
+      user &&
+        myData(await user.getIdToken()).then((data: any) =>
+          setLoggedInUser(data.data.data)
+        )
     })
   }, [setLoggedInUser])
 

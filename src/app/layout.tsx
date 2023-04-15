@@ -9,6 +9,7 @@ import NavigationBar from '@/components/NavigationBar'
 import Alert from '@/components/Alert'
 import { useZustandStore } from '@/zustand'
 import Footer from '@/components/Footer'
+import CategoryNav from '@/components/CategoryNav'
 
 const inter = Inter({
   weight: ['400', '500', '700'],
@@ -31,6 +32,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
           )}
           <NavigationBar />
+          <CategoryNav />
           {children}
           <Footer />
           <ReactQueryDevtools initialIsOpen={false} />

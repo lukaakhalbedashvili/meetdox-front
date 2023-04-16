@@ -1,14 +1,11 @@
-export enum TeacherQualification {
-  BACHELOR = 'BACHELOR',
-  MASTER = 'MASTER',
-  PHD = 'PHD',
-}
 export interface TeacherPersonalInfoForm {
   name: string
   lastName: string
   middleName: string
-  birthDate: string
+  birthMonth: string
+  birthYear: string
 }
+
 export enum TeacherPersonalInfoFormInputs {
   NAME = 'name',
   LAST_NAME = 'lastName',

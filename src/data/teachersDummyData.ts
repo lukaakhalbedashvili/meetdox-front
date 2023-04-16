@@ -114,6 +114,7 @@ export const teachersDummyData = [
 ]
 
 export const months = [
+  'Birth month',
   'January',
   'February',
   'March',

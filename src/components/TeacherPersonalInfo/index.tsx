@@ -92,7 +92,7 @@ const TeacherPersonalInfo = () => {
                 value.target.value
               )
             }
-            value={teacherPersonalInfoValidation.values.birthMonth}
+            value={teacherPersonalInfoValidation.values.birthYear}
           />
         </div>
       </div>

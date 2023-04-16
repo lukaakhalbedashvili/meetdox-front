@@ -15,11 +15,15 @@ const DropDownInput: FC<DropDownInputProps> = ({
   onChange,
   value,
   onBlurHandler,
+  name,
 }) => {
   return (
     <select
+      name={name}
       onChange={onChange}
-      className="h-full border-2 border-border_gray rounded-md pl-1"
+      className={`h-full border-2 border-border_gray rounded-md pl-1 text-sm ${
+        value === 'Birth month' ? 'text-disable_gray' : 'text-black'
+      }`}
       value={value}
       onBlur={onBlurHandler}
     >

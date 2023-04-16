@@ -45,7 +45,8 @@ module.exports = {
       lite: '#ccccce',
       footer_blue: '#151b28',
       footer_text: '#9ea4b3',
-      footer_blue_lite: '#2d3544'
+      footer_blue_lite: '#2d3544',
+      disable_gray: '#9ba3af',
     },
   },
   plugins: [require('@tailwindcss/line-clamp')],

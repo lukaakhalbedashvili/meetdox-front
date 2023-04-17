@@ -6,7 +6,7 @@ export interface TeacherPersonalInfoForm {
   birthYear: string
 }
 
-export enum TeacherPersonalInfoFormInputs {
+export enum TeacherPersonalInfoFormInputNames {
   NAME = 'name',
   LAST_NAME = 'lastName',
   MIDDLE_NAME = 'middleName',

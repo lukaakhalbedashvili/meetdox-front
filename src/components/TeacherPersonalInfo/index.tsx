@@ -4,7 +4,7 @@ import Input from '@/elements/Input'
 import DropDownInput from '@/elements/DropDownInput'
 import { months, years } from '@/data/teachersDummyData'
 import useTeacherPersonalInfo from './useTeacherPersonalInfo'
-import { TeacherPersonalInfoFormInputs } from './teacherPersonalInfo.interface'
+import { TeacherPersonalInfoFormInputNames } from './teacherPersonalInfo.interface'
 
 const TeacherPersonalInfo = () => {
   const { teacherPersonalInfoValidation } = useTeacherPersonalInfo()
@@ -18,7 +18,7 @@ const TeacherPersonalInfo = () => {
             placeholder="First Name"
             type="text"
             onChange={teacherPersonalInfoValidation.handleChange}
-            name={TeacherPersonalInfoFormInputs.NAME}
+            name={TeacherPersonalInfoFormInputNames.NAME}
             onBlurHandler={teacherPersonalInfoValidation.handleBlur}
             errorMessage={
               teacherPersonalInfoValidation.touched.name &&
@@ -33,7 +33,7 @@ const TeacherPersonalInfo = () => {
             placeholder="Middle Name"
             type="text"
             onChange={teacherPersonalInfoValidation.handleChange}
-            name={TeacherPersonalInfoFormInputs.MIDDLE_NAME}
+            name={TeacherPersonalInfoFormInputNames.MIDDLE_NAME}
             onBlurHandler={teacherPersonalInfoValidation.handleBlur}
             errorMessage={
               teacherPersonalInfoValidation.touched.middleName &&
@@ -48,7 +48,7 @@ const TeacherPersonalInfo = () => {
             placeholder="Last Name"
             type="text"
             onChange={teacherPersonalInfoValidation.handleChange}
-            name={TeacherPersonalInfoFormInputs.LAST_NAME}
+            name={TeacherPersonalInfoFormInputNames.LAST_NAME}
             onBlurHandler={teacherPersonalInfoValidation.handleBlur}
             errorMessage={
               teacherPersonalInfoValidation.touched.lastName &&
@@ -61,18 +61,13 @@ const TeacherPersonalInfo = () => {
         <div className="h-10">
           <DropDownInput
             options={months}
-            name={TeacherPersonalInfoFormInputs.BIRTH_MONTH}
+            name={TeacherPersonalInfoFormInputNames.BIRTH_MONTH}
             onBlurHandler={teacherPersonalInfoValidation.handleBlur}
             errorMessage={
               teacherPersonalInfoValidation.touched.birthMonth &&
               teacherPersonalInfoValidation.errors.birthMonth
             }
-            onChange={(value) =>
-              teacherPersonalInfoValidation.setFieldValue(
-                TeacherPersonalInfoFormInputs.BIRTH_MONTH,
-                value.target.value
-              )
-            }
+            onChange={teacherPersonalInfoValidation.handleChange}
             value={teacherPersonalInfoValidation.values.birthMonth}
           />
         </div>
@@ -80,18 +75,13 @@ const TeacherPersonalInfo = () => {
         <div className="h-10">
           <DropDownInput
             options={years}
-            name={TeacherPersonalInfoFormInputs.BIRTH_YEAR}
+            name={TeacherPersonalInfoFormInputNames.BIRTH_YEAR}
             onBlurHandler={teacherPersonalInfoValidation.handleBlur}
             errorMessage={
               teacherPersonalInfoValidation.touched.birthYear &&
               teacherPersonalInfoValidation.errors.birthYear
             }
-            onChange={(value) =>
-              teacherPersonalInfoValidation.setFieldValue(
-                TeacherPersonalInfoFormInputs.BIRTH_YEAR,
-                value.target.value
-              )
-            }
+            onChange={teacherPersonalInfoValidation.handleChange}
             value={teacherPersonalInfoValidation.values.birthYear}
           />
         </div>

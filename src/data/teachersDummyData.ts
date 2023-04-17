@@ -112,3 +112,18 @@ export const teachersDummyData = [
       'I am a teacher, with 12 years of experience I am a teacher, with 12 years of experience',
   },
 ]
+
+export const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]

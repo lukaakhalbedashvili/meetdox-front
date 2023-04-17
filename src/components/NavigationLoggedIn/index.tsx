@@ -30,6 +30,8 @@ const NavigationLoggedIn = ({
     userAvatarRef,
     notificationsDropDownRef,
     notificationsIconRef,
+    router,
+    setIsProfileOpen,
   } = useNavigationLoggedIn()
 
   return (
@@ -91,7 +93,7 @@ const NavigationLoggedIn = ({
           </button>
           {isProfileOpen && (
             <div
-              className="absolute right-0 w-64 mt-1 py-2 bg-white rounded-sm border-[1px] border-border_gray z-10"
+              className="absolute right-0 w-64 mt-1 py-2 bg-white rounded-sm border-[1px] border-border_gray z-20"
               ref={profileDropdownRef}
             >
               <div className="flex flex-col items-center pt-2 pb-2 px-4  bg-white">
@@ -104,14 +106,17 @@ const NavigationLoggedIn = ({
                 <p className="text-sm mt-2">{username}</p>
               </div>
               <div className="px-4 mb-1 mt-2 flex items-start border-border_gray border-b-[1px]"></div>
+
               {profileBtnsSectionOne.map((btn) => {
                 const { Icon } = btn
                 return (
                   <ProfileModuleSingleBtn
-                    id={btn.id}
+                    onClick={() => {
+                      setIsProfileOpen(false)
+                      router.push(btn.url)
+                    }}
                     key={btn.id}
                     text={btn.text}
-                    url={btn.url}
                   >
                     <Icon className="h-5 w-5" />
                   </ProfileModuleSingleBtn>
@@ -123,10 +128,12 @@ const NavigationLoggedIn = ({
                 const { Icon } = btn
                 return (
                   <ProfileModuleSingleBtn
-                    id={btn.id}
                     key={btn.id}
                     text={btn.text}
-                    url={btn.url}
+                    onClick={() => {
+                      router.push(btn.url)
+                      setIsProfileOpen(false)
+                    }}
                   >
                     <Icon className="h-5 w-5" />
                   </ProfileModuleSingleBtn>

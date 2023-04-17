@@ -5,6 +5,7 @@ import LandingCategorySwiper from '@/components/SwiperWrapper'
 import { teachersDummyData } from '@/data/teachersDummyData'
 import TeacherPublicPreview from '@/components/TeacherPublicPreview'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
+import CategoryNav from '@/components/CategoryNav'
 
 const Home = () => {
   const { refetch } = useFetchLoggedInUserData()
@@ -15,6 +16,8 @@ const Home = () => {
 
   return (
     <main className="bg-white h-[500px] font-ubuntu">
+      <CategoryNav />
+
       <LandingCategorySwiper categoryName="Doctors">
         {teachersDummyData.map((item) => (
           <SwiperSlide key={item.id} style={{ width: 'fit-content' }}>

@@ -1,6 +1,7 @@
 import { IconType } from 'react-icons'
 import { BiUser, BiHelpCircle, BiMessageError } from 'react-icons/bi'
 import { FiSettings } from 'react-icons/fi'
+import { IoAddOutline } from 'react-icons/io5'
 
 interface ProfileModuleItem {
   id: number
@@ -21,6 +22,12 @@ export const profileBtnsSectionOne: ProfileModuleItem[] = [
     text: 'Settings',
     url: '/settings',
     Icon: FiSettings,
+  },
+  {
+    id: 2,
+    text: 'Become teacher',
+    url: '/become-teacher',
+    Icon: IoAddOutline,
   },
 ]
 

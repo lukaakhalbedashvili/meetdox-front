@@ -2,12 +2,17 @@
 import React from 'react'
 import Input from '@/elements/Input'
 import DropDownInput from '@/elements/DropDownInput'
-import { months, years } from '@/data/teachersDummyData'
+import { getAgeRange } from '@/utils/services/getTeacherAgeRange'
+import { months } from '@/data/teachersDummyData'
 import useTeacherPersonalInfo from './useTeacherPersonalInfo'
 import { TeacherPersonalInfoFormInputNames } from './teacherPersonalInfo.interface'
 
 const TeacherPersonalInfo = () => {
-  const { teacherPersonalInfoValidation } = useTeacherPersonalInfo()
+  const {
+    teacherPersonalInfoValidation,
+    placeholderBirthMonth,
+    placeholderBirthYear,
+  } = useTeacherPersonalInfo()
 
   return (
     <div>
@@ -69,12 +74,13 @@ const TeacherPersonalInfo = () => {
             }
             onChange={teacherPersonalInfoValidation.handleChange}
             value={teacherPersonalInfoValidation.values.birthMonth}
+            placeHolderValue={placeholderBirthMonth}
           />
         </div>
 
         <div className="h-10">
           <DropDownInput
-            options={years}
+            options={getAgeRange()}
             name={TeacherPersonalInfoFormInputNames.BIRTH_YEAR}
             onBlurHandler={teacherPersonalInfoValidation.handleBlur}
             errorMessage={
@@ -83,6 +89,7 @@ const TeacherPersonalInfo = () => {
             }
             onChange={teacherPersonalInfoValidation.handleChange}
             value={teacherPersonalInfoValidation.values.birthYear}
+            placeHolderValue={placeholderBirthYear}
           />
         </div>
       </div>

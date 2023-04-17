@@ -114,7 +114,6 @@ export const teachersDummyData = [
 ]
 
 export const months = [
-  'Birth month',
   'January',
   'February',
   'March',
@@ -127,34 +126,4 @@ export const months = [
   'October',
   'November',
   'December',
-]
-
-export const years = [
-  '1970',
-  '1971',
-  '1972',
-  '1973',
-  '1974',
-  '1975',
-  '1976',
-  '1977',
-  '1978',
-  '1979',
-  '1980',
-  '1981',
-  '1982',
-  '1983',
-  '1984',
-  '1985',
-  '1986',
-  '1987',
-  '1988',
-  '1989',
-  '1990',
-  '1991',
-  '1992',
-  '1993',
-  '1994',
-  '1995',
-  '1996',
 ]

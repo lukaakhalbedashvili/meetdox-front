@@ -3,6 +3,10 @@ import * as Yup from 'yup'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
 
 const useTeacherPersonalInfo = () => {
+  const placeholderBirthMonth = 'Birth month'
+
+  const placeholderBirthYear = 'Birth year'
+
   const validationSchema: Yup.ObjectSchema<TeacherPersonalInfoForm> =
     Yup.object({
       name: Yup.string().required('required'),
@@ -14,8 +18,8 @@ const useTeacherPersonalInfo = () => {
 
   const teacherPersonalInfoValidation = useFormik<TeacherPersonalInfoForm>({
     initialValues: {
-      birthMonth: '',
-      birthYear: '',
+      birthMonth: placeholderBirthMonth,
+      birthYear: placeholderBirthYear,
       lastName: '',
       middleName: '',
       name: '',
@@ -28,7 +32,11 @@ const useTeacherPersonalInfo = () => {
       console.error(birthYear, birthMonth, lastName, middleName, name)
     },
   })
-  return { teacherPersonalInfoValidation }
+  return {
+    teacherPersonalInfoValidation,
+    placeholderBirthMonth,
+    placeholderBirthYear,
+  }
 }
 
 export default useTeacherPersonalInfo

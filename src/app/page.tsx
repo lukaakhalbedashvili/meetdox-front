@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
 import { SwiperSlide } from 'swiper/react'
-import LandingCategorySwiper from '@/components/SwiperWrapper'
+import SwiperWrapper from '@/components/SwiperWrapper'
 import { teachersDummyData } from '@/data/teachersDummyData'
 import TeacherPublicPreview from '@/components/TeacherPublicPreview'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
@@ -18,7 +18,7 @@ const Home = () => {
     <main className="bg-white h-[500px] font-ubuntu">
       <CategoryNav />
 
-      <LandingCategorySwiper categoryName="Doctors">
+      <SwiperWrapper title="Doctors">
         {teachersDummyData.map((item) => (
           <SwiperSlide key={item.id} style={{ width: 'fit-content' }}>
             <TeacherPublicPreview
@@ -33,7 +33,7 @@ const Home = () => {
             />
           </SwiperSlide>
         ))}
-      </LandingCategorySwiper>
+      </SwiperWrapper>
     </main>
   )
 }

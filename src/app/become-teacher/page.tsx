@@ -3,7 +3,7 @@ import TeacherPersonalInfo from '@/components/TeacherPersonalInfo'
 
 const page = () => {
   return (
-    <div>
+    <div className="pt-8">
       <TeacherPersonalInfo />
     </div>
   )

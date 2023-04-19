@@ -2,7 +2,7 @@ import { useEffect, useCallback, RefObject } from 'react'
 
 const useOnOutsideClick = (
   refs: (RefObject<HTMLElement> | null)[],
-  outsideClickHandler: () => void
+  outsideClickHandler?: () => void
 ) => {
   const handleClickOutside = useCallback(
     (event: MouseEvent) => {
@@ -10,7 +10,8 @@ const useOnOutsideClick = (
         item?.current?.contains(event.target as Node)
       )
 
-      if (sumWithInitial.length === 0) outsideClickHandler()
+      if (sumWithInitial.length === 0 && outsideClickHandler)
+        outsideClickHandler()
     },
     [refs, outsideClickHandler]
   )

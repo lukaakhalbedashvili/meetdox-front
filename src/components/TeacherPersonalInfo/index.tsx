@@ -128,12 +128,12 @@ const TeacherPersonalInfo = () => {
               onClickHandler={() => setIsUploadImageModalOpen(true)}
             >
               <p className="text-sm flex items-center justify-center w-32 h-[36px]">
-                Upload Image
+                Change Image
               </p>
             </Button>
           </div>
 
-          <div className="hover:opacity-25 peer-hover:opacity-25">
+          <div className="hover:opacity-25 peer-hover:opacity-25 ml-2">
             <Image
               src={userImage}
               width={200}
@@ -146,10 +146,9 @@ const TeacherPersonalInfo = () => {
       )}
 
       {isUploadImageModalOpen && (
-        <PopupItemWrapper
-          onOutsideClickHandler={() => setIsUploadImageModalOpen(false)}
-        >
+        <PopupItemWrapper>
           <PhotoEditor
+            onCloseHandler={() => setIsUploadImageModalOpen(false)}
             onSaveHandler={(image) => {
               setUserImage(image)
               setIsUploadImageModalOpen(false)

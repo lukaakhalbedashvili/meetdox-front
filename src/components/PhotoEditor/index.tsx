@@ -1,14 +1,19 @@
 import React, { FC } from 'react'
 import Cropper from 'react-easy-crop'
+import { FaTimes } from 'react-icons/fa'
 import { getCroppedImg } from '@/utils/services/getCroppedImage'
 import Button from '@/elements/Button'
 import usePhotoEditor from './usePhotoEditor'
 
 interface PhotoEditorProps {
   onSaveHandler: (image: string) => void
+  onCloseHandler: () => void
 }
 
-const PhotoEditor: FC<PhotoEditorProps> = ({ onSaveHandler }) => {
+const PhotoEditor: FC<PhotoEditorProps> = ({
+  onSaveHandler,
+  onCloseHandler,
+}) => {
   const {
     handleUpload,
     onCropComplete,
@@ -22,7 +27,12 @@ const PhotoEditor: FC<PhotoEditorProps> = ({ onSaveHandler }) => {
   } = usePhotoEditor()
 
   return (
-    <div className="h-[600px] w-[600px] bg-white rounded relative">
+    <div className="relative w-[700px] h-[500px] ">
+      <FaTimes
+        className="z-20 absolute right-3 top-3 fill-white w-4 h-4 cursor-pointer"
+        onClick={onCloseHandler}
+      />
+
       <input
         ref={fileInputRef}
         className="hidden"
@@ -38,12 +48,12 @@ const PhotoEditor: FC<PhotoEditorProps> = ({ onSaveHandler }) => {
             image={uploadedImage as string}
             crop={crop}
             zoom={zoom}
-            aspect={4 / 4}
+            aspect={6 / 6}
             onCropChange={setCrop}
             onCropComplete={onCropComplete}
             onZoomChange={setZoom}
             cropShape="round"
-            objectFit="vertical-cover"
+            objectFit="horizontal-cover"
           />
         )}
       </div>

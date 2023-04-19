@@ -3,7 +3,7 @@ import useOnOutsideClick from '@/hooks/useDetectOutsideClick'
 
 interface PopupItemWrapperPros {
   children: React.ReactNode
-  onOutsideClickHandler: () => void
+  onOutsideClickHandler?: () => void
 }
 
 const PopupItemWrapper: FC<PopupItemWrapperPros> = ({

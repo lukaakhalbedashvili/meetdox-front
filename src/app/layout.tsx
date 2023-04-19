@@ -6,7 +6,7 @@ import { Inter } from 'next/font/google'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import NavigationBar from '@/components/NavigationBar'
-import Alert from '@/components/Alert'
+import Alert from '@/elements/Alert'
 import { useZustandStore } from '@/zustand'
 import Footer from '@/components/Footer'
 

@@ -8,7 +8,7 @@ import { months } from '@/data/teachersDummyData'
 import Button from '@/elements/Button'
 import useTeacherPersonalInfo from './useTeacherPersonalInfo'
 import { TeacherPersonalInfoFormInputNames } from './teacherPersonalInfo.interface'
-import PhotoEditor from '../PhotoEditor'
+import PhotoEditor from '../../elements/PhotoEditor'
 import PopupItemWrapper from '../PopupItemWrapper'
 
 const TeacherPersonalInfo = () => {

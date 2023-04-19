@@ -18,29 +18,35 @@ const DropDownInput: FC<DropDownInputProps> = ({
   onBlurHandler,
   name,
   placeHolderValue,
+  errorMessage,
 }) => {
   const optionsWithDefaultValue = placeHolderValue
     ? [...options, placeHolderValue]
     : options
 
   return (
-    <select
-      name={name}
-      onChange={onChange}
-      className={`h-full border-2 border-border_gray rounded-md pl-1 text-sm ${
-        value === placeHolderValue ? 'text-disable_gray' : 'text-black'
-      }`}
-      value={value}
-      onBlur={onBlurHandler}
-    >
-      {optionsWithDefaultValue.map((item) => {
-        return (
-          <option value={item} key={item}>
-            {item}
-          </option>
-        )
-      })}
-    </select>
+    <div className="relative h-full">
+      <select
+        name={name}
+        onChange={onChange}
+        className={`h-full border-2 border-border_gray rounded-md pl-1 text-sm ${
+          value === placeHolderValue ? 'text-disable_gray' : 'text-black'
+        }`}
+        value={value}
+        onBlur={onBlurHandler}
+      >
+        {optionsWithDefaultValue.map((item) => {
+          return (
+            <option value={item} key={item}>
+              {item}
+            </option>
+          )
+        })}
+      </select>
+      <div className="absolute text-error top-[42px] right-[0px] w-fit text-sm">
+        {errorMessage}
+      </div>
+    </div>
   )
 }
 

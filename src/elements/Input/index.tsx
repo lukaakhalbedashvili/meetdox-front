@@ -1,7 +1,7 @@
 import React, { FC, HTMLInputTypeAttribute, ReactNode } from 'react'
 
 interface InputProps {
-  value: string
+  value?: string
   placeholder?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   errorMessage?: string | undefined | false

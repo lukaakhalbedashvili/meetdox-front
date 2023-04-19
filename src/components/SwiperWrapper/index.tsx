@@ -6,12 +6,12 @@ import { IoIosArrowRoundForward } from 'react-icons/io'
 
 interface LandingCategorySwiperProps {
   children: React.ReactNode
-  categoryName: string
+  title: string
 }
 
 const LandingCategorySwiper: FC<LandingCategorySwiperProps> = ({
   children,
-  categoryName,
+  title,
 }) => {
   const slideRightArrowRef = useRef(null)
   const slideLeftArrowRef = useRef(null)
@@ -19,7 +19,7 @@ const LandingCategorySwiper: FC<LandingCategorySwiperProps> = ({
 
   return (
     <div className="pl-12 pr-12">
-      <h2 className="text-2xl  ">{categoryName}</h2>
+      <h2 className="text-2xl">{title}</h2>
 
       <div className="flex items-center">
         <div

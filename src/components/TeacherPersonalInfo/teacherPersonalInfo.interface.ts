@@ -1,7 +1,7 @@
 export interface TeacherPersonalInfoForm {
   name: string
   lastName: string
-  middleName: string
+  middleName?: string
   birthMonth: string
   birthYear: string
 }

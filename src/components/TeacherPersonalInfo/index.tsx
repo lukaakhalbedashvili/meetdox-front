@@ -20,6 +20,10 @@ const TeacherPersonalInfo = () => {
     setIsUploadImageModalOpen,
     userImage,
     setUserImage,
+    handleUpload,
+    uploadedImage,
+    fileInputRef,
+    setUploadedImage,
   } = useTeacherPersonalInfo()
 
   return (
@@ -109,7 +113,10 @@ const TeacherPersonalInfo = () => {
             <Button
               type="submit"
               customTailwindClasses="bg-sky border-sky text-white"
-              onClickHandler={() => setIsUploadImageModalOpen(true)}
+              onClickHandler={() => {
+                setIsUploadImageModalOpen(true)
+                fileInputRef.current?.click()
+              }}
             >
               <p className="text-sm flex items-center justify-center w-32 h-[36px]">
                 Upload Image
@@ -125,7 +132,10 @@ const TeacherPersonalInfo = () => {
             <Button
               type="submit"
               customTailwindClasses="bg-sky border-sky text-white"
-              onClickHandler={() => setIsUploadImageModalOpen(true)}
+              onClickHandler={() => {
+                fileInputRef.current?.click()
+                setIsUploadImageModalOpen(true)
+              }}
             >
               <p className="text-sm flex items-center justify-center w-32 h-[36px]">
                 Change Image
@@ -145,13 +155,24 @@ const TeacherPersonalInfo = () => {
         </div>
       )}
 
-      {isUploadImageModalOpen && (
+      <input
+        ref={fileInputRef}
+        className="hidden"
+        accept="image/png, image/jpeg"
+        multiple
+        type="file"
+        onChange={(e) => e.target.files && handleUpload(e.target.files)}
+      />
+
+      {isUploadImageModalOpen && uploadedImage && (
         <PopupItemWrapper>
           <PhotoEditor
+            image={uploadedImage}
             onCloseHandler={() => setIsUploadImageModalOpen(false)}
             onSaveHandler={(image) => {
               setUserImage(image)
               setIsUploadImageModalOpen(false)
+              setUploadedImage(undefined)
             }}
           />
         </PopupItemWrapper>

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { SwiperSlide } from 'swiper/react'
 import SwiperWrapper from '@/components/SwiperWrapper'
 import { teachersDummyData } from '@/data/teachersDummyData'
-import TeacherPublicPreview from '@/components/TeacherPublicPreview'
+import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import CategoryNav from '@/components/CategoryNav'
 

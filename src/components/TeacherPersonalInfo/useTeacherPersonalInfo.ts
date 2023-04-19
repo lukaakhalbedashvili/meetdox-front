@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import * as Yup from 'yup'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
 
@@ -8,6 +8,10 @@ const useTeacherPersonalInfo = () => {
   const placeholderBirthYear = 'Birth year'
   const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
   const [userImage, setUserImage] = useState<string>()
+  const [uploadedImage, setUploadedImage] = useState<
+    string | ArrayBuffer | null | undefined
+  >()
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const validationSchema: Yup.ObjectSchema<TeacherPersonalInfoForm> =
     Yup.object({
@@ -38,6 +42,19 @@ const useTeacherPersonalInfo = () => {
       console.error(birthYear, birthMonth, lastName, middleName, name)
     },
   })
+
+  const handleUpload = (images: FileList) => {
+    const imageAsBase64 = (image: File) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(image)
+
+      reader.onloadend = function () {
+        setUploadedImage(reader.result)
+      }
+    }
+    Object.values(images).map((item) => imageAsBase64(item))
+  }
+
   return {
     teacherPersonalInfoValidation,
     placeholderBirthMonth,
@@ -46,6 +63,10 @@ const useTeacherPersonalInfo = () => {
     setIsUploadImageModalOpen,
     userImage,
     setUserImage,
+    handleUpload,
+    uploadedImage,
+    fileInputRef,
+    setUploadedImage,
   }
 }
 

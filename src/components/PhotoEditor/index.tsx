@@ -8,23 +8,16 @@ import usePhotoEditor from './usePhotoEditor'
 interface PhotoEditorProps {
   onSaveHandler: (image: string) => void
   onCloseHandler: () => void
+  image: string | ArrayBuffer
 }
 
 const PhotoEditor: FC<PhotoEditorProps> = ({
   onSaveHandler,
   onCloseHandler,
+  image,
 }) => {
-  const {
-    handleUpload,
-    onCropComplete,
-    crop,
-    zoom,
-    setCrop,
-    setZoom,
-    uploadedImage,
-    fileInputRef,
-    croppedAreaPixels,
-  } = usePhotoEditor()
+  const { onCropComplete, crop, zoom, setCrop, setZoom, croppedAreaPixels } =
+    usePhotoEditor()
 
   return (
     <div className="relative w-[700px] h-[500px] ">
@@ -33,19 +26,10 @@ const PhotoEditor: FC<PhotoEditorProps> = ({
         onClick={onCloseHandler}
       />
 
-      <input
-        ref={fileInputRef}
-        className="hidden"
-        accept="image/png, image/jpeg"
-        multiple
-        type="file"
-        onChange={(e) => e.target.files && handleUpload(e.target.files)}
-      />
-
       <div className="w-full relative h-full">
-        {uploadedImage && (
+        {image && (
           <Cropper
-            image={uploadedImage as string}
+            image={image as string}
             crop={crop}
             zoom={zoom}
             aspect={6 / 6}
@@ -63,15 +47,15 @@ const PhotoEditor: FC<PhotoEditorProps> = ({
           type="submit"
           customTailwindClasses="bg-sky border-sky text-white"
           onClickHandler={async () => {
-            const image =
-              uploadedImage &&
+            const resultImage =
+              image &&
               croppedAreaPixels &&
               (await getCroppedImg({
-                imageSrc: uploadedImage as string,
+                imageSrc: image as string,
                 pixelCrop: croppedAreaPixels,
               }))
 
-            image && onSaveHandler(image)
+            resultImage && onSaveHandler(resultImage)
           }}
         >
           <p className="text-sm flex items-center justify-center w-32 h-[36px]">

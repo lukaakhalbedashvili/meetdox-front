@@ -1,14 +1,9 @@
-'use client'
 import './globals.css'
 import React from 'react'
-import 'swiper/css'
 import { Inter } from 'next/font/google'
-import { QueryClientProvider, QueryClient } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
 import NavigationBar from '@/components/NavigationBar'
-import Alert from '@/elements/Alert'
-import { useZustandStore } from '@/zustand'
 import Footer from '@/components/Footer'
+import ReactQueryWrapper from '@/components/ReactQueryWrapper'
 
 const inter = Inter({
   weight: ['400', '500', '700'],
@@ -18,23 +13,14 @@ const inter = Inter({
 })
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
-  const { alert } = useZustandStore((state) => state)
-  const queryClient = new QueryClient()
-
   return (
     <html lang="en" className={inter.className}>
       <body>
-        <QueryClientProvider client={queryClient}>
-          {alert && (
-            <div className="absolute top-20 right-6">
-              <Alert />
-            </div>
-          )}
+        <ReactQueryWrapper>
           <NavigationBar />
           {children}
           <Footer />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        </ReactQueryWrapper>
       </body>
     </html>
   )

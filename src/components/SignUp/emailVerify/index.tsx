@@ -30,16 +30,16 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
   })
 
   return (
-    <div className=" w-[400px] bg-white rounded-md h-[420px] ">
-      <div className="flex justify-between items-center">
+    <div className=" h-[420px] w-[400px] rounded-md bg-white ">
+      <div className="flex items-center justify-between">
         <FaArrowLeft
-          className="w-6 h-6 ml-3 mt-3 cursor-pointer"
+          className="ml-3 mt-3 h-6 w-6 cursor-pointer"
           onClick={() =>
             setRegistrationStage(RegistrationStages.ACCOUNT_DETAILS)
           }
         />
         <FaTimes
-          className="w-6 h-6 mr-3 mt-3 cursor-pointer"
+          className="mr-3 mt-3 h-6 w-6 cursor-pointer"
           onClick={onClose}
         />
       </div>
@@ -47,8 +47,8 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
       <div className="flex items-center justify-center">
         <h1 className="text-xl text-text_gray">Verify your Email Address!</h1>
       </div>
-      <div className="flex justify-center items-center w-full mt-5">
-        <div className="flex justify-center items-center w-[320px] text-center">
+      <div className="mt-5 flex w-full items-center justify-center">
+        <div className="flex w-[320px] items-center justify-center text-center">
           <small className="text-text_gray">
             We have sent a verification code to your email address. Please enter
             the code below to verify your email address.
@@ -56,7 +56,7 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
         </div>
       </div>
 
-      <div className="w-full flex justify-center align-center">
+      <div className="align-center flex w-full justify-center">
         <form
           className="mt-5 w-[320px]"
           onSubmit={EmailVerifyCodeValidation.handleSubmit}
@@ -75,22 +75,22 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
             ></Input>
           </div>
 
-          <div className="h-12 mt-8">
+          <div className="mt-8 h-12">
             <Button
               type="submit"
               customTailwindClasses="bg-sky border-sky text-white"
             >
-              <p className="text-sm flex items-center justify-center w-[320px] h-[36px]">
+              <p className="flex h-[36px] w-[320px] items-center justify-center text-sm">
                 Verify
               </p>
             </Button>
           </div>
           <div className="mt-3">
-            <small className="text-text_gray text-center">
+            <small className="text-center text-text_gray">
               {" Didn't receive the code? "}
               <span
                 className={`${
-                  !isResendClicked ? 'text-sky cursor-pointer' : 'text-gray'
+                  !isResendClicked ? 'cursor-pointer text-sky' : 'text-gray'
                 } `}
                 onClick={() => {
                   if (!isResendClicked) handleResend(userInfo.email)
@@ -102,16 +102,16 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
             </small>
           </div>
           <div className="mt-3">
-            <small className="text-text_gray text-center">
+            <small className="text-center text-text_gray">
               By clicking verify you agree to our &nbsp;
-              <span className="text-sky cursor-pointer">Terms of Service </span>
+              <span className="cursor-pointer text-sky">Terms of Service </span>
               &nbsp; and &nbsp;
-              <span className="text-sky cursor-pointer">Privacy Policy</span>
+              <span className="cursor-pointer text-sky">Privacy Policy</span>
             </small>
           </div>
         </form>
       </div>
-      <div className="flex items-center w-full justify-center"></div>
+      <div className="flex w-full items-center justify-center"></div>
     </div>
   )
 }

@@ -29,10 +29,10 @@ const SignUpStage: FC<SignUpStageProps> = ({
   const { signInWithGoogle } = useGoogleAuth()
 
   return (
-    <div className=" w-[400px] bg-white rounded-md h-[630px] ">
-      <div className="flex justify-end items-center">
+    <div className=" h-[630px] w-[400px] rounded-md bg-white ">
+      <div className="flex items-center justify-end">
         <FaTimes
-          className="w-6 h-6 mr-3 mt-3 cursor-pointer"
+          className="mr-3 mt-3 h-6 w-6 cursor-pointer"
           onClick={onClose}
         />
       </div>
@@ -40,10 +40,10 @@ const SignUpStage: FC<SignUpStageProps> = ({
       <div className="flex items-center justify-center">
         <h1 className="text-2xl text-text_gray">Join Us!</h1>
       </div>
-      <div className="flex justify-center w-full mt-8">
+      <div className="mt-8 flex w-full justify-center">
         <Button customTailwindClasses="bg-transparent border-border_gray text-text_gray">
           <div
-            className="flex items-center justify-center w-[320px] h-[40px]"
+            className="flex h-[40px] w-[320px] items-center justify-center"
             onClick={signInWithGoogle}
           >
             <Image
@@ -58,22 +58,22 @@ const SignUpStage: FC<SignUpStageProps> = ({
           </div>
         </Button>
       </div>
-      <div className="flex justify-center items-center w-full mt-5">
-        <div className="flex justify-center items-center w-[320px]">
-          <div className="flex-1 h-0.5 bg-border_gray"></div>
+      <div className="mt-5 flex w-full items-center justify-center">
+        <div className="flex w-[320px] items-center justify-center">
+          <div className="h-0.5 flex-1 bg-border_gray"></div>
           <div className="px-5 text-xs text-text_gray">
             Sign up with your Email
           </div>
-          <div className="flex-1 h-0.5 bg-border_gray"></div>
+          <div className="h-0.5 flex-1 bg-border_gray"></div>
         </div>
       </div>
 
-      <div className="w-full flex justify-center align-center">
+      <div className="align-center flex w-full justify-center">
         <form
           className="mt-5 w-[320px]"
           onSubmit={SignUpFormValidation.handleSubmit}
         >
-          <p className="text-sm  text-text_gray mb-1 ">Email Address</p>
+          <p className="mb-1  text-sm text-text_gray ">Email Address</p>
 
           <div className="h-[44px]">
             <Input
@@ -88,7 +88,7 @@ const SignUpStage: FC<SignUpStageProps> = ({
               onBlurHandler={SignUpFormValidation.handleBlur}
             ></Input>
           </div>
-          <p className="text-sm  text-text_gray mb-1 mt-3 ">Username</p>
+          <p className="mb-1  mt-3 text-sm text-text_gray ">Username</p>
 
           <div className="h-[44px]">
             <Input
@@ -103,7 +103,7 @@ const SignUpStage: FC<SignUpStageProps> = ({
               onBlurHandler={SignUpFormValidation.handleBlur}
             ></Input>
           </div>
-          <p className="text-sm  text-text_gray mb-1 mt-3">Password</p>
+          <p className="mb-1  mt-3 text-sm text-text_gray">Password</p>
 
           <div className="h-[44px]">
             <Input
@@ -118,7 +118,7 @@ const SignUpStage: FC<SignUpStageProps> = ({
               onBlurHandler={SignUpFormValidation.handleBlur}
             ></Input>
           </div>
-          <p className="text-sm  text-text_gray mb-1 mt-3 ">Repeat Password</p>
+          <p className="mb-1  mt-3 text-sm text-text_gray ">Repeat Password</p>
 
           <div className="h-[44px] ">
             <Input
@@ -134,27 +134,27 @@ const SignUpStage: FC<SignUpStageProps> = ({
             ></Input>
           </div>
 
-          <div className="h-12 mt-7">
+          <div className="mt-7 h-12">
             <Button
               type="submit"
               customTailwindClasses="bg-sky border-sky text-white"
             >
-              <p className="text-sm flex items-center justify-center w-[320px] h-[36px]">
+              <p className="flex h-[36px] w-[320px] items-center justify-center text-sm">
                 Sign Up
               </p>
             </Button>
           </div>
         </form>
       </div>
-      <div className="flex items-center w-full justify-center">
-        <p className="text-sm text-text_gray mt-1 w-[320px]">
+      <div className="flex w-full items-center justify-center">
+        <p className="mt-1 w-[320px] text-sm text-text_gray">
           Already have an account?{' '}
           <span
             onClick={() => {
               onClose()
               onLogInClickHandler()
             }}
-            className="text-sky cursor-pointer"
+            className="cursor-pointer text-sky"
           >
             &nbsp; Log In
           </span>

@@ -17,14 +17,14 @@ const NotificationModuleSingleBtn: FC<NotificationModuleSingleBtnProps> = ({
 }) => {
   return (
     <Link href={url} key={id}>
-      <div className="flex flex-col py-2 px-4 border-b-[1px] bg-white border-border_gray border-solid relative hover:bg-gray ">
+      <div className="relative flex flex-col border-b-[1px] border-solid border-border_gray bg-white py-2 px-4 hover:bg-gray ">
         <div className="flex items-center justify-between">
-          <p className="text-sm w-80 text-text_gray line-clamp-3 mb-5">
+          <p className="mb-5 w-80 text-sm text-text_gray line-clamp-3">
             {text}
           </p>
         </div>
-        <div className="flex items-center justify-between absolute bottom-1">
-          <p className="text-xs text-lite mt-[2px]">{getTimeAgo(msTime)}</p>
+        <div className="absolute bottom-1 flex items-center justify-between">
+          <p className="mt-[2px] text-xs text-lite">{getTimeAgo(msTime)}</p>
         </div>
       </div>
     </Link>

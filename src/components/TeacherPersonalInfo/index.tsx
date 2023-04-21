@@ -28,11 +28,11 @@ const TeacherPersonalInfo = () => {
 
   return (
     <>
-      <div className="ml-4">
-        <h2 className="text-xl mb-1">Personal details</h2>
+      <div className="mx-4">
+        <h2 className="mb-1 text-xl">Personal details</h2>
 
-        <div className="flex items-center sx:flex-col">
-          <div className="h-10 w-1/4 mr-2">
+        <div className="mt-2 flex flex-col items-center">
+          <div className="mr-2 h-10 w-full">
             <Input
               placeholder="First Name"
               type="text"
@@ -47,7 +47,7 @@ const TeacherPersonalInfo = () => {
             />
           </div>
 
-          <div className="h-10 w-1/4 mr-2">
+          <div className="mr-2 mt-2 h-10 w-full">
             <Input
               placeholder="Middle Name"
               type="text"
@@ -62,7 +62,7 @@ const TeacherPersonalInfo = () => {
             />
           </div>
 
-          <div className="h-10 w-1/4 mr-2">
+          <div className="mr-2 mt-2 h-10 w-full">
             <Input
               placeholder="Last Name"
               type="text"
@@ -77,34 +77,36 @@ const TeacherPersonalInfo = () => {
             />
           </div>
 
-          <div className="h-10 mr-2">
-            <DropDownInput
-              options={months}
-              name={TeacherPersonalInfoFormInputNames.BIRTH_MONTH}
-              onBlurHandler={teacherPersonalInfoValidation.handleBlur}
-              errorMessage={
-                teacherPersonalInfoValidation.touched.birthMonth &&
-                teacherPersonalInfoValidation.errors.birthMonth
-              }
-              onChange={teacherPersonalInfoValidation.handleChange}
-              value={teacherPersonalInfoValidation.values.birthMonth}
-              placeHolderValue={placeholderBirthMonth}
-            />
-          </div>
+          <div className="mt-2 -ml-2 flex w-full items-center">
+            <div className="mr-2 h-10">
+              <DropDownInput
+                options={months}
+                name={TeacherPersonalInfoFormInputNames.BIRTH_MONTH}
+                onBlurHandler={teacherPersonalInfoValidation.handleBlur}
+                errorMessage={
+                  teacherPersonalInfoValidation.touched.birthMonth &&
+                  teacherPersonalInfoValidation.errors.birthMonth
+                }
+                onChange={teacherPersonalInfoValidation.handleChange}
+                value={teacherPersonalInfoValidation.values.birthMonth}
+                placeHolderValue={placeholderBirthMonth}
+              />
+            </div>
 
-          <div className="h-10">
-            <DropDownInput
-              options={getAgeRange()}
-              name={TeacherPersonalInfoFormInputNames.BIRTH_YEAR}
-              onBlurHandler={teacherPersonalInfoValidation.handleBlur}
-              errorMessage={
-                teacherPersonalInfoValidation.touched.birthYear &&
-                teacherPersonalInfoValidation.errors.birthYear
-              }
-              onChange={teacherPersonalInfoValidation.handleChange}
-              value={teacherPersonalInfoValidation.values.birthYear}
-              placeHolderValue={placeholderBirthYear}
-            />
+            <div className="h-10">
+              <DropDownInput
+                options={getAgeRange()}
+                name={TeacherPersonalInfoFormInputNames.BIRTH_YEAR}
+                onBlurHandler={teacherPersonalInfoValidation.handleBlur}
+                errorMessage={
+                  teacherPersonalInfoValidation.touched.birthYear &&
+                  teacherPersonalInfoValidation.errors.birthYear
+                }
+                onChange={teacherPersonalInfoValidation.handleChange}
+                value={teacherPersonalInfoValidation.values.birthYear}
+                placeHolderValue={placeholderBirthYear}
+              />
+            </div>
           </div>
         </div>
 
@@ -118,51 +120,50 @@ const TeacherPersonalInfo = () => {
                 fileInputRef.current?.click()
               }}
             >
-              <p className="text-sm flex items-center justify-center w-32 h-[36px]">
+              <p className="flex h-[36px] w-32 items-center justify-center text-sm">
                 Upload Image
               </p>
             </Button>
           </div>
         )}
+
+        {userImage && (
+          <div className="group relative mt-4 h-fit w-fit cursor-pointer rounded-full">
+            <div className="peer absolute top-1/2 left-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 transform group-hover:block">
+              <Button
+                type="submit"
+                customTailwindClasses="bg-sky border-sky text-white"
+                onClickHandler={() => {
+                  fileInputRef.current?.click()
+                  setIsUploadImageModalOpen(true)
+                }}
+              >
+                <p className="flex h-[36px] w-32 items-center justify-center text-sm">
+                  Change Image
+                </p>
+              </Button>
+            </div>
+
+            <div className="h-40 w-64 overflow-hidden hover:opacity-25 peer-hover:opacity-25">
+              <Image
+                src={userImage}
+                fill
+                alt="ashjn"
+                className="rounded-md border-2 border-sky"
+              />
+            </div>
+          </div>
+        )}
+
+        <input
+          ref={fileInputRef}
+          className="hidden"
+          accept="image/png, image/jpeg"
+          multiple
+          type="file"
+          onChange={(e) => e.target.files && handleUpload(e.target.files)}
+        />
       </div>
-
-      {userImage && (
-        <div className="group relative w-fit h-fit mt-4 rounded-full cursor-pointer">
-          <div className="hidden group-hover:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 peer">
-            <Button
-              type="submit"
-              customTailwindClasses="bg-sky border-sky text-white"
-              onClickHandler={() => {
-                fileInputRef.current?.click()
-                setIsUploadImageModalOpen(true)
-              }}
-            >
-              <p className="text-sm flex items-center justify-center w-32 h-[36px]">
-                Change Image
-              </p>
-            </Button>
-          </div>
-
-          <div className="hover:opacity-25 peer-hover:opacity-25 ml-2">
-            <Image
-              src={userImage}
-              width={200}
-              height={200}
-              alt="ashjn"
-              className="rounded-full border-2 border-sky"
-            />
-          </div>
-        </div>
-      )}
-
-      <input
-        ref={fileInputRef}
-        className="hidden"
-        accept="image/png, image/jpeg"
-        multiple
-        type="file"
-        onChange={(e) => e.target.files && handleUpload(e.target.files)}
-      />
 
       {isUploadImageModalOpen && uploadedImage && (
         <PopupItemWrapper>

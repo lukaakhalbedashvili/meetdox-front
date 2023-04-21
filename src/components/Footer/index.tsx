@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className="bg-footer_blue font-normal ">
       <div className="container px-12 py-8">
-        <div className="flex flex-wrap justify-between mt-5">
-          <div className="w-full md:w-1/3 lg:w-auto mb-8 md:mb-0">
+        <div className="mt-5 flex flex-wrap justify-between">
+          <div className="mb-8 w-full md:mb-0 md:w-1/3 lg:w-auto">
             <div className="flex items-center">
               <Image
                 src="/cow.png"
@@ -16,21 +16,21 @@ const Footer = () => {
                 className="mr-2"
               />
 
-              <span className="text-white text-lg font-normal">My Website</span>
+              <span className="text-lg font-normal text-white">My Website</span>
             </div>
-            <p className="text-footer_text text-sm mt-2">
+            <p className="mt-2 text-sm text-footer_text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
           </div>
-          <div className="w-full md:w-1/4 lg:w-auto mb-8 md:mb-0">
-            <h3 className=" text-white text-base font-normal mb-4">
+          <div className="mb-8 w-full md:mb-0 md:w-1/4 lg:w-auto">
+            <h3 className=" mb-4 text-base font-normal text-white">
               Categories
             </h3>
-            <ul className="list-none text-footer_text text-sm">
+            <ul className="list-none text-sm text-footer_text">
               <li className="mt-3">
                 <Link
                   href="/category1"
-                  className="hover:text-white transition duration-300"
+                  className="transition duration-300 hover:text-white"
                 >
                   Category 1
                 </Link>
@@ -38,7 +38,7 @@ const Footer = () => {
               <li className="mt-3">
                 <Link
                   href="/category2"
-                  className="hover:text-white transition duration-300"
+                  className="transition duration-300 hover:text-white"
                 >
                   Category 2
                 </Link>
@@ -46,22 +46,22 @@ const Footer = () => {
               <li className="mt-3">
                 <Link
                   href="/category3"
-                  className="hover:text-white transition duration-300"
+                  className="transition duration-300 hover:text-white"
                 >
                   Category 3
                 </Link>
               </li>
             </ul>
           </div>
-          <div className="w-full md:w-1/4 lg:w-auto mb-8 md:mb-0">
-            <h3 className="text-white text-base font-normal mb-4">
+          <div className="mb-8 w-full md:mb-0 md:w-1/4 lg:w-auto">
+            <h3 className="mb-4 text-base font-normal text-white">
               Subcategories
             </h3>
-            <ul className="list-none text-footer_text text-sm">
+            <ul className="list-none text-sm text-footer_text">
               <li className="mt-3">
                 <Link
                   href="/subcategory1"
-                  className="hover:text-white transition duration-300"
+                  className="transition duration-300 hover:text-white"
                 >
                   Subcategory 1
                 </Link>
@@ -69,7 +69,7 @@ const Footer = () => {
               <li className="mt-3">
                 <Link
                   href="/subcategory2"
-                  className="hover:text-white transition duration-300"
+                  className="transition duration-300 hover:text-white"
                 >
                   Subcategory 2
                 </Link>
@@ -77,7 +77,7 @@ const Footer = () => {
               <li className="mt-3">
                 <Link
                   href="/subcategory3"
-                  className=" hover:text-white transition duration-300"
+                  className=" transition duration-300 hover:text-white"
                 >
                   Subcategory 3
                 </Link>
@@ -85,18 +85,18 @@ const Footer = () => {
             </ul>
           </div>
           <div className="w-full md:w-1/3 lg:w-auto">
-            <h3 className="text-white text-base font-normal mb-4">
+            <h3 className="mb-4 text-base font-normal text-white">
               Subscribe to our Newsletter
             </h3>
             <form className="flex flex-wrap">
               <input
                 type="email"
                 placeholder="Your email address"
-                className="w-full md:w-2/3 lg:w-auto px-4 py-2 rounded-md -mr-2 mb-2 md:mb-0 text-white bg-footer_blue_lite focus:outline-none text-sm"
+                className="-mr-2 mb-2 w-full rounded-md bg-footer_blue_lite px-4 py-2 text-sm text-white focus:outline-none md:mb-0 md:w-2/3 lg:w-auto"
               />
               <button
                 type="submit"
-                className="bg-sky text-white py-2 px-4 rounded-r hover:bg-gray-100 transition duration-300 text-sm"
+                className="hover:bg-gray-100 rounded-r bg-sky py-2 px-4 text-sm text-white transition duration-300"
               >
                 Submit
               </button>
@@ -110,11 +110,11 @@ const Footer = () => {
             </p>
           </div>
           <div className="mt-4 md:mt-0">
-            <ul className="flex justify-center list-none">
+            <ul className="flex list-none justify-center">
               <li className="mr-6">
                 <Link
                   href="https://twitter.com"
-                  className="text-white hover:text-footer_text transition duration-300"
+                  className="text-white transition duration-300 hover:text-footer_text"
                 >
                   <span className="sr-only">Twitter</span>
                   <svg
@@ -129,7 +129,7 @@ const Footer = () => {
               <li className="mr-6">
                 <Link
                   href="https://twitter.com"
-                  className="text-white hover:text-footer_text transition duration-300"
+                  className="text-white transition duration-300 hover:text-footer_text"
                 >
                   <span className="sr-only">Twitter</span>
                   <svg
@@ -144,7 +144,7 @@ const Footer = () => {
               <li className="mr-6">
                 <Link
                   href="https://twitter.com"
-                  className="text-white hover:text-footer_text transition duration-300"
+                  className="text-white transition duration-300 hover:text-footer_text"
                 >
                   <span className="sr-only">Twitter</span>
                   <svg

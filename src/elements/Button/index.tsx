@@ -14,7 +14,7 @@ const Button: FC<ButtonProps> = ({
 }) => (
   <button
     type={type}
-    className={`border-2 rounded-md sm:text-sm flex items-center justify-center ${customTailwindClasses}`}
+    className={`flex items-center justify-center rounded-md border-2 sm:text-sm ${customTailwindClasses}`}
     onClick={onClickHandler}
   >
     {children}

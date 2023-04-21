@@ -21,7 +21,7 @@ const ProfileCircledPic: FC<ProfileCircledPicProps> = ({
         />
       ) : (
         <div
-          className={`h-${diameter.toString()} w-${diameter.toString()} rounded-full bg-sky flex items-center justify-center`}
+          className={`h-${diameter.toString()} w-${diameter.toString()} flex items-center justify-center rounded-full bg-sky`}
         >
           <p className="text-base text-white">{username[0]}</p>
         </div>

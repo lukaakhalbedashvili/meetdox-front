@@ -15,7 +15,7 @@ const Home = () => {
   }, [refetch])
 
   return (
-    <main className="bg-white h-[500px] font-ubuntu">
+    <main className="h-[500px] bg-white font-ubuntu">
       <CategoryNav />
 
       <SwiperWrapper title="Doctors">

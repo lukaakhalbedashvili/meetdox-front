@@ -13,16 +13,16 @@ const Notification = () => {
 
   return (
     <div
-      className={`rounded ${selectedNotificationBG} ${selectedNotificationBorder} border-2  p-3  flex items-center cursor-pointer justify-between `}
+      className={`rounded ${selectedNotificationBG} ${selectedNotificationBorder} flex  cursor-pointer  items-center justify-between border-2 p-3 `}
       onClick={onClick}
     >
       <div className="flex items-center">
         {selectedNotificationIcon}
 
-        <p className="text-base ml-5 mr-5">{message}</p>
+        <p className="ml-5 mr-5 text-base">{message}</p>
       </div>
 
-      <IoCloseOutline className="w-5 h-5" color="gray" onClick={onClose} />
+      <IoCloseOutline className="h-5 w-5" color="gray" onClick={onClose} />
     </div>
   )
 }

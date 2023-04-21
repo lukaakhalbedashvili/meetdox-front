@@ -29,7 +29,7 @@ const DropDownInput: FC<DropDownInputProps> = ({
       <select
         name={name}
         onChange={onChange}
-        className={`h-full border-2 border-border_gray rounded-md pl-1 text-sm ${
+        className={`h-full rounded-md border-2 border-border_gray pl-1 text-sm ${
           value === placeHolderValue ? 'text-disable_gray' : 'text-black'
         }`}
         value={value}
@@ -43,7 +43,7 @@ const DropDownInput: FC<DropDownInputProps> = ({
           )
         })}
       </select>
-      <div className="absolute text-error top-[42px] right-[0px] w-fit text-sm">
+      <div className="absolute top-[42px] right-[0px] w-fit text-sm text-error">
         {errorMessage}
       </div>
     </div>

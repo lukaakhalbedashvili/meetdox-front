@@ -29,9 +29,9 @@ const NavigationBar = () => {
 
   return (
     <>
-      <nav className="bg-white border-border_gray border-b-[1px]">
+      <nav className="border-b-[1px] border-border_gray bg-white">
         <div className="mx-auto h-[60px] px-4 sm:px-6 lg:px-12">
-          <div className="flex justify-between h-[60px] w-full">
+          <div className="flex h-[60px] w-full justify-between">
             <div className="flex items-center">
               <Link href="/">
                 <div className="mr-6">
@@ -44,7 +44,7 @@ const NavigationBar = () => {
                   />
                 </div>
               </Link>
-              <div className="hidden ml-2 md:flex md:items-center md:space-x-8">
+              <div className="ml-2 hidden md:flex md:items-center md:space-x-8">
                 {navigationBarItems.map((item) => (
                   <NavigationBarItem
                     key={item.path}
@@ -66,12 +66,12 @@ const NavigationBar = () => {
               />
             ) : (
               <div className="flex items-center">
-                <div className="hidden md:flex md:items-center md:space-x-4 mr-5">
+                <div className="mr-5 hidden md:flex md:items-center md:space-x-4">
                   <Button
                     customTailwindClasses="bg-transparent border-transparent text-sky"
                     onClickHandler={() => setIsSignUpPopupOpen(true)}
                   >
-                    <p className="font-medium	w-[90px] h-[45px] flex items-center justify-center">
+                    <p className="flex	h-[45px] w-[90px] items-center justify-center font-medium">
                       Sign up
                     </p>
                   </Button>
@@ -80,7 +80,7 @@ const NavigationBar = () => {
                     customTailwindClasses="bg-sky border-sky text-text_gray"
                     onClickHandler={() => setIsLogInPopupOpen(true)}
                   >
-                    <p className="font-medium w-[90px] h-[30px] flex items-center justify-center text-white">
+                    <p className="flex h-[30px] w-[90px] items-center justify-center font-medium text-white">
                       Log In
                     </p>
                   </Button>
@@ -91,9 +91,9 @@ const NavigationBar = () => {
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   {isOpen ? (
-                    <FaTimes className="w-6 h-6" aria-hidden="true" />
+                    <FaTimes className="h-6 w-6" aria-hidden="true" />
                   ) : (
-                    <FaBars className="w-6 h-6" aria-hidden="true" />
+                    <FaBars className="h-6 w-6" aria-hidden="true" />
                   )}
                 </div>
               </div>
@@ -103,7 +103,7 @@ const NavigationBar = () => {
 
         {isOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 h-screen">
+            <div className="h-screen space-y-1 px-2 pt-2 pb-3">
               {navigationBarItems.map((item) => (
                 <NavigationBarItem
                   key={item.path}
@@ -114,17 +114,17 @@ const NavigationBar = () => {
                 </NavigationBarItem>
               ))}
 
-              <div className="w-50 h-10 ml-8">
+              <div className="w-50 ml-8 h-10">
                 <Button customTailwindClasses="bg-sky border-sky text-white">
-                  <p className="w-32 h-[40px] flex items-center justify-center">
+                  <p className="flex h-[40px] w-32 items-center justify-center">
                     SignUp
                   </p>
                 </Button>
               </div>
 
-              <div className="w-50 h-10 ml-8">
+              <div className="w-50 ml-8 h-10">
                 <Button customTailwindClasses="bg-sky border-sky text-white">
-                  <p className="w- h-10 flex items-center justify-center">
+                  <p className="w- flex h-10 items-center justify-center">
                     SignIn
                   </p>
                 </Button>

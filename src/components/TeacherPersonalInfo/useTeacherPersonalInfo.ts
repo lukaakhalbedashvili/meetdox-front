@@ -1,9 +1,11 @@
 import { useFormik } from 'formik'
-import { useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
+import { becameTeacherContext } from '../BecomeTeacherContext'
 
 const useTeacherPersonalInfo = () => {
+  const { setSectionsWhereErrorHappened } = useContext(becameTeacherContext)
   const placeholderBirthMonth = 'Birth month'
   const placeholderBirthYear = 'Birth year'
   const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
@@ -37,10 +39,7 @@ const useTeacherPersonalInfo = () => {
 
     validationSchema,
 
-    onSubmit: async (values) => {
-      const { lastName, middleName, name, birthYear, birthMonth } = values
-      console.error(birthYear, birthMonth, lastName, middleName, name)
-    },
+    onSubmit: async () => {},
   })
 
   const handleUpload = (images: FileList) => {
@@ -54,6 +53,16 @@ const useTeacherPersonalInfo = () => {
     }
     Object.values(images).map((item) => imageAsBase64(item))
   }
+
+  useEffect(() => {
+    const isThereError =
+      Object.values(teacherPersonalInfoValidation.errors).length > 0
+
+    setSectionsWhereErrorHappened &&
+      setSectionsWhereErrorHappened((prevState) => {
+        return { ...prevState, personalData: isThereError }
+      })
+  }, [teacherPersonalInfoValidation.errors, setSectionsWhereErrorHappened])
 
   return {
     teacherPersonalInfoValidation,

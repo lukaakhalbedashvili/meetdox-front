@@ -2,7 +2,7 @@ import { useFormik } from 'formik'
 import { useContext, useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
-import { becameTeacherContext } from '../BecomeTeacherContext'
+import { becameTeacherContext } from '../../BecomeTeacherContext'
 
 const useTeacherPersonalInfo = () => {
   const { setSectionsWhereErrorHappened } = useContext(becameTeacherContext)

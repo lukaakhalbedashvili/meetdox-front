@@ -1,13 +1,14 @@
-'use client'
-import React, { useContext } from 'react'
-import { becameTeacherContext } from '../BecomeTeacherContext'
-import TeacherPersonalInfo from '../TeacherPersonalInfo'
+import React from 'react'
+import TeacherPersonalInfo from './TeacherPersonalInfo'
+import TeacherEducation from './TeacherEducation'
 
 const BecameTeacherForm = () => {
-  const { sectionsWhereErrorHappened } = useContext(becameTeacherContext)
-  console.error(sectionsWhereErrorHappened, 'temporary for demo purposes')
-
-  return <TeacherPersonalInfo />
+  return (
+    <>
+      <TeacherPersonalInfo />
+      <TeacherEducation />
+    </>
+  )
 }
 
 export default BecameTeacherForm

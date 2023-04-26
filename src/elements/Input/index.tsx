@@ -9,6 +9,7 @@ interface InputProps {
   onBlurHandler?: (e: React.FocusEvent<HTMLInputElement>) => void
   children?: ReactNode
   type: HTMLInputTypeAttribute
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
 const Input: FC<InputProps> = ({
@@ -19,6 +20,7 @@ const Input: FC<InputProps> = ({
   onChange,
   placeholder,
   type,
+  onFocus,
 }) => {
   return (
     <div className="align-center relative flex h-full w-full justify-center rounded-md border-2 border-border_gray">
@@ -30,6 +32,7 @@ const Input: FC<InputProps> = ({
         name={name}
         placeholder={placeholder}
         onChange={onChange}
+        onFocus={onFocus}
       />
       <div className="absolute top-[42px] right-[0px] w-fit text-sm text-error">
         {errorMessage}

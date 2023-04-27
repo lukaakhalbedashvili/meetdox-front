@@ -36,7 +36,7 @@ const NavigationLoggedIn = ({
 
   return (
     <>
-      <div className="flex items-center">
+      <div className="hidden items-center md:flex">
         <div className="relative">
           <button
             className="bg-gray-700 hover:bg-blue-500 mr-4 flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300 "

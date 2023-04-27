@@ -4,10 +4,12 @@ import { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
+import { AiOutlineSearch } from 'react-icons/ai'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import navigationBarItems from '@/data/navigationBarItems'
 import Button from '@/elements/Button'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
+import SearchScreen from '@/app/mobile_components/SearchScreen'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SignUp from '../SignUp'
 import LogIn from '../LogIn'
@@ -22,6 +24,7 @@ const NavigationBar = () => {
   const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
   const [isForgotPasswordPopupOpen, setIsForgotPasswordPopupOpen] =
     useState(false)
+  const [showSearchScreen, setShowSearchScreen] = useState(false)
 
   const { data } = useFetchLoggedInUserData()
 
@@ -29,8 +32,8 @@ const NavigationBar = () => {
 
   return (
     <>
-      <nav className="border-b-[1px] border-border_gray bg-white">
-        <div className="mx-auto h-[60px] px-4 sm:px-6 lg:px-12">
+      <nav className=" bg-white">
+        <div className="mx-auto h-[60px] border-b-[1px] border-border_gray px-4 sm:px-6 lg:px-12">
           <div className="flex h-[60px] w-full justify-between">
             <div className="flex items-center">
               <Link href="/">
@@ -85,11 +88,24 @@ const NavigationBar = () => {
                     </p>
                   </Button>
                 </div>
-
-                <div
-                  className="flex md:hidden"
-                  onClick={() => setIsOpen(!isOpen)}
-                >
+              </div>
+            )}
+            <div
+              className={`${
+                showSearchScreen ? 'translate-x-0' : 'translate-x-full'
+              } fixed top-0 right-0 bottom-0 left-0 z-50 h-[60px] border-b-[1px] border-border_gray bg-white transition-transform duration-300`}
+            >
+              <SearchScreen onClose={() => setShowSearchScreen(false)} />
+            </div>
+            <div className="flex">
+              <div className="mr-6 flex  items-center md:hidden">
+                <AiOutlineSearch
+                  className="h-6 w-6"
+                  onClick={() => setShowSearchScreen(true)}
+                />
+              </div>
+              <div className="flex items-center  md:hidden">
+                <div className="flex" onClick={() => setIsOpen(!isOpen)}>
                   {isOpen ? (
                     <FaTimes className="h-6 w-6" aria-hidden="true" />
                   ) : (
@@ -97,7 +113,7 @@ const NavigationBar = () => {
                   )}
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
 

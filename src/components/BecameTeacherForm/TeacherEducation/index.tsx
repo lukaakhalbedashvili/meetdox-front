@@ -1,11 +1,10 @@
 'use client'
-
-import { useState } from 'react'
 import Button from '@/elements/Button'
 import TeacherEducationFormSection from './TeacherEducationFormSection'
+import useTeacherEducation from './useTeacherEducation'
 
 const TeacherEducation = () => {
-  const [educationForms, setEducationForms] = useState([1])
+  const { educationForms, setEducationForms } = useTeacherEducation()
 
   return (
     <div className="mx-4">

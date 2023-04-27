@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import debounce from 'lodash.debounce'
 import { majors } from '@/data/majors'
 import { useGetCollegeList } from '@/reactQuery/becomeTeacherQueryies/getCollegeList'
+import { search } from '@/utils/services/search'
 import {
   TeacherEducationInfoValidationForm,
   TeacherEducationInfoValidationFormInputNames,
@@ -55,22 +56,7 @@ const useTeacherEducation = () => {
   )
 
   const handleCollegeFiltertext = (value: string) => {
-    const searchParams = value
-      .toLocaleLowerCase()
-      .split(' ')
-      .filter((item: string) => item !== '')
-
-    setMajorSearchResults(
-      majors
-        .map((item) => item.toLocaleLowerCase())
-        .filter((major) => {
-          return (
-            searchParams.filter((param: string) => major.includes(param))
-              .length > 0
-          )
-        })
-        .slice(0, 5)
-    )
+    setMajorSearchResults(search(value, majors))
   }
 
   const handleMajorFilter = useCallback(

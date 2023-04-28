@@ -1,19 +1,23 @@
 import { useFormik } from 'formik'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
-import { becameTeacherContext } from '../BecomeTeacherContext'
+import { BecameTeacherSections } from '../becameTeacher.interface'
 
-const useTeacherPersonalInfo = () => {
-  const { setSectionsWhereErrorHappened } = useContext(becameTeacherContext)
-  const placeholderBirthMonth = 'Birth month'
-  const placeholderBirthYear = 'Birth year'
-  const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
+const useTeacherPersonalInfo = (
+  isFormSubmitted: boolean,
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+) => {
   const [userImage, setUserImage] = useState<string>()
   const [uploadedImage, setUploadedImage] = useState<
     string | ArrayBuffer | null | undefined
   >()
+  const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
+
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const placeholderBirthMonth = 'Birth month'
+  const placeholderBirthYear = 'Birth year'
 
   const validationSchema: Yup.ObjectSchema<TeacherPersonalInfoForm> =
     Yup.object({
@@ -55,14 +59,19 @@ const useTeacherPersonalInfo = () => {
   }
 
   useEffect(() => {
-    const isThereError =
-      Object.values(teacherPersonalInfoValidation.errors).length > 0
+    isFormSubmitted && teacherPersonalInfoValidation.submitForm()
+  }, [isFormSubmitted])
 
-    setSectionsWhereErrorHappened &&
-      setSectionsWhereErrorHappened((prevState) => {
-        return { ...prevState, personalData: isThereError }
-      })
-  }, [teacherPersonalInfoValidation.errors, setSectionsWhereErrorHappened])
+  useEffect(() => {
+    setErroredSections((prevState) => ({
+      ...prevState,
+      personalInfo: !teacherPersonalInfoValidation.isValid,
+    }))
+  }, [
+    teacherPersonalInfoValidation.isValid,
+    setErroredSections,
+    isFormSubmitted,
+  ])
 
   return {
     teacherPersonalInfoValidation,

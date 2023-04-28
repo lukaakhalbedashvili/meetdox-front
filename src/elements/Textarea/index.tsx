@@ -1,32 +1,29 @@
-import React, { FC, HTMLInputTypeAttribute, ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 
 interface InputProps {
   value?: string
   placeholder?: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
   errorMessage?: string | undefined | false
   name: string
-  onBlurHandler?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onBlurHandler?: (e: React.FocusEvent<HTMLTextAreaElement>) => void
   children?: ReactNode
-  type: HTMLInputTypeAttribute
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void
 }
 
-const Input: FC<InputProps> = ({
+const TextArea: FC<InputProps> = ({
   value,
   errorMessage,
   name,
   onBlurHandler,
   onChange,
   placeholder,
-  type,
   onFocus,
 }) => {
   return (
     <div className="align-center relative flex h-full w-full justify-center rounded-md border-2 border-border_gray">
-      <input
-        className="h-full w-full rounded-md bg-white pl-5 text-sm"
-        type={type}
+      <textarea
+        className="h-full w-full resize-none rounded-md bg-white pl-5 pt-2 text-sm"
         value={value}
         onBlur={onBlurHandler}
         name={name}
@@ -41,4 +38,4 @@ const Input: FC<InputProps> = ({
   )
 }
 
-export default Input
+export default TextArea

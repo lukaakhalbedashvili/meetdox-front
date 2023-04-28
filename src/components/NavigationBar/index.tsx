@@ -163,7 +163,7 @@ const NavigationBar = () => {
                     <p
                       className={`font-sm relative block rounded px-8 py-2 text-sm font-medium transition duration-200`}
                     >
-                      Collections
+                      Categories
                     </p>
                   </div>
                 </div>

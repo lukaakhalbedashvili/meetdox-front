@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { Dispatch, FC, SetStateAction } from 'react'
 import Image from 'next/image'
 import Input from '@/elements/Input'
 import DropDownInput from '@/elements/DropDownInput'
@@ -10,8 +10,17 @@ import useTeacherPersonalInfo from './useTeacherPersonalInfo'
 import { TeacherPersonalInfoFormInputNames } from './teacherPersonalInfo.interface'
 import PhotoEditor from '../../../elements/PhotoEditor'
 import PopupItemWrapper from '../../PopupItemWrapper'
+import { BecameTeacherSections } from '../becameTeacher.interface'
 
-const TeacherPersonalInfo = () => {
+interface TeacherPersonalInfoProps {
+  isFormSubmitted: boolean
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+}
+
+const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
+  isFormSubmitted,
+  setErroredSections,
+}) => {
   const {
     teacherPersonalInfoValidation,
     placeholderBirthMonth,
@@ -24,7 +33,7 @@ const TeacherPersonalInfo = () => {
     uploadedImage,
     fileInputRef,
     setUploadedImage,
-  } = useTeacherPersonalInfo()
+  } = useTeacherPersonalInfo(isFormSubmitted, setErroredSections)
 
   return (
     <>

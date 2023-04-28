@@ -1,16 +1,21 @@
 import { useFormik } from 'formik'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import * as Yup from 'yup'
 import { TeacherEducationInfoValidationForm } from './teacherExperience.interface'
+import { BecameTeacherSections } from '../../becameTeacher.interface'
 
-const useTeacherEducation = () => {
+const useTeacherEducation = (
+  isFormSubmitted: boolean,
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+) => {
   const placeholderStartDate = 'Start date'
   const placeholderEndDate = 'End date'
 
   const validationSchema: Yup.ObjectSchema<TeacherEducationInfoValidationForm> =
     Yup.object({
-      company: Yup.string().required('required'),
+      company: Yup.string().required('required').min(2),
       position: Yup.string().required('required'),
-      description: Yup.string(),
+      description: Yup.string().required('required'),
       startDate: Yup.string()
         .required('required')
         .test('is it valid month', 'required', function (value) {
@@ -37,6 +42,17 @@ const useTeacherEducation = () => {
 
       onSubmit: async () => {},
     })
+
+  useEffect(() => {
+    isFormSubmitted && teacherExperienceValidation.submitForm()
+  }, [isFormSubmitted])
+
+  useEffect(() => {
+    setErroredSections((prevState) => ({
+      ...prevState,
+      experience: !teacherExperienceValidation.isValid,
+    }))
+  }, [teacherExperienceValidation.isValid, setErroredSections, isFormSubmitted])
 
   return {
     teacherExperienceValidation,

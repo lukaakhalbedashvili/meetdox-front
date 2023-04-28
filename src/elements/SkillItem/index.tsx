@@ -9,9 +9,12 @@ interface SkillItemProps {
 const SkillItem: FC<SkillItemProps> = ({ onClose, text }) => {
   return (
     <div className="mr-2 mt-2  flex h-10 w-fit cursor-pointer items-center rounded-xl bg-sky pl-2">
-      <p className="mr-1">{text}</p>
+      <p className="mr-1 text-white">{text}</p>
 
-      <IoIosClose className="h-7 w-7" onClick={() => onClose(text)} />
+      <IoIosClose
+        className="h-7 w-7 fill-white"
+        onClick={() => onClose(text)}
+      />
     </div>
   )
 }

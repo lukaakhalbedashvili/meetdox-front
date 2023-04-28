@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { Dispatch, FC, SetStateAction } from 'react'
 import DropDownInput from '@/elements/DropDownInput'
 import { getAgeRange } from '@/utils/services/getTeacherAgeRange'
 import TypeAheadInput from '@/elements/TypeAheadInput'
 import useTeacherEducation from './useTeacherEducationFormSection'
 import { TeacherEducationInfoValidationFormInputNames } from './teacherEducation.interface'
+import { BecameTeacherSections } from '../../becameTeacher.interface'
 
-const TeacherEducationFormSection = () => {
+interface TeacherEducationFormSectionProps {
+  isFormSubmitted: boolean
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+}
+
+const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
+  isFormSubmitted,
+  setErroredSections,
+}) => {
   const {
     teacherEducationInfoValidation,
     collegeSearchResults,
@@ -14,7 +23,7 @@ const TeacherEducationFormSection = () => {
     majorSearchResults,
     placeholderStartDate,
     placeholderEndDate,
-  } = useTeacherEducation()
+  } = useTeacherEducation(isFormSubmitted, setErroredSections)
 
   return (
     <div className="flex flex-col">

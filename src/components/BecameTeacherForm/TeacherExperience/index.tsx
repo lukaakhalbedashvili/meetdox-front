@@ -1,16 +1,32 @@
 'use client'
+import { Dispatch, FC, SetStateAction } from 'react'
 import Button from '@/elements/Button'
 import TeacherExperienceFormSection from './TeacherExperienceFormSection'
 import useTeacherExperience from './useTeacherExperience'
+import { BecameTeacherSections } from '../becameTeacher.interface'
 
-const TeacherExperience = () => {
+interface TeacherExperienceProps {
+  isFormSubmitted: boolean
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+}
+
+const TeacherExperience: FC<TeacherExperienceProps> = ({
+  isFormSubmitted,
+  setErroredSections,
+}) => {
   const { experiences, setExperiences } = useTeacherExperience()
   return (
     <div className="mx-4">
       <h2 className="mt-7 text-xl">Experience details</h2>
 
       {experiences.map((item) => {
-        return <TeacherExperienceFormSection key={item} />
+        return (
+          <TeacherExperienceFormSection
+            key={item}
+            isFormSubmitted={isFormSubmitted}
+            setErroredSections={setErroredSections}
+          />
+        )
       })}
 
       <Button

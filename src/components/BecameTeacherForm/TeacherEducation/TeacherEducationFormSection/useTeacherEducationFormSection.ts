@@ -1,18 +1,31 @@
 import { useFormik } from 'formik'
-import { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import * as Yup from 'yup'
 import debounce from 'lodash.debounce'
 import { majors } from '@/data/majors'
 import { useGetCollegeList } from '@/reactQuery/becomeTeacherQueryies/getCollegeList'
 import { search } from '@/utils/services/search'
+
 import {
   TeacherEducationInfoValidationForm,
   TeacherEducationInfoValidationFormInputNames,
 } from './teacherEducation.interface'
+import { BecameTeacherSections } from '../../becameTeacher.interface'
 
-const useTeacherEducation = () => {
+const useTeacherEducation = (
+  isFormSubmitted: boolean,
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+) => {
   const [collegeSearchResults, setCollegeSearchResults] = useState<string[]>()
   const [majorSearchResults, setMajorSearchResults] = useState<string[]>()
+
   const placeholderStartDate = 'Start date'
   const placeholderEndDate = 'End date'
 
@@ -83,6 +96,21 @@ const useTeacherEducation = () => {
   useEffect(() => {
     data && setCollegeSearchResults(data)
   }, [data])
+
+  useEffect(() => {
+    isFormSubmitted && teacherEducationInfoValidation.submitForm()
+  }, [isFormSubmitted])
+
+  useEffect(() => {
+    setErroredSections((prevState) => ({
+      ...prevState,
+      education: !teacherEducationInfoValidation.isValid,
+    }))
+  }, [
+    teacherEducationInfoValidation.isValid,
+    setErroredSections,
+    isFormSubmitted,
+  ])
 
   return {
     teacherEducationInfoValidation,

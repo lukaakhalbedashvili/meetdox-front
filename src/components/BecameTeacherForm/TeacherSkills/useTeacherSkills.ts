@@ -1,5 +1,12 @@
 import { useFormik } from 'formik'
-import { ChangeEvent, useCallback, useState } from 'react'
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import * as Yup from 'yup'
 import { skillsData } from '@/data/skills'
 import { search } from '@/utils/services/search'
@@ -7,8 +14,12 @@ import {
   TeacherSkillsForm,
   TeacherSkillsInputNames,
 } from './teacherSkills.interface'
+import { BecameTeacherSections } from '../becameTeacher.interface'
 
-const useTeacherSkills = () => {
+const useTeacherSkills = (
+  isFormSubmitted: boolean,
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+) => {
   const [skills, setSkills] = useState<string[]>([])
   const [selectedSkills, setSelectedSkills] = useState<string[]>([])
 
@@ -45,6 +56,22 @@ const useTeacherSkills = () => {
     setSelectedSkills([...selectedSkills, skill])
     teacherSkillsValidation.setFieldValue(TeacherSkillsInputNames.SKILLS, '')
   }
+
+  useEffect(() => {
+    isFormSubmitted && teacherSkillsValidation.submitForm()
+  }, [isFormSubmitted])
+
+  useEffect(() => {
+    setErroredSections((prevState) => ({
+      ...prevState,
+      skills: selectedSkills.length === 0,
+    }))
+  }, [
+    teacherSkillsValidation.isValid,
+    setErroredSections,
+    isFormSubmitted,
+    selectedSkills.length,
+  ])
 
   return {
     teacherSkillsValidation,

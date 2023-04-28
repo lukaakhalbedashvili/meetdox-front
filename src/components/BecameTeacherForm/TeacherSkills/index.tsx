@@ -1,11 +1,20 @@
 'use client'
-import React from 'react'
+import React, { Dispatch, FC, SetStateAction } from 'react'
 import SkillItem from '@/elements/SkillItem'
 import TypeAheadInput from '@/elements/TypeAheadInput'
 import { TeacherSkillsInputNames } from './teacherSkills.interface'
 import useTeacherSkills from './useTeacherSkills'
+import { BecameTeacherSections } from '../becameTeacher.interface'
 
-const TeacherSkills = () => {
+interface TeacherSkillsProps {
+  isFormSubmitted: boolean
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+}
+
+const TeacherSkills: FC<TeacherSkillsProps> = ({
+  isFormSubmitted,
+  setErroredSections,
+}) => {
   const {
     teacherSkillsValidation,
     handleChange,
@@ -13,7 +22,7 @@ const TeacherSkills = () => {
     selectedSkills,
     setSelectedSkills,
     onSelectHandler,
-  } = useTeacherSkills()
+  } = useTeacherSkills(isFormSubmitted, setErroredSections)
 
   return (
     <div className="mx-4">

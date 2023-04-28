@@ -1,7 +1,7 @@
 export interface TeacherEducationInfoValidationForm {
   company: string
   position: string
-  description?: string
+  description: string
   startDate: string
   endDate: string
 }

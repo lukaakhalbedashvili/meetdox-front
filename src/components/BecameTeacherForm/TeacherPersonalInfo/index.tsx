@@ -122,7 +122,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
         {!userImage && (
           <div className="mt-2">
             <Button
-              type="submit"
+              type="button"
               customTailwindClasses="bg-sky border-sky text-white"
               onClickHandler={() => {
                 setIsUploadImageModalOpen(true)
@@ -140,7 +140,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
           <div className="group relative mt-4 h-fit w-fit cursor-pointer rounded-full">
             <div className="peer absolute top-1/2 left-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 transform group-hover:block">
               <Button
-                type="submit"
+                type="button"
                 customTailwindClasses="bg-sky border-sky text-white"
                 onClickHandler={() => {
                   fileInputRef.current?.click()

@@ -43,7 +43,7 @@ const PhotoEditor: FC<PhotoEditorProps> = ({
 
       <div className="absolute bottom-2 right-2">
         <Button
-          type="submit"
+          type="button"
           customTailwindClasses="bg-sky border-sky text-white"
           onClickHandler={async () => {
             const resultImage =

@@ -1,37 +1,40 @@
 'use client'
 import Link from 'next/link'
-import { useState } from 'react'
-import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa'
-import { usePathname } from 'next/navigation'
+import { FaBars, FaTimes } from 'react-icons/fa'
 import Image from 'next/image'
 import { AiOutlineSearch } from 'react-icons/ai'
+import { BiBell } from 'react-icons/bi'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import navigationBarItems from '@/data/navigationBarItems'
 import Button from '@/elements/Button'
-import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import SearchScreen from '@/mobileComponents/Search'
-import {
-  profileBtnsSectionOne,
-  profileBtnsSectionTwo,
-} from '@/data/profileModuleItems'
+import SideBar from '@/mobileComponents/SideBar'
+import MobileNotifications from '@/mobileComponents/MobileNotifications'
+import useNavigationBar from './useNavigationBar'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SignUp from '../SignUp'
 import LogIn from '../LogIn'
 import ForgotPassword from '../ForgotPassword'
 import NavigationLoggedIn from '../NavigationLoggedIn'
 import NavigationSearchBar from '../NavigationSearchBar'
+
 const NavigationBar = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const pathname = usePathname()
-  const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false)
-  const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
-  const [isForgotPasswordPopupOpen, setIsForgotPasswordPopupOpen] =
-    useState(false)
-  const [isShowSearchScreen, setIsShowSearchScreen] = useState(false)
-
-  const { data } = useFetchLoggedInUserData()
-
-  const loggedInUser = data?.data.data
+  const {
+    isOpen,
+    setIsOpen,
+    pathname,
+    isSignUpPopupOpen,
+    setIsSignUpPopupOpen,
+    isLogInPopupOpen,
+    setIsLogInPopupOpen,
+    isForgotPasswordPopupOpen,
+    setIsForgotPasswordPopupOpen,
+    isShowSearchScreen,
+    setIsShowSearchScreen,
+    loggedInUser,
+    isShowNotificationScreen,
+    setIsShowNotificationScreen,
+  } = useNavigationBar()
 
   return (
     <>
@@ -101,7 +104,32 @@ const NavigationBar = () => {
             >
               <SearchScreen onClose={() => setIsShowSearchScreen(false)} />
             </div>
+
+            <div
+              className={`${
+                isShowNotificationScreen ? 'translate-x-0' : 'translate-x-full'
+              } fixed top-0 right-0 bottom-0 left-0 z-50 flex h-full w-full border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden `}
+            >
+              <MobileNotifications
+                onClose={() => setIsShowNotificationScreen(false)}
+              />
+            </div>
+
             <div className="flex md:hidden">
+              {loggedInUser && (
+                <div className="flex items-center">
+                  <button
+                    onClick={() => setIsShowNotificationScreen(true)}
+                    className="bg-gray-700 hover:bg-blue-500 mr-4 flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300 "
+                  >
+                    <BiBell
+                      className={` h-6 w-6 text-text_gray transition-colors duration-300 `}
+                    />
+
+                    <div className="relative right-1 -top-3 h-2 w-2 rounded-full bg-error"></div>
+                  </button>
+                </div>
+              )}
               <div className="mr-6 flex  items-center">
                 <AiOutlineSearch
                   className="h-6 w-6"
@@ -122,105 +150,12 @@ const NavigationBar = () => {
         </div>
 
         {isOpen && (
-          <div className="md:hidden	">
-            <div className="h-screen space-y-1 pt-2 pb-3">
-              <div>
-                {loggedInUser && (
-                  <div className="flex items-center px-8 py-2">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="h-10 w-10 rounded-full"
-                        src={loggedInUser.photoURL}
-                        alt=""
-                      />
-
-                      <div className="ml-3">
-                        <div className="text-gray-800 text-base font-medium">
-                          {loggedInUser.username}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div>
-                {navigationBarItems.map((item) => (
-                  <NavigationBarItem
-                    key={item.path}
-                    href={item.path}
-                    activePath={pathname!}
-                  >
-                    {item.name}
-                  </NavigationBarItem>
-                ))}
-              </div>
-              <div className="px-8 py-2">
-                <hr className="border-border_gray" />
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="col-span-1">
-                  <div className="relative z-0 w-[50px]">
-                    <p
-                      className={`font-sm relative block rounded px-8 py-2 text-sm font-medium transition duration-200`}
-                    >
-                      Categories
-                    </p>
-                  </div>
-                </div>
-                <div className="col-span-1 mr-12 flex items-center justify-end py-2">
-                  <FaChevronDown className="h-4 w-4" />
-                </div>
-              </div>
-              <div className="px-8 py-2">
-                <hr className="border-border_gray" />
-              </div>
-              {profileBtnsSectionOne.map((item: any) => (
-                <NavigationBarItem
-                  key={item.url}
-                  href={item.url}
-                  activePath={pathname!}
-                >
-                  {item.text}
-                </NavigationBarItem>
-              ))}
-              {profileBtnsSectionTwo.map((item: any) => (
-                <NavigationBarItem
-                  key={item.url}
-                  href={item.url}
-                  activePath={pathname!}
-                >
-                  {item.text}
-                </NavigationBarItem>
-              ))}
-
-              <div className="px-8 py-2">
-                <hr className="border-border_gray" />
-              </div>
-              {!loggedInUser && (
-                <div className="px-8 py-2">
-                  <div className="flex items-center justify-center">
-                    <Button
-                      customTailwindClasses="bg-transparent border-transparent text-sky"
-                      onClickHandler={() => setIsSignUpPopupOpen(true)}
-                    >
-                      <p className="flex	h-[45px] w-[90px] items-center justify-center font-medium">
-                        Sign up
-                      </p>
-                    </Button>
-                    <div className="mx-2"></div>
-                    <Button
-                      customTailwindClasses="bg-sky border-sky text-text_gray"
-                      onClickHandler={() => setIsLogInPopupOpen(true)}
-                    >
-                      <p className="flex h-[35px] w-[90px] items-center justify-center font-medium text-white">
-                        Log In
-                      </p>
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
+          <SideBar
+            loggedInUser={loggedInUser}
+            pathname={pathname}
+            setIsSignUpPopupOpen={setIsSignUpPopupOpen}
+            setIsLogInPopupOpen={setIsLogInPopupOpen}
+          />
         )}
       </nav>
 

@@ -66,7 +66,7 @@ const SideBar = ({
           <hr className="border-border_gray" />
         </div>
 
-        <div className="relative z-0 w-full px-8">
+        <div className="relative z-0 w-full px-4">
           <div className="flex items-center justify-between">
             <p
               className={`font-sm relative block rounded py-2 text-sm font-medium transition duration-200`}

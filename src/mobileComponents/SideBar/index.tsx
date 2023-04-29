@@ -33,12 +33,12 @@ const SideBar = ({
                   src={loggedInUser.photoURL}
                   alt=""
                 />
-
-                <div className="ml-3">
-                  <div className="text-gray-800 text-base font-medium">
-                    {loggedInUser.username}
-                  </div>
+              </div>
+              <div className="ml-3">
+                <div className="text-base  text-text_gray">
+                  {loggedInUser.username}
                 </div>
+                <div className="text-sm  text-lite">{loggedInUser.email}</div>
               </div>
             </div>
           )}
@@ -71,27 +71,31 @@ const SideBar = ({
             <FaChevronDown className="h-4 w-4" />
           </div>
         </div>
-        <div className="px-8 py-2">
-          <hr className="border-border_gray" />
-        </div>
-        {profileBtnsSectionOne.map((item: any) => (
-          <NavigationBarItem
-            key={item.url}
-            href={item.url}
-            activePath={pathname!}
-          >
-            {item.text}
-          </NavigationBarItem>
-        ))}
-        {profileBtnsSectionTwo.map((item: any) => (
-          <NavigationBarItem
-            key={item.url}
-            href={item.url}
-            activePath={pathname!}
-          >
-            {item.text}
-          </NavigationBarItem>
-        ))}
+        {loggedInUser && (
+          <>
+            <div className="px-8 py-2">
+              <hr className="border-border_gray" />
+            </div>
+            {profileBtnsSectionOne.map((item: any) => (
+              <NavigationBarItem
+                key={item.url}
+                href={item.url}
+                activePath={pathname!}
+              >
+                {item.text}
+              </NavigationBarItem>
+            ))}
+            {profileBtnsSectionTwo.map((item: any) => (
+              <NavigationBarItem
+                key={item.url}
+                href={item.url}
+                activePath={pathname!}
+              >
+                {item.text}
+              </NavigationBarItem>
+            ))}
+          </>
+        )}
 
         <div className="px-8 py-2">
           <hr className="border-border_gray" />

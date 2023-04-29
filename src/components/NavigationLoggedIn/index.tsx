@@ -8,8 +8,8 @@ import {
   profileBtnsSectionOne,
   profileBtnsSectionTwo,
 } from '@/data/profileModuleItems'
+import handleLogout from '@/utils/services/handleLogout'
 import useNavigationLoggedIn from './useNavigationLoggedIn'
-
 interface NavigationLoggedInProps {
   photoUrl: string
   username: string
@@ -20,7 +20,6 @@ const NavigationLoggedIn = ({
   username,
 }: NavigationLoggedInProps) => {
   const {
-    handleLogout,
     handleNotificationsClick,
     handleProfileClick,
     isNotificationsOpen,

@@ -1,5 +1,6 @@
-import React from 'react'
-import { FaChevronDown } from 'react-icons/fa'
+import React, { useState } from 'react'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
+import Link from 'next/link'
 import navigationBarItems from '@/data/navigationBarItems'
 import {
   profileBtnsSectionOne,
@@ -7,6 +8,7 @@ import {
 } from '@/data/profileModuleItems'
 import Button from '@/elements/Button'
 import NavigationBarItem from '@/elements/NavigationBarItem'
+import { categories } from '@/data/categoryItems'
 
 interface Props {
   loggedInUser: any
@@ -21,9 +23,14 @@ const SideBar = ({
   setIsSignUpPopupOpen,
   setIsLogInPopupOpen,
 }: Props) => {
+  const [isShowCategories, setIsShowCategories] = useState(false)
+  const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(
+    null
+  )
+
   return (
     <div className="md:hidden	">
-      <div className="h-screen space-y-1 pt-2 pb-3">
+      <div className="min-h-screen space-y-1 pt-2 pb-3 ">
         <div>
           {loggedInUser && (
             <div className="flex items-center px-8 py-2">
@@ -65,10 +72,77 @@ const SideBar = ({
               >
                 Categories
               </p>
+              {isShowCategories && (
+                <div className="top-0 left-0 h-full w-full bg-white">
+                  <div className="flex flex-col">
+                    {categories.map((category) => (
+                      <div key={category.name} className="ml-5">
+                        <Link href={category.url}>
+                          <div className="flex w-[70vw] items-center px-8 py-2">
+                            <span className="mr-2 text-sm">
+                              {category.name}
+                            </span>
+                          </div>
+                        </Link>
+                        {category.subCategories &&
+                          category.subCategories.length > 0 && (
+                            <span className="absolute left-[78vw] -mt-6">
+                              {selectedSubcategory === category.name ? (
+                                <FaChevronUp
+                                  className="h-4 w-4"
+                                  onClick={() => setSelectedSubcategory(null)}
+                                />
+                              ) : (
+                                <FaChevronDown
+                                  className="h-4 w-4"
+                                  onClick={() =>
+                                    setSelectedSubcategory(category.name)
+                                  }
+                                />
+                              )}
+                            </span>
+                          )}
+                        {selectedSubcategory === category.name &&
+                          category.subCategories &&
+                          category.subCategories.length > 0 && (
+                            <div className="ml-8">
+                              {category.subCategories.map((subcategory) => (
+                                <div
+                                  key={subcategory.name}
+                                  className="w-[100vw]"
+                                >
+                                  <Link
+                                    href={`${category.url}/${subcategory.url}`}
+                                  >
+                                    <div className=" py-2">
+                                      <p className="font-sm relative block rounded px-8  text-sm transition duration-200">
+                                        {subcategory.name}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-          <div className="col-span-1 mr-12 flex items-center justify-end py-2">
-            <FaChevronDown className="h-4 w-4" />
+          <div className="col-span-1 mr-12 mt-1 flex items-start justify-end py-2">
+            {isShowCategories ? (
+              <FaChevronUp
+                className="h-4 w-4"
+                onClick={() => setIsShowCategories(false)}
+              />
+            ) : (
+              <FaChevronDown
+                className="h-4 w-4"
+                onClick={() => setIsShowCategories(true)}
+              />
+            )}
           </div>
         </div>
         {loggedInUser && (
@@ -76,27 +150,23 @@ const SideBar = ({
             <div className="px-8 py-2">
               <hr className="border-border_gray" />
             </div>
-            {profileBtnsSectionOne.map((item: any) => (
-              <NavigationBarItem
-                key={item.url}
-                href={item.url}
-                activePath={pathname!}
-              >
-                {item.text}
-              </NavigationBarItem>
-            ))}
-            {profileBtnsSectionTwo.map((item: any) => (
-              <NavigationBarItem
-                key={item.url}
-                href={item.url}
-                activePath={pathname!}
-              >
-                {item.text}
-              </NavigationBarItem>
-            ))}
+            {profileBtnsSectionOne
+              .concat(profileBtnsSectionTwo)
+              .map((item: { id: number; text: string; url: string }) => (
+                <Link key={item.url} href={item.url}>
+                  <div className="relative z-0">
+                    <p
+                      className={`hover:text-gray-400 relative block rounded px-8 py-2 text-sm font-medium transition duration-200 ${
+                        item.url === pathname ? 'text-sky' : 'text-text_gray'
+                      }`}
+                    >
+                      {item.text}
+                    </p>
+                  </div>
+                </Link>
+              ))}
           </>
         )}
-
         <div className="px-8 py-2">
           <hr className="border-border_gray" />
         </div>

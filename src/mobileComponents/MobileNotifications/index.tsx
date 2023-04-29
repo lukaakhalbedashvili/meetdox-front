@@ -1,13 +1,12 @@
 import React, { FC, useState } from 'react'
-// back icon
-import { IoIosArrowForward } from 'react-icons/Io'
+import { IoIosArrowForward } from 'react-icons/io'
 import NotificationModuleSingleBtn from '@/elements/NotificationModuleSingleBtn'
 import { NotificationStructure } from '@/components/NavigationLoggedIn/navigationLoggedIn.interface'
 
-interface ResetPasswordStageProps {
+interface MobileNotificationsProps {
   onClose: () => void
 }
-const MobileNotifications: FC<ResetPasswordStageProps> = ({ onClose }) => {
+const MobileNotifications: FC<MobileNotificationsProps> = ({ onClose }) => {
   const [notifications, setNotifications] = useState<NotificationStructure[]>(
     []
   )

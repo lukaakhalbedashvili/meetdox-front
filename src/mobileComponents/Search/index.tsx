@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 // back icon
-import { IoIosArrowForward } from 'react-icons/Io'
+import { IoIosArrowForward } from 'react-icons/io'
 import NavigationSearchBar from '@/components/NavigationSearchBar'
 
 interface ResetPasswordStageProps {

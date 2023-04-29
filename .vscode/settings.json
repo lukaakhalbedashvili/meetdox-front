@@ -1,6 +1,5 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "vue.features.codeActions.enable": false,
   "vue.codeActions.enabled": false
 }

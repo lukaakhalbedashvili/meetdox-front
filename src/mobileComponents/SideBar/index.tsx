@@ -65,87 +65,84 @@ const SideBar = ({
         <div className="px-4 py-2">
           <hr className="border-border_gray" />
         </div>
-        <div className="grid grid-cols-2">
-          <div className="col-span-1">
-            <div className="relative z-0 w-[50px]">
-              <p
-                className={`font-sm relative block rounded px-4 py-2 text-sm transition duration-200`}
-              >
-                Categories
-              </p>
-              {isShowCategories && (
-                <div className="top-0 left-0 h-full w-full bg-white">
-                  <div className="flex flex-col">
-                    {categories.map((category) => (
-                      <div key={category.name} className="ml-5">
-                        <Link href={category.url}>
-                          <div className="flex w-[70vw] items-center px-5 py-2">
-                            <span className="mr-2 text-sm">
-                              {category.name}
-                            </span>
-                          </div>
-                        </Link>
-                        {category.subCategories &&
-                          category.subCategories.length > 0 && (
-                            <span className="absolute left-[78vw] -mt-6">
-                              {selectedSubcategory === category.name ? (
-                                <FaChevronUp
-                                  className="h-4 w-4"
-                                  onClick={() => setSelectedSubcategory(null)}
-                                />
-                              ) : (
-                                <FaChevronDown
-                                  className="h-4 w-4"
-                                  onClick={() =>
-                                    setSelectedSubcategory(category.name)
-                                  }
-                                />
-                              )}
-                            </span>
-                          )}
-                        {selectedSubcategory === category.name &&
-                          category.subCategories &&
-                          category.subCategories.length > 0 && (
-                            <div className="ml-8">
-                              {category.subCategories.map((subcategory) => (
-                                <div
-                                  key={subcategory.name}
-                                  className="w-[100vw]"
-                                >
-                                  <Link
-                                    href={`${category.url}/${subcategory.url}`}
-                                  >
-                                    <div className=" py-2">
-                                      <p className="font-sm relative block rounded px-5  text-sm transition duration-200">
-                                        {subcategory.name}
-                                      </p>
-                                    </div>
-                                  </Link>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+
+        <div className="relative z-0 w-full px-4">
+          <div className="flex items-center justify-between">
+            <p
+              className={`font-sm relative block rounded py-2 text-sm font-medium transition duration-200`}
+            >
+              Categories
+            </p>
+
+            <div>
+              {isShowCategories ? (
+                <FaChevronUp
+                  className="h-4 w-4"
+                  onClick={() => setIsShowCategories(false)}
+                />
+              ) : (
+                <FaChevronDown
+                  className="h-4 w-4"
+                  onClick={() => setIsShowCategories(true)}
+                />
               )}
             </div>
           </div>
-          <div className="col-span-1 mr-12 mt-1 flex items-start justify-end py-2">
-            {isShowCategories ? (
-              <FaChevronUp
-                className="h-4 w-4"
-                onClick={() => setIsShowCategories(false)}
-              />
-            ) : (
-              <FaChevronDown
-                className="h-4 w-4"
-                onClick={() => setIsShowCategories(true)}
-              />
-            )}
-          </div>
+
+          {isShowCategories && (
+            <div className="w-full bg-white">
+              <div className="flex flex-col">
+                {categories.map((category) => (
+                  <div key={category.name} className="">
+                    <div className="ml-8 flex items-center justify-between py-2">
+                      <Link href={category.url}>
+                        <span className="mr-2 text-sm">{category.name}</span>
+                      </Link>
+
+                      {category.subCategories &&
+                        category.subCategories.length > 0 && (
+                          <span>
+                            {selectedSubcategory === category.name ? (
+                              <FaChevronUp
+                                className="h-4 w-4"
+                                onClick={() => setSelectedSubcategory(null)}
+                              />
+                            ) : (
+                              <FaChevronDown
+                                className="h-4 w-4"
+                                onClick={() =>
+                                  setSelectedSubcategory(category.name)
+                                }
+                              />
+                            )}
+                          </span>
+                        )}
+                    </div>
+
+                    {selectedSubcategory === category.name &&
+                      category.subCategories &&
+                      category.subCategories.length > 0 && (
+                        <div className="ml-8">
+                          {category.subCategories.map((subcategory) => (
+                            <div key={subcategory.name} className="">
+                              <Link href={`${category.url}/${subcategory.url}`}>
+                                <div className="py-2">
+                                  <p className="font-sm relative rounded px-8  text-sm transition duration-200">
+                                    {subcategory.name}
+                                  </p>
+                                </div>
+                              </Link>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
+
         {loggedInUser && (
           <>
             <div className="px-4 py-2">

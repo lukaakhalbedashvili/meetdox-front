@@ -17,7 +17,6 @@ const Home = () => {
   return (
     <main className="h-[500px] bg-white font-ubuntu">
       <CategoryNav />
-
       <SwiperWrapper title="Doctors">
         {teachersDummyData.map((item) => (
           <SwiperSlide key={item.id} style={{ width: 'fit-content' }}>

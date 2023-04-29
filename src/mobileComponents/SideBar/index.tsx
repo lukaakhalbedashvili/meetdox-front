@@ -9,6 +9,7 @@ import {
 import Button from '@/elements/Button'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import { categories } from '@/data/categoryItems'
+import handleLogout from '@/utils/services/handleLogout'
 
 interface Props {
   loggedInUser: any
@@ -33,7 +34,7 @@ const SideBar = ({
       <div className="min-h-screen space-y-1 pt-2 pb-3 ">
         <div>
           {loggedInUser && (
-            <div className="flex items-center px-8 py-2">
+            <div className="flex items-center px-4 py-2">
               <div className="flex-shrink-0">
                 <img
                   className="h-10 w-10 rounded-full"
@@ -61,7 +62,7 @@ const SideBar = ({
             </NavigationBarItem>
           ))}
         </div>
-        <div className="px-8 py-2">
+        <div className="px-4 py-2">
           <hr className="border-border_gray" />
         </div>
 
@@ -144,7 +145,7 @@ const SideBar = ({
 
         {loggedInUser && (
           <>
-            <div className="px-8 py-2">
+            <div className="px-4 py-2">
               <hr className="border-border_gray" />
             </div>
             {profileBtnsSectionOne
@@ -153,7 +154,7 @@ const SideBar = ({
                 <Link key={item.url} href={item.url}>
                   <div className="relative z-0">
                     <p
-                      className={`hover:text-gray-400 relative block rounded px-8 py-2 text-sm font-medium transition duration-200 ${
+                      className={`hover:text-gray-400 relative block rounded px-4 py-2 text-sm font-medium transition duration-200 ${
                         item.url === pathname ? 'text-sky' : 'text-text_gray'
                       }`}
                     >
@@ -162,33 +163,45 @@ const SideBar = ({
                   </div>
                 </Link>
               ))}
+            <div className="px-4 py-2">
+              <hr className="border-border_gray" />
+            </div>
+            <div
+              className="flex cursor-pointer items-start px-4 pt-2 pb-2 hover:bg-gray"
+              onClick={handleLogout}
+            >
+              <p className="text-sm ">Logout</p>
+            </div>
           </>
         )}
-        <div className="px-8 py-2">
-          <hr className="border-border_gray" />
-        </div>
+
         {!loggedInUser && (
-          <div className="px-8 py-2">
-            <div className="flex items-center justify-center">
-              <Button
-                customTailwindClasses="bg-transparent border-transparent text-sky"
-                onClickHandler={() => setIsSignUpPopupOpen(true)}
-              >
-                <p className="flex	h-[45px] w-[90px] items-center justify-center font-medium">
-                  Sign up
-                </p>
-              </Button>
-              <div className="mx-2"></div>
-              <Button
-                customTailwindClasses="bg-sky border-sky text-text_gray"
-                onClickHandler={() => setIsLogInPopupOpen(true)}
-              >
-                <p className="flex h-[35px] w-[90px] items-center justify-center font-medium text-white">
-                  Log In
-                </p>
-              </Button>
+          <>
+            <div className="px-4 py-2">
+              <hr className="border-border_gray" />
             </div>
-          </div>
+            <div className="px-4 py-2">
+              <div className="flex items-center justify-center">
+                <Button
+                  customTailwindClasses="bg-transparent border-transparent text-sky"
+                  onClickHandler={() => setIsSignUpPopupOpen(true)}
+                >
+                  <p className="flex	h-[45px] w-[90px] items-center justify-center font-medium">
+                    Sign up
+                  </p>
+                </Button>
+                <div className="mx-2"></div>
+                <Button
+                  customTailwindClasses="bg-sky border-sky text-text_gray"
+                  onClickHandler={() => setIsLogInPopupOpen(true)}
+                >
+                  <p className="flex h-[35px] w-[90px] items-center justify-center font-medium text-white">
+                    Log In
+                  </p>
+                </Button>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </div>

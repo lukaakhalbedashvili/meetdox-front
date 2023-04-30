@@ -17,8 +17,8 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
   const { educationForms, setEducationForms } = useTeacherEducation()
 
   return (
-    <div className="mx-4">
-      <h2 className="mt-7 text-xl">Education details</h2>
+    <div className="mx-4 border-t-[1px] border-border_gray pt-7">
+      <h2 className="text-xl">Education details</h2>
 
       {educationForms.map((item) => {
         return (

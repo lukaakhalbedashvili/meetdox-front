@@ -37,10 +37,12 @@ const BecameTeacherForm = () => {
         setErroredSections={setErroredSections}
       />
 
-      <TeacherEducation
-        isFormSubmitted={isFormSubmitted}
-        setErroredSections={setErroredSections}
-      />
+      <div className="mt-2">
+        <TeacherEducation
+          isFormSubmitted={isFormSubmitted}
+          setErroredSections={setErroredSections}
+        />
+      </div>
 
       <TeacherExperience
         isFormSubmitted={isFormSubmitted}

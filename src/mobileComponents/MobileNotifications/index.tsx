@@ -7,9 +7,7 @@ interface MobileNotificationsProps {
   onClose: () => void
 }
 const MobileNotifications: FC<MobileNotificationsProps> = ({ onClose }) => {
-  const [notifications, setNotifications] = useState<NotificationStructure[]>(
-    []
-  )
+  const [notifications] = useState<NotificationStructure[]>([])
 
   return (
     <div className="w-full">

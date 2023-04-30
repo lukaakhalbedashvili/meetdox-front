@@ -44,7 +44,7 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
         })}
       </div>
 
-      <div className="mt-2 h-10 w-96">
+      <div className="mt-2 h-10">
         <TypeAheadInput
           placeHolder={TeacherSkillsInputNames.SKILLS}
           results={skills}

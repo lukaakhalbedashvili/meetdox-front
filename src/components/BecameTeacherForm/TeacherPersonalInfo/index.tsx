@@ -87,7 +87,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
           </div>
 
           <div className="mt-2 -ml-2 flex w-full items-center">
-            <div className="mr-2 h-10">
+            <div className="mr-2 h-10 w-1/2">
               <DropDownInput
                 options={months}
                 name={TeacherPersonalInfoFormInputNames.BIRTH_MONTH}
@@ -102,7 +102,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
               />
             </div>
 
-            <div className="h-10">
+            <div className="h-10 w-1/2">
               <DropDownInput
                 options={getAgeRange()}
                 name={TeacherPersonalInfoFormInputNames.BIRTH_YEAR}
@@ -120,7 +120,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
         </div>
 
         {!userImage && (
-          <div className="mt-2">
+          <div className="mt-3">
             <Button
               type="button"
               customTailwindClasses="bg-sky border-sky text-white"
@@ -137,29 +137,29 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
         )}
 
         {userImage && (
-          <div className="group relative mt-4 h-fit w-fit cursor-pointer rounded-full">
-            <div className="peer absolute top-1/2 left-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 transform group-hover:block">
-              <Button
-                type="button"
-                customTailwindClasses="bg-sky border-sky text-white"
-                onClickHandler={() => {
-                  fileInputRef.current?.click()
-                  setIsUploadImageModalOpen(true)
-                }}
-              >
-                <p className="flex h-[36px] w-32 items-center justify-center text-sm">
-                  Change Image
-                </p>
-              </Button>
-            </div>
-
-            <div className="h-40 w-64 overflow-hidden hover:opacity-25 peer-hover:opacity-25">
+          <div className="group relative mt-4 h-fit w-full cursor-pointer rounded-full">
+            <div className="relative h-40 w-full max-w-[300px] overflow-hidden bg-error hover:opacity-25 peer-hover:opacity-25">
               <Image
                 src={userImage}
                 fill
-                alt="ashjn"
+                alt="your profile image"
                 className="rounded-md border-2 border-sky"
               />
+
+              <div className="peer absolute top-3/4 left-1/2 z-50 block  max-w-[300px] -translate-x-1/2 -translate-y-1/2 transform">
+                <Button
+                  type="button"
+                  customTailwindClasses="bg-sky border-sky text-white"
+                  onClickHandler={() => {
+                    fileInputRef.current?.click()
+                    setIsUploadImageModalOpen(true)
+                  }}
+                >
+                  <p className="flex h-[36px] w-32 items-center justify-center text-sm">
+                    Change Image
+                  </p>
+                </Button>
+              </div>
             </div>
           </div>
         )}

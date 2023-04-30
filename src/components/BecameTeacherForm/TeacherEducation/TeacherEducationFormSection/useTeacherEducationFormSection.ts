@@ -9,10 +9,9 @@ import {
 } from 'react'
 import * as Yup from 'yup'
 import debounce from 'lodash.debounce'
-import { majors } from '@/data/majors'
 import { useGetCollegeList } from '@/reactQuery/becomeTeacherQueryies/getCollegeList'
 import { search } from '@/utils/services/search'
-
+import { majors } from '@/data/majors'
 import {
   TeacherEducationInfoValidationForm,
   TeacherEducationInfoValidationFormInputNames,

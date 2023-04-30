@@ -25,12 +25,16 @@ const DropDownInput: FC<DropDownInputProps> = ({
     : options
 
   return (
-    <div className="relative h-full">
+    <div className="relative h-full w-full">
       <select
         name={name}
         onChange={onChange}
-        className={`h-full rounded-md border-2 border-border_gray pl-1 text-sm ${
+        className={`h-full w-full rounded-md border-border_gray pl-1 text-sm focus:outline-none ${
           value === placeHolderValue ? 'text-disable_gray' : 'text-black'
+        }  ${
+          errorMessage
+            ? 'border border-error_icon_red'
+            : 'border-2 border-border_gray'
         }`}
         value={value}
         onBlur={onBlurHandler}
@@ -43,7 +47,7 @@ const DropDownInput: FC<DropDownInputProps> = ({
           )
         })}
       </select>
-      <div className="absolute top-[42px] right-[0px] w-fit text-sm text-error">
+      <div className="absolute -bottom-2 right-2 w-fit bg-white px-1 text-sm text-error">
         {errorMessage}
       </div>
     </div>

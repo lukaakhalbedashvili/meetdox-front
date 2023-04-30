@@ -29,7 +29,11 @@ const useTeacherPersonalInfo = (
         .test('is it valid month', 'required', function (value) {
           return value !== placeholderBirthMonth
         }),
-      birthYear: Yup.string().required('required'),
+      birthYear: Yup.string()
+        .required('required')
+        .test('is it valid year', 'required', function (value) {
+          return value !== placeholderBirthYear
+        }),
     })
 
   const teacherPersonalInfoValidation = useFormik<TeacherPersonalInfoForm>({

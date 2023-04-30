@@ -24,7 +24,12 @@ const PopupItemWrapper: FC<PopupItemWrapperPros> = ({
 
   return (
     <div className="absolute top-0 z-20 flex h-screen w-screen items-center justify-center bg-black md:bg-opacity-50">
-      <div ref={childrenWrapperRef}>{children}</div>
+      <div
+        ref={childrenWrapperRef}
+        className="h-screen w-screen md:h-fit md:w-fit"
+      >
+        {children}
+      </div>
     </div>
   )
 }

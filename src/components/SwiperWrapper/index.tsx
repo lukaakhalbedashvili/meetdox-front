@@ -24,12 +24,12 @@ const LandingCategorySwiper: FC<LandingCategorySwiperProps> = ({
       <div className="flex items-center">
         <div
           ref={slideLeftArrowRef}
-          className="bg-white rounded-full cursor-pointer flex items-center justify-center absolute z-10 left-7 shadow-md"
+          className="absolute left-7 z-10 flex cursor-pointer items-center justify-center rounded-full bg-white shadow-md"
           onClick={() => swiper?.slidePrev()}
         >
           <IoIosArrowRoundForward
             size={30}
-            className="fill-sky m-3 rotate-180"
+            className="m-3 rotate-180 fill-sky"
           />
         </div>
 
@@ -51,11 +51,11 @@ const LandingCategorySwiper: FC<LandingCategorySwiperProps> = ({
         <div
           ref={slideRightArrowRef}
           onClick={() => swiper?.slideNext()}
-          className="bg-white rounded-full cursor-pointer flex items-center justify-center absolute z-10 right-6 shadow-md"
+          className="absolute right-6 z-10 flex cursor-pointer items-center justify-center rounded-full bg-white shadow-md"
         >
           <IoIosArrowRoundForward
             size={30}
-            className="fill-sky m-3 transform"
+            className="m-3 transform fill-sky"
           />
         </div>
       </div>

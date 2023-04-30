@@ -1,13 +1,16 @@
 'use client'
 import Link from 'next/link'
-import { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
-import { usePathname } from 'next/navigation'
 import Image from 'next/image'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { BiBell } from 'react-icons/bi'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import navigationBarItems from '@/data/navigationBarItems'
 import Button from '@/elements/Button'
-import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
+import SearchScreen from '@/mobileComponents/Search'
+import SideBar from '@/mobileComponents/SideBar'
+import MobileNotifications from '@/mobileComponents/MobileNotifications'
+import useNavigationBar from './useNavigationBar'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SignUp from '../SignUp'
 import LogIn from '../LogIn'
@@ -16,22 +19,28 @@ import NavigationLoggedIn from '../NavigationLoggedIn'
 import NavigationSearchBar from '../NavigationSearchBar'
 
 const NavigationBar = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const pathname = usePathname()
-  const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false)
-  const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
-  const [isForgotPasswordPopupOpen, setIsForgotPasswordPopupOpen] =
-    useState(false)
-
-  const { data } = useFetchLoggedInUserData()
-
-  const loggedInUser = data?.data.data
+  const {
+    isOpen,
+    setIsOpen,
+    pathname,
+    isSignUpPopupOpen,
+    setIsSignUpPopupOpen,
+    isLogInPopupOpen,
+    setIsLogInPopupOpen,
+    isForgotPasswordPopupOpen,
+    setIsForgotPasswordPopupOpen,
+    isShowSearchScreen,
+    setIsShowSearchScreen,
+    loggedInUser,
+    isShowNotificationScreen,
+    setIsShowNotificationScreen,
+  } = useNavigationBar()
 
   return (
     <>
-      <nav className="bg-white border-border_gray border-b-[1px]">
-        <div className="mx-auto h-[60px] px-4 sm:px-6 lg:px-12">
-          <div className="flex justify-between h-[60px] w-full">
+      <nav className="bg-white">
+        <div className="mx-auto h-[60px] border-b-[1px] border-border_gray px-4 sm:px-6 lg:px-12">
+          <div className="flex h-[60px] w-full justify-between">
             <div className="flex items-center">
               <Link href="/">
                 <div className="mr-6">
@@ -44,7 +53,7 @@ const NavigationBar = () => {
                   />
                 </div>
               </Link>
-              <div className="hidden ml-2 md:flex md:items-center md:space-x-8">
+              <div className="ml-2 hidden md:flex md:items-center md:space-x-8">
                 {navigationBarItems.map((item) => (
                   <NavigationBarItem
                     key={item.path}
@@ -66,12 +75,12 @@ const NavigationBar = () => {
               />
             ) : (
               <div className="flex items-center">
-                <div className="hidden md:flex md:items-center md:space-x-4 mr-5">
+                <div className="mr-5 hidden md:flex md:items-center md:space-x-4">
                   <Button
                     customTailwindClasses="bg-transparent border-transparent text-sky"
                     onClickHandler={() => setIsSignUpPopupOpen(true)}
                   >
-                    <p className="font-medium	w-[90px] h-[45px] flex items-center justify-center">
+                    <p className="flex	h-[45px] w-[90px] items-center justify-center font-medium">
                       Sign up
                     </p>
                   </Button>
@@ -80,57 +89,73 @@ const NavigationBar = () => {
                     customTailwindClasses="bg-sky border-sky text-text_gray"
                     onClickHandler={() => setIsLogInPopupOpen(true)}
                   >
-                    <p className="font-medium w-[90px] h-[30px] flex items-center justify-center text-white">
+                    <p className="flex h-[30px] w-[90px] items-center justify-center font-medium text-white">
                       Log In
                     </p>
                   </Button>
                 </div>
+              </div>
+            )}
 
-                <div
-                  className="flex md:hidden"
-                  onClick={() => setIsOpen(!isOpen)}
-                >
+            <div
+              className={`${
+                isShowSearchScreen ? 'translate-x-0' : 'translate-x-full'
+              } fixed top-0 right-0 bottom-0 left-0 z-50 flex h-[60px] border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden`}
+            >
+              <SearchScreen onClose={() => setIsShowSearchScreen(false)} />
+            </div>
+
+            <div
+              className={`${
+                isShowNotificationScreen ? 'translate-x-0' : 'translate-x-full'
+              } fixed top-0 right-0 bottom-0 left-0 z-50 flex h-full w-full border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden `}
+            >
+              <MobileNotifications
+                onClose={() => setIsShowNotificationScreen(false)}
+              />
+            </div>
+
+            <div className="flex md:hidden">
+              {loggedInUser && (
+                <div className="flex items-center">
+                  <button
+                    onClick={() => setIsShowNotificationScreen(true)}
+                    className="bg-gray-700 hover:bg-blue-500 mr-4 flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300 "
+                  >
+                    <BiBell
+                      className={` h-6 w-6 text-text_gray transition-colors duration-300 `}
+                    />
+
+                    <div className="relative right-1 -top-3 h-2 w-2 rounded-full bg-error"></div>
+                  </button>
+                </div>
+              )}
+              <div className="mr-6 flex  items-center">
+                <AiOutlineSearch
+                  className="h-6 w-6"
+                  onClick={() => setIsShowSearchScreen(true)}
+                />
+              </div>
+              <div className="flex items-center  md:hidden">
+                <div className="flex" onClick={() => setIsOpen(!isOpen)}>
                   {isOpen ? (
-                    <FaTimes className="w-6 h-6" aria-hidden="true" />
+                    <FaTimes className="h-6 w-6" aria-hidden="true" />
                   ) : (
-                    <FaBars className="w-6 h-6" aria-hidden="true" />
+                    <FaBars className="h-6 w-6" aria-hidden="true" />
                   )}
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
 
         {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 h-screen">
-              {navigationBarItems.map((item) => (
-                <NavigationBarItem
-                  key={item.path}
-                  href={item.path}
-                  activePath={pathname!}
-                >
-                  {item.name}
-                </NavigationBarItem>
-              ))}
-
-              <div className="w-50 h-10 ml-8">
-                <Button customTailwindClasses="bg-sky border-sky text-white">
-                  <p className="w-32 h-[40px] flex items-center justify-center">
-                    SignUp
-                  </p>
-                </Button>
-              </div>
-
-              <div className="w-50 h-10 ml-8">
-                <Button customTailwindClasses="bg-sky border-sky text-white">
-                  <p className="w- h-10 flex items-center justify-center">
-                    SignIn
-                  </p>
-                </Button>
-              </div>
-            </div>
-          </div>
+          <SideBar
+            loggedInUser={loggedInUser}
+            pathname={pathname}
+            setIsSignUpPopupOpen={setIsSignUpPopupOpen}
+            setIsLogInPopupOpen={setIsLogInPopupOpen}
+          />
         )}
       </nav>
 

@@ -24,7 +24,7 @@ export const profileBtnsSectionOne: ProfileModuleItem[] = [
     Icon: FiSettings,
   },
   {
-    id: 2,
+    id: 3,
     text: 'Become teacher',
     url: '/become-teacher',
     Icon: IoAddOutline,

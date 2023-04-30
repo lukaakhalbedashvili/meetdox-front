@@ -52,7 +52,7 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
             setAlert({
               message: 'user created successfully ',
               type: AlertType.SUCCESS,
-              onClick: () => console.error('clicked'),
+              onClick: () => {},
               duration: 2000,
             })
           })

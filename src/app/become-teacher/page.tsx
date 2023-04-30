@@ -1,10 +1,10 @@
 import React from 'react'
-import TeacherPersonalInfo from '@/components/TeacherPersonalInfo'
+import BecameTeacherForm from '@/components/BecameTeacherForm'
 
 const page = () => {
   return (
     <div className="pt-8">
-      <TeacherPersonalInfo />
+      <BecameTeacherForm />
     </div>
   )
 }

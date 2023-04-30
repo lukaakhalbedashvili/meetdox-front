@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react'
+import React, { FC, useEffect, useRef } from 'react'
 import useOnOutsideClick from '@/hooks/useDetectOutsideClick'
 
 interface PopupItemWrapperPros {
@@ -11,10 +11,19 @@ const PopupItemWrapper: FC<PopupItemWrapperPros> = ({
   onOutsideClickHandler,
 }) => {
   const childrenWrapperRef = useRef<HTMLDivElement>(null)
+
   useOnOutsideClick([childrenWrapperRef], onOutsideClickHandler)
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [])
+
   return (
-    <div className="w-screen absolute top-0 h-full bg-text_gray bg-opacity-70 flex items-center justify-center z-20">
+    <div className="absolute top-0 z-20 flex h-screen w-screen items-center justify-center bg-black md:bg-opacity-50">
       <div ref={childrenWrapperRef}>{children}</div>
     </div>
   )

@@ -1,17 +1,23 @@
 import { useFormik } from 'formik'
-import { useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
+import { BecameTeacherSections } from '../becameTeacher.interface'
 
-const useTeacherPersonalInfo = () => {
-  const placeholderBirthMonth = 'Birth month'
-  const placeholderBirthYear = 'Birth year'
-  const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
+const useTeacherPersonalInfo = (
+  isFormSubmitted: boolean,
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+) => {
   const [userImage, setUserImage] = useState<string>()
   const [uploadedImage, setUploadedImage] = useState<
     string | ArrayBuffer | null | undefined
   >()
+  const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
+
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const placeholderBirthMonth = 'Birth month'
+  const placeholderBirthYear = 'Birth year'
 
   const validationSchema: Yup.ObjectSchema<TeacherPersonalInfoForm> =
     Yup.object({
@@ -37,10 +43,7 @@ const useTeacherPersonalInfo = () => {
 
     validationSchema,
 
-    onSubmit: async (values) => {
-      const { lastName, middleName, name, birthYear, birthMonth } = values
-      console.error(birthYear, birthMonth, lastName, middleName, name)
-    },
+    onSubmit: async () => {},
   })
 
   const handleUpload = (images: FileList) => {
@@ -54,6 +57,21 @@ const useTeacherPersonalInfo = () => {
     }
     Object.values(images).map((item) => imageAsBase64(item))
   }
+
+  useEffect(() => {
+    isFormSubmitted && teacherPersonalInfoValidation.submitForm()
+  }, [isFormSubmitted])
+
+  useEffect(() => {
+    setErroredSections((prevState) => ({
+      ...prevState,
+      personalInfo: !teacherPersonalInfoValidation.isValid,
+    }))
+  }, [
+    teacherPersonalInfoValidation.isValid,
+    setErroredSections,
+    isFormSubmitted,
+  ])
 
   return {
     teacherPersonalInfoValidation,

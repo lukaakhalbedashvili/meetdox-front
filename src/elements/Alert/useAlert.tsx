@@ -16,22 +16,22 @@ const useNotifications = () => {
 
   const notificationInfo = {
     [AlertType.SUCCESS]: {
-      icon: <MdDone className="fill-success_border_green w-5 h-5" />,
+      icon: <MdDone className="h-5 w-5 fill-success_border_green" />,
       backGroundColor: 'bg-success_body_green',
       borderColor: 'border-success_border_green',
     },
     [AlertType.INFO]: {
-      icon: <BsInfoLg className="fill-info_icon_blue w-5 h-5" />,
+      icon: <BsInfoLg className="h-5 w-5 fill-info_icon_blue" />,
       backGroundColor: 'bg-info_notification_bg',
       borderColor: 'border-info_notification_border',
     },
     [AlertType.WARNING]: {
-      icon: <CiWarning className="fill-warning_icon_yellow w-5 h-5" />,
+      icon: <CiWarning className="h-5 w-5 fill-warning_icon_yellow" />,
       backGroundColor: 'bg-warning_bg_yellow',
       borderColor: 'border-warning_border_yellow',
     },
     [AlertType.ERROR]: {
-      icon: <BiErrorCircle className="fill-error_icon_red w-5 h-5" />,
+      icon: <BiErrorCircle className="h-5 w-5 fill-error_icon_red" />,
       backGroundColor: 'bg-error_bg_red',
       borderColor: 'border-error_border_red',
     },

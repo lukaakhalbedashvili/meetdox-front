@@ -8,8 +8,8 @@ import {
   profileBtnsSectionOne,
   profileBtnsSectionTwo,
 } from '@/data/profileModuleItems'
+import handleLogout from '@/utils/services/handleLogout'
 import useNavigationLoggedIn from './useNavigationLoggedIn'
-
 interface NavigationLoggedInProps {
   photoUrl: string
   username: string
@@ -20,7 +20,6 @@ const NavigationLoggedIn = ({
   username,
 }: NavigationLoggedInProps) => {
   const {
-    handleLogout,
     handleNotificationsClick,
     handleProfileClick,
     isNotificationsOpen,
@@ -36,28 +35,28 @@ const NavigationLoggedIn = ({
 
   return (
     <>
-      <div className="flex items-center">
+      <div className="hidden items-center md:flex">
         <div className="relative">
           <button
-            className="flex items-center justify-center bg-gray-700 rounded-full h-10 w-10 mr-4 hover:bg-blue-500 transition-colors duration-300 "
+            className="bg-gray-700 hover:bg-blue-500 mr-4 flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300 "
             onClick={handleNotificationsClick}
             ref={notificationsIconRef}
           >
             <BiBell
-              className={` h-6 w-6 transition-colors hover:text-sky duration-300 ${
+              className={` h-6 w-6 transition-colors duration-300 hover:text-sky ${
                 isNotificationsOpen ? ' text-sky' : 'text-text_gray'
               }`}
             />
 
-            <div className="absolute right-5 top-1 h-2 w-2 bg-error rounded-full"></div>
+            <div className="absolute right-5 top-1 h-2 w-2 rounded-full bg-error"></div>
           </button>
           {isNotificationsOpen && (
             <div
-              className="absolute right-0 w-96 mt-1 py-2 bg-white  rounded-sm border-[1px] border-border_gray z-10"
+              className="absolute right-0 z-10 mt-1 w-96 rounded-sm  border-[1px] border-border_gray bg-white py-2"
               ref={notificationsDropDownRef}
             >
-              <div className="px-4 py-1 pb-2 flex items-start border-1 border-border_gray border-solid border-b-[1px]">
-                <BiBell className="h-5 w-5 text-text_gray mr-2" />
+              <div className="border-1 flex items-start border-b-[1px] border-solid border-border_gray px-4 py-1 pb-2">
+                <BiBell className="mr-2 h-5 w-5 text-text_gray" />
                 <p
                   className="text-sm
                 "
@@ -65,7 +64,7 @@ const NavigationLoggedIn = ({
                   Notifications ({notifications.length})
                 </p>
               </div>
-              <div className="flex flex-col bg-empty_gray overflow-y-scroll max-h-80">
+              <div className="flex max-h-80 flex-col overflow-y-scroll bg-empty_gray">
                 {notifications.map((notification) => (
                   <NotificationModuleSingleBtn
                     id={notification.id}
@@ -81,7 +80,7 @@ const NavigationLoggedIn = ({
         </div>
         <div className="relative">
           <button
-            className="flex items-center justify-center bg-gray-700 rounded-full h-10 w-10 hover:bg-blue-500 transition-colors duration-300 bg-sky"
+            className="bg-gray-700 hover:bg-blue-500 flex h-10 w-10 items-center justify-center rounded-full bg-sky transition-colors duration-300"
             onClick={handleProfileClick}
             ref={userAvatarRef}
           >
@@ -93,19 +92,19 @@ const NavigationLoggedIn = ({
           </button>
           {isProfileOpen && (
             <div
-              className="absolute right-0 w-64 mt-1 py-2 bg-white rounded-sm border-[1px] border-border_gray z-20"
+              className="absolute right-0 z-20 mt-1 w-64 rounded-sm border-[1px] border-border_gray bg-white py-2"
               ref={profileDropdownRef}
             >
-              <div className="flex flex-col items-center pt-2 pb-2 px-4  bg-white">
+              <div className="flex flex-col items-center bg-white px-4 pt-2  pb-2">
                 <ProfileCircledPic
                   photoUrl={photoUrl}
                   username={username}
                   diameter={10}
                 />
 
-                <p className="text-sm mt-2">{username}</p>
+                <p className="mt-2 text-sm">{username}</p>
               </div>
-              <div className="px-4 mb-1 mt-2 flex items-start border-border_gray border-b-[1px]"></div>
+              <div className="mb-1 mt-2 flex items-start border-b-[1px] border-border_gray px-4"></div>
 
               {profileBtnsSectionOne.map((btn) => {
                 const { Icon } = btn
@@ -123,7 +122,7 @@ const NavigationLoggedIn = ({
                 )
               })}
 
-              <div className="px-4 mb-1 mt-1 flex items-start border-border_gray border-b-[1px]"></div>
+              <div className="mb-1 mt-1 flex items-start border-b-[1px] border-border_gray px-4"></div>
               {profileBtnsSectionTwo.map((btn) => {
                 const { Icon } = btn
                 return (
@@ -140,13 +139,13 @@ const NavigationLoggedIn = ({
                 )
               })}
 
-              <div className="px-4 mb-1 mt-1 flex items-start border-border_gray border-b-[1px]"></div>
+              <div className="mb-1 mt-1 flex items-start border-b-[1px] border-border_gray px-4"></div>
               <div
-                className="px-4 pt-2 pb-2 flex items-start hover:bg-gray cursor-pointer"
+                className="flex cursor-pointer items-start px-4 pt-2 pb-2 hover:bg-gray"
                 onClick={handleLogout}
               >
                 <BiLogOut className="h-5 w-5 text-text_gray" />
-                <p className="text-sm ml-3 ">Logout</p>
+                <p className="ml-3 text-sm ">Logout</p>
               </div>
             </div>
           )}

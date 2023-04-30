@@ -24,17 +24,17 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
   tags,
 }) => {
   return (
-    <div className="w-64 h-80 border border-teacher_template_border cursor-pointer m-2 -z-30">
-      <div className="relative w-full h-1/2">
+    <div className="-z-30 m-2 h-80 w-64 cursor-pointer border border-teacher_template_border">
+      <div className="relative h-1/2 w-full">
         <Image src={image} alt={title} fill style={{ objectFit: 'cover' }} />
       </div>
 
       <div className="p-3">
-        <div className="flex items-center mb-2">
+        <div className="mb-2 flex items-center">
           {tags.map((tag) => (
             <p
               key={tag}
-              className="text-xs rounded bg-info_notification_bg pt-1 pb-1 pl-3 pr-3 text-info_icon_blue mr-1"
+              className="mr-1 rounded bg-info_notification_bg pt-1 pb-1 pl-3 pr-3 text-xs text-info_icon_blue"
             >
               {tag}
             </p>
@@ -45,9 +45,9 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
           {name} {lastName}
         </p>
 
-        <p className="text-sm line-clamp-2 text-icon_gray">{title}</p>
+        <p className="text-sm text-icon_gray line-clamp-2">{title}</p>
 
-        <div className="flex items-center mt-2 justify-between">
+        <div className="mt-2 flex items-center justify-between">
           <div className="flex items-center">
             <BsFillStarFill className="fill-star_gold" />
 

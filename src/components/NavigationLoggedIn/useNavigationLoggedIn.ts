@@ -1,7 +1,5 @@
 import { useRef, useState } from 'react'
-import { signOut } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { auth } from '@/utils/firebase/init'
 import useOnOutsideClick from '@/hooks/useDetectOutsideClick'
 import { NotificationStructure } from './navigationLoggedIn.interface'
 
@@ -35,20 +33,9 @@ const useNavigationLoggedIn = () => {
     setIsNotificationsOpen(false)
   }
 
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        window.location.reload()
-      })
-      .catch(() => {
-        // ALERT
-      })
-  }
-
   return {
     handleNotificationsClick,
     handleProfileClick,
-    handleLogout,
     isNotificationsOpen,
     isProfileOpen,
     setIsProfileOpen,

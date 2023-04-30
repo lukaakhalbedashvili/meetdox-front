@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import React, { FC, MouseEvent } from 'react'
 interface ButtonProps {
   children: React.ReactNode
-  onClickHandler?: () => void
+  onClickHandler?: (e: MouseEvent<HTMLElement>) => void
   type?: 'button' | 'submit' | 'reset'
   customTailwindClasses?: string
 }
@@ -14,7 +14,7 @@ const Button: FC<ButtonProps> = ({
 }) => (
   <button
     type={type}
-    className={`border-2 rounded-md sm:text-sm flex items-center justify-center ${customTailwindClasses}`}
+    className={`flex items-center justify-center rounded-md border-2 sm:text-sm ${customTailwindClasses}`}
     onClick={onClickHandler}
   >
     {children}

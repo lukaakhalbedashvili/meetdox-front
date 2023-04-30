@@ -1,19 +1,12 @@
 'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { SwiperSlide } from 'swiper/react'
 import SwiperWrapper from '@/components/SwiperWrapper'
 import { teachersDummyData } from '@/data/teachersDummyData'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
-import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import CategoryNav from '@/components/CategoryNav'
 
 const Home = () => {
-  const { refetch } = useFetchLoggedInUserData()
-
-  useEffect(() => {
-    refetch()
-  }, [refetch])
-
   return (
     <main className="h-[500px] bg-white font-ubuntu">
       <CategoryNav />

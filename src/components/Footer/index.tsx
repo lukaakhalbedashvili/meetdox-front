@@ -90,6 +90,7 @@ const Footer = () => {
             </h3>
             <form className="flex flex-wrap">
               <input
+                autoComplete="off"
                 type="email"
                 placeholder="Your email address"
                 className="-mr-2 mb-2 w-full rounded-md bg-footer_blue_lite px-4 py-2 text-sm text-white focus:outline-none md:mb-0 md:w-2/3 lg:w-auto"

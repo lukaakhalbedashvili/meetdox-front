@@ -31,6 +31,7 @@ const Input: FC<InputProps> = ({
       }`}
     >
       <input
+        autoComplete="off"
         className="h-full w-full rounded-md bg-white pl-5 text-sm outline-none"
         type={type}
         value={value}

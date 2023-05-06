@@ -18,6 +18,7 @@ const NavigationSearchBar = () => {
         size={20}
       />
       <input
+        autoComplete="off"
         type="text"
         placeholder="Who are you looking for?"
         className="z-20 w-full rounded-l-md rounded-r-none border-[1px] border-border_gray py-2 px-4 pl-10 text-sm font-medium focus:outline-none md:w-[250px] xl:w-[300px]"

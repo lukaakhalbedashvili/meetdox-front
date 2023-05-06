@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const useTeacherEducation = () => {
-  const [educationForms, setEducationForms] = useState([1])
+  const [educationForms, setEducationForms] = useState<number[]>([])
   return { educationForms, setEducationForms }
 }
 

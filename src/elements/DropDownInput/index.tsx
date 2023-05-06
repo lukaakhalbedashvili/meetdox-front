@@ -29,7 +29,7 @@ const DropDownInput: FC<DropDownInputProps> = ({
       <select
         name={name}
         onChange={onChange}
-        className={`h-full w-full rounded-md border-border_gray pl-1 text-sm focus:outline-none ${
+        className={`h-full w-full rounded-md border-border_gray  pl-4 text-sm focus:outline-none ${
           value === placeHolderValue ? 'text-disable_gray' : 'text-black'
         }  ${
           errorMessage

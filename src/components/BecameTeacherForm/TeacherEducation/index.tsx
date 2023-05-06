@@ -1,5 +1,6 @@
 'use client'
 import { Dispatch, FC, SetStateAction } from 'react'
+import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
 import TeacherEducationFormSection from './TeacherEducationFormSection'
 import useTeacherEducation from './useTeacherEducation'
@@ -22,23 +23,39 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
 
       {educationForms.map((item) => {
         return (
-          <TeacherEducationFormSection
-            key={item}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
-          />
+          <div key={item} className="relative mt-8  border-border_gray pt-2">
+            <div
+              className="absolute -top-4 right-0 bg-white"
+              onClick={() =>
+                setEducationForms(
+                  educationForms.filter(
+                    (educationIndex) => educationIndex !== item
+                  )
+                )
+              }
+            >
+              <IoIosClose className="h-7 w-7" />
+            </div>
+
+            <TeacherEducationFormSection
+              isFormSubmitted={isFormSubmitted}
+              setErroredSections={setErroredSections}
+            />
+          </div>
         )
       })}
 
       <Button
-        type="submit"
-        customTailwindClasses="bg-sky border-sky text-white"
+        type="button"
+        customTailwindClasses="bg-sky border-sky text-white mt-3"
         onClickHandler={() =>
-          setEducationForms((state) => [...state, state.length + 1])
+          setEducationForms((state) =>
+            state.length > 0 ? [...state, state.length + 1] : [1]
+          )
         }
       >
         <p className="flex h-[36px] w-32 items-center justify-center text-sm">
-          Add another
+          {educationForms.length === 0 ? 'Add' : 'Add more'}
         </p>
       </Button>
     </div>

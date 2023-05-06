@@ -28,18 +28,19 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
     <div className="mx-4">
       <h2 className="mt-7 text-xl">Skills</h2>
 
-      <div className="flex items-center">
+      <div className="flex flex-wrap">
         {selectedSkills.map((item) => {
           return (
-            <SkillItem
-              onClose={(skill) =>
-                setSelectedSkills((state) =>
-                  state.filter((item) => item !== skill)
-                )
-              }
-              text={item}
-              key={item}
-            />
+            <div key={item} className="mt-2 mr-2">
+              <SkillItem
+                onClose={(skill) =>
+                  setSelectedSkills((state) =>
+                    state.filter((item) => item !== skill)
+                  )
+                }
+                text={item}
+              />
+            </div>
           )
         })}
       </div>

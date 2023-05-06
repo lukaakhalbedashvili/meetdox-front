@@ -165,6 +165,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
         )}
 
         <input
+          autoComplete="off"
           ref={fileInputRef}
           className="hidden"
           accept="image/png, image/jpeg"

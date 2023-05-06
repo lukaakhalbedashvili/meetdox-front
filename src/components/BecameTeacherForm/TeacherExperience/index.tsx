@@ -1,5 +1,6 @@
 'use client'
 import { Dispatch, FC, SetStateAction } from 'react'
+import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
 import TeacherExperienceFormSection from './TeacherExperienceFormSection'
 import useTeacherExperience from './useTeacherExperience'
@@ -21,23 +22,37 @@ const TeacherExperience: FC<TeacherExperienceProps> = ({
 
       {experiences.map((item) => {
         return (
-          <TeacherExperienceFormSection
-            key={item}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
-          />
+          <div key={item} className="relative mt-8  border-border_gray pt-2">
+            <div
+              className="absolute -top-4 right-0 bg-white"
+              onClick={() =>
+                setExperiences(
+                  experiences.filter(
+                    (educationIndex) => educationIndex !== item
+                  )
+                )
+              }
+            >
+              <IoIosClose className="h-7 w-7" />
+            </div>
+
+            <TeacherExperienceFormSection
+              isFormSubmitted={isFormSubmitted}
+              setErroredSections={setErroredSections}
+            />
+          </div>
         )
       })}
 
       <Button
-        type="submit"
-        customTailwindClasses="bg-sky border-sky text-white"
+        type="button"
+        customTailwindClasses="bg-sky border-sky text-white mt-3"
         onClickHandler={() =>
           setExperiences((state) => [...state, state.length + 1])
         }
       >
         <p className="flex h-[36px] w-32 items-center justify-center text-sm">
-          Add another
+          {experiences.length === 0 ? 'Add' : 'Add more'}
         </p>
       </Button>
     </div>

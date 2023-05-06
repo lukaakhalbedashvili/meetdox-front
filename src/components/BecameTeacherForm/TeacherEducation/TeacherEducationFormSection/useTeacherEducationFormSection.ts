@@ -62,6 +62,7 @@ const useTeacherEducation = (
     teacherEducationInfoValidation.values.university
   )
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const sendApiRequest = useCallback(
     debounce((value) => value && refetch(), 1000),
     []
@@ -71,6 +72,7 @@ const useTeacherEducation = (
     setMajorSearchResults(search(value, majors))
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleMajorFilter = useCallback(
     debounce((value) => handleCollegeFiltertext(value), 500),
     []
@@ -98,6 +100,7 @@ const useTeacherEducation = (
 
   useEffect(() => {
     isFormSubmitted && teacherEducationInfoValidation.submitForm()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
 
   useEffect(() => {

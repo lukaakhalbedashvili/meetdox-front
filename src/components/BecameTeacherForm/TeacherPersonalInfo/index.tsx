@@ -33,6 +33,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
     uploadedImage,
     fileInputRef,
     setUploadedImage,
+    isImageError,
   } = useTeacherPersonalInfo(isFormSubmitted, setErroredSections)
 
   return (
@@ -135,6 +136,12 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
                 Upload Image
               </p>
             </Button>
+
+            {isImageError && (
+              <p className="w-fit bg-white px-1 text-sm text-error">
+                Photo is required
+              </p>
+            )}
           </div>
         )}
 

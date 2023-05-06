@@ -12,6 +12,7 @@ const useTeacherPersonalInfo = (
   const [uploadedImage, setUploadedImage] = useState<
     string | ArrayBuffer | null | undefined
   >()
+  const [isImageError, setIsImageError] = useState<boolean>(false)
   const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -64,7 +65,8 @@ const useTeacherPersonalInfo = (
 
   useEffect(() => {
     isFormSubmitted && teacherPersonalInfoValidation.submitForm()
-  }, [isFormSubmitted])
+    isFormSubmitted && !userImage && setIsImageError(true)
+  }, [isFormSubmitted, userImage])
 
   useEffect(() => {
     setErroredSections((prevState) => ({
@@ -89,6 +91,7 @@ const useTeacherPersonalInfo = (
     uploadedImage,
     fileInputRef,
     setUploadedImage,
+    isImageError,
   }
 }
 

@@ -53,7 +53,8 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
           onBlurHandler={teacherSkillsValidation.handleBlur}
           errorMessage={
             teacherSkillsValidation.touched.skill &&
-            teacherSkillsValidation.errors.skill
+            selectedSkills.length < 5 &&
+            'Please select at least 5 skills'
           }
           onChange={handleChange}
           value={teacherSkillsValidation.values.skill}

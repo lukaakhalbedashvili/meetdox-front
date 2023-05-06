@@ -12,7 +12,7 @@ const SkillItem: FC<SkillItemProps> = ({ onClose, text }) => {
       <p className="mr-1 text-white">{text}</p>
 
       <IoIosClose
-        className="h-7 w-7 fill-white"
+        className="h-7 w-7 cursor-pointer fill-white"
         onClick={() => onClose(text)}
       />
     </div>

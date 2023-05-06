@@ -34,7 +34,7 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
                 )
               }
             >
-              <IoIosClose className="h-7 w-7" />
+              <IoIosClose className="h-7 w-7 cursor-pointer" />
             </div>
 
             <TeacherEducationFormSection

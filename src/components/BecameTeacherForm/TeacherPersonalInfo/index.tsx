@@ -148,20 +148,22 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
                 className="rounded-md border-2 border-sky"
               />
 
-              <div className="absolute top-3/4 left-1/2 z-50 block  max-w-[300px] -translate-x-1/2 -translate-y-1/2 transform sm:opacity-0 sm:group-hover:opacity-100">
-                <Button
-                  type="button"
-                  customTailwindClasses="bg-sky border-sky text-white"
-                  onClickHandler={() => {
-                    fileInputRef.current?.click()
-                    setIsUploadImageModalOpen(true)
-                  }}
-                >
-                  <p className="flex h-[36px] w-32 items-center justify-center text-sm">
-                    Change Image
-                  </p>
-                </Button>
-              </div>
+              {!isUploadImageModalOpen && (
+                <div className="absolute top-3/4 left-1/2 z-50 block  max-w-[300px] -translate-x-1/2 -translate-y-1/2 transform sm:opacity-0 sm:group-hover:opacity-100">
+                  <Button
+                    type="button"
+                    customTailwindClasses="bg-sky border-sky text-white"
+                    onClickHandler={() => {
+                      fileInputRef.current?.click()
+                      setIsUploadImageModalOpen(true)
+                    }}
+                  >
+                    <p className="flex h-[36px] w-32 items-center justify-center text-sm">
+                      Change Image
+                    </p>
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         )}

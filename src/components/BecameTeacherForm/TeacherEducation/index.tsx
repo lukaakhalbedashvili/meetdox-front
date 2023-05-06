@@ -18,29 +18,31 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
   const { educationForms, setEducationForms } = useTeacherEducation()
 
   return (
-    <div className="mx-4 border-t-[1px] border-border_gray pt-7">
+    <div className="mx-4 mt-5 border-t-[1px] border-border_gray pt-5 sm:mx-12">
       <h2 className="text-xl">Education details</h2>
 
       {educationForms.map((item) => {
         return (
-          <div key={item} className="relative mt-8  border-border_gray pt-2">
-            <div
-              className="absolute -top-4 right-0 bg-white"
-              onClick={() =>
-                setEducationForms(
-                  educationForms.filter(
-                    (educationIndex) => educationIndex !== item
+          <div key={item} className=" border-border_gray pt-2">
+            <div className="relative mt-6 sm:w-1/2">
+              <div
+                className="absolute -top-6 right-0 bg-white"
+                onClick={() =>
+                  setEducationForms(
+                    educationForms.filter(
+                      (educationIndex) => educationIndex !== item
+                    )
                   )
-                )
-              }
-            >
-              <IoIosClose className="h-7 w-7 cursor-pointer" />
-            </div>
+                }
+              >
+                <IoIosClose className="h-7 w-7 cursor-pointer" />
+              </div>
 
-            <TeacherEducationFormSection
-              isFormSubmitted={isFormSubmitted}
-              setErroredSections={setErroredSections}
-            />
+              <TeacherEducationFormSection
+                isFormSubmitted={isFormSubmitted}
+                setErroredSections={setErroredSections}
+              />
+            </div>
           </div>
         )
       })}

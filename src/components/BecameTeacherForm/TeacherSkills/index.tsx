@@ -25,8 +25,8 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
   } = useTeacherSkills(isFormSubmitted, setErroredSections)
 
   return (
-    <div className="mx-4">
-      <h2 className="mt-7 text-xl">Skills</h2>
+    <div className="mx-4 mt-5  border-t-[1px] border-border_gray pt-5 sm:mx-12">
+      <h2 className="text-xl">Skills</h2>
 
       <div className="flex flex-wrap">
         {selectedSkills.map((item) => {
@@ -45,7 +45,7 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
         })}
       </div>
 
-      <div className="mt-2 h-10">
+      <div className="mt-2 h-10 sm:w-1/2">
         <TypeAheadInput
           placeHolder={TeacherSkillsInputNames.SKILLS}
           results={skills}

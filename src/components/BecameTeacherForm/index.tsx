@@ -54,10 +54,10 @@ const BecameTeacherForm = () => {
         setErroredSections={setErroredSections}
       />
 
-      <div className="my-4 flex justify-end pr-4">
+      <div className="my-4 flex justify-end pr-4 sm:px-12">
         <Button
           type="button"
-          customTailwindClasses="bg-sky border-sky text-white mt-3"
+          customTailwindClasses="bg-sky border-sky text-white"
           onClickHandler={(e) => {
             e.preventDefault()
             setIsFormSubmitted(true)

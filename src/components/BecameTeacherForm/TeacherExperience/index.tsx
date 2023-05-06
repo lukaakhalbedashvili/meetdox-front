@@ -16,13 +16,17 @@ const TeacherExperience: FC<TeacherExperienceProps> = ({
   setErroredSections,
 }) => {
   const { experiences, setExperiences } = useTeacherExperience()
+
   return (
-    <div className="mx-4">
-      <h2 className="mt-7 text-xl">Experience details</h2>
+    <div className="mx-4 mt-5 border-t-[1px] border-border_gray pt-5  sm:mx-12">
+      <h2 className="text-xl">Experience details</h2>
 
       {experiences.map((item) => {
         return (
-          <div key={item} className="relative mt-8  border-border_gray pt-2">
+          <div
+            key={item}
+            className="relative mt-8  border-border_gray pt-2 sm:w-1/2"
+          >
             <div
               className="absolute -top-4 right-0 bg-white"
               onClick={() =>

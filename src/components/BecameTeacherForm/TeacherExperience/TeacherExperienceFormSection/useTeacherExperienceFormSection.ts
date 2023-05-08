@@ -40,19 +40,18 @@ const useTeacherEducation = (
 
       validationSchema,
 
-      onSubmit: async () => {},
+      onSubmit: async () => {
+        setErroredSections((prevState) => ({
+          ...prevState,
+          experience: !teacherExperienceValidation.isValid,
+        }))
+      },
     })
 
   useEffect(() => {
     isFormSubmitted && teacherExperienceValidation.submitForm()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
-
-  useEffect(() => {
-    setErroredSections((prevState) => ({
-      ...prevState,
-      experience: !teacherExperienceValidation.isValid,
-    }))
-  }, [teacherExperienceValidation.isValid, setErroredSections, isFormSubmitted])
 
   return {
     teacherExperienceValidation,

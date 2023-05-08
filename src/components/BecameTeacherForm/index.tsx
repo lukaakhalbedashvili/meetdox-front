@@ -7,6 +7,7 @@ import TeacherExperience from './TeacherExperience'
 import TeacherSkills from './TeacherSkills'
 import { BecameTeacherSections } from './becameTeacher.interface'
 import TeacherDomain from './TeacherDomain'
+import TeacherContact from './TeacherContact'
 
 const BecameTeacherForm = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
@@ -17,6 +18,7 @@ const BecameTeacherForm = () => {
       experience: false,
       skills: false,
       domain: false,
+      contact: false,
     }
   )
 
@@ -57,6 +59,11 @@ const BecameTeacherForm = () => {
       />
 
       <TeacherDomain
+        isFormSubmitted={isFormSubmitted}
+        setErroredSections={setErroredSections}
+      />
+
+      <TeacherContact
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
       />

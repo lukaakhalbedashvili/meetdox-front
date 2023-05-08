@@ -34,7 +34,12 @@ const useTeacherSkills = (
 
     validationSchema,
 
-    onSubmit: async () => {},
+    onSubmit: async () => {
+      setErroredSections((prevState) => ({
+        ...prevState,
+        skills: selectedSkills.length === 0,
+      }))
+    },
   })
 
   const handleSearch = useCallback((searchParam: string) => {
@@ -59,19 +64,8 @@ const useTeacherSkills = (
 
   useEffect(() => {
     isFormSubmitted && teacherSkillsValidation.submitForm()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
-
-  useEffect(() => {
-    setErroredSections((prevState) => ({
-      ...prevState,
-      skills: selectedSkills.length === 0,
-    }))
-  }, [
-    teacherSkillsValidation.isValid,
-    setErroredSections,
-    isFormSubmitted,
-    selectedSkills.length,
-  ])
 
   return {
     teacherSkillsValidation,

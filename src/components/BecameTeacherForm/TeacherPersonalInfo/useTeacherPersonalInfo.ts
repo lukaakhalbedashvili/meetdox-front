@@ -48,7 +48,12 @@ const useTeacherPersonalInfo = (
 
     validationSchema,
 
-    onSubmit: async () => {},
+    onSubmit: async () => {
+      setErroredSections((prevState) => ({
+        ...prevState,
+        personalInfo: !teacherPersonalInfoValidation.isValid,
+      }))
+    },
   })
 
   const handleUpload = (images: FileList) => {
@@ -66,18 +71,8 @@ const useTeacherPersonalInfo = (
   useEffect(() => {
     isFormSubmitted && teacherPersonalInfoValidation.submitForm()
     isFormSubmitted && !userImage && setIsImageError(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted, userImage])
-
-  useEffect(() => {
-    setErroredSections((prevState) => ({
-      ...prevState,
-      personalInfo: !teacherPersonalInfoValidation.isValid,
-    }))
-  }, [
-    teacherPersonalInfoValidation.isValid,
-    setErroredSections,
-    isFormSubmitted,
-  ])
 
   return {
     teacherPersonalInfoValidation,

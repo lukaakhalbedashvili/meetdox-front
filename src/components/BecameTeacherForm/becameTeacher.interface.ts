@@ -4,4 +4,5 @@ export interface BecameTeacherSections {
   experience: boolean
   skills: boolean
   domain: boolean
+  contact: boolean
 }

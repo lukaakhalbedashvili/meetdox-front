@@ -55,7 +55,12 @@ const useTeacherEducation = (
 
       validationSchema,
 
-      onSubmit: async () => {},
+      onSubmit: async () => {
+        setErroredSections((prevState) => ({
+          ...prevState,
+          education: !teacherEducationInfoValidation.isValid,
+        }))
+      },
     })
 
   const { data, refetch } = useGetCollegeList(
@@ -102,17 +107,6 @@ const useTeacherEducation = (
     isFormSubmitted && teacherEducationInfoValidation.submitForm()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
-
-  useEffect(() => {
-    setErroredSections((prevState) => ({
-      ...prevState,
-      education: !teacherEducationInfoValidation.isValid,
-    }))
-  }, [
-    teacherEducationInfoValidation.isValid,
-    setErroredSections,
-    isFormSubmitted,
-  ])
 
   return {
     teacherEducationInfoValidation,

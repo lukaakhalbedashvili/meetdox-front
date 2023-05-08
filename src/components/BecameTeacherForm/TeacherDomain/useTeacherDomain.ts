@@ -35,7 +35,12 @@ const useTeacherDomain = (
 
     validationSchema,
 
-    onSubmit: async () => {},
+    onSubmit: async () => {
+      setErroredSections((prevState) => ({
+        ...prevState,
+        domain: !teacherDomainValidation.isValid,
+      }))
+    },
   })
 
   const categoriesData = categories.map((item) => item.name)
@@ -48,13 +53,6 @@ const useTeacherDomain = (
     isFormSubmitted && teacherDomainValidation.submitForm()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
-
-  useEffect(() => {
-    setErroredSections((prevState) => ({
-      ...prevState,
-      domain: !teacherDomainValidation.isValid,
-    }))
-  }, [teacherDomainValidation.isValid, setErroredSections, isFormSubmitted])
 
   return {
     teacherDomainValidation,

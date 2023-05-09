@@ -26,13 +26,11 @@ const useTeacherContact = (
   const validationSchema: Yup.ObjectSchema<TeacherContactValidationForm> =
     Yup.object({
       phone: Yup.string().required('required'),
-      email: Yup.string().required('required'),
       country: Yup.string().required('required'),
     })
 
   const teacherContactValidation = useFormik<TeacherContactValidationForm>({
     initialValues: {
-      email: '',
       phone: '',
       country: defaultCountry,
     },

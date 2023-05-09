@@ -2,7 +2,6 @@ import 'react-phone-number-input/style.css'
 import React, { Dispatch, FC, SetStateAction } from 'react'
 import { countries } from '@/data/countries'
 import CountriesDropDown from '@/elements/CountriesDropDown'
-import Input from '@/elements/Input'
 import CountriesInput from '@/elements/CountriesInput'
 import { ContactName } from './teacherContact.interface'
 import useTeacherContact from './useTeacherContact'
@@ -68,21 +67,6 @@ const TeacherContact: FC<TeacherContactProps> = ({
             }
           />
         </div>
-      </div>
-
-      <div className="mt-2 h-10 sm:w-1/2">
-        <Input
-          placeholder={ContactName.EMAIL}
-          type="text"
-          value={teacherContactValidation.values.email}
-          name={ContactName.EMAIL}
-          onChange={teacherContactValidation.handleChange}
-          onBlurHandler={teacherContactValidation.handleBlur}
-          errorMessage={
-            teacherContactValidation.touched.email &&
-            teacherContactValidation.errors.email
-          }
-        />
       </div>
     </div>
   )

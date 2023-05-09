@@ -1,5 +1,6 @@
 'use client'
 import { Dispatch, FC, SetStateAction } from 'react'
+import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
 import TeacherEducationFormSection from './TeacherEducationFormSection'
 import useTeacherEducation from './useTeacherEducation'
@@ -17,28 +18,46 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
   const { educationForms, setEducationForms } = useTeacherEducation()
 
   return (
-    <div className="mx-4">
-      <h2 className="mt-7 text-xl">Education details</h2>
+    <div className="mx-4 mt-5 border-t-[1px] border-border_gray pt-5 sm:mx-12">
+      <h2 className="text-xl">Education details</h2>
 
       {educationForms.map((item) => {
         return (
-          <TeacherEducationFormSection
-            key={item}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
-          />
+          <div key={item} className=" border-border_gray pt-2">
+            <div className="relative mt-6 sm:w-1/2">
+              <div
+                className="absolute -top-6 right-0 bg-white"
+                onClick={() =>
+                  setEducationForms(
+                    educationForms.filter(
+                      (educationIndex) => educationIndex !== item
+                    )
+                  )
+                }
+              >
+                <IoIosClose className="h-7 w-7 cursor-pointer" />
+              </div>
+
+              <TeacherEducationFormSection
+                isFormSubmitted={isFormSubmitted}
+                setErroredSections={setErroredSections}
+              />
+            </div>
+          </div>
         )
       })}
 
       <Button
-        type="submit"
-        customTailwindClasses="bg-sky border-sky text-white"
+        type="button"
+        customTailwindClasses="bg-sky border-sky text-white mt-3"
         onClickHandler={() =>
-          setEducationForms((state) => [...state, state.length + 1])
+          setEducationForms((state) =>
+            state.length > 0 ? [...state, state.length + 1] : [1]
+          )
         }
       >
         <p className="flex h-[36px] w-32 items-center justify-center text-sm">
-          Add another
+          {educationForms.length === 0 ? 'Add' : 'Add more'}
         </p>
       </Button>
     </div>

@@ -1,17 +1,18 @@
 import React, { FC, HTMLInputTypeAttribute } from 'react'
+import { CountriesOption } from './countriesDopDown.interface'
 
-interface DropDownInputProps {
+interface CountriesDropDownProps {
   type?: HTMLInputTypeAttribute
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
   name: string
   onBlurHandler: (e: React.FocusEvent<HTMLSelectElement>) => void
   errorMessage: string | undefined | false
   value: string
-  options: (string | number)[]
+  options: CountriesOption[]
   placeHolderValue?: string
 }
 
-const DropDownInput: FC<DropDownInputProps> = ({
+const CountriesDropDown: FC<CountriesDropDownProps> = ({
   options,
   onChange,
   value,
@@ -20,10 +21,6 @@ const DropDownInput: FC<DropDownInputProps> = ({
   placeHolderValue,
   errorMessage,
 }) => {
-  const optionsWithDefaultValue = placeHolderValue
-    ? [...options, placeHolderValue]
-    : options
-
   return (
     <div className="relative h-full w-full">
       <select
@@ -39,10 +36,11 @@ const DropDownInput: FC<DropDownInputProps> = ({
         value={value}
         onBlur={onBlurHandler}
       >
-        {optionsWithDefaultValue.map((item) => {
+        {options.map((item) => {
           return (
-            <option value={item} key={item}>
-              {item}
+            <option value={item.value} key={item.value}>
+              {item.flag}&emsp;
+              {item.value}
             </option>
           )
         })}
@@ -54,4 +52,4 @@ const DropDownInput: FC<DropDownInputProps> = ({
   )
 }
 
-export default DropDownInput
+export default CountriesDropDown

@@ -21,9 +21,15 @@ const TextArea: FC<InputProps> = ({
   onFocus,
 }) => {
   return (
-    <div className="align-center relative flex h-full w-full justify-center rounded-md border-2 border-border_gray">
+    <div
+      className={`${
+        errorMessage
+          ? 'border border-error_icon_red'
+          : 'border-2 border-border_gray'
+      } align-center relative flex h-full w-full justify-center rounded-md border border-border_gray`}
+    >
       <textarea
-        className="h-full w-full resize-none rounded-md bg-white pl-5 pt-2 text-sm"
+        className="h-full w-full resize-none rounded-md bg-white pl-5 pt-2 text-sm outline-none"
         value={value}
         onBlur={onBlurHandler}
         name={name}
@@ -31,7 +37,7 @@ const TextArea: FC<InputProps> = ({
         onChange={onChange}
         onFocus={onFocus}
       />
-      <div className="absolute top-[42px] right-[0px] w-fit text-sm text-error">
+      <div className="absolute -bottom-2 right-2 w-fit bg-white px-1 text-sm text-error">
         {errorMessage}
       </div>
     </div>

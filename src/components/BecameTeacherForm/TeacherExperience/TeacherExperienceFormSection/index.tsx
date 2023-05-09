@@ -24,7 +24,7 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
 
   return (
     <div className="flex flex-col">
-      <div className="mt-2 h-10 w-96">
+      <div className="mt-2 h-10">
         <Input
           placeholder={TeacherEducationInfoValidationFormInputNames.COMPANY}
           type="text"
@@ -39,7 +39,7 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
         />
       </div>
 
-      <div className="mt-2 h-10 w-96">
+      <div className="mt-2 h-10">
         <Input
           placeholder={TeacherEducationInfoValidationFormInputNames.POSITION}
           type="text"
@@ -54,7 +54,7 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
         />
       </div>
 
-      <div className="mt-2 h-36 w-96">
+      <div className="mt-2 h-36">
         <TextArea
           placeholder={TeacherEducationInfoValidationFormInputNames.DESCRIPTION}
           value={teacherExperienceValidation.values.description}

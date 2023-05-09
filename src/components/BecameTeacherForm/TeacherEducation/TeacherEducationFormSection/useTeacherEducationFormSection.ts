@@ -9,10 +9,9 @@ import {
 } from 'react'
 import * as Yup from 'yup'
 import debounce from 'lodash.debounce'
-import { majors } from '@/data/majors'
 import { useGetCollegeList } from '@/reactQuery/becomeTeacherQueryies/getCollegeList'
 import { search } from '@/utils/services/search'
-
+import { majors } from '@/data/majors'
 import {
   TeacherEducationInfoValidationForm,
   TeacherEducationInfoValidationFormInputNames,
@@ -56,13 +55,19 @@ const useTeacherEducation = (
 
       validationSchema,
 
-      onSubmit: async () => {},
+      onSubmit: async () => {
+        setErroredSections((prevState) => ({
+          ...prevState,
+          education: !teacherEducationInfoValidation.isValid,
+        }))
+      },
     })
 
   const { data, refetch } = useGetCollegeList(
     teacherEducationInfoValidation.values.university
   )
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const sendApiRequest = useCallback(
     debounce((value) => value && refetch(), 1000),
     []
@@ -72,6 +77,7 @@ const useTeacherEducation = (
     setMajorSearchResults(search(value, majors))
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleMajorFilter = useCallback(
     debounce((value) => handleCollegeFiltertext(value), 500),
     []
@@ -99,18 +105,8 @@ const useTeacherEducation = (
 
   useEffect(() => {
     isFormSubmitted && teacherEducationInfoValidation.submitForm()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
-
-  useEffect(() => {
-    setErroredSections((prevState) => ({
-      ...prevState,
-      education: !teacherEducationInfoValidation.isValid,
-    }))
-  }, [
-    teacherEducationInfoValidation.isValid,
-    setErroredSections,
-    isFormSubmitted,
-  ])
 
   return {
     teacherEducationInfoValidation,

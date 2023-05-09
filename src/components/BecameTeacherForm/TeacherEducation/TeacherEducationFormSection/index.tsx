@@ -27,7 +27,7 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
 
   return (
     <div className="flex flex-col">
-      <div className="mr-2 mt-2 w-96">
+      <div className="mt-2">
         <TypeAheadInput
           onBlurHandler={teacherEducationInfoValidation.handleBlur}
           value={teacherEducationInfoValidation.values.university}
@@ -48,7 +48,7 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
         />
       </div>
 
-      <div className="mr-2 mt-2 w-96">
+      <div className=" mt-2">
         <TypeAheadInput
           placeHolder={TeacherEducationInfoValidationFormInputNames.MAJOR}
           onBlurHandler={teacherEducationInfoValidation.handleBlur}

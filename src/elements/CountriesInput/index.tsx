@@ -1,6 +1,6 @@
 import React, { FC, HTMLInputTypeAttribute, ReactNode } from 'react'
 
-interface InputProps {
+interface CountriesInputProps {
   value?: string
   placeholder?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -10,9 +10,10 @@ interface InputProps {
   children?: ReactNode
   type: HTMLInputTypeAttribute
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  phoneExtension: string
 }
 
-const Input: FC<InputProps> = ({
+const CountriesInput: FC<CountriesInputProps> = ({
   value,
   errorMessage,
   name,
@@ -21,6 +22,7 @@ const Input: FC<InputProps> = ({
   placeholder,
   type,
   onFocus,
+  phoneExtension,
 }) => {
   return (
     <div
@@ -30,9 +32,11 @@ const Input: FC<InputProps> = ({
           : 'border-2 border-border_gray'
       }`}
     >
+      <p className="absolute left-3 top-1/4 text-sm">{phoneExtension}</p>
+
       <input
         autoComplete="off"
-        className="h-full w-full rounded-md bg-white pl-5 text-sm outline-none"
+        className="h-full w-full rounded-md bg-white pl-14 text-sm outline-none"
         type={type}
         value={value}
         onBlur={onBlurHandler}
@@ -48,4 +52,4 @@ const Input: FC<InputProps> = ({
   )
 }
 
-export default Input
+export default CountriesInput

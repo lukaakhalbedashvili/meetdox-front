@@ -6,6 +6,8 @@ import TeacherEducation from './TeacherEducation'
 import TeacherExperience from './TeacherExperience'
 import TeacherSkills from './TeacherSkills'
 import { BecameTeacherSections } from './becameTeacher.interface'
+import TeacherDomain from './TeacherDomain'
+import TeacherContact from './TeacherContact'
 
 const BecameTeacherForm = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
@@ -15,6 +17,8 @@ const BecameTeacherForm = () => {
       education: false,
       experience: false,
       skills: false,
+      domain: false,
+      contact: false,
     }
   )
 
@@ -37,10 +41,12 @@ const BecameTeacherForm = () => {
         setErroredSections={setErroredSections}
       />
 
-      <TeacherEducation
-        isFormSubmitted={isFormSubmitted}
-        setErroredSections={setErroredSections}
-      />
+      <div className="mt-2">
+        <TeacherEducation
+          isFormSubmitted={isFormSubmitted}
+          setErroredSections={setErroredSections}
+        />
+      </div>
 
       <TeacherExperience
         isFormSubmitted={isFormSubmitted}
@@ -52,18 +58,30 @@ const BecameTeacherForm = () => {
         setErroredSections={setErroredSections}
       />
 
-      <Button
-        type="button"
-        customTailwindClasses="bg-sky border-sky text-white"
-        onClickHandler={(e) => {
-          e.preventDefault()
-          setIsFormSubmitted(true)
-        }}
-      >
-        <p className="flex h-[36px] w-32 items-center justify-center text-sm">
-          Save
-        </p>
-      </Button>
+      <TeacherDomain
+        isFormSubmitted={isFormSubmitted}
+        setErroredSections={setErroredSections}
+      />
+
+      <TeacherContact
+        isFormSubmitted={isFormSubmitted}
+        setErroredSections={setErroredSections}
+      />
+
+      <div className="my-4 flex justify-end pr-4 sm:px-12">
+        <Button
+          type="button"
+          customTailwindClasses="bg-sky border-sky text-white"
+          onClickHandler={(e) => {
+            e.preventDefault()
+            setIsFormSubmitted(true)
+          }}
+        >
+          <p className="flex h-[36px] w-32 items-center justify-center text-sm">
+            Save
+          </p>
+        </Button>
+      </div>
     </form>
   )
 }

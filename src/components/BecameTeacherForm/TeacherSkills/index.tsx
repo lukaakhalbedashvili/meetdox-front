@@ -25,35 +25,32 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
   } = useTeacherSkills(isFormSubmitted, setErroredSections)
 
   return (
-    <div className="mx-4">
-      <h2 className="mt-7 text-xl">Skills</h2>
+    <div className="mx-4 mt-5  border-t-[1px] border-border_gray pt-5 sm:mx-12">
+      <h2 className="text-xl">Skills</h2>
 
-      <div className="flex items-center">
+      <div className="flex flex-wrap">
         {selectedSkills.map((item) => {
           return (
-            <SkillItem
-              onClose={(skill) =>
-                setSelectedSkills((state) =>
-                  state.filter((item) => item !== skill)
-                )
-              }
-              text={item}
-              key={item}
-            />
+            <div key={item} className="mt-2 mr-2">
+              <SkillItem
+                onClose={(skill) =>
+                  setSelectedSkills((state) =>
+                    state.filter((item) => item !== skill)
+                  )
+                }
+                text={item}
+              />
+            </div>
           )
         })}
       </div>
 
-      <div className="mt-2 h-10 w-96">
+      <div className="mt-2 h-10 sm:w-1/2">
         <TypeAheadInput
           placeHolder={TeacherSkillsInputNames.SKILLS}
           results={skills}
           name={TeacherSkillsInputNames.SKILLS}
           onBlurHandler={teacherSkillsValidation.handleBlur}
-          errorMessage={
-            teacherSkillsValidation.touched.skill &&
-            teacherSkillsValidation.errors.skill
-          }
           onChange={handleChange}
           value={teacherSkillsValidation.values.skill}
           onSelect={onSelectHandler}

@@ -12,6 +12,7 @@ const useTeacherPersonalInfo = (
   const [uploadedImage, setUploadedImage] = useState<
     string | ArrayBuffer | null | undefined
   >()
+  const [isImageError, setIsImageError] = useState<boolean>(false)
   const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -29,7 +30,11 @@ const useTeacherPersonalInfo = (
         .test('is it valid month', 'required', function (value) {
           return value !== placeholderBirthMonth
         }),
-      birthYear: Yup.string().required('required'),
+      birthYear: Yup.string()
+        .required('required')
+        .test('is it valid year', 'required', function (value) {
+          return value !== placeholderBirthYear
+        }),
     })
 
   const teacherPersonalInfoValidation = useFormik<TeacherPersonalInfoForm>({
@@ -43,7 +48,12 @@ const useTeacherPersonalInfo = (
 
     validationSchema,
 
-    onSubmit: async () => {},
+    onSubmit: async () => {
+      setErroredSections((prevState) => ({
+        ...prevState,
+        personalInfo: !teacherPersonalInfoValidation.isValid,
+      }))
+    },
   })
 
   const handleUpload = (images: FileList) => {
@@ -60,18 +70,9 @@ const useTeacherPersonalInfo = (
 
   useEffect(() => {
     isFormSubmitted && teacherPersonalInfoValidation.submitForm()
-  }, [isFormSubmitted])
-
-  useEffect(() => {
-    setErroredSections((prevState) => ({
-      ...prevState,
-      personalInfo: !teacherPersonalInfoValidation.isValid,
-    }))
-  }, [
-    teacherPersonalInfoValidation.isValid,
-    setErroredSections,
-    isFormSubmitted,
-  ])
+    isFormSubmitted && !userImage && setIsImageError(true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFormSubmitted, userImage])
 
   return {
     teacherPersonalInfoValidation,
@@ -85,6 +86,7 @@ const useTeacherPersonalInfo = (
     uploadedImage,
     fileInputRef,
     setUploadedImage,
+    isImageError,
   }
 }
 

@@ -3,4 +3,6 @@ export interface BecameTeacherSections {
   education: boolean
   experience: boolean
   skills: boolean
+  domain: boolean
+  contact: boolean
 }

@@ -101,6 +101,7 @@ const LogIn: FC<LogInProps> = ({
           <div className="mt-7 flex w-full items-center justify-between">
             <div className="flex items-center">
               <input
+                autoComplete="off"
                 type="checkbox"
                 name={LogInFormFields.REMEMBER_ME}
                 onChange={LogInFormValidation.handleChange}

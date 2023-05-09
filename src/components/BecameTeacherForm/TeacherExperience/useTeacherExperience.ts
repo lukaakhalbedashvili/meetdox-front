@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const useTeacherExperience = () => {
-  const [experiences, setExperiences] = useState([1])
+  const [experiences, setExperiences] = useState<number[]>([])
   return { experiences, setExperiences }
 }
 

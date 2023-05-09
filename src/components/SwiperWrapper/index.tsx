@@ -18,13 +18,13 @@ const LandingCategorySwiper: FC<LandingCategorySwiperProps> = ({
   const [swiper, setSwiper] = useState<SwiperCore>()
 
   return (
-    <div className="pl-12 pr-12">
+    <div className="px-2 sm:px-12">
       <h2 className="text-2xl">{title}</h2>
 
       <div className="flex items-center">
         <div
           ref={slideLeftArrowRef}
-          className="absolute left-7 z-10 flex cursor-pointer items-center justify-center rounded-full bg-white shadow-md"
+          className="absolute left-0 z-10 flex cursor-pointer items-center justify-center rounded-full bg-white shadow-md sm:left-7"
           onClick={() => swiper?.slidePrev()}
         >
           <IoIosArrowRoundForward
@@ -51,7 +51,7 @@ const LandingCategorySwiper: FC<LandingCategorySwiperProps> = ({
         <div
           ref={slideRightArrowRef}
           onClick={() => swiper?.slideNext()}
-          className="absolute right-6 z-10 flex cursor-pointer items-center justify-center rounded-full bg-white shadow-md"
+          className="absolute right-0 z-10 flex cursor-pointer items-center justify-center rounded-full bg-white shadow-md sm:right-6"
         >
           <IoIosArrowRoundForward
             size={30}

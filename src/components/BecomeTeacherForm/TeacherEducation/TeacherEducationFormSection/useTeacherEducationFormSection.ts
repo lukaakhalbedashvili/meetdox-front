@@ -17,13 +17,13 @@ import {
   TeacherEducationInfoValidationFormInputNames,
 } from './teacherEducation.interface'
 import {
-  BecameTeacherSections,
+  BecomeTeacherSections,
   FormValues,
-} from '../../becameTeacher.interface'
+} from '../../becomeTeacher.interface'
 
 const useTeacherEducation = (
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>,
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>,
   setFormValues: Dispatch<SetStateAction<FormValues>>,
   formId: number
 ) => {

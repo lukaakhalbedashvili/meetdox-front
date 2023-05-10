@@ -1,16 +1,15 @@
-import 'react-phone-number-input/style.css'
 import React, { Dispatch, FC, SetStateAction } from 'react'
 import { countries } from '@/data/countries'
 import CountriesDropDown from '@/elements/CountriesDropDown'
 import CountriesInput from '@/elements/CountriesInput'
 import { ContactName } from './teacherContact.interface'
 import useTeacherContact from './useTeacherContact'
-import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
+import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
 
 interface TeacherContactProps {
   setFormValues: Dispatch<React.SetStateAction<FormValues>>
   isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
 }
 
 const TeacherContact: FC<TeacherContactProps> = ({

@@ -10,11 +10,11 @@ import useTeacherPersonalInfo from './useTeacherPersonalInfo'
 import { TeacherPersonalInfoFormInputNames } from './teacherPersonalInfo.interface'
 import PhotoEditor from '../../../elements/PhotoEditor'
 import PopupItemWrapper from '../../PopupItemWrapper'
-import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
+import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
 
 interface TeacherPersonalInfoProps {
   isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
 }
 

@@ -4,11 +4,11 @@ import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
 import TeacherEducationFormSection from './TeacherEducationFormSection'
 import useTeacherEducation from './useTeacherEducation'
-import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
+import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
 
 interface TeacherEducationProps {
   isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
 }
 

@@ -2,11 +2,11 @@ import React, { Dispatch, FC, SetStateAction } from 'react'
 import DropDownInput from '@/elements/DropDownInput'
 import useTeacherDomain from './useTeacherDomain'
 import { DomainNames } from './teacherDomain.interface'
-import { BecameTeacherSections } from '../becameTeacher.interface'
+import { BecomeTeacherSections } from '../becomeTeacher.interface'
 
 interface TeacherDomainProps {
   isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
 }
 
 const TeacherDomain: FC<TeacherDomainProps> = ({

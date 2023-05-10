@@ -3,11 +3,11 @@ import * as Yup from 'yup'
 import { Dispatch, SetStateAction, useEffect } from 'react'
 import { categories } from '@/data/categoryItems'
 import { TeacherDomainInfoValidationForm } from './teacherDomain.interface'
-import { BecameTeacherSections } from '../becameTeacher.interface'
+import { BecomeTeacherSections } from '../becomeTeacher.interface'
 
 const useTeacherDomain = (
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
 ) => {
   const placeholderCategoryValue = 'Choose Category'
 

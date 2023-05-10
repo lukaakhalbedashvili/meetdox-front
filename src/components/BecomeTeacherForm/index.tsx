@@ -5,13 +5,13 @@ import TeacherPersonalInfo from './TeacherPersonalInfo'
 import TeacherEducation from './TeacherEducation'
 import TeacherExperience from './TeacherExperience'
 import TeacherSkills from './TeacherSkills'
-import { BecameTeacherSections, FormValues } from './becameTeacher.interface'
+import { BecomeTeacherSections, FormValues } from './becomeTeacher.interface'
 import TeacherDomain from './TeacherDomain'
 import TeacherContact from './TeacherContact'
 
-const BecameTeacherForm = () => {
+const BecomeTeacherForm = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
-  const [erroredSections, setErroredSections] = useState<BecameTeacherSections>(
+  const [erroredSections, setErroredSections] = useState<BecomeTeacherSections>(
     {
       personalInfo: false,
       education: false,
@@ -47,6 +47,7 @@ const BecameTeacherForm = () => {
       console.error('success', values)
       setIsFormSubmitted(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erroredSections, isFormSubmitted])
 
   return (
@@ -106,4 +107,4 @@ const BecameTeacherForm = () => {
   )
 }
 
-export default BecameTeacherForm
+export default BecomeTeacherForm

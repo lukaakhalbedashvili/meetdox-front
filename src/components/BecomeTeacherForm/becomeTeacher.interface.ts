@@ -4,7 +4,7 @@ import { TeacherEducationInfoValidationForm } from './TeacherEducation/TeacherEd
 import { TeacherExperienceForm } from './TeacherExperience/TeacherExperienceFormSection/teacherExperience.interface'
 import { TeacherPersonalInfoForm } from './TeacherPersonalInfo/teacherPersonalInfo.interface'
 
-export interface BecameTeacherSections {
+export interface BecomeTeacherSections {
   personalInfo: boolean
   education: boolean
   experience: boolean

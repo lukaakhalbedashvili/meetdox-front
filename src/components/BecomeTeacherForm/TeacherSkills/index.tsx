@@ -4,11 +4,11 @@ import SkillItem from '@/elements/SkillItem'
 import TypeAheadInput from '@/elements/TypeAheadInput'
 import { TeacherSkillsInputNames } from './teacherSkills.interface'
 import useTeacherSkills from './useTeacherSkills'
-import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
+import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
 
 interface TeacherSkillsProps {
   isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
 }
 

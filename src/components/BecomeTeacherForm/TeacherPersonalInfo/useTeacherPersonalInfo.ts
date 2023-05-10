@@ -2,11 +2,11 @@ import { useFormik } from 'formik'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
-import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
+import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
 
 const useTeacherPersonalInfo = (
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>,
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>,
   setFormValues: Dispatch<SetStateAction<FormValues>>
 ) => {
   const [userImage, setUserImage] = useState<string>()

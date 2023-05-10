@@ -1,9 +1,9 @@
 export interface TeacherDomainInfoValidationForm {
   category: string
-  subCategory: string
+  subCategories?: string[]
 }
 
 export enum DomainNames {
   CATEGORY = 'category',
-  SUB_CATEGORY = 'subCategory',
+  SUB_CATEGORY = 'subCategories',
 }

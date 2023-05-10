@@ -31,7 +31,7 @@ const BecomeTeacherForm = () => {
     },
     skills: [],
     teacherEducation: [],
-    teacherDomain: { category: '', subCategory: '' },
+    teacherDomain: { category: '', subCategories: [] },
     contact: { country: '', phone: '' },
     teacherExperience: [],
   })
@@ -42,7 +42,7 @@ const BecomeTeacherForm = () => {
 
     if (education || experience || personalInfo || skills) {
       setIsFormSubmitted(false)
-      console.error('error')
+      // console.error('error')
     } else {
       console.error('success', values)
       setIsFormSubmitted(false)
@@ -50,6 +50,7 @@ const BecomeTeacherForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erroredSections, isFormSubmitted])
 
+  console.error('success', values)
   return (
     <form>
       <TeacherPersonalInfo
@@ -79,6 +80,7 @@ const BecomeTeacherForm = () => {
       />
 
       <TeacherDomain
+        setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
       />

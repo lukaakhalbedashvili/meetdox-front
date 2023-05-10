@@ -1,56 +1,75 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { Dispatch, SetStateAction, useEffect } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { categories } from '@/data/categoryItems'
 import { TeacherDomainInfoValidationForm } from './teacherDomain.interface'
-import { BecomeTeacherSections } from '../becomeTeacher.interface'
+import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
 
 const useTeacherDomain = (
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>,
+  setFormValues: Dispatch<SetStateAction<FormValues>>
 ) => {
   const placeholderCategoryValue = 'Choose Category'
 
-  const placeholderSubCategoryValue = 'Choose SubCategory'
+  const [subCategoriesData, setSubCategoriesData] = useState<SubCategory[]>([])
+
+  interface SubCategory {
+    name: string
+    checked: boolean
+  }
 
   const validationSchema: Yup.ObjectSchema<TeacherDomainInfoValidationForm> =
     Yup.object({
-      category: Yup.string()
-        .required('required')
-        .test('is it valid category', 'required', function (value) {
-          return value !== placeholderCategoryValue
-        }),
-      subCategory: Yup.string()
-        .required('required')
-        .test('is it valid sub sub-category', 'required', function (value) {
-          return value !== placeholderSubCategoryValue
-        }),
+      category: Yup.string().required('required'),
+      subCategories: Yup.array().required('required'),
     })
 
   const teacherDomainValidation = useFormik<TeacherDomainInfoValidationForm>({
     initialValues: {
       category: placeholderCategoryValue,
-      subCategory: placeholderSubCategoryValue,
+      subCategories: [],
     },
 
     validationSchema,
 
-    onSubmit: async () => {
+    onSubmit: async (values) => {
+      const { category } = values
       setErroredSections((prevState) => ({
         ...prevState,
         domain: !teacherDomainValidation.isValid,
       }))
+
+      setFormValues((prevState): FormValues => {
+        return {
+          ...prevState,
+          teacherDomain: {
+            ...prevState.teacherDomain,
+            category: category,
+            subCategories: subCategoriesData
+              ?.filter((item) => item.checked)
+              .map((item) => item.name),
+          },
+        }
+      })
     },
   })
 
   const categoriesData = categories.map((item) => item.name)
 
-  const subCategoriesData = categories
-    .find((item) => item.name === teacherDomainValidation.values.category)
-    ?.subCategories.map((item) => item.name)
+  useEffect(() => {
+    setSubCategoriesData(
+      categories
+        .find((item) => item.name === teacherDomainValidation.values.category)
+        ?.subCategories.map((item) => {
+          return { name: item.name, checked: false }
+        }) || []
+    )
+  }, [teacherDomainValidation.values.category])
 
   useEffect(() => {
     isFormSubmitted && teacherDomainValidation.submitForm()
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
 
@@ -59,7 +78,7 @@ const useTeacherDomain = (
     placeholderCategoryValue,
     categoriesData,
     subCategoriesData,
-    placeholderSubCategoryValue,
+    setSubCategoriesData,
   }
 }
 

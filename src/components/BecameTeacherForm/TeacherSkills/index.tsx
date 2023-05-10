@@ -4,16 +4,18 @@ import SkillItem from '@/elements/SkillItem'
 import TypeAheadInput from '@/elements/TypeAheadInput'
 import { TeacherSkillsInputNames } from './teacherSkills.interface'
 import useTeacherSkills from './useTeacherSkills'
-import { BecameTeacherSections } from '../becameTeacher.interface'
+import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
 
 interface TeacherSkillsProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setFormValues: Dispatch<SetStateAction<FormValues>>
 }
 
 const TeacherSkills: FC<TeacherSkillsProps> = ({
   isFormSubmitted,
   setErroredSections,
+  setFormValues,
 }) => {
   const {
     teacherSkillsValidation,
@@ -22,7 +24,7 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
     selectedSkills,
     setSelectedSkills,
     onSelectHandler,
-  } = useTeacherSkills(isFormSubmitted, setErroredSections)
+  } = useTeacherSkills(isFormSubmitted, setErroredSections, setFormValues)
 
   return (
     <div className="mx-4 mt-5  border-t-[1px] border-border_gray pt-5 sm:mx-12">

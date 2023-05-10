@@ -4,16 +4,23 @@ import { getAgeRange } from '@/utils/services/getTeacherAgeRange'
 import TypeAheadInput from '@/elements/TypeAheadInput'
 import useTeacherEducation from './useTeacherEducationFormSection'
 import { TeacherEducationInfoValidationFormInputNames } from './teacherEducation.interface'
-import { BecameTeacherSections } from '../../becameTeacher.interface'
+import {
+  BecameTeacherSections,
+  FormValues,
+} from '../../becameTeacher.interface'
 
 interface TeacherEducationFormSectionProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setFormValues: Dispatch<SetStateAction<FormValues>>
+  formId: number
 }
 
 const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
   isFormSubmitted,
   setErroredSections,
+  setFormValues,
+  formId,
 }) => {
   const {
     teacherEducationInfoValidation,
@@ -23,7 +30,12 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
     majorSearchResults,
     placeholderStartDate,
     placeholderEndDate,
-  } = useTeacherEducation(isFormSubmitted, setErroredSections)
+  } = useTeacherEducation(
+    isFormSubmitted,
+    setErroredSections,
+    setFormValues,
+    formId
+  )
 
   return (
     <div className="flex flex-col">

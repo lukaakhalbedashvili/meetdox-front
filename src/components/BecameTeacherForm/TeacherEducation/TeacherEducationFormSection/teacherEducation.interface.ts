@@ -1,4 +1,5 @@
 export interface TeacherEducationInfoValidationForm {
+  id: number
   university: string
   major: string
   startDate: string

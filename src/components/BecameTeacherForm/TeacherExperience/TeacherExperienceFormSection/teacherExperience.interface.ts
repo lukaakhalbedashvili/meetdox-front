@@ -1,12 +1,13 @@
-export interface TeacherEducationInfoValidationForm {
+export interface TeacherExperienceForm {
   company: string
   position: string
   description: string
   startDate: string
   endDate: string
+  id: number
 }
 
-export enum TeacherEducationInfoValidationFormInputNames {
+export enum TeacherExperienceInfoValidationFormInputNames {
   COMPANY = 'company',
   POSITION = 'position',
   DESCRIPTION = 'description',

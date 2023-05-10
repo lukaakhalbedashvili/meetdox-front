@@ -4,16 +4,18 @@ import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
 import TeacherExperienceFormSection from './TeacherExperienceFormSection'
 import useTeacherExperience from './useTeacherExperience'
-import { BecameTeacherSections } from '../becameTeacher.interface'
+import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
 
 interface TeacherExperienceProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setFormValues: Dispatch<SetStateAction<FormValues>>
 }
 
 const TeacherExperience: FC<TeacherExperienceProps> = ({
   isFormSubmitted,
   setErroredSections,
+  setFormValues,
 }) => {
   const { experiences, setExperiences } = useTeacherExperience()
 
@@ -41,6 +43,8 @@ const TeacherExperience: FC<TeacherExperienceProps> = ({
             </div>
 
             <TeacherExperienceFormSection
+              formId={item}
+              setFormValues={setFormValues}
               isFormSubmitted={isFormSubmitted}
               setErroredSections={setErroredSections}
             />

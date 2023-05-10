@@ -5,7 +5,7 @@ import TeacherPersonalInfo from './TeacherPersonalInfo'
 import TeacherEducation from './TeacherEducation'
 import TeacherExperience from './TeacherExperience'
 import TeacherSkills from './TeacherSkills'
-import { BecameTeacherSections } from './becameTeacher.interface'
+import { BecameTeacherSections, FormValues } from './becameTeacher.interface'
 import TeacherDomain from './TeacherDomain'
 import TeacherContact from './TeacherContact'
 
@@ -21,6 +21,20 @@ const BecameTeacherForm = () => {
       contact: false,
     }
   )
+  const [values, setValues] = useState<FormValues>({
+    personalInfo: {
+      birthMonth: '',
+      birthYear: '',
+      lastName: '',
+      name: '',
+      middleName: '',
+    },
+    skills: [],
+    teacherEducation: [],
+    teacherDomain: { category: '', subCategory: '' },
+    contact: { country: '', phone: '' },
+    teacherExperience: [],
+  })
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -30,30 +44,35 @@ const BecameTeacherForm = () => {
       setIsFormSubmitted(false)
       console.error('error')
     } else {
-      console.error('success')
+      console.error('success', values)
+      setIsFormSubmitted(false)
     }
   }, [erroredSections, isFormSubmitted])
 
   return (
     <form>
       <TeacherPersonalInfo
+        setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
       />
 
       <div className="mt-2">
         <TeacherEducation
+          setFormValues={setValues}
           isFormSubmitted={isFormSubmitted}
           setErroredSections={setErroredSections}
         />
       </div>
 
       <TeacherExperience
+        setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
       />
 
       <TeacherSkills
+        setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
       />
@@ -64,6 +83,7 @@ const BecameTeacherForm = () => {
       />
 
       <TeacherContact
+        setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
       />

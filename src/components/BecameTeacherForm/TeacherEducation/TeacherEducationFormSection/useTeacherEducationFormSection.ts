@@ -16,11 +16,16 @@ import {
   TeacherEducationInfoValidationForm,
   TeacherEducationInfoValidationFormInputNames,
 } from './teacherEducation.interface'
-import { BecameTeacherSections } from '../../becameTeacher.interface'
+import {
+  BecameTeacherSections,
+  FormValues,
+} from '../../becameTeacher.interface'
 
 const useTeacherEducation = (
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>,
+  setFormValues: Dispatch<SetStateAction<FormValues>>,
+  formId: number
 ) => {
   const [collegeSearchResults, setCollegeSearchResults] = useState<string[]>()
   const [majorSearchResults, setMajorSearchResults] = useState<string[]>()
@@ -42,11 +47,14 @@ const useTeacherEducation = (
         .test('is it valid month', 'required', function (value) {
           return value !== placeholderEndDate
         }),
+
+      id: Yup.number().required('required'),
     })
 
   const teacherEducationInfoValidation =
     useFormik<TeacherEducationInfoValidationForm>({
       initialValues: {
+        id: 0,
         university: '',
         major: '',
         startDate: placeholderStartDate,
@@ -55,11 +63,24 @@ const useTeacherEducation = (
 
       validationSchema,
 
-      onSubmit: async () => {
+      onSubmit: async (values) => {
         setErroredSections((prevState) => ({
           ...prevState,
           education: !teacherEducationInfoValidation.isValid,
         }))
+
+        setFormValues((state) => {
+          const returnOtherInCaseOf = state.teacherEducation.filter(
+            (item) => item.id !== formId
+          )
+          return {
+            ...state,
+            teacherEducation: [
+              ...returnOtherInCaseOf,
+              { ...values, id: formId },
+            ],
+          }
+        })
       },
     })
 

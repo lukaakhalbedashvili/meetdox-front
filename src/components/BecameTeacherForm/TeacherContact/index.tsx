@@ -5,9 +5,10 @@ import CountriesDropDown from '@/elements/CountriesDropDown'
 import CountriesInput from '@/elements/CountriesInput'
 import { ContactName } from './teacherContact.interface'
 import useTeacherContact from './useTeacherContact'
-import { BecameTeacherSections } from '../becameTeacher.interface'
+import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
 
 interface TeacherContactProps {
+  setFormValues: Dispatch<React.SetStateAction<FormValues>>
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
 }
@@ -15,11 +16,10 @@ interface TeacherContactProps {
 const TeacherContact: FC<TeacherContactProps> = ({
   isFormSubmitted,
   setErroredSections,
+  setFormValues,
 }) => {
-  const { teacherContactValidation, updatePhoneExtension } = useTeacherContact(
-    isFormSubmitted,
-    setErroredSections
-  )
+  const { teacherContactValidation, updatePhoneExtension, phoneExtension } =
+    useTeacherContact(setFormValues, isFormSubmitted, setErroredSections)
 
   const countriesList = countries.map((country) => {
     return { value: country.name, flag: country.flag }
@@ -39,26 +39,26 @@ const TeacherContact: FC<TeacherContactProps> = ({
               teacherContactValidation.touched.country &&
               teacherContactValidation.errors.country
             }
-            onChange={teacherContactValidation.handleChange}
+            onChange={(e) => {
+              teacherContactValidation.setFieldValue(
+                ContactName.COUNTRY,
+                e.target.value
+              )
+              updatePhoneExtension(e.target.value)
+            }}
             value={teacherContactValidation.values.country}
           />
         </div>
 
         <div className="mt-2 h-10 sm:w-full">
           <CountriesInput
-            phoneExtension={
-              countries.find(
-                (country) =>
-                  country.name === teacherContactValidation.values.country
-              )?.dial_code || ''
-            }
+            phoneExtension={phoneExtension}
             placeholder={ContactName.PHONE}
             type="number"
             value={teacherContactValidation.values.phone}
             name={ContactName.PHONE}
             onChange={(e) => {
               teacherContactValidation.handleChange(e)
-              updatePhoneExtension(e.target.value)
             }}
             onBlurHandler={teacherContactValidation.handleBlur}
             errorMessage={

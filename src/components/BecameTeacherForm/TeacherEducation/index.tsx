@@ -4,16 +4,18 @@ import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
 import TeacherEducationFormSection from './TeacherEducationFormSection'
 import useTeacherEducation from './useTeacherEducation'
-import { BecameTeacherSections } from '../becameTeacher.interface'
+import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
 
 interface TeacherEducationProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setFormValues: Dispatch<SetStateAction<FormValues>>
 }
 
 const TeacherEducation: FC<TeacherEducationProps> = ({
   isFormSubmitted,
   setErroredSections,
+  setFormValues,
 }) => {
   const { educationForms, setEducationForms } = useTeacherEducation()
 
@@ -27,18 +29,23 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
             <div className="relative mt-6 sm:w-1/2">
               <div
                 className="absolute -top-6 right-0 bg-white"
-                onClick={() =>
+                onClick={() => {
                   setEducationForms(
                     educationForms.filter(
                       (educationIndex) => educationIndex !== item
                     )
                   )
-                }
+                  setFormValues((state) => {
+                    return { ...state }
+                  })
+                }}
               >
                 <IoIosClose className="h-7 w-7 cursor-pointer" />
               </div>
 
               <TeacherEducationFormSection
+                formId={item}
+                setFormValues={setFormValues}
                 isFormSubmitted={isFormSubmitted}
                 setErroredSections={setErroredSections}
               />

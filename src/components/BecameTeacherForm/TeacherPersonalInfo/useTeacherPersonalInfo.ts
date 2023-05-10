@@ -2,11 +2,12 @@ import { useFormik } from 'formik'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
-import { BecameTeacherSections } from '../becameTeacher.interface'
+import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
 
 const useTeacherPersonalInfo = (
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>,
+  setFormValues: Dispatch<SetStateAction<FormValues>>
 ) => {
   const [userImage, setUserImage] = useState<string>()
   const [uploadedImage, setUploadedImage] = useState<
@@ -48,11 +49,15 @@ const useTeacherPersonalInfo = (
 
     validationSchema,
 
-    onSubmit: async () => {
+    onSubmit: async (values) => {
       setErroredSections((prevState) => ({
         ...prevState,
         personalInfo: !teacherPersonalInfoValidation.isValid,
       }))
+
+      setFormValues((state) => {
+        return { ...state, personalInfo: values }
+      })
     },
   })
 

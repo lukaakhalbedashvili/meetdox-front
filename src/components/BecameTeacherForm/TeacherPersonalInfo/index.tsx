@@ -10,16 +10,18 @@ import useTeacherPersonalInfo from './useTeacherPersonalInfo'
 import { TeacherPersonalInfoFormInputNames } from './teacherPersonalInfo.interface'
 import PhotoEditor from '../../../elements/PhotoEditor'
 import PopupItemWrapper from '../../PopupItemWrapper'
-import { BecameTeacherSections } from '../becameTeacher.interface'
+import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
 
 interface TeacherPersonalInfoProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setFormValues: Dispatch<SetStateAction<FormValues>>
 }
 
 const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
   isFormSubmitted,
   setErroredSections,
+  setFormValues,
 }) => {
   const {
     teacherPersonalInfoValidation,
@@ -34,7 +36,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
     fileInputRef,
     setUploadedImage,
     isImageError,
-  } = useTeacherPersonalInfo(isFormSubmitted, setErroredSections)
+  } = useTeacherPersonalInfo(isFormSubmitted, setErroredSections, setFormValues)
 
   return (
     <>

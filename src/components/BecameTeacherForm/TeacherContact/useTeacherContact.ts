@@ -3,9 +3,10 @@ import { useFormik } from 'formik'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { countries } from '@/data/countries'
 import { TeacherContactValidationForm } from './teacherContact.interface'
-import { BecameTeacherSections } from '../becameTeacher.interface'
+import { BecameTeacherSections, FormValues } from '../becameTeacher.interface'
 
 const useTeacherContact = (
+  setFormValues: Dispatch<SetStateAction<FormValues>>,
   isFormSubmitted: boolean,
   setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
 ) => {
@@ -37,11 +38,15 @@ const useTeacherContact = (
 
     validationSchema,
 
-    onSubmit: async () => {
+    onSubmit: async (values) => {
       setErroredSections((prevState) => ({
         ...prevState,
         contact: !teacherContactValidation.isValid,
       }))
+
+      setFormValues((state) => {
+        return { ...state, contact: { ...values, phoneExtension } }
+      })
     },
   })
 

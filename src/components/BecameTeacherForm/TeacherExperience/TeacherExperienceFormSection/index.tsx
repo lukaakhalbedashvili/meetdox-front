@@ -4,32 +4,44 @@ import { getAgeRange } from '@/utils/services/getTeacherAgeRange'
 import TextArea from '@/elements/Textarea'
 import Input from '@/elements/Input'
 import useTeacherExperience from './useTeacherExperienceFormSection'
-import { TeacherEducationInfoValidationFormInputNames } from './teacherExperience.interface'
-import { BecameTeacherSections } from '../../becameTeacher.interface'
+import { TeacherExperienceInfoValidationFormInputNames } from './teacherExperience.interface'
+import {
+  BecameTeacherSections,
+  FormValues,
+} from '../../becameTeacher.interface'
 
 interface TeacherExperienceFormSectioProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecameTeacherSections>>
+  setFormValues: Dispatch<SetStateAction<FormValues>>
+  formId: number
 }
 
 const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
   isFormSubmitted,
   setErroredSections,
+  formId,
+  setFormValues,
 }) => {
   const {
     teacherExperienceValidation,
     placeholderStartDate,
     placeholderEndDate,
-  } = useTeacherExperience(isFormSubmitted, setErroredSections)
+  } = useTeacherExperience(
+    isFormSubmitted,
+    setErroredSections,
+    formId,
+    setFormValues
+  )
 
   return (
     <div className="flex flex-col">
       <div className="mt-2 h-10">
         <Input
-          placeholder={TeacherEducationInfoValidationFormInputNames.COMPANY}
+          placeholder={TeacherExperienceInfoValidationFormInputNames.COMPANY}
           type="text"
           value={teacherExperienceValidation.values.company}
-          name={TeacherEducationInfoValidationFormInputNames.COMPANY}
+          name={TeacherExperienceInfoValidationFormInputNames.COMPANY}
           onChange={teacherExperienceValidation.handleChange}
           onBlurHandler={teacherExperienceValidation.handleBlur}
           errorMessage={
@@ -41,10 +53,10 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
 
       <div className="mt-2 h-10">
         <Input
-          placeholder={TeacherEducationInfoValidationFormInputNames.POSITION}
+          placeholder={TeacherExperienceInfoValidationFormInputNames.POSITION}
           type="text"
           value={teacherExperienceValidation.values.position}
-          name={TeacherEducationInfoValidationFormInputNames.POSITION}
+          name={TeacherExperienceInfoValidationFormInputNames.POSITION}
           onChange={teacherExperienceValidation.handleChange}
           onBlurHandler={teacherExperienceValidation.handleBlur}
           errorMessage={
@@ -56,9 +68,11 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
 
       <div className="mt-2 h-36">
         <TextArea
-          placeholder={TeacherEducationInfoValidationFormInputNames.DESCRIPTION}
+          placeholder={
+            TeacherExperienceInfoValidationFormInputNames.DESCRIPTION
+          }
           value={teacherExperienceValidation.values.description}
-          name={TeacherEducationInfoValidationFormInputNames.DESCRIPTION}
+          name={TeacherExperienceInfoValidationFormInputNames.DESCRIPTION}
           onChange={teacherExperienceValidation.handleChange}
           onBlurHandler={teacherExperienceValidation.handleBlur}
           errorMessage={
@@ -71,7 +85,7 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
       <div className="mt-2 h-10">
         <DropDownInput
           options={getAgeRange()}
-          name={TeacherEducationInfoValidationFormInputNames.START_DATE}
+          name={TeacherExperienceInfoValidationFormInputNames.START_DATE}
           onBlurHandler={teacherExperienceValidation.handleBlur}
           errorMessage={
             teacherExperienceValidation.touched.startDate &&
@@ -86,7 +100,7 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
       <div className="mt-2 h-10">
         <DropDownInput
           options={getAgeRange()}
-          name={TeacherEducationInfoValidationFormInputNames.END_DATE}
+          name={TeacherExperienceInfoValidationFormInputNames.END_DATE}
           onBlurHandler={teacherExperienceValidation.handleBlur}
           errorMessage={
             teacherExperienceValidation.touched.endDate &&

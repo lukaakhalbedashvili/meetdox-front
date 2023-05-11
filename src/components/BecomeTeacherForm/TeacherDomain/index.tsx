@@ -52,7 +52,7 @@ const TeacherDomain: FC<TeacherDomainProps> = ({
           subCategoriesData?.length > 0 &&
           subCategoriesData.map((item) => (
             <div
-              className="mt-2 flex h-10 items-center"
+              className="mt-2 flex h-10 cursor-pointer items-center rounded-md pl-2 hover:bg-border_gray"
               key={item.name}
               onClick={() => {
                 setSubCategoriesData(

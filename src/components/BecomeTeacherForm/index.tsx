@@ -50,7 +50,6 @@ const BecomeTeacherForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erroredSections, isFormSubmitted])
 
-  console.error('success', values)
   return (
     <form>
       <TeacherPersonalInfo

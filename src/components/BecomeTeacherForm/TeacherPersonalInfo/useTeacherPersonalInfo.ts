@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
+import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
 import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
 
@@ -9,10 +10,12 @@ const useTeacherPersonalInfo = (
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>,
   setFormValues: Dispatch<SetStateAction<FormValues>>
 ) => {
+  const { data } = useFetchLoggedInUserData()
   const [userImage, setUserImage] = useState<string>()
   const [uploadedImage, setUploadedImage] = useState<
     string | ArrayBuffer | null | undefined
   >()
+
   const [isImageError, setIsImageError] = useState<boolean>(false)
   const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
 
@@ -90,6 +93,7 @@ const useTeacherPersonalInfo = (
     fileInputRef,
     setUploadedImage,
     isImageError,
+    userId: data?.data.data.uid,
   }
 }
 

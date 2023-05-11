@@ -37,6 +37,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
     fileInputRef,
     setUploadedImage,
     isImageError,
+    userId,
   } = useTeacherPersonalInfo(isFormSubmitted, setErroredSections, setFormValues)
 
   return (
@@ -184,7 +185,9 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
           className="hidden"
           accept="image/png, image/jpeg"
           type="file"
-          onChange={(e) => e.target.files && handleUpload(e.target.files[0])}
+          onChange={(e) =>
+            e.target.files?.[0] && handleUpload(e.target.files[0])
+          }
         />
       </div>
 
@@ -195,17 +198,19 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
             onCloseHandler={() => setIsUploadImageModalOpen(false)}
             onSaveHandler={(image) => {
               setUserImage(image.dataUrl)
-              uploadImageToFirebase({
-                imageToUpload: image.blob,
-                onSuccessHandler: (url) => {
-                  setFormValues((prevState): FormValues => {
-                    return {
-                      ...prevState,
-                      personalInfo: { ...prevState.personalInfo, image: url },
-                    }
-                  })
-                },
-              })
+              userId &&
+                uploadImageToFirebase({
+                  userId,
+                  imageToUpload: image.blob,
+                  onSuccessHandler: (url) => {
+                    setFormValues((prevState): FormValues => {
+                      return {
+                        ...prevState,
+                        personalInfo: { ...prevState.personalInfo, image: url },
+                      }
+                    })
+                  },
+                })
               setIsUploadImageModalOpen(false)
               setUploadedImage(undefined)
             }}

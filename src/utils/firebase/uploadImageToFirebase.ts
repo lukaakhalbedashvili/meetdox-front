@@ -6,6 +6,7 @@ import {
 } from 'firebase/storage'
 
 interface HandleUploadProps {
+  userId: string
   imageToUpload: Blob
   onSuccessHandler: (downloadURL: string) => void
 }
@@ -13,29 +14,28 @@ interface HandleUploadProps {
 export const uploadImageToFirebase = ({
   imageToUpload,
   onSuccessHandler,
+  userId,
 }: HandleUploadProps) => {
   if (!imageToUpload) {
     return 'N'
   }
-  const handleSingleFile = (image: File | Blob) => {
-    const storage = getStorage()
 
-    const storageRef = ref(storage, `images/${image.name}`)
+  const storage = getStorage()
 
-    const uploadTask = uploadBytesResumable(storageRef, image)
+  const storageRef = ref(storage, `images/${userId}`)
 
-    uploadTask.on(
-      'state_changed',
-      () => {},
-      (error) => {
-        console.error(error, 'error')
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          onSuccessHandler(downloadURL)
-        })
-      }
-    )
-  }
-  handleSingleFile(imageToUpload)
+  const uploadTask = uploadBytesResumable(storageRef, imageToUpload)
+
+  uploadTask.on(
+    'state_changed',
+    () => {},
+    (error) => {
+      console.error(error, 'error')
+    },
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        onSuccessHandler(downloadURL)
+      })
+    }
+  )
 }

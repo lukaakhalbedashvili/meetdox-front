@@ -57,7 +57,6 @@ const PhotoEditor: FC<PhotoEditorProps> = ({
               }))
 
             resultImage && onSaveHandler(resultImage)
-            // console.log(await resultImage, 'resultImage')
           }}
         >
           <p className="flex h-[36px] w-32 items-center justify-center text-sm">

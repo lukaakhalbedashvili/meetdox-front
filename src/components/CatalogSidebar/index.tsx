@@ -1,8 +1,10 @@
 'use client'
+
 import React from 'react'
 import Head from 'next/head'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import { teachersDummyData } from '@/data/teachersDummyData'
+import Pagination from '@/elements/Pagination'
 
 const CatalogSidebar = () => {
   return (
@@ -10,6 +12,7 @@ const CatalogSidebar = () => {
       <Head>
         <title>Catalog</title>
       </Head>
+
       <div className="flex flex-col px-8 md:flex-row">
         <div className="bg-error p-4 md:w-1/5">
           <h2 className="mb-2 font-bold">Filters</h2>
@@ -43,6 +46,7 @@ const CatalogSidebar = () => {
             </select>
           </div>
         </div>
+
         <div className="p-4 md:w-4/5">
           {/* Sorting options */}
           {/* Example sort options: */}
@@ -74,6 +78,12 @@ const CatalogSidebar = () => {
               />
             ))}
           </div>
+
+          <Pagination
+            currentPage={10}
+            totalPages={30}
+            onChangePage={() => {}}
+          />
         </div>
       </div>
     </>

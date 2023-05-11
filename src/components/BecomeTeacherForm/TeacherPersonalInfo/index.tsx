@@ -183,9 +183,8 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
           ref={fileInputRef}
           className="hidden"
           accept="image/png, image/jpeg"
-          multiple
           type="file"
-          onChange={(e) => e.target.files && handleUpload(e.target.files)}
+          onChange={(e) => e.target.files && handleUpload(e.target.files[0])}
         />
       </div>
 

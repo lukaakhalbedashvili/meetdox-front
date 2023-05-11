@@ -62,18 +62,13 @@ const useTeacherPersonalInfo = (
     },
   })
 
-  const handleUpload = (images: FileList) => {
-    const imageAsBase64 = (image: File) => {
-      const reader = new FileReader()
-      reader.readAsDataURL(image)
+  const handleUpload = (image: File) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(image)
 
-      reader.onloadend = () => {
-        setUploadedImage(reader.result)
-      }
+    reader.onloadend = () => {
+      setUploadedImage(reader.result)
     }
-
-    imageAsBase64(images[0])
-    console.error('gaaswore')
   }
 
   useEffect(() => {

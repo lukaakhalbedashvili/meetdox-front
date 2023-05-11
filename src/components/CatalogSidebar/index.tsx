@@ -11,7 +11,7 @@ const CatalogSidebar = () => {
         <title>Catalog</title>
       </Head>
       <div className="flex flex-col px-8 md:flex-row">
-        <div className="bg-error p-4 md:w-1/4">
+        <div className="bg-error p-4 md:w-1/5">
           <h2 className="mb-2 font-bold">Filters</h2>
           <div className="mb-4">
             <label className="mb-2 block font-bold" htmlFor="categoryFilter">
@@ -43,7 +43,7 @@ const CatalogSidebar = () => {
             </select>
           </div>
         </div>
-        <div className="-z-60 p-4 md:w-3/4">
+        <div className="p-4 md:w-4/5">
           {/* Sorting options */}
           {/* Example sort options: */}
           <div className="mb-4">
@@ -59,7 +59,7 @@ const CatalogSidebar = () => {
             </select>
           </div>
 
-          <div className="relative z-20 flex flex-wrap gap-4 md:justify-between md:px-4 lg:px-8">
+          <div className="relative z-10 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {teachersDummyData.map((item) => (
               <TeacherPublicPreview
                 key={item.id}

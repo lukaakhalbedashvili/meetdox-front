@@ -1,11 +1,22 @@
 import React from 'react'
+import CatalogRoutes from '@/components/CatalogRoutes'
 
 interface SubCategoryPageProps {
-  subCategory: string
+  params: {
+    category: string
+    subcategory: string
+  }
 }
 
-const SubCategoryPage = ({ subCategory }: SubCategoryPageProps) => {
-  return <p>Post: {subCategory}</p>
+const SubCategoryPage = ({ params }: SubCategoryPageProps) => {
+  return (
+    <div className="bg-white font-ubuntu">
+      <CatalogRoutes
+        category={params.category}
+        subCategory={params.subcategory}
+      />
+    </div>
+  )
 }
 
 export default SubCategoryPage

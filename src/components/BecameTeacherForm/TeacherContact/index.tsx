@@ -1,4 +1,3 @@
-import 'react-phone-number-input/style.css'
 import React, { Dispatch, FC, SetStateAction } from 'react'
 import { countries } from '@/data/countries'
 import CountriesDropDown from '@/elements/CountriesDropDown'

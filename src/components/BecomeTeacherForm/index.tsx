@@ -28,6 +28,7 @@ const BecomeTeacherForm = () => {
       lastName: '',
       name: '',
       middleName: '',
+      image: null,
     },
     skills: [],
     teacherEducation: [],
@@ -42,9 +43,8 @@ const BecomeTeacherForm = () => {
 
     if (education || experience || personalInfo || skills) {
       setIsFormSubmitted(false)
-      // console.error('error')
     } else {
-      console.error('success', values)
+      console.error('nice', values)
       setIsFormSubmitted(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

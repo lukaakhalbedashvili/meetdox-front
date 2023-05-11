@@ -6,6 +6,7 @@ import DropDownInput from '@/elements/DropDownInput'
 import { getAgeRange } from '@/utils/services/getTeacherAgeRange'
 import { months } from '@/data/teachersDummyData'
 import Button from '@/elements/Button'
+import { uploadImageToFirebase } from '@/utils/firebase/uploadImageToFirebase'
 import useTeacherPersonalInfo from './useTeacherPersonalInfo'
 import { TeacherPersonalInfoFormInputNames } from './teacherPersonalInfo.interface'
 import PhotoEditor from '../../../elements/PhotoEditor'
@@ -194,7 +195,18 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
             image={uploadedImage}
             onCloseHandler={() => setIsUploadImageModalOpen(false)}
             onSaveHandler={(image) => {
-              setUserImage(image)
+              setUserImage(image.dataUrl)
+              uploadImageToFirebase({
+                imageToUpload: image.blob,
+                onSuccessHandler: (url) => {
+                  setFormValues((prevState): FormValues => {
+                    return {
+                      ...prevState,
+                      personalInfo: { ...prevState.personalInfo, image: url },
+                    }
+                  })
+                },
+              })
               setIsUploadImageModalOpen(false)
               setUploadedImage(undefined)
             }}

@@ -9,6 +9,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'familydoctor.org',
       },
+      { protocol: 'https', hostname: 'firebasestorage.googleapis.com' },
     ],
   },
 }

@@ -4,6 +4,7 @@ export interface TeacherPersonalInfoForm {
   middleName?: string
   birthMonth: string
   birthYear: string
+  image?: string | null
 }
 
 export enum TeacherPersonalInfoFormInputNames {

@@ -36,6 +36,7 @@ const useTeacherPersonalInfo = (
         .test('is it valid year', 'required', function (value) {
           return value !== placeholderBirthYear
         }),
+      image: Yup.string(),
     })
 
   const teacherPersonalInfoValidation = useFormik<TeacherPersonalInfoForm>({
@@ -66,11 +67,13 @@ const useTeacherPersonalInfo = (
       const reader = new FileReader()
       reader.readAsDataURL(image)
 
-      reader.onloadend = function () {
+      reader.onloadend = () => {
         setUploadedImage(reader.result)
       }
     }
-    Object.values(images).map((item) => imageAsBase64(item))
+
+    imageAsBase64(images[0])
+    console.error('gaaswore')
   }
 
   useEffect(() => {

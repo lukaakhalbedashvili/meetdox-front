@@ -1,5 +1,10 @@
 import { Area } from 'react-easy-crop'
 
+export interface GetCroppedImgReturn {
+  blob: Blob
+  dataUrl: string
+}
+
 const createImage = (url: string): Promise<HTMLImageElement> =>
   new Promise((resolve, reject) => {
     const image = new Image()
@@ -44,15 +49,11 @@ export const getCroppedImg = async ({
   pixelCrop,
   rotation = 0,
   flip = { horizontal: false, vertical: false },
-}: GetCroppedImgProps) => {
+}: GetCroppedImgProps): Promise<GetCroppedImgReturn> => {
   const image = await createImage(imageSrc)
 
   const canvas = document.createElement('canvas')
-  const ctx = canvas.getContext('2d')
-
-  if (!ctx) {
-    return null
-  }
+  const ctx = canvas.getContext('2d')!
 
   const rotRad = getRadianAngle(rotation)
 
@@ -90,9 +91,22 @@ export const getCroppedImg = async ({
   canvas.width = pixelCrop.width
   canvas.height = pixelCrop.height
 
-  // paste generated rotate image at the top left corner
   ctx.putImageData(data, 0, 0)
 
-  // As Base64 string
-  return canvas.toDataURL('image/png')
+  const createBlobFromCanvas = (): Promise<Blob> => {
+    return new Promise(function (resolve, reject) {
+      canvas.toBlob(function (blob) {
+        if (blob) {
+          resolve(blob)
+        } else {
+          reject(new Error('Failed to create blob from canvas'))
+        }
+      })
+    })
+  }
+
+  return {
+    blob: await createBlobFromCanvas().then((res) => res),
+    dataUrl: canvas.toDataURL('image/png'),
+  }
 }

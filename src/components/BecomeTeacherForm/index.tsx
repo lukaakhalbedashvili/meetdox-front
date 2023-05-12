@@ -1,62 +1,18 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Button from '@/elements/Button'
 import TeacherPersonalInfo from './TeacherPersonalInfo'
 import TeacherEducation from './TeacherEducation'
 import TeacherExperience from './TeacherExperience'
 import TeacherSkills from './TeacherSkills'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from './becomeTeacher.interface'
 import TeacherDomain from './TeacherDomain'
 import TeacherContact from './TeacherContact'
 import AboutU from './AboutTeacher'
+import useBecameTeacherForm from './useBecomeTeacherForm'
 
 const BecomeTeacherForm = () => {
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
-  const [erroredSections, setErroredSections] =
-    useState<BecomeTeacherSectionsErrors>({
-      personalInfo: false,
-      education: false,
-      experience: false,
-      skills: false,
-      domain: false,
-      contact: false,
-      about: false,
-    })
-
-  const [values, setValues] = useState<FormValues>({
-    personalInfo: {
-      birthMonth: '',
-      birthYear: '',
-      lastName: '',
-      name: '',
-      middleName: '',
-      image: null,
-    },
-    skills: [],
-    teacherEducation: [],
-    teacherDomain: { category: '', subCategories: [] },
-    contact: { country: '', phone: '' },
-    teacherExperience: [],
-    about: { description: '' },
-  })
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const { personalInfo, contact, about, domain } = erroredSections
-
-    if (personalInfo || contact || about || domain) {
-      console.error('error', values)
-      setIsFormSubmitted(false)
-    } else {
-      console.error('nice', values)
-      setIsFormSubmitted(false)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [erroredSections, isFormSubmitted])
-
+  const { setErroredSections, setValues, isFormSubmitted, setIsFormSubmitted } =
+    useBecameTeacherForm()
   return (
     <form>
       <TeacherPersonalInfo

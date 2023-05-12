@@ -6,13 +6,13 @@ import Input from '@/elements/Input'
 import useTeacherExperience from './useTeacherExperienceFormSection'
 import { TeacherExperienceInfoValidationFormInputNames } from './teacherExperience.interface'
 import {
-  BecomeTeacherSections,
+  BecomeTeacherSectionsErrors,
   FormValues,
 } from '../../becomeTeacher.interface'
 
 interface TeacherExperienceFormSectioProps {
   isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
   formId: number
 }

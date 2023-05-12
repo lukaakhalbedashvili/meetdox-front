@@ -5,13 +5,13 @@ import TypeAheadInput from '@/elements/TypeAheadInput'
 import useTeacherEducation from './useTeacherEducationFormSection'
 import { TeacherEducationInfoValidationFormInputNames } from './teacherEducation.interface'
 import {
-  BecomeTeacherSections,
+  BecomeTeacherSectionsErrors,
   FormValues,
 } from '../../becomeTeacher.interface'
 
 interface TeacherEducationFormSectionProps {
   isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
   formId: number
 }

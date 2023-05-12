@@ -3,12 +3,15 @@ import { useFormik } from 'formik'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { countries } from '@/data/countries'
 import { TeacherContactValidationForm } from './teacherContact.interface'
-import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
+import {
+  BecomeTeacherSectionsErrors,
+  FormValues,
+} from '../becomeTeacher.interface'
 
 const useTeacherContact = (
   setFormValues: Dispatch<SetStateAction<FormValues>>,
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
 ) => {
   const defaultCountry = 'Georgia'
 

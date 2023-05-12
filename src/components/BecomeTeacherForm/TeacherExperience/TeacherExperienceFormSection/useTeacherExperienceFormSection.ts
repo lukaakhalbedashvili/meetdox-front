@@ -3,13 +3,13 @@ import { Dispatch, SetStateAction, useEffect } from 'react'
 import * as Yup from 'yup'
 import { TeacherExperienceForm } from './teacherExperience.interface'
 import {
-  BecomeTeacherSections,
+  BecomeTeacherSectionsErrors,
   FormValues,
 } from '../../becomeTeacher.interface'
 
 const useTeacherEducation = (
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>,
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
   formId: number,
   setFormValues: Dispatch<SetStateAction<FormValues>>
 ) => {

@@ -3,11 +3,14 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
-import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
+import {
+  BecomeTeacherSectionsErrors,
+  FormValues,
+} from '../becomeTeacher.interface'
 
 const useTeacherPersonalInfo = (
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>,
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
   setFormValues: Dispatch<SetStateAction<FormValues>>
 ) => {
   const { data } = useFetchLoggedInUserData()

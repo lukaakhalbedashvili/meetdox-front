@@ -14,11 +14,14 @@ import {
   TeacherSkillsForm,
   TeacherSkillsInputNames,
 } from './teacherSkills.interface'
-import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
+import {
+  BecomeTeacherSectionsErrors,
+  FormValues,
+} from '../becomeTeacher.interface'
 
 const useTeacherSkills = (
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>,
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
   setFormValues: Dispatch<SetStateAction<FormValues>>
 ) => {
   const [skills, setSkills] = useState<string[]>([])

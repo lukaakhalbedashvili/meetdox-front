@@ -3,11 +3,14 @@ import DropDownInput from '@/elements/DropDownInput'
 import Checkbox from '@/elements/Checkbox'
 import useTeacherDomain from './useTeacherDomain'
 import { DomainNames } from './teacherDomain.interface'
-import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
+import {
+  BecomeTeacherSectionsErrors,
+  FormValues,
+} from '../becomeTeacher.interface'
 
 interface TeacherDomainProps {
   isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
 }
 

@@ -4,12 +4,15 @@ import CountriesDropDown from '@/elements/CountriesDropDown'
 import CountriesInput from '@/elements/CountriesInput'
 import { ContactName } from './teacherContact.interface'
 import useTeacherContact from './useTeacherContact'
-import { BecomeTeacherSections, FormValues } from '../becomeTeacher.interface'
+import {
+  BecomeTeacherSectionsErrors,
+  FormValues,
+} from '../becomeTeacher.interface'
 
 interface TeacherContactProps {
   setFormValues: Dispatch<React.SetStateAction<FormValues>>
   isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSections>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
 }
 
 const TeacherContact: FC<TeacherContactProps> = ({

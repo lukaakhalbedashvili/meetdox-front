@@ -30,7 +30,6 @@ const useTeacherPersonalInfo = (
   const validationSchema: Yup.ObjectSchema<TeacherPersonalInfoForm> =
     Yup.object({
       name: Yup.string().required('required'),
-      middleName: Yup.string(),
       lastName: Yup.string().required('required'),
       birthMonth: Yup.string()
         .required('required')
@@ -50,7 +49,6 @@ const useTeacherPersonalInfo = (
       birthMonth: placeholderBirthMonth,
       birthYear: placeholderBirthYear,
       lastName: '',
-      middleName: '',
       name: '',
     },
 

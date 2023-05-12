@@ -23,7 +23,6 @@ const useBecameTeacherForm = () => {
       birthYear: '',
       lastName: '',
       name: '',
-      middleName: '',
       image: null,
     },
     skills: [],

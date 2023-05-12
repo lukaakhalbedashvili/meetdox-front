@@ -65,21 +65,6 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
               />
             </div>
 
-            <div className="mr-2 mt-2 h-10 w-full sm:mt-0">
-              <Input
-                placeholder="Middle Name"
-                type="text"
-                onChange={teacherPersonalInfoValidation.handleChange}
-                name={TeacherPersonalInfoFormInputNames.MIDDLE_NAME}
-                onBlurHandler={teacherPersonalInfoValidation.handleBlur}
-                errorMessage={
-                  teacherPersonalInfoValidation.touched.middleName &&
-                  teacherPersonalInfoValidation.errors.middleName
-                }
-                value={teacherPersonalInfoValidation.values.middleName}
-              />
-            </div>
-
             <div className="mt-2 h-10 w-full sm:mt-0">
               <Input
                 placeholder="Last Name"

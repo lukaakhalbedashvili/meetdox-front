@@ -48,7 +48,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
       <div className="mx-4 sm:px-8">
         <h2 className="mb-1 text-xl">Personal details</h2>
 
-        <div className="mt-2 flex w-full flex-col items-center">
+        <div className="mt-2 flex w-full flex-col items-center sm:w-2/3">
           <div className="w-full sm:flex sm:items-center  sm:justify-center">
             <div className="mr-2 h-10 w-full">
               <Input

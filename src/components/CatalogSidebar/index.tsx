@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react'
-import Head from 'next/head'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import { teachersDummyData } from '@/data/teachersDummyData'
 import Pagination from '@/elements/Pagination'
@@ -11,10 +10,6 @@ const CatalogSidebar = () => {
   const totalPaginationPages = 30
   return (
     <>
-      <Head>
-        <title>Catalog</title>
-      </Head>
-
       <div className="flex flex-col px-8 md:flex-row">
         <div className="bg-error p-4 md:w-1/5">
           <h2 className="mb-2 font-bold">Filters</h2>
@@ -50,19 +45,22 @@ const CatalogSidebar = () => {
         </div>
 
         <div className="p-4 md:w-4/5">
-          {/* Sorting options */}
-          {/* Example sort options: */}
-          <div className="mb-4">
-            <label className="mb-2 block font-bold" htmlFor="sortOrder">
-              Sort by price
-            </label>
-            <select
-              id="sortOrder"
-              className="border-gray-400 w-full rounded-md border p-2"
-            >
-              <option value="asc">Low to high</option>
-              <option value="desc">High to low</option>
-            </select>
+          <div className=" flex justify-end">
+            <div className="relative inline-flex">
+              <select
+                id="sortOrder"
+                className="w-full rounded-md border border-border_gray  px-4 py-2 pr-8 text-sm text-text_gray focus:outline-none"
+              >
+                <option value="asc">Low to high</option>
+                <option value="desc">High to low</option>
+                <option value="desc">Newest</option>
+                <option value="desc">Oldest</option>
+                <option value="desc">Popular</option>
+              </select>
+            </div>
+          </div>
+          <div className="pt-4 pb-6">
+            <hr className="border-border_gray" />
           </div>
 
           <div className="relative z-10 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

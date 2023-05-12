@@ -1,12 +1,14 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import { teachersDummyData } from '@/data/teachersDummyData'
 import Pagination from '@/elements/Pagination'
 
 const CatalogSidebar = () => {
+  const [currentPage, setCurrentPage] = useState(1)
+  const totalPaginationPages = 30
   return (
     <>
       <Head>
@@ -80,9 +82,11 @@ const CatalogSidebar = () => {
           </div>
 
           <Pagination
-            currentPage={10}
-            totalPages={30}
-            onChangePage={() => {}}
+            currentPage={currentPage}
+            totalPages={totalPaginationPages}
+            onChangePage={(page) => {
+              setCurrentPage(page)
+            }}
           />
         </div>
       </div>

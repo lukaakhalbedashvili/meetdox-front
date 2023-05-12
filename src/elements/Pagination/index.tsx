@@ -12,7 +12,7 @@ const Pagination: FC<PaginationProps> = ({
   totalPages,
   onChangePage,
 }) => {
-  const maxDisplayedPages = 5 // Change this value to adjust the number of displayed pages
+  const maxDisplayedPages = 5
   const pageNumbers = []
   let startPage = 1
   let endPage = totalPages
@@ -33,9 +33,9 @@ const Pagination: FC<PaginationProps> = ({
   }
 
   return (
-    <div className="mt-8 flex items-center justify-center">
+    <div className="mt-8 flex items-center justify-center ">
       <button
-        className="border-gray-300 text-gray-600 hover:bg-gray-200 focus:ring-gray-300 border px-4 py-2 focus:outline-none focus:ring focus:ring-offset-2"
+        className="h-10 rounded-l-full border border-r-[0px] border-border_gray px-4 py-2  text-text_gray hover:text-disable_gray"
         disabled={currentPage === 1}
         onClick={() => onChangePage(currentPage - 1)}
       >
@@ -46,13 +46,15 @@ const Pagination: FC<PaginationProps> = ({
         {startPage > 1 && (
           <>
             <button
-              className={`border-gray-300 text-gray-600 hover:bg-gray-200 focus:ring-gray-300 border px-4 py-2 focus:outline-none focus:ring focus:ring-offset-2`}
+              className={`h-10 border border-r-[0px] border-border_gray px-4 py-2 text-text_gray hover:text-disable_gray`}
               onClick={() => onChangePage(1)}
             >
               1
             </button>
             {startPage > 2 && (
-              <span className="text-gray-600 px-4 py-2">...</span>
+              <span className="h-10 border border-r-[0px] border-border_gray px-4 py-2  text-text_gray">
+                ...
+              </span>
             )}
           </>
         )}
@@ -60,11 +62,9 @@ const Pagination: FC<PaginationProps> = ({
         {pageNumbers.map((page) => (
           <button
             key={page}
-            className={`border-gray-300 border px-4 py-2 ${
-              currentPage === page
-                ? 'bg-gray-600 text-sky'
-                : 'text-gray-600 hover:bg-gray-200'
-            } focus:ring-gray-300 focus:outline-none focus:ring focus:ring-offset-2`}
+            className={`h-10 border border-r-[0px] border-border_gray px-4 py-2 hover:text-disable_gray  ${
+              currentPage === page ? ' text-sky' : 'text-text_gray'
+            } `}
             onClick={() => onChangePage(page)}
           >
             {page}
@@ -74,10 +74,12 @@ const Pagination: FC<PaginationProps> = ({
         {endPage < totalPages && (
           <>
             {endPage < totalPages - 1 && (
-              <span className="text-gray-600 px-4 py-2">...</span>
+              <span className="h-10 border border-r-[0px] border-border_gray  px-4 py-2">
+                ...
+              </span>
             )}
             <button
-              className={`border-gray-300 text-gray-600 hover:bg-gray-200 focus:ring-gray-300 border px-4 py-2 focus:outline-none focus:ring focus:ring-offset-2`}
+              className={` h-10 border border-r-[0px] border-border_gray px-4 py-2 text-text_gray hover:text-disable_gray`}
               onClick={() => onChangePage(totalPages)}
             >
               {totalPages}
@@ -87,7 +89,7 @@ const Pagination: FC<PaginationProps> = ({
       </div>
 
       <button
-        className="border-gray-300 text-gray-600 hover:bg-gray-200 focus:ring-gray-300 border px-4 py-2 focus:outline-none focus:ring focus:ring-offset-2"
+        className=" h-10 rounded-r-full border border-border_gray px-4 py-2 text-text_gray hover:text-disable_gray"
         disabled={currentPage === totalPages}
         onClick={() => onChangePage(currentPage + 1)}
       >

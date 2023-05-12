@@ -32,6 +32,7 @@ const useTeacherEducation = (
 
   const placeholderStartDate = 'Start date'
   const placeholderEndDate = 'End date'
+  const CurrentlyAttending = 'Currently Attending'
 
   const validationSchema: Yup.ObjectSchema<TeacherEducationInfoValidationForm> =
     Yup.object({
@@ -137,6 +138,7 @@ const useTeacherEducation = (
     majorSearchResults,
     placeholderStartDate,
     placeholderEndDate,
+    CurrentlyAttending,
   }
 }
 

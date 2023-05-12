@@ -1,7 +1,7 @@
 import React, { Dispatch, FC, SetStateAction } from 'react'
 import DropDownInput from '@/elements/DropDownInput'
-import { getAgeRange } from '@/utils/services/getTeacherAgeRange'
 import TypeAheadInput from '@/elements/TypeAheadInput'
+import { getNumberArray } from '@/utils/services/getNumberArray'
 import useTeacherEducation from './useTeacherEducationFormSection'
 import { TeacherEducationInfoValidationFormInputNames } from './teacherEducation.interface'
 import {
@@ -30,6 +30,7 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
     majorSearchResults,
     placeholderStartDate,
     placeholderEndDate,
+    CurrentlyAttending,
   } = useTeacherEducation(
     isFormSubmitted,
     setErroredSections,
@@ -83,7 +84,7 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
 
       <div className="mt-2 h-10">
         <DropDownInput
-          options={getAgeRange()}
+          options={getNumberArray({})}
           name={TeacherEducationInfoValidationFormInputNames.START_DATE}
           onBlurHandler={teacherEducationInfoValidation.handleBlur}
           errorMessage={
@@ -98,7 +99,7 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
 
       <div className="mt-2 h-10">
         <DropDownInput
-          options={getAgeRange()}
+          options={[...getNumberArray({}), CurrentlyAttending]}
           name={TeacherEducationInfoValidationFormInputNames.END_DATE}
           onBlurHandler={teacherEducationInfoValidation.handleBlur}
           errorMessage={

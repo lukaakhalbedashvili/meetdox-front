@@ -13,6 +13,7 @@ const useTeacherEducation = (
   formId: number,
   setFormValues: Dispatch<SetStateAction<FormValues>>
 ) => {
+  const CurrentlyJob = 'Currently Job'
   const placeholderStartDate = 'Start date'
   const placeholderEndDate = 'End date'
 
@@ -75,6 +76,7 @@ const useTeacherEducation = (
     teacherExperienceValidation,
     placeholderStartDate,
     placeholderEndDate,
+    CurrentlyJob,
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { Dispatch, FC, SetStateAction } from 'react'
 import DropDownInput from '@/elements/DropDownInput'
-import { getAgeRange } from '@/utils/services/getTeacherAgeRange'
+import { getNumberArray } from '@/utils/services/getNumberArray'
 import TextArea from '@/elements/Textarea'
 import Input from '@/elements/Input'
 import useTeacherExperience from './useTeacherExperienceFormSection'
@@ -27,6 +27,7 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
     teacherExperienceValidation,
     placeholderStartDate,
     placeholderEndDate,
+    CurrentlyJob,
   } = useTeacherExperience(
     isFormSubmitted,
     setErroredSections,
@@ -84,7 +85,7 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
 
       <div className="mt-2 h-10">
         <DropDownInput
-          options={getAgeRange()}
+          options={getNumberArray({})}
           name={TeacherExperienceInfoValidationFormInputNames.START_DATE}
           onBlurHandler={teacherExperienceValidation.handleBlur}
           errorMessage={
@@ -99,7 +100,7 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
 
       <div className="mt-2 h-10">
         <DropDownInput
-          options={getAgeRange()}
+          options={[...getNumberArray({}), CurrentlyJob]}
           name={TeacherExperienceInfoValidationFormInputNames.END_DATE}
           onBlurHandler={teacherExperienceValidation.handleBlur}
           errorMessage={

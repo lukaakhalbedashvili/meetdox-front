@@ -80,27 +80,22 @@ const NavigationLoggedIn = ({
         </div>
         <div className="relative">
           <button
-            className="bg-gray-700 hover:bg-blue-500 flex h-10 w-10 items-center justify-center rounded-full bg-sky transition-colors duration-300"
+            className="bg-gray-700 hover:bg-blue-500 relative flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300"
             onClick={handleProfileClick}
             ref={userAvatarRef}
           >
-            <ProfileCircledPic
-              photoUrl={photoUrl}
-              username={username}
-              diameter={8}
-            />
+            <ProfileCircledPic photoUrl={photoUrl} username={username} />
           </button>
+
           {isProfileOpen && (
             <div
               className="absolute right-0 z-20 mt-1 w-64 rounded-sm border-[1px] border-border_gray bg-white py-2"
               ref={profileDropdownRef}
             >
               <div className="flex flex-col items-center bg-white px-4 pt-2  pb-2">
-                <ProfileCircledPic
-                  photoUrl={photoUrl}
-                  username={username}
-                  diameter={10}
-                />
+                <button className="relative h-10 w-10">
+                  <ProfileCircledPic photoUrl={photoUrl} username={username} />
+                </button>
 
                 <p className="mt-2 text-sm">{username}</p>
               </div>

@@ -11,6 +11,7 @@ interface CatalogProps {
     | {
         name: string
         url: string
+        skills: string[]
         subCategories:
           | {
               name: string

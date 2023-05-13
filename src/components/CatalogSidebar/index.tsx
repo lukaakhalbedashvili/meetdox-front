@@ -4,12 +4,12 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Checkbox from '@/elements/Checkbox'
 import { countries } from '@/data/countries'
-
 interface CatalogSidebarProps {
   category:
     | {
         name: string
         url: string
+        skills: string[]
         subCategories:
           | {
               name: string
@@ -29,13 +29,13 @@ const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
   const router = useRouter()
 
   const [subCategoriesData, setSubCategoriesData] = useState<SubCategory[]>([])
+  const [skills, setSkills] = useState<SubCategory[]>([])
   const [selectedCountry, setSelectedCountry] = useState('All')
   const countriesList = countries.map((country) => {
     return { value: country.name, flag: country.flag }
   })
   countriesList.unshift({ value: 'All', flag: '🏳️' })
 
-  console.log(countriesList)
   useEffect(() => {
     setSubCategoriesData(
       category?.subCategories.map((item) => {
@@ -43,6 +43,16 @@ const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
           name: item.name,
           url: item.url,
           checked: subCategories.includes(item.url) ? true : false,
+        }
+      }) || []
+    )
+
+    setSkills(
+      category?.skills.map((item) => {
+        return {
+          name: item,
+          url: item,
+          checked: subCategories.includes(item) ? true : false,
         }
       }) || []
     )
@@ -78,7 +88,7 @@ const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
         <h1 className="mb-2 block text-base font-medium text-text_gray">
           {category?.name}
         </h1>
-        <ul className="text-sm text-text_gray">
+        <ul className="text-xs text-text_gray">
           {subCategoriesData &&
             subCategoriesData?.length > 0 &&
             subCategoriesData.map((item) => (
@@ -123,7 +133,6 @@ const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
         <div className="pt-8 pb-6">
           <hr className="border-border_gray" />
         </div>
-        {/* COUNTRY */}
         <div className="w-full pr-2">
           <h1 className="mb-2 block text-base font-medium text-text_gray">
             Country
@@ -144,6 +153,48 @@ const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
                 )
               })}
             </select>
+          </div>
+        </div>
+        <div className="pt-8 pb-6">
+          <hr className="border-border_gray" />
+        </div>
+        <div className="w-full pr-2">
+          <h1 className="mb-2 block text-base font-medium text-text_gray">
+            Skills
+          </h1>
+          {/* CHECKBOX */}
+
+          <div className="flex flex-wrap">
+            <ul className="text-xs text-text_gray">
+              {skills &&
+                skills?.length > 0 &&
+                skills.map((item) => (
+                  <div
+                    className="flex h-9 cursor-pointer items-center rounded-md pl-2 hover:bg-border_gray"
+                    key={item.name}
+                    onClick={() => {
+                      const newArr = skills.map((skill) => {
+                        if (skill.name === item.name) {
+                          return {
+                            ...skill,
+                            checked: !skill.checked,
+                          }
+                        }
+                        return skill
+                      })
+                      setSkills(newArr)
+                    }}
+                  >
+                    <Checkbox
+                      id={item.name}
+                      isChecked={item.checked}
+                      onChange={() => console.log('rame')}
+                    />
+
+                    <p className="ml-4">{item.name}</p>
+                  </div>
+                ))}
+            </ul>
           </div>
         </div>
       </div>

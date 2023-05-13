@@ -23,12 +23,12 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
     const subCategoryName = category?.subCategories.find(
       (subCat) => subCat.url === subCategory
     )?.name
+    if (subCategoryName === undefined) {
+      return 'null'
+    }
     return subCategoryName
   })
-  console.log(subCategories)
-  console.log(subCategoriesNames)
   let category = categories.find((cat) => cat.url === params.category)
-  console.log(category)
   return (
     <div className="bg-white font-ubuntu">
       <CatalogRoutes
@@ -36,7 +36,11 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
         subCategories={subCategories}
         subCategoriesNames={subCategoriesNames}
       />
-      <Catalog category={params.category} />
+      <Catalog
+        category={category}
+        subCategories={subCategories}
+        subCategoriesNames={subCategoriesNames}
+      />
     </div>
   )
 }

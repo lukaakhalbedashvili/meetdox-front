@@ -40,30 +40,32 @@ const CatalogRoutes: React.FC<CatalogRoutesProps> = ({
             {category?.name}
           </Link>
         </li>
-        {subCategories[0] !== 'null' && (
-          <>
-            <span className="mx-2 mb-[2px] text-xl">•</span>
-            {subCategories.map((subCategory, i) => (
-              <li
-                className="flex flex-row items-center text-sm"
-                key={subCategory}
-              >
-                <Link
-                  href={`/category/${
-                    category?.url
-                  }?sub-categories=${encodeURIComponent(
-                    [subCategory].join(',')
-                  )}`}
-                  className="text-xs"
+        {subCategories[0] !== 'null' &&
+          subCategoriesNames !== undefined &&
+          subCategories[0] !== '' && (
+            <>
+              <span className="mx-2 mb-[2px] text-xl">•</span>
+              {subCategories.map((subCategory, i) => (
+                <li
+                  className="flex flex-row items-center text-sm"
+                  key={subCategory}
                 >
-                  &nbsp;
-                  {subCategoriesNames[i]}&nbsp;
-                  {i !== subCategories.length - 1 && '& '}
-                </Link>
-              </li>
-            ))}
-          </>
-        )}
+                  <Link
+                    href={`/category/${
+                      category?.url
+                    }?sub-categories=${encodeURIComponent(
+                      [subCategory].join(',')
+                    )}`}
+                    className="text-xs"
+                  >
+                    &nbsp;
+                    {subCategoriesNames[i]}&nbsp;
+                    {i !== subCategories.length - 1 && '& '}
+                  </Link>
+                </li>
+              ))}
+            </>
+          )}
       </ul>
     </nav>
   )

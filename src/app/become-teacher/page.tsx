@@ -1,5 +1,5 @@
 import React from 'react'
-import BecameTeacherForm from '@/components/BecameTeacherForm'
+import BecameTeacherForm from '@/components/BecomeTeacherForm'
 
 const page = () => {
   return (

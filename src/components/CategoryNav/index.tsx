@@ -30,7 +30,11 @@ const CategoryNav = () => {
                 {category.subCategories.map((subCategory) => (
                   <Link
                     key={subCategory.name}
-                    href={`/category/${category.url}/${subCategory.url}`}
+                    href={`/category/${
+                      category.url
+                    }?sub-categories=${encodeURIComponent(
+                      [subCategory.url].join(',')
+                    )}`}
                   >
                     <p className="flex h-6 items-center whitespace-nowrap px-4 text-xs hover:text-sky">
                       {subCategory.name}

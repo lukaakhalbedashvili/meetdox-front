@@ -1,6 +1,6 @@
 import React from 'react'
 import CatalogRoutes from '@/components/CatalogRoutes'
-import CatalogSidebar from '@/components/CatalogSidebar'
+import Catalog from '@/components/Catalog'
 
 interface CategoryPageProps {
   params: {
@@ -12,7 +12,7 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
   return (
     <div className=" bg-white font-ubuntu">
       <CatalogRoutes category={params.category} subCategory={null} />
-      <CatalogSidebar />
+      <Catalog category={params.category} />
     </div>
   )
 }

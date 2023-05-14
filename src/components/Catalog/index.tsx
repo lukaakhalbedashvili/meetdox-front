@@ -6,8 +6,9 @@ import { teachersDummyData } from '@/data/teachersDummyData'
 const Pagination = dynamic(() => import('@/elements/Pagination'), {
   ssr: false,
 })
-
-import CatalogSidebar from '../CatalogSidebar'
+const CatalogSidebar = dynamic(() => import('../CatalogSidebar'), {
+  ssr: false,
+})
 
 interface CatalogProps {
   category:
@@ -32,9 +33,9 @@ const Catalog = ({ category, subCategories }: CatalogProps) => {
 
   return (
     <>
-      <div className="flex flex-col px-8 md:flex-row">
+      <div className="flex flex-col px-4 sm:px-8  md:flex-row">
         <CatalogSidebar category={category} subCategories={subCategories} />
-        <div className="p-4 md:w-4/5">
+        <div className="py-4 sm:p-4 md:w-4/5">
           <div className="flex justify-end ">
             <div className="relative inline-flex">
               <select

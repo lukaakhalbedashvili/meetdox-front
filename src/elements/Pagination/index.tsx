@@ -13,7 +13,7 @@ const Pagination: FC<PaginationProps> = ({
   totalPages,
   onChangePage,
 }) => {
-  const maxDisplayedPages = window.innerWidth < 400 ? 1 : 5
+  const maxDisplayedPages = window.innerWidth < 640 ? 1 : 5
 
   const pageNumbers = []
   let startPage = 1

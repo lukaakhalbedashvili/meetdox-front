@@ -10,9 +10,16 @@ const useCatalogSideBar = ({
   subCategories,
 }: CatalogSidebarProps) => {
   const router = useRouter()
+  const isMobile = window.innerWidth < 640
+
   const [subCategoriesData, setSubCategoriesData] = useState<SubCategory[]>([])
   const [skills, setSkills] = useState<SubCategory[]>([])
   const [selectedCountry, setSelectedCountry] = useState('All')
+  const [isExpandedCategory, setExpandedCategory] = useState(!isMobile)
+  const [isExpandedPrice, setExpandedPrice] = useState(!isMobile)
+  const [isExpandedCountry, setExpandedCountry] = useState(!isMobile)
+  const [isExpandedSkills, setExpandedSkills] = useState(!isMobile)
+
   const countriesList = countries.map((country) => {
     return { value: country.name, flag: country.flag }
   })
@@ -70,6 +77,14 @@ const useCatalogSideBar = ({
     countriesList,
     setSkills,
     setSelectedCountry,
+    setExpandedCategory,
+    setExpandedPrice,
+    setExpandedCountry,
+    setExpandedSkills,
+    isExpandedCategory,
+    isExpandedPrice,
+    isExpandedCountry,
+    isExpandedSkills,
   }
 }
 

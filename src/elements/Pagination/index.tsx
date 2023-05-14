@@ -1,6 +1,7 @@
+'use client'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 import React, { FC } from 'react'
-import { isMobile } from 'react-device-detect'
+
 interface PaginationProps {
   currentPage: number
   totalPages: number
@@ -12,7 +13,8 @@ const Pagination: FC<PaginationProps> = ({
   totalPages,
   onChangePage,
 }) => {
-  const maxDisplayedPages = isMobile ? 1 : 5
+  const maxDisplayedPages = window.innerWidth < 400 ? 1 : 5
+
   const pageNumbers = []
   let startPage = 1
   let endPage = totalPages

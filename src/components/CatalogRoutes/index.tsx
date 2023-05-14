@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-// home icon
 import { AiOutlineHome } from 'react-icons/ai'
 import Link from 'next/link'
 

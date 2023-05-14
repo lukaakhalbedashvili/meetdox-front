@@ -18,8 +18,9 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
     searchParams.get('sub-categories')!
   ).split(',')
 
+  const category = categories.find((cat) => cat.url === params.category)
+
   const subCategoriesNames = subCategories.map((subCategory) => {
-    const category = categories.find((cat) => cat.url === params.category)
     const subCategoryName = category?.subCategories.find(
       (subCat) => subCat.url === subCategory
     )?.name
@@ -28,7 +29,7 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
     }
     return subCategoryName
   })
-  let category = categories.find((cat) => cat.url === params.category)
+
   return (
     <div className="bg-white font-ubuntu">
       <CatalogRoutes

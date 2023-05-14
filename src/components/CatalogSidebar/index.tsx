@@ -1,86 +1,23 @@
 'use client'
-
-import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import React from 'react'
 import Checkbox from '@/elements/Checkbox'
-import { countries } from '@/data/countries'
-interface CatalogSidebarProps {
-  category:
-    | {
-        name: string
-        url: string
-        skills: string[]
-        subCategories:
-          | {
-              name: string
-              url: string
-            }[]
-      }
-    | undefined
+import useCatalogSideBar from './useCatalogSideBar'
+import { Category } from './catalogSidebar.interface'
+export interface CatalogSidebarProps {
+  category: Category | undefined
   subCategories: string[]
-}
-interface SubCategory {
-  name: string
-  url: string
-  checked: boolean
 }
 
 const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
-  const router = useRouter()
-
-  const [subCategoriesData, setSubCategoriesData] = useState<SubCategory[]>([])
-  const [skills, setSkills] = useState<SubCategory[]>([])
-  const [selectedCountry, setSelectedCountry] = useState('All')
-  const countriesList = countries.map((country) => {
-    return { value: country.name, flag: country.flag }
-  })
-  countriesList.unshift({ value: 'All', flag: '🏳️' })
-
-  useEffect(() => {
-    setSubCategoriesData(
-      category?.subCategories.map((item) => {
-        return {
-          name: item.name,
-          url: item.url,
-          checked: subCategories.includes(item.url) ? true : false,
-        }
-      }) || []
-    )
-
-    setSkills(
-      category?.skills.map((item) => {
-        return {
-          name: item,
-          url: item,
-          checked: subCategories.includes(item) ? true : false,
-        }
-      }) || []
-    )
-  }, [category, subCategories])
-
-  const checkboxHandler = (name: string) => {
-    const renewedSubCategoriesData = subCategoriesData.map((item) => {
-      if (item.name === name) {
-        return {
-          ...item,
-          checked: !item.checked,
-        }
-      }
-      return item
-    })
-
-    const renewedCheckedSubCategories = renewedSubCategoriesData.filter(
-      (item) => item.checked
-    )
-
-    setSubCategoriesData(renewedSubCategoriesData)
-
-    router.push(
-      `/category/${category?.url}?sub-categories=${encodeURIComponent(
-        renewedCheckedSubCategories.map((item) => item.url).join(',')
-      )}`
-    )
-  }
+  const {
+    subCategoriesData,
+    checkboxHandler,
+    selectedCountry,
+    skills,
+    countriesList,
+    setSkills,
+    setSelectedCountry,
+  } = useCatalogSideBar({ category, subCategories })
 
   return (
     <div className="px-4 md:w-1/5">
@@ -99,11 +36,7 @@ const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
                   checkboxHandler(item.name)
                 }}
               >
-                <Checkbox
-                  id={item.name}
-                  isChecked={item.checked}
-                  onChange={() => console.log('rame')}
-                />
+                <Checkbox id={item.name} isChecked={item.checked} />
 
                 <p className="ml-4">{item.name}</p>
               </div>
@@ -144,14 +77,16 @@ const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
               className={`h-full w-full rounded-md border-[1px] border-border_gray pl-4 text-sm text-black focus:outline-none`}
               value={selectedCountry}
             >
-              {countriesList.map((item: any) => {
-                return (
-                  <option value={item.value} key={item.value}>
-                    {item.flag}&emsp;
-                    {item.value}
-                  </option>
-                )
-              })}
+              {[{ value: 'All', flag: '🏳️' }, ...countriesList].map(
+                (item: any) => {
+                  return (
+                    <option value={item.value} key={item.value}>
+                      {item.flag}&emsp;
+                      {item.value}
+                    </option>
+                  )
+                }
+              )}
             </select>
           </div>
         </div>
@@ -185,11 +120,7 @@ const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
                       setSkills(newArr)
                     }}
                   >
-                    <Checkbox
-                      id={item.name}
-                      isChecked={item.checked}
-                      onChange={() => console.log('rame')}
-                    />
+                    <Checkbox id={item.name} isChecked={item.checked} />
 
                     <p className="ml-4">{item.name}</p>
                   </div>

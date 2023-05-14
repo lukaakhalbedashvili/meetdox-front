@@ -1,18 +1,28 @@
 'use client'
 import React from 'react'
-// home icon
 import { AiOutlineHome } from 'react-icons/ai'
 import Link from 'next/link'
-import { categories } from '@/data/categoryItems'
 
 interface CatalogRoutesProps {
-  category: string
-  subCategory: string | null
+  category:
+    | {
+        name: string
+        url: string
+        subCategories:
+          | {
+              name: string
+              url: string
+            }[]
+      }
+    | undefined
+  subCategories: string[]
+  subCategoriesNames: string[]
 }
 
 const CatalogRoutes: React.FC<CatalogRoutesProps> = ({
   category,
-  subCategory,
+  subCategories,
+  subCategoriesNames,
 }) => {
   return (
     <nav className="mt-3 hidden w-full border-border_gray  bg-white px-12 font-normal text-text_gray md:flex">
@@ -24,30 +34,37 @@ const CatalogRoutes: React.FC<CatalogRoutesProps> = ({
         </li>
         <span className="mx-2 mb-[2px] text-xl">•</span>
         <li className="flex flex-row items-center text-sm">
-          <Link href={`/category/${category}`} className="text-xs">
+          <Link href={`/category/${category?.url}`} className="text-xs">
             {' '}
-            {categories.map((cat) => (cat.url === category ? cat.name : null))}
+            {category?.name}
           </Link>
         </li>
-        {subCategory && (
-          <>
-            <span className="mx-2 mb-[2px] text-xl">•</span>
-            <li className="flex flex-row items-center text-sm">
-              <Link
-                href={`/category/${category}/${subCategory}`}
-                className="text-xs"
-              >
-                {categories.map((cat) =>
-                  cat.url === category
-                    ? cat.subCategories.map((subCat) =>
-                        subCat.url === subCategory ? subCat.name : null
-                      )
-                    : null
-                )}
-              </Link>
-            </li>
-          </>
-        )}
+        {subCategories[0] !== 'null' &&
+          subCategoriesNames !== undefined &&
+          subCategories[0] !== '' && (
+            <>
+              <span className="mx-2 mb-[2px] text-xl">•</span>
+              {subCategories.map((subCategory, i) => (
+                <li
+                  className="flex flex-row items-center text-sm"
+                  key={subCategory}
+                >
+                  <Link
+                    href={`/category/${
+                      category?.url
+                    }?sub-categories=${encodeURIComponent(
+                      [subCategory].join(',')
+                    )}`}
+                    className="text-xs"
+                  >
+                    &nbsp;
+                    {subCategoriesNames[i]}&nbsp;
+                    {i !== subCategories.length - 1 && '& '}
+                  </Link>
+                </li>
+              ))}
+            </>
+          )}
       </ul>
     </nav>
   )

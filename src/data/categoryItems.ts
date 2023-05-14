@@ -2,6 +2,18 @@ export const categories = [
   {
     name: 'Doctor',
     url: 'doctor',
+    skills: [
+      'Algorithms',
+      'Analytical Skills',
+      'Big Data',
+      'Calculating',
+      'Compiling Statistics',
+      'Data Analytics',
+      'Data Mining',
+      'Database Design',
+      'Database Management',
+      'Documentation',
+    ],
     subCategories: [
       {
         name: 'Dentist',
@@ -32,6 +44,18 @@ export const categories = [
   {
     name: 'Lawyer',
     url: 'lawyer',
+    skills: [
+      'Algorithms',
+      'Analytical Skills',
+      'Big Data',
+      'Calculating',
+      'Compiling Statistics',
+      'Data Analytics',
+      'Data Mining',
+      'Database Design',
+      'Database Management',
+      'Documentation',
+    ],
     subCategories: [
       {
         name: 'Criminal Lawyer',
@@ -50,6 +74,18 @@ export const categories = [
   {
     name: 'Accountant',
     url: 'accountant',
+    skills: [
+      'Algorithms',
+      'Analytical Skills',
+      'Big Data',
+      'Calculating',
+      'Compiling Statistics',
+      'Data Analytics',
+      'Data Mining',
+      'Database Design',
+      'Database Management',
+      'Documentation',
+    ],
     subCategories: [
       {
         name: 'Bookkeeper',
@@ -68,6 +104,18 @@ export const categories = [
   {
     name: 'Real Estate Agent',
     url: 'real-estate-agent',
+    skills: [
+      'Algorithms',
+      'Analytical Skills',
+      'Big Data',
+      'Calculating',
+      'Compiling Statistics',
+      'Data Analytics',
+      'Data Mining',
+      'Database Design',
+      'Database Management',
+      'Documentation',
+    ],
     subCategories: [
       {
         name: 'Commercial Real Estate Agent',
@@ -82,6 +130,18 @@ export const categories = [
   {
     name: 'Financial Advisor',
     url: 'financial-advisor',
+    skills: [
+      'Algorithms',
+      'Analytical Skills',
+      'Big Data',
+      'Calculating',
+      'Compiling Statistics',
+      'Data Analytics',
+      'Data Mining',
+      'Database Design',
+      'Database Management',
+      'Documentation',
+    ],
     subCategories: [
       {
         name: 'Financial Planner',
@@ -96,6 +156,18 @@ export const categories = [
   {
     name: 'Insurance Agent',
     url: 'insurance-agent',
+    skills: [
+      'Algorithms',
+      'Analytical Skills',
+      'Big Data',
+      'Calculating',
+      'Compiling Statistics',
+      'Data Analytics',
+      'Data Mining',
+      'Database Design',
+      'Database Management',
+      'Documentation',
+    ],
     subCategories: [
       {
         name: 'Auto Insurance Agent',
@@ -114,6 +186,18 @@ export const categories = [
   {
     name: 'Photographer',
     url: 'photographer',
+    skills: [
+      'Algorithms',
+      'Analytical Skills',
+      'Big Data',
+      'Calculating',
+      'Compiling Statistics',
+      'Data Analytics',
+      'Data Mining',
+      'Database Design',
+      'Database Management',
+      'Documentation',
+    ],
     subCategories: [
       {
         name: 'Event Photographer',
@@ -141,6 +225,18 @@ export const categories = [
   {
     name: 'Designer',
     url: 'designer',
+    skills: [
+      'Algorithms',
+      'Analytical Skills',
+      'Big Data',
+      'Calculating',
+      'Compiling Statistics',
+      'Data Analytics',
+      'Data Mining',
+      'Database Design',
+      'Database Management',
+      'Documentation',
+    ],
     subCategories: [
       {
         name: 'Graphic Designer',
@@ -159,6 +255,18 @@ export const categories = [
   {
     name: 'Developer',
     url: 'developer',
+    skills: [
+      'Algorithms',
+      'Analytical Skills',
+      'Big Data',
+      'Calculating',
+      'Compiling Statistics',
+      'Data Analytics',
+      'Data Mining',
+      'Database Design',
+      'Database Management',
+      'Documentation',
+    ],
     subCategories: [
       {
         name: 'App Developer',

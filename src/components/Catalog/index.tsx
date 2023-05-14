@@ -1,23 +1,39 @@
 'use client'
-
 import React, { useState } from 'react'
+import dynamic from 'next/dynamic'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import { teachersDummyData } from '@/data/teachersDummyData'
-import Pagination from '@/elements/Pagination'
+const Pagination = dynamic(() => import('@/elements/Pagination'), {
+  ssr: false,
+})
+
 import CatalogSidebar from '../CatalogSidebar'
 
 interface CatalogProps {
-  category: string
+  category:
+    | {
+        name: string
+        url: string
+        skills: string[]
+        subCategories:
+          | {
+              name: string
+              url: string
+            }[]
+      }
+    | undefined
+  subCategories: string[]
+  subCategoriesNames: string[]
 }
-
-const Catalog = ({ category }: CatalogProps) => {
+const Catalog = ({ category, subCategories }: CatalogProps) => {
   const [currentPage, setCurrentPage] = useState(1)
 
   const totalPaginationPages = 30
+
   return (
     <>
       <div className="flex flex-col px-8 md:flex-row">
-        <CatalogSidebar />
+        <CatalogSidebar category={category} subCategories={subCategories} />
         <div className="p-4 md:w-4/5">
           <div className="flex justify-end ">
             <div className="relative inline-flex">

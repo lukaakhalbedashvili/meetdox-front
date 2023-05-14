@@ -49,7 +49,7 @@ const useTeacherEducation = (
     onSubmit: async (values) => {
       setErroredSections((prevState) => ({
         ...prevState,
-        experience: !teacherExperienceValidation.isValid,
+        experience: false,
       }))
 
       setFormValues((state) => {

@@ -45,6 +45,16 @@ const TeacherDomain: FC<TeacherDomainProps> = ({
                 DomainNames.CATEGORY,
                 e.target.value
               )
+
+              setFormValues((prevState): FormValues => {
+                return {
+                  ...prevState,
+                  domain: {
+                    ...prevState.domain,
+                    category: e.target.value,
+                  },
+                }
+              })
             }}
             value={teacherDomainValidation.values.category}
             placeHolderValue={placeholderCategoryValue}

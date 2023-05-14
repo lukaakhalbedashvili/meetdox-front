@@ -67,7 +67,7 @@ const useTeacherEducation = (
       onSubmit: async (values) => {
         setErroredSections((prevState) => ({
           ...prevState,
-          education: !teacherEducationInfoValidation.isValid,
+          education: false,
         }))
 
         setFormValues((state) => {

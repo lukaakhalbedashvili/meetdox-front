@@ -40,14 +40,14 @@ const useTeacherDomain = (
       const { category } = values
       setErroredSections((prevState) => ({
         ...prevState,
-        domain: !teacherDomainValidation.isValid,
+        domain: false,
       }))
 
       setFormValues((prevState): FormValues => {
         return {
           ...prevState,
-          teacherDomain: {
-            ...prevState.teacherDomain,
+          domain: {
+            ...prevState.domain,
             category: category,
             subCategories: subCategoriesData
               ?.filter((item) => item.checked)

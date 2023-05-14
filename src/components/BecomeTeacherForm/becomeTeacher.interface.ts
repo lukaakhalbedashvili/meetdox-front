@@ -1,12 +1,13 @@
 import { AboutTeacherForm } from './AboutTeacher/AboutTeacher.interface'
 import { TeacherContactValidationForm } from './TeacherContact/teacherContact.interface'
 import { TeacherDomainInfoValidationForm } from './TeacherDomain/teacherDomain.interface'
+
 import { TeacherEducationInfoValidationForm } from './TeacherEducation/TeacherEducationFormSection/teacherEducation.interface'
 import { TeacherExperienceForm } from './TeacherExperience/TeacherExperienceFormSection/teacherExperience.interface'
 import { TeacherPersonalInfoForm } from './TeacherPersonalInfo/teacherPersonalInfo.interface'
 
 export interface BecomeTeacherSectionsErrors {
-  personalInfo: boolean
+  personalDetails: boolean
   education: boolean
   experience: boolean
   skills: boolean
@@ -16,11 +17,11 @@ export interface BecomeTeacherSectionsErrors {
 }
 
 export interface FormValues {
-  personalInfo: TeacherPersonalInfoForm
+  personalDetails: TeacherPersonalInfoForm
   teacherEducation: TeacherEducationInfoValidationForm[]
   teacherExperience: TeacherExperienceForm[]
   skills: string[]
-  teacherDomain: TeacherDomainInfoValidationForm
+  domain: TeacherDomainInfoValidationForm
   contact: TeacherContactValidationForm
   about: AboutTeacherForm
 }

@@ -42,13 +42,14 @@ const useTeacherContact = (
     validationSchema,
 
     onSubmit: async (values) => {
+      const { country } = values
       setErroredSections((prevState) => ({
         ...prevState,
-        contact: !teacherContactValidation.isValid,
+        contact: false,
       }))
 
       setFormValues((state) => {
-        return { ...state, contact: { ...values, phoneExtension } }
+        return { ...state, contact: { ...values, phoneExtension, country } }
       })
     },
   })

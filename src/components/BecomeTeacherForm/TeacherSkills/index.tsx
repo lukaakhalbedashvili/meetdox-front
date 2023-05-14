@@ -13,12 +13,14 @@ interface TeacherSkillsProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
+  selectedDomain: string
 }
 
 const TeacherSkills: FC<TeacherSkillsProps> = ({
   isFormSubmitted,
   setErroredSections,
   setFormValues,
+  selectedDomain,
 }) => {
   const {
     teacherSkillsValidation,
@@ -27,7 +29,12 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
     selectedSkills,
     setSelectedSkills,
     onSelectHandler,
-  } = useTeacherSkills(isFormSubmitted, setErroredSections, setFormValues)
+  } = useTeacherSkills(
+    isFormSubmitted,
+    setErroredSections,
+    setFormValues,
+    selectedDomain
+  )
 
   return (
     <div className="mx-4 mt-5  border-t-[1px] border-border_gray pt-5 sm:mx-12">

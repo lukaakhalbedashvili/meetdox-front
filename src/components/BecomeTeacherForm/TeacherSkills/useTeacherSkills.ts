@@ -8,8 +8,8 @@ import {
   useState,
 } from 'react'
 import * as Yup from 'yup'
-import { skillsData } from '@/data/skills'
 import { search } from '@/utils/services/search'
+import { categories } from '@/data/categoryItems'
 import {
   TeacherSkillsForm,
   TeacherSkillsInputNames,
@@ -22,7 +22,8 @@ import {
 const useTeacherSkills = (
   isFormSubmitted: boolean,
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
-  setFormValues: Dispatch<SetStateAction<FormValues>>
+  setFormValues: Dispatch<SetStateAction<FormValues>>,
+  selectedDomain: string
 ) => {
   const [skills, setSkills] = useState<string[]>([])
   const [selectedSkills, setSelectedSkills] = useState<string[]>([])
@@ -50,9 +51,17 @@ const useTeacherSkills = (
     },
   })
 
-  const handleSearch = useCallback((searchParam: string) => {
-    setSkills(search(searchParam, skillsData))
-  }, [])
+  const handleSearch = useCallback(
+    (searchParam: string) => {
+      setSkills(
+        search(
+          searchParam,
+          categories.find((item) => item.name === selectedDomain)?.skills || []
+        )
+      )
+    },
+    [selectedDomain]
+  )
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     teacherSkillsValidation.setFieldValue(

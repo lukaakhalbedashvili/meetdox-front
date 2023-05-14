@@ -11,8 +11,14 @@ import AboutU from './AboutTeacher'
 import useBecameTeacherForm from './useBecomeTeacherForm'
 
 const BecomeTeacherForm = () => {
-  const { setErroredSections, setValues, isFormSubmitted, setIsFormSubmitted } =
-    useBecameTeacherForm()
+  const {
+    setErroredSections,
+    setValues,
+    isFormSubmitted,
+    setIsFormSubmitted,
+    values,
+  } = useBecameTeacherForm()
+
   return (
     <form>
       <TeacherPersonalInfo
@@ -35,17 +41,20 @@ const BecomeTeacherForm = () => {
         setErroredSections={setErroredSections}
       />
 
-      <TeacherSkills
-        setFormValues={setValues}
-        isFormSubmitted={isFormSubmitted}
-        setErroredSections={setErroredSections}
-      />
-
       <TeacherDomain
         setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
       />
+
+      {values.teacherDomain.category && (
+        <TeacherSkills
+          selectedDomain={values.teacherDomain.category}
+          setFormValues={setValues}
+          isFormSubmitted={isFormSubmitted}
+          setErroredSections={setErroredSections}
+        />
+      )}
 
       <AboutU
         setFormValues={setValues}

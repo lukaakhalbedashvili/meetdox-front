@@ -47,9 +47,9 @@ const BecomeTeacherForm = () => {
         setErroredSections={setErroredSections}
       />
 
-      {values.teacherDomain.category && (
+      {values.domain.category && (
         <TeacherSkills
-          selectedDomain={values.teacherDomain.category}
+          selectedDomain={values.domain.category}
           setFormValues={setValues}
           isFormSubmitted={isFormSubmitted}
           setErroredSections={setErroredSections}

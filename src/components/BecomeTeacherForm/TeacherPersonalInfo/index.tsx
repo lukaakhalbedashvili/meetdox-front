@@ -41,6 +41,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
     setUploadedImage,
     isImageError,
     userId,
+    setImageFromFirebase,
   } = useTeacherPersonalInfo(isFormSubmitted, setErroredSections, setFormValues)
 
   return (
@@ -191,12 +192,13 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
                   userId,
                   imageToUpload: image.blob,
                   onSuccessHandler: (url) => {
-                    setFormValues((prevState): FormValues => {
-                      return {
-                        ...prevState,
-                        personalInfo: { ...prevState.personalInfo, image: url },
-                      }
-                    })
+                    // setFormValues((prevState): FormValues => {
+                    //   return {
+                    //     ...prevState,
+                    //     personalDetails: { ...prevState.personalDetails, image: url },
+                    //   }
+                    // })
+                    setImageFromFirebase(url)
                   },
                 })
               setIsUploadImageModalOpen(false)

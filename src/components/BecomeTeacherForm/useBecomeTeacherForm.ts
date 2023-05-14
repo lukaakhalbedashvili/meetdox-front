@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useSendTeacherCreationQueries } from '@/reactQuery/becomeTeacherQueryies/useSendTeacherCreationQueries'
 import {
   BecomeTeacherSectionsErrors,
   FormValues,
@@ -8,17 +9,17 @@ const useBecameTeacherForm = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const [erroredSections, setErroredSections] =
     useState<BecomeTeacherSectionsErrors>({
-      personalInfo: false,
-      education: false,
-      experience: false,
-      skills: false,
-      domain: false,
-      contact: false,
-      about: false,
+      personalDetails: true,
+      education: true,
+      experience: true,
+      skills: true,
+      domain: true,
+      contact: true,
+      about: true,
     })
 
   const [values, setValues] = useState<FormValues>({
-    personalInfo: {
+    personalDetails: {
       birthMonth: '',
       birthYear: '',
       lastName: '',
@@ -27,23 +28,50 @@ const useBecameTeacherForm = () => {
     },
     skills: [],
     teacherEducation: [],
-    teacherDomain: { category: '', subCategories: [] },
+    domain: { category: '', subCategories: [] },
     contact: { country: '', phone: '' },
     teacherExperience: [],
     about: { description: '' },
   })
 
+  const { mutate } = useSendTeacherCreationQueries()
+
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    const { personalInfo, contact, about, domain } = erroredSections
+    const { personalDetails, contact, about, domain } = values
+    const { birthMonth, birthYear, lastName, name, image } = personalDetails
+    const { country, phone } = contact
+    const { description } = about
+    const { category, subCategories } = domain
 
-    if (personalInfo || contact || about || domain) {
-      console.error('error', values)
-      setIsFormSubmitted(false)
+    if (
+      birthMonth &&
+      birthYear &&
+      lastName &&
+      name &&
+      image &&
+      country &&
+      phone &&
+      description &&
+      category &&
+      subCategories.length > 0
+    ) {
+      mutate(
+        { data: values },
+        {
+          onSuccess: (res) => {
+            console.log('success', res)
+          },
+          onError: (err) => {
+            console.log('error', err)
+          },
+        }
+      )
     } else {
-      console.error('nice', values)
+      console.log('not valid')
       setIsFormSubmitted(false)
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [erroredSections, isFormSubmitted])
 

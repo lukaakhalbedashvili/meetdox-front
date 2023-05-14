@@ -49,8 +49,8 @@ const TeacherDomain: FC<TeacherDomainProps> = ({
               setFormValues((prevState): FormValues => {
                 return {
                   ...prevState,
-                  teacherDomain: {
-                    ...prevState.teacherDomain,
+                  domain: {
+                    ...prevState.domain,
                     category: e.target.value,
                   },
                 }

@@ -18,6 +18,7 @@ const useTeacherPersonalInfo = (
   const [uploadedImage, setUploadedImage] = useState<
     string | ArrayBuffer | null | undefined
   >()
+  const [imageFromFirebase, setImageFromFirebase] = useState<string>()
 
   const [isImageError, setIsImageError] = useState<boolean>(false)
   const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
@@ -57,11 +58,14 @@ const useTeacherPersonalInfo = (
     onSubmit: async (values) => {
       setErroredSections((prevState) => ({
         ...prevState,
-        personalInfo: !teacherPersonalInfoValidation.isValid,
+        personalDetails: false,
       }))
 
-      setFormValues((state) => {
-        return { ...state, personalInfo: values }
+      setFormValues((state): FormValues => {
+        return {
+          ...state,
+          personalDetails: { ...values, image: imageFromFirebase },
+        }
       })
     },
   })
@@ -95,6 +99,7 @@ const useTeacherPersonalInfo = (
     setUploadedImage,
     isImageError,
     userId: data?.data.data.uid,
+    setImageFromFirebase,
   }
 }
 

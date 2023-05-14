@@ -42,7 +42,7 @@ const useTeacherSkills = (
     onSubmit: async () => {
       setErroredSections((prevState) => ({
         ...prevState,
-        skills: selectedSkills.length === 0,
+        skills: false,
       }))
 
       setFormValues((state) => {

@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import { QueryKey } from '@/reactQuery/reactQuery.interface'
-import { fetchCollegeList } from '@/utils/api/fetchCollegeList'
+import { fetchCollegeList } from '@/utils/api/becameTeacherApis'
 
 export const useGetCollegeList = (searchParam: string | undefined) => {
   return useQuery({

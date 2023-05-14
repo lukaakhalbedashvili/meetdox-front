@@ -95,7 +95,7 @@ const SideBar = ({
                 {categories.map((category) => (
                   <div key={category.name} className="">
                     <div className="ml-8 flex items-center justify-between py-2">
-                      <Link href={category.url}>
+                      <Link href={`/category/${category.url}`}>
                         <span className="mr-2 text-sm">{category.name}</span>
                       </Link>
 
@@ -125,7 +125,13 @@ const SideBar = ({
                         <div className="ml-8">
                           {category.subCategories.map((subcategory) => (
                             <div key={subcategory.name} className="">
-                              <Link href={`${category.url}/${subcategory.url}`}>
+                              <Link
+                                href={`/category/${
+                                  category.url
+                                }?sub-categories=${encodeURIComponent(
+                                  [subcategory.url].join(',')
+                                )}`}
+                              >
                                 <div className="py-2">
                                   <p className="font-sm relative rounded px-8  text-sm transition duration-200">
                                     {subcategory.name}

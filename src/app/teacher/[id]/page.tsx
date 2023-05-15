@@ -27,7 +27,7 @@ const Teacher = () => {
   }, [])
 
   return (
-    <div className="px:4 mx-2 sm:px-10 lg:pt-0">
+    <div className="px:4 mx-2 sm:px-10 lg:px-4 lg:pt-0">
       <div className="mt-2 flex border-b-[1px] border-border_gray px-3 py-8">
         <div className="relative h-24 w-24 max-w-[300px] rounded-full sm:h-40 sm:w-60">
           <Image

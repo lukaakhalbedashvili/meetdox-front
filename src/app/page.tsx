@@ -8,7 +8,7 @@ import CategoryNav from '@/components/CategoryNav'
 
 const Home = () => {
   return (
-    <main className="h-[500px] bg-white font-ubuntu">
+    <main className="bg-white font-ubuntu">
       <CategoryNav />
 
       <SwiperWrapper title="Doctors">

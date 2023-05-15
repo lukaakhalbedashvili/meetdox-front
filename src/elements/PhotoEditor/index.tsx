@@ -1,12 +1,15 @@
 import React, { FC } from 'react'
 import Cropper from 'react-easy-crop'
 import { FaTimes } from 'react-icons/fa'
-import { getCroppedImg } from '@/utils/services/getCroppedImage'
+import {
+  getCroppedImg,
+  GetCroppedImgReturn,
+} from '@/utils/services/getCroppedImage'
 import Button from '@/elements/Button'
 import usePhotoEditor from './usePhotoEditor'
 
 interface PhotoEditorProps {
-  onSaveHandler: (image: string) => void
+  onSaveHandler: ({ blob, dataUrl }: GetCroppedImgReturn) => void
   onCloseHandler: () => void
   image: string | ArrayBuffer
 }
@@ -47,7 +50,6 @@ const PhotoEditor: FC<PhotoEditorProps> = ({
           customTailwindClasses="bg-sky border-sky text-white"
           onClickHandler={async () => {
             const resultImage =
-              image &&
               croppedAreaPixels &&
               (await getCroppedImg({
                 imageSrc: image as string,

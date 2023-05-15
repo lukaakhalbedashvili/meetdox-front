@@ -1,8 +1,9 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import dynamic from 'next/dynamic'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import { teachersDummyData } from '@/data/teachersDummyData'
+import useCatalog from './useCatalog'
 const Pagination = dynamic(() => import('@/elements/Pagination'), {
   ssr: false,
 })
@@ -27,9 +28,14 @@ interface CatalogProps {
   subCategoriesNames: string[]
 }
 const Catalog = ({ category, subCategories }: CatalogProps) => {
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const totalPaginationPages = 30
+  const {
+    totalPaginationPages,
+    setTotalPaginationPages,
+    currentPage,
+    setCurrentPage,
+    teachersData,
+    setTeachersData,
+  } = useCatalog()
 
   return (
     <>

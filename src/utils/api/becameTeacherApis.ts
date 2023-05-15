@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { UseSendTeacherCreationQueriesProps } from '@/reactQuery/becomeTeacherQueryies/useSendTeacherCreationQueries'
+import { UseSendTeacherCreationQueriesProps } from '@/reactQuery/becomeTeacherQueries/useSendTeacherCreationQueries'
 import { API_URL } from '../consts/consts'
 import { auth } from '../firebase/init'
 

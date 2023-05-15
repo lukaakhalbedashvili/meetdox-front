@@ -9,7 +9,7 @@ import {
 } from 'react'
 import * as Yup from 'yup'
 import debounce from 'lodash.debounce'
-import { useGetCollegeList } from '@/reactQuery/becomeTeacherQueryies/getCollegeList'
+import { useGetCollegeList } from '@/reactQuery/becomeTeacherQueries/getCollegeList'
 import { search } from '@/utils/services/search'
 import { majors } from '@/data/majors'
 import {

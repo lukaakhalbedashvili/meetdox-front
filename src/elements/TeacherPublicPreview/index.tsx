@@ -11,6 +11,7 @@ interface TeacherPublicPreviewProps {
   name: string
   lastName: string
   tags: string[]
+  onClickHandler: () => void
 }
 
 const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
@@ -22,9 +23,13 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
   name,
   lastName,
   tags,
+  onClickHandler,
 }) => {
   return (
-    <div className="-z-30 m-2 h-80 w-64 cursor-pointer border border-teacher_template_border">
+    <div
+      className="-z-30 m-2 h-80 w-64 cursor-pointer border border-teacher_template_border"
+      onClick={onClickHandler}
+    >
       <div className="relative h-1/2 w-full">
         <Image src={image} alt={title} fill style={{ objectFit: 'cover' }} />
       </div>

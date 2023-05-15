@@ -56,19 +56,8 @@ const useBecameTeacherForm = () => {
       category &&
       subCategories.length > 0
     ) {
-      mutate(
-        { data: values },
-        {
-          onSuccess: (res) => {
-            console.log('success', res)
-          },
-          onError: (err) => {
-            console.log('error', err)
-          },
-        }
-      )
+      mutate({ data: values })
     } else {
-      console.log('not valid')
       setIsFormSubmitted(false)
     }
 

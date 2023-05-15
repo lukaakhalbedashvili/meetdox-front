@@ -1,12 +1,15 @@
 'use client'
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
+import { useRouter } from 'next/navigation'
 import SwiperWrapper from '@/components/SwiperWrapper'
 import { teachersDummyData } from '@/data/teachersDummyData'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import CategoryNav from '@/components/CategoryNav'
 
 const Home = () => {
+  const router = useRouter()
+
   return (
     <main className="bg-white font-ubuntu">
       <CategoryNav />
@@ -15,6 +18,7 @@ const Home = () => {
         {teachersDummyData.map((item) => (
           <SwiperSlide key={item.id} style={{ width: 'fit-content' }}>
             <TeacherPublicPreview
+              onClickHandler={() => router.push(`teacher/${item.id}`)}
               price={20}
               totalReviews={12}
               rating={4.5}

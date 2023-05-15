@@ -9,7 +9,21 @@ export const teachersDummyData = [
     name: 'Luka',
     title:
       'I am a teacher, with 12 years of experience I am a teacher, with 12 years of experience',
+    skills: [
+      'react',
+      'react-native',
+      'typescript',
+      'javascript',
+      'nodejs',
+      'express',
+      'mongodb',
+      'graphql',
+      'apollo',
+      'nextjs',
+    ],
+    subDomains: ['Frontend', 'Backend', 'Mobile', 'Web3'],
   },
+
   {
     id: 5,
     price: 20,

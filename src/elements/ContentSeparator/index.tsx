@@ -22,7 +22,7 @@ const ContentSeparator = <T,>({
             isItString && (
               <div
                 key={item}
-                className="relative flex w-full items-center justify-center pb-3"
+                className="relative flex w-full cursor-pointer items-center justify-center pb-3"
                 onClick={() => handleChange(item)}
               >
                 <p className="text-lg">{item}</p>

@@ -31,14 +31,14 @@ const Teacher = () => {
   )
 
   return (
-    <div className="px:4 mx-2 sm:px-10 lg:px-4 lg:pt-0">
-      <div className="mt-2 flex flex-col items-center border-border_gray  px-3 ">
-        <div className="relative flex h-44 w-44 max-w-[300px] rounded-full sm:h-40 sm:w-60">
+    <div className="mx-2 lg:flex lg:items-start lg:px-6">
+      <div className="mt-2 flex flex-col items-center border-border_gray  px-3 lg:mt-10 lg:w-1/3">
+        <div className="relative flex h-44 w-44 max-w-[300px] rounded-full">
           <Image
             src={image}
             fill
             alt="profile image"
-            className="rounded-full object-fill sm:rounded-md"
+            className="rounded-full object-fill"
           />
         </div>
 
@@ -68,65 +68,35 @@ const Teacher = () => {
         {skills && <TeacherSkillsToDisplay header="Skills" skills={skills} />}
       </div>
 
-      <div className="mt-10 px-3">
-        {location && (
-          <TeacherBasicInformationToDisplay
-            location={location}
-            rating={rating}
-            totalReviews={totalReviews}
-          />
-        )}
-      </div>
-
-      <div className="mx-4 mt-16">
-        <ContentSeparator
-          sections={[TeacherSections.EXPERIENCE, TeacherSections.EDUCATION]}
-          activeSection={activeSection}
-          handleChange={(section) => {
-            setActiveSection(section)
-          }}
-        >
-          {activeSection === TeacherSections.EXPERIENCE && experiences && (
-            <TeacherExperienceSeparatorItem experiences={experiences} />
-          )}
-
-          {activeSection === TeacherSections.EDUCATION && education && (
-            <TeacherEducationSeparator educations={education} />
-          )}
-        </ContentSeparator>
-      </div>
-
-      {/* <div className="items-start lg:flex">
-        <div className="lg:w-1/3">
-          <div className="py-6">
-            <TeacherStats
-              hoursInCall={12}
-              totalEarned={1200}
-              totalStudents={25}
+      <div className="lg:ml-10 lg:w-1/2">
+        <div className="mt-10 px-3">
+          {location && (
+            <TeacherBasicInformationToDisplay
+              location={location}
+              rating={rating}
+              totalReviews={totalReviews}
             />
-          </div>
-
-          {subDomains && (
-            <div className="">
-              <TeacherDomainToDisplay subDomains={subDomains} />
-            </div>
           )}
-
-          {windowWidth < 1080 && (
-            <div className="border-t-[1px] border-border_gray px-4 py-6 text-icon_gray">
-              <p>{title}</p>
-            </div>
-          )}
-
-          {skills && <TeacherSkillsToDisplay header="Skills" skills={skills} />}
         </div>
 
-        {windowWidth > 1080 && (
-          <div className="ml-10 px-4 py-6 text-icon_gray">
-            <p>{title}</p>
-          </div>
-        )}
-      </div> */}
+        <div className="mx-4 mt-16">
+          <ContentSeparator
+            sections={[TeacherSections.EXPERIENCE, TeacherSections.EDUCATION]}
+            activeSection={activeSection}
+            handleChange={(section) => {
+              setActiveSection(section)
+            }}
+          >
+            {activeSection === TeacherSections.EXPERIENCE && experiences && (
+              <TeacherExperienceSeparatorItem experiences={experiences} />
+            )}
+
+            {activeSection === TeacherSections.EDUCATION && education && (
+              <TeacherEducationSeparator educations={education} />
+            )}
+          </ContentSeparator>
+        </div>
+      </div>
     </div>
   )
 }

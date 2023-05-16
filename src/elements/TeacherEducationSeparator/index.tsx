@@ -15,9 +15,14 @@ const TeacherEducationSeparator: FC<TeacherEducationSeparatorProps> = ({
 }) => {
   return (
     <div>
-      {educations.map((item) => {
+      {educations.map((item, index) => {
         return (
-          <div key={item.id} className="border-b-2 border-border_gray py-4">
+          <div
+            key={item.id}
+            className={`${
+              educations.length - 1 !== index && 'border-b-2'
+            } border-border_gray py-4`}
+          >
             <p className="text-lg">{item.university}</p>
 
             <p className="text-base text-text_gray">{item.major}</p>

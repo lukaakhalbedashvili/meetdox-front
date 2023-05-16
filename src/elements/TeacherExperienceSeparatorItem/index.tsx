@@ -16,9 +16,14 @@ const TeacherExperienceSeparatorItem: FC<
 > = ({ experiences }) => {
   return (
     <div>
-      {experiences.map((item) => {
+      {experiences.map((item, index) => {
         return (
-          <div key={item.id} className="border-b-2 border-border_gray py-4">
+          <div
+            key={item.id}
+            className={`${
+              experiences.length - 1 !== index && 'border-b-2'
+            } border-border_gray py-4`}
+          >
             <p className="text-lg">{item.company}</p>
 
             <p className="text-base text-text_gray">{item.title}</p>

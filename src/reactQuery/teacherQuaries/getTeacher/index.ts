@@ -1,11 +1,11 @@
 import { useQuery } from 'react-query'
 import { fetchLoggedInUserData } from '@/utils/api/loggedInUser'
 import { auth } from '@/utils/firebase/init'
-import { QueryKey } from '../reactQuery.interface'
+import { QueryKey } from '../../reactQuery.interface'
 
 export const useFetchLoggedInUserData = () =>
   useQuery({
-    queryKey: QueryKey.GET_LOGGED_IN_USER_DATA,
+    queryKey: QueryKey.GET_TEACHERS_LIST,
     queryFn: async () => {
       const token = await auth.currentUser?.getIdToken()
       return fetchLoggedInUserData(token)

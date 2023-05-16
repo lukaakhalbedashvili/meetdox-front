@@ -8,13 +8,14 @@ import { SubCategory } from './catalogSidebar.interface'
 const useCatalogSideBar = ({
   category,
   subCategories,
+  skills,
+  setSkills,
+  country,
 }: CatalogSidebarProps) => {
   const router = useRouter()
   const isMobile = window.innerWidth < 640
 
   const [subCategoriesData, setSubCategoriesData] = useState<SubCategory[]>([])
-  const [skills, setSkills] = useState<SubCategory[]>([])
-  const [selectedCountry, setSelectedCountry] = useState('All')
   const [isExpandedCategory, setExpandedCategory] = useState(!isMobile)
   const [isExpandedPrice, setExpandedPrice] = useState(!isMobile)
   const [isExpandedCountry, setExpandedCountry] = useState(!isMobile)
@@ -72,11 +73,10 @@ const useCatalogSideBar = ({
   return {
     subCategoriesData,
     checkboxHandler,
-    selectedCountry,
+    country,
     skills,
     countriesList,
     setSkills,
-    setSelectedCountry,
     setExpandedCategory,
     setExpandedPrice,
     setExpandedCountry,

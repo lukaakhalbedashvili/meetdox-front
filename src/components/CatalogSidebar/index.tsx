@@ -3,21 +3,28 @@ import React from 'react'
 import { HiChevronDown, HiChevronUp } from 'react-icons/hi'
 import Checkbox from '@/elements/Checkbox'
 import useCatalogSideBar from './useCatalogSideBar'
-import { Category } from './catalogSidebar.interface'
+import { Category, SubCategory } from './catalogSidebar.interface'
 export interface CatalogSidebarProps {
   category: Category | undefined
   subCategories: string[]
+  skills: SubCategory[]
+  setSkills: React.Dispatch<React.SetStateAction<SubCategory[]>>
+  country: string
+  setCountry: React.Dispatch<React.SetStateAction<string>>
 }
 
-const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
+const CatalogSidebar = ({
+  category,
+  subCategories,
+  skills,
+  setSkills,
+  country,
+  setCountry,
+}: CatalogSidebarProps) => {
   const {
     subCategoriesData,
     checkboxHandler,
-    selectedCountry,
-    skills,
     countriesList,
-    setSkills,
-    setSelectedCountry,
     setExpandedCategory,
     setExpandedPrice,
     setExpandedCountry,
@@ -26,7 +33,14 @@ const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
     isExpandedPrice,
     isExpandedCountry,
     isExpandedSkills,
-  } = useCatalogSideBar({ category, subCategories })
+  } = useCatalogSideBar({
+    category,
+    subCategories,
+    skills,
+    setCountry,
+    country,
+    setSkills,
+  })
 
   return (
     <div className="px-0 sm:px-4 md:w-1/5">
@@ -127,9 +141,9 @@ const CatalogSidebar = ({ category, subCategories }: CatalogSidebarProps) => {
             <div className="relative ml-2 h-10 w-full">
               <select
                 name={'country'}
-                onChange={(e) => setSelectedCountry(e.target.value)}
+                onChange={(e) => setCountry(e.target.value)}
                 className={`h-full w-full rounded-md border-[1px] border-border_gray pl-4 text-sm text-black focus:outline-none`}
-                value={selectedCountry}
+                value={country}
               >
                 {[{ value: 'All', flag: '🏳️' }, ...countriesList].map(
                   (item: any) => {

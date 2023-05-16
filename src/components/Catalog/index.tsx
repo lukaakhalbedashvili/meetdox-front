@@ -2,8 +2,8 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
-import { teachersDummyData } from '@/data/teachersDummyData'
 import useCatalog from './useCatalog'
+import { Category } from '../CatalogSidebar/catalogSidebar.interface'
 const Pagination = dynamic(() => import('@/elements/Pagination'), {
   ssr: false,
 })
@@ -12,35 +12,37 @@ const CatalogSidebar = dynamic(() => import('../CatalogSidebar'), {
 })
 
 interface CatalogProps {
-  category:
-    | {
-        name: string
-        url: string
-        skills: string[]
-        subCategories:
-          | {
-              name: string
-              url: string
-            }[]
-      }
-    | undefined
+  category: Category | undefined
   subCategories: string[]
   subCategoriesNames: string[]
 }
-const Catalog = ({ category, subCategories }: CatalogProps) => {
+const Catalog = ({
+  category,
+  subCategories,
+  subCategoriesNames,
+}: CatalogProps) => {
   const {
     totalPaginationPages,
-    setTotalPaginationPages,
     currentPage,
     setCurrentPage,
     teachersData,
-    setTeachersData,
-  } = useCatalog()
+    skills,
+    setSkills,
+    country,
+    setCountry,
+  } = useCatalog({ category, subCategoriesNames })
 
   return (
     <>
       <div className="flex flex-col px-4 sm:px-8  md:flex-row">
-        <CatalogSidebar category={category} subCategories={subCategories} />
+        <CatalogSidebar
+          category={category}
+          subCategories={subCategories}
+          skills={skills}
+          setSkills={setSkills}
+          country={country}
+          setCountry={setCountry}
+        />
         <div className="py-4 sm:p-4 md:w-4/5">
           <div className="flex justify-end ">
             <div className="relative inline-flex">
@@ -60,17 +62,17 @@ const Catalog = ({ category, subCategories }: CatalogProps) => {
             <hr className="border-border_gray" />
           </div>
           <div className="relative z-10 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {teachersDummyData.map((item) => (
+            {teachersData.map((item) => (
               <TeacherPublicPreview
-                key={item.id}
+                key={item.uid}
                 price={20}
                 totalReviews={12}
                 rating={4.5}
-                image="https://familydoctor.org/wp-content/uploads/2018/02/41808433_l.jpg"
-                lastName="Akhalbedashvili"
-                name="Luka"
-                title="I am a teacher, with 12 years of experience I am a teacher, with 12 years of experience"
-                tags={['Math', 'Physics', 'Chemistry']}
+                image={item.image}
+                lastName={item.personalDetails.lastName}
+                name={item.personalDetails.name}
+                title={item.description}
+                tags={[item.skills[0], item.skills[1]]}
               />
             ))}
           </div>

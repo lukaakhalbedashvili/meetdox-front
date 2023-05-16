@@ -1,35 +1,39 @@
 'use client'
 import Image from 'next/image'
-import { BsFillStarFill } from 'react-icons/bs'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { teachersDummyData } from '@/data/teachersDummyData'
-import Button from '@/elements/Button'
-import TeacherStats from '@/elements/TeacherStats'
 import TeacherSkillsToDisplay from '@/elements/TeacherSkillsToDisplay'
-import TeacherDomainToDisplay from '@/elements/TeacherDomainToDisplay'
+import TeacherBasicInformationToDisplay from '@/elements/TeacherBasicInformationToDisplay'
+import TeacherExperienceSeparatorItem from '@/elements/TeacherExperienceSeparatorItem'
+import TeacherEducationSeparator from '@/elements/TeacherEducationSeparator'
+import ContentSeparator from '@/elements/ContentSeparator'
+import { TeacherSections } from '../teacher.interface'
 
 const Teacher = () => {
   const {
     image,
     name,
     lastName,
+    domain,
     rating,
     totalReviews,
     title,
     skills,
+    salary,
     subDomains,
+    location,
+    experiences,
+    education,
   } = teachersDummyData[0]
 
-  const [windowWidth, setWindowWidth] = useState(0)
-
-  useEffect(() => {
-    setWindowWidth(window.innerWidth)
-  }, [])
+  const [activeSection, setActiveSection] = useState<TeacherSections>(
+    TeacherSections.EXPERIENCE
+  )
 
   return (
     <div className="px:4 mx-2 sm:px-10 lg:px-4 lg:pt-0">
-      <div className="mt-2 flex border-b-[1px] border-border_gray px-3 py-8">
-        <div className="relative h-24 w-24 max-w-[300px] rounded-full sm:h-40 sm:w-60">
+      <div className="mt-2 flex flex-col items-center border-border_gray  px-3 ">
+        <div className="relative flex h-44 w-44 max-w-[300px] rounded-full sm:h-40 sm:w-60">
           <Image
             src={image}
             fill
@@ -38,33 +42,61 @@ const Teacher = () => {
           />
         </div>
 
-        <div className="ml-6 flex flex-col justify-around">
-          <h2 className="font-semi-bold overflow-hidden whitespace-nowrap text-2xl">
-            {name} {lastName}
-          </h2>
+        <h2 className="font-semi-bold mt-4 overflow-hidden whitespace-nowrap text-2xl">
+          {name} {lastName}
+        </h2>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <BsFillStarFill className="fill-star_gold" />
+        <div className="my-3 flex flex-col items-center text-icon_gray">
+          <div className="flex items-center">
+            <p>{`${domain} -`}</p>
 
-              <p className="mx-1">{rating}</p>
-
-              <p className="text-icon_gray">{`(${totalReviews})`}</p>
-            </div>
-
-            <Button
-              type="button"
-              customTailwindClasses="bg-sky border-sky text-white"
-            >
-              <p className="flex h-8 w-24 items-center justify-center text-sm">
-                Call
-              </p>
-            </Button>
+            {subDomains?.map((item, index) => {
+              return (
+                <div key={item} className="mx-[2px] flex">
+                  {item}
+                  {index === subDomains.length - 1 ? '' : ','}
+                </div>
+              )
+            })}
           </div>
+
+          <p>{`${salary}/hr`}</p>
         </div>
+
+        <div className="mb-10 mt-3 flex items-center  text-black">{title}</div>
+
+        {skills && <TeacherSkillsToDisplay header="Skills" skills={skills} />}
       </div>
 
-      <div className="items-start lg:flex">
+      <div className="mt-10 px-3">
+        {location && (
+          <TeacherBasicInformationToDisplay
+            location={location}
+            rating={rating}
+            totalReviews={totalReviews}
+          />
+        )}
+      </div>
+
+      <div className="mx-4 mt-16">
+        <ContentSeparator
+          sections={[TeacherSections.EXPERIENCE, TeacherSections.EDUCATION]}
+          activeSection={activeSection}
+          handleChange={(section) => {
+            setActiveSection(section)
+          }}
+        >
+          {activeSection === TeacherSections.EXPERIENCE && experiences && (
+            <TeacherExperienceSeparatorItem experiences={experiences} />
+          )}
+
+          {activeSection === TeacherSections.EDUCATION && education && (
+            <TeacherEducationSeparator educations={education} />
+          )}
+        </ContentSeparator>
+      </div>
+
+      {/* <div className="items-start lg:flex">
         <div className="lg:w-1/3">
           <div className="py-6">
             <TeacherStats
@@ -94,7 +126,7 @@ const Teacher = () => {
             <p>{title}</p>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   )
 }

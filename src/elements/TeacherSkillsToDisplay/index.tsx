@@ -10,7 +10,7 @@ const TeacherSkillsToDisplay: FC<TeacherSkillsToDisplayProps> = ({
   skills,
 }) => {
   return (
-    <div className="border-t-[1px] border-border_gray px-4 py-6">
+    <div className="py-6">
       <h2 className="text-xl font-medium">{header}</h2>
 
       <div className="mt-1 flex flex-wrap">
@@ -18,7 +18,7 @@ const TeacherSkillsToDisplay: FC<TeacherSkillsToDisplayProps> = ({
           return (
             <p
               key={item}
-              className="text-s mr-1 mt-2 mr-2 rounded bg-info_notification_bg   px-3 pt-1 pb-1 text-info_icon_blue
+              className="text-s mt-2 mr-2 rounded bg-info_notification_bg   px-3 pt-1 pb-1 text-info_icon_blue
               "
             >
               {item}

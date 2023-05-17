@@ -11,7 +11,7 @@ interface TeacherPublicPreviewProps {
   name: string
   lastName: string
   tags: string[]
-  onClickHandler: () => void
+  onClickHandler?: () => void
 }
 
 const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({

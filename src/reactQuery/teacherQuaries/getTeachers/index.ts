@@ -10,9 +10,6 @@ export const useGetTeachers = (filter: TeacherFilter) =>
     queryFn: async () => {
       const token = await auth.currentUser?.getIdToken()
       const response = await getTeachersList(token, filter)
-      if (filter.onSuccess) {
-        filter.onSuccess(response)
-      }
       return response
     },
   })

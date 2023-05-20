@@ -43,6 +43,7 @@ const Catalog = ({
           country={country}
           setCountry={setCountry}
         />
+
         <div className="py-4 sm:p-4 md:w-4/5">
           <div className="flex justify-end ">
             <div className="relative inline-flex">
@@ -64,8 +65,8 @@ const Catalog = ({
           <div className="relative z-10 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {teachersData.map((item) => (
               <TeacherPublicPreview
-                key={item.uid}
                 price={20}
+                key={item.uid}
                 totalReviews={12}
                 rating={4.5}
                 image={item.image}
@@ -76,6 +77,7 @@ const Catalog = ({
               />
             ))}
           </div>
+
           <Pagination
             currentPage={currentPage}
             totalPages={totalPaginationPages}

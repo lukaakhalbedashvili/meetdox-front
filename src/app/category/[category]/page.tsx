@@ -37,6 +37,7 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
         subCategories={subCategories}
         subCategoriesNames={subCategoriesNames}
       />
+
       <Catalog
         category={category}
         subCategories={subCategories}

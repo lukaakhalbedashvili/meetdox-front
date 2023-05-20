@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useGetTeachers } from '@/reactQuery/teacherQuaries/getTeachers'
 import { TeacherData } from '@/components/Catalog/catalog.interface'
 import {
@@ -22,18 +22,20 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
     .filter((item) => item.checked)
     .map((item) => item.name)
 
-  useGetTeachers({
+  const { data } = useGetTeachers({
     limit: 20,
     category: category?.name,
-    subCategories: subCategoriesNames[0] === 'null' ? [] : subCategoriesNames,
+    subCategories: subCategoriesNames[0] ? [] : subCategoriesNames,
     skills: onlyNamesPickedFromSkills,
     country: country === 'All' ? '' : country,
     page: currentPage,
-    onSuccess: (data) => {
-      setTeachersData(data.teachers)
-      setTotalPaginationPages(Math.ceil(data.totalItems / 20))
-    },
   })
+
+  useEffect(() => {
+    if (!data) return
+    setTeachersData(data.teachers)
+    setTotalPaginationPages(Math.ceil(data.totalItems / 20))
+  }, [data])
 
   return {
     totalPaginationPages,

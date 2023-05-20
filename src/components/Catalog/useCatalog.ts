@@ -25,7 +25,7 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
   useGetTeachers({
     limit: 20,
     category: category?.name,
-    subCategories: subCategoriesNames[0] === 'null' ? [] : subCategoriesNames,
+    subCategories: subCategoriesNames[0] ? [] : subCategoriesNames,
     skills: onlyNamesPickedFromSkills,
     country: country === 'All' ? '' : country,
     page: currentPage,

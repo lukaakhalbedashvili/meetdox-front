@@ -13,14 +13,7 @@ export const getTeachersList = async (
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    params: {
-      category: filter.category,
-      subCategories: filter.subCategories,
-      skills: filter.skills,
-      country: filter.country,
-      limit: filter.limit,
-      page: filter.page,
-    },
+    params: filter,
   })
   if (response.data.status === 'error')
     return {

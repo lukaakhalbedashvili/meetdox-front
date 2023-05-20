@@ -17,16 +17,34 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
   const [teachersData, setTeachersData] = useState<TeacherData[]>([])
   const [skills, setSkills] = useState<SubCategory[]>([])
   const [country, setCountry] = useState<string>('All')
+  const [sortingBy, setSortingBy] = useState<string>('popularity')
+  const [startPrice, setStartPrice] = useState<number>(0)
+  const [endPrice, setEndPrice] = useState<number>(10000)
 
   const onlyNamesPickedFromSkills = skills
     .filter((item) => item.checked)
     .map((item) => item.name)
 
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [
+    category,
+    subCategoriesNames,
+    skills,
+    country,
+    sortingBy,
+    startPrice,
+    endPrice,
+  ])
+
   const { data } = useGetTeachers({
     limit: 20,
     category: category?.name,
+    sortingBy,
     subCategories: subCategoriesNames[0] ? [] : subCategoriesNames,
     skills: onlyNamesPickedFromSkills,
+    startPrice,
+    endPrice,
     country: country === 'All' ? '' : country,
     page: currentPage,
   })
@@ -46,6 +64,12 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
     setSkills,
     country,
     setCountry,
+    sortingBy,
+    setSortingBy,
+    startPrice,
+    setStartPrice,
+    endPrice,
+    setEndPrice,
   }
 }
 

@@ -1,6 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import debounce from 'lodash.debounce'
 import { countries } from '@/data/countries'
 import { CatalogSidebarProps } from '.'
 import { SubCategory } from './catalogSidebar.interface'
@@ -11,6 +12,8 @@ const useCatalogSideBar = ({
   skills,
   setSkills,
   country,
+  setStartPrice,
+  setEndPrice,
 }: CatalogSidebarProps) => {
   const router = useRouter()
   const isMobile = window.innerWidth < 640
@@ -46,6 +49,18 @@ const useCatalogSideBar = ({
       }) || []
     )
   }, [category, subCategories])
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handlePriceStartChange = useCallback(
+    debounce((value) => setStartPrice(value), 1000),
+    []
+  )
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handlePriceEndChange = useCallback(
+    debounce((value) => setEndPrice(value), 1000),
+    []
+  )
 
   const checkboxHandler = (name: string) => {
     const renewedSubCategoriesData = subCategoriesData.map((item) => {
@@ -85,6 +100,8 @@ const useCatalogSideBar = ({
     isExpandedPrice,
     isExpandedCountry,
     isExpandedSkills,
+    handlePriceStartChange,
+    handlePriceEndChange,
   }
 }
 

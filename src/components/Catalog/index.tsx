@@ -30,6 +30,12 @@ const Catalog = ({
     setSkills,
     country,
     setCountry,
+    sortingBy,
+    setSortingBy,
+    startPrice,
+    setStartPrice,
+    endPrice,
+    setEndPrice,
   } = useCatalog({ category, subCategoriesNames })
 
   return (
@@ -42,6 +48,10 @@ const Catalog = ({
           setSkills={setSkills}
           country={country}
           setCountry={setCountry}
+          startPrice={startPrice}
+          setStartPrice={setStartPrice}
+          endPrice={endPrice}
+          setEndPrice={setEndPrice}
         />
 
         <div className="py-4 sm:p-4 md:w-4/5">
@@ -49,13 +59,16 @@ const Catalog = ({
             <div className="relative inline-flex">
               <select
                 id="sortOrder"
+                onChange={(e) => setSortingBy(e.target.value)}
+                value={sortingBy}
                 className="w-full rounded-md border border-border_gray px-4 py-2 pr-8 text-sm text-text_gray focus:outline-none"
               >
-                <option value="asc">Low to high</option>
-                <option value="desc">High to low</option>
-                <option value="desc">Newest</option>
-                <option value="desc">Oldest</option>
-                <option value="desc">Popular</option>
+                <option value="popular">Popularity</option>
+                <option value="lowtohigh">Low To High</option>
+                <option value="hightolow">High To Low</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="rating">Rating</option>
               </select>
             </div>
           </div>

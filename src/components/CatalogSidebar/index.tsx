@@ -11,6 +11,10 @@ export interface CatalogSidebarProps {
   setSkills: React.Dispatch<React.SetStateAction<SubCategory[]>>
   country: string
   setCountry: React.Dispatch<React.SetStateAction<string>>
+  startPrice: number
+  setStartPrice: React.Dispatch<React.SetStateAction<number>>
+  endPrice: number
+  setEndPrice: React.Dispatch<React.SetStateAction<number>>
 }
 
 const CatalogSidebar = ({
@@ -20,6 +24,10 @@ const CatalogSidebar = ({
   setSkills,
   country,
   setCountry,
+  startPrice,
+  setStartPrice,
+  endPrice,
+  setEndPrice,
 }: CatalogSidebarProps) => {
   const {
     subCategoriesData,
@@ -33,6 +41,8 @@ const CatalogSidebar = ({
     isExpandedPrice,
     isExpandedCountry,
     isExpandedSkills,
+    handlePriceStartChange,
+    handlePriceEndChange,
   } = useCatalogSideBar({
     category,
     subCategories,
@@ -40,6 +50,10 @@ const CatalogSidebar = ({
     setCountry,
     country,
     setSkills,
+    startPrice,
+    setStartPrice,
+    endPrice,
+    setEndPrice,
   })
 
   return (
@@ -107,6 +121,7 @@ const CatalogSidebar = ({
               type="number"
               className="w-1/2 rounded-md border border-border_gray px-4 py-2 pr-8 text-sm text-text_gray focus:outline-none"
               placeholder="Min"
+              onChange={(e) => handlePriceStartChange(e.target.value)}
             />
 
             <span className="mx-2 mb-[2px] text-xl">-</span>
@@ -115,6 +130,7 @@ const CatalogSidebar = ({
               type="number"
               className="w-1/2 rounded-md border border-border_gray px-4 py-2 pr-8 text-sm text-text_gray focus:outline-none"
               placeholder="Max"
+              onChange={(e) => handlePriceEndChange(e.target.value)}
             />
           </div>
         )}

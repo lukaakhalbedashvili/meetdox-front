@@ -38,7 +38,7 @@ const Teacher = () => {
             src={image}
             fill
             alt="profile image"
-            className="rounded-full object-fill"
+            className="rounded-full object-cover"
           />
         </div>
 

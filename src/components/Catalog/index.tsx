@@ -43,6 +43,7 @@ const Catalog = ({
           country={country}
           setCountry={setCountry}
         />
+
         <div className="py-4 sm:p-4 md:w-4/5">
           <div className="flex justify-end ">
             <div className="relative inline-flex">

@@ -11,30 +11,7 @@ const CatalogSidebar = dynamic(() => import('../CatalogSidebar'), {
   ssr: false,
 })
 
-<<<<<<< HEAD
 export interface CatalogProps {
-  category:
-    | {
-        name: string
-        url: string
-        skills: string[]
-        subCategories:
-          | {
-              name: string
-              url: string
-            }[]
-      }
-    | undefined
-  subCategories: string[]
-  subCategoriesNames: string[]
-}
-
-const Catalog = ({ category, subCategories }: CatalogProps) => {
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const totalPaginationPages = 30
-=======
-interface CatalogProps {
   category: Category | undefined
   subCategories: string[]
   subCategoriesNames: string[]
@@ -60,14 +37,10 @@ const Catalog = ({
     endPrice,
     setEndPrice,
   } = useCatalog({ category, subCategoriesNames })
->>>>>>> 5d393f21f0e6556a48b610e438121bdf387aae0f
 
   return (
     <>
       <div className="flex flex-col px-4 sm:px-8  md:flex-row">
-<<<<<<< HEAD
-        <CatalogSidebar category={category} subCategories={subCategories} />
-=======
         <CatalogSidebar
           category={category}
           subCategories={subCategories}
@@ -80,7 +53,6 @@ const Catalog = ({
           endPrice={endPrice}
           setEndPrice={setEndPrice}
         />
->>>>>>> 5d393f21f0e6556a48b610e438121bdf387aae0f
 
         <div className="py-4 sm:p-4 md:w-4/5">
           <div className="flex justify-end ">
@@ -91,24 +63,12 @@ const Catalog = ({
                 value={sortingBy}
                 className="w-full rounded-md border border-border_gray px-4 py-2 pr-8 text-sm text-text_gray focus:outline-none"
               >
-<<<<<<< HEAD
-                <option value="asc">Low to high</option>
-
-                <option value="desc">High to low</option>
-
-                <option value="desc">Newest</option>
-
-                <option value="desc">Oldest</option>
-
-                <option value="desc">Popular</option>
-=======
                 <option value="popular">Popularity</option>
                 <option value="lowtohigh">Low To High</option>
                 <option value="hightolow">High To Low</option>
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
                 <option value="rating">Rating</option>
->>>>>>> 5d393f21f0e6556a48b610e438121bdf387aae0f
               </select>
             </div>
           </div>

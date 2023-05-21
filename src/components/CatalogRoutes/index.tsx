@@ -2,9 +2,9 @@
 import React from 'react'
 import { AiOutlineHome } from 'react-icons/ai'
 import Link from 'next/link'
-import { CatalogProps as CatalogRoutesProps } from '../Catalog'
+import { CatalogProps } from '../Catalog'
 
-const CatalogRoutes: React.FC<CatalogRoutesProps> = ({
+const CatalogRoutes: React.FC<CatalogProps> = ({
   category,
   subCategories,
   subCategoriesNames,

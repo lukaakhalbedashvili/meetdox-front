@@ -24,6 +24,7 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
     const subCategoryName = category?.subCategories.find(
       (subCat) => subCat.url === subCategory
     )?.name
+
     if (subCategoryName === undefined) {
       return 'null'
     }

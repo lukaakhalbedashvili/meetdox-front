@@ -31,8 +31,8 @@ const Teacher = () => {
   )
 
   return (
-    <div className="mx-2 lg:flex lg:items-start lg:px-6">
-      <div className="mt-2 flex flex-col items-center border-border_gray  px-3 lg:mt-10 lg:w-1/3">
+    <div className="mx-2 lg:flex lg:items-start lg:bg-gray lg:px-6 lg:py-10">
+      <div className="flex flex-col items-center rounded-md border-border_gray bg-white px-3  lg:w-1/3 lg:py-6">
         <div className="relative flex h-44 w-44 max-w-[300px] rounded-full">
           <Image
             src={image}
@@ -42,11 +42,11 @@ const Teacher = () => {
           />
         </div>
 
-        <h2 className="font-semi-bold mt-4 overflow-hidden whitespace-nowrap text-2xl">
+        <h2 className="font-semi-bold mt-4 overflow-hidden whitespace-nowrap text-xl">
           {name} {lastName}
         </h2>
 
-        <div className="my-3 flex flex-col items-center text-icon_gray">
+        <div className="my-3 flex flex-col items-center text-sm text-icon_gray">
           <div className="flex items-center">
             <p>{`${domain} -`}</p>
 
@@ -63,13 +63,17 @@ const Teacher = () => {
           <p>{`${salary}/hr`}</p>
         </div>
 
-        <div className="mb-10 mt-3 flex items-center  text-black">{title}</div>
+        <div className="mb-10 mt-3 flex items-center text-center text-sm text-black lg:mx-4">
+          {title}
+        </div>
 
-        {skills && <TeacherSkillsToDisplay header="Skills" skills={skills} />}
+        <div className="lg:ml-4">
+          {skills && <TeacherSkillsToDisplay header="Skills" skills={skills} />}
+        </div>
       </div>
 
       <div className="lg:ml-10 lg:w-1/2">
-        <div className="mt-10 px-3">
+        <div className="mt-10 rounded-md bg-white p-4 px-4 lg:mt-0 lg:p-6">
           {location && (
             <TeacherBasicInformationToDisplay
               location={location}
@@ -79,7 +83,7 @@ const Teacher = () => {
           )}
         </div>
 
-        <div className="mx-4 mt-16">
+        <div className="mt-10 rounded-md bg-white p-4 px-6">
           <ContentSeparator
             sections={[TeacherSections.EXPERIENCE, TeacherSections.EDUCATION]}
             activeSection={activeSection}

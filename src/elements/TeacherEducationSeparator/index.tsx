@@ -23,14 +23,14 @@ const TeacherEducationSeparator: FC<TeacherEducationSeparatorProps> = ({
               educations.length - 1 !== index && 'border-b-2'
             } border-border_gray py-4`}
           >
-            <p className="text-lg">{item.university}</p>
+            <p className="text-base">{item.university}</p>
 
-            <p className="text-base text-text_gray">{item.major}</p>
+            <p className="text-sm text-text_gray">{item.major}</p>
 
             <div className="flex text-text_gray">
-              <p className="mr-1 text-base">{item.startDate}</p>
+              <p className="mr-1 text-sm">{item.startDate}</p>
               <p>-</p>
-              <p className="ml-1 text-base">{item.endDate}</p>
+              <p className="ml-1 text-sm">{item.endDate}</p>
             </div>
           </div>
         )

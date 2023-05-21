@@ -17,9 +17,7 @@ const PopupItemWrapper: FC<PopupItemWrapperPros> = ({
   useEffect(() => {
     document.body.style.overflow = 'hidden'
 
-    if (screen.availWidth < 500) {
-      childrenWrapperRef.current?.scrollIntoView()
-    }
+    window.scrollTo(0, 0)
 
     return () => {
       document.body.style.overflow = 'unset'
@@ -27,7 +25,7 @@ const PopupItemWrapper: FC<PopupItemWrapperPros> = ({
   }, [])
 
   return (
-    <div className="absolute top-0  z-20 flex h-screen w-screen items-center justify-center bg-black md:bg-opacity-50">
+    <div className="absolute top-0 z-20 flex h-screen w-screen items-center justify-center bg-black md:bg-opacity-50">
       <div
         ref={childrenWrapperRef}
         className="h-screen w-screen  md:h-fit md:w-fit"

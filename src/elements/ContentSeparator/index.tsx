@@ -25,7 +25,7 @@ const ContentSeparator = <T,>({
                 className="relative flex w-full cursor-pointer items-center justify-center pb-3"
                 onClick={() => handleChange(item)}
               >
-                <p className="text-lg">{item}</p>
+                <p className="text-base">{item}</p>
 
                 {activeSection === item && (
                   <div className="absolute -bottom-[2px] w-full rounded-md border-b-4 border-sky"></div>

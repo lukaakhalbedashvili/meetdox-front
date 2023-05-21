@@ -17,7 +17,7 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
   const [teachersData, setTeachersData] = useState<TeacherData[]>([])
   const [skills, setSkills] = useState<SubCategory[]>([])
   const [country, setCountry] = useState<string>('All')
-  const [sortingBy, setSortingBy] = useState<string>('popularity')
+  const [sortingBy, setSortingBy] = useState<string>('popular')
   const [startPrice, setStartPrice] = useState<number>(0)
   const [endPrice, setEndPrice] = useState<number>(10000)
 

@@ -1,8 +1,9 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import dynamic from 'next/dynamic'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
-import { teachersDummyData } from '@/data/teachersDummyData'
+import useCatalog from './useCatalog'
+import { Category } from '../CatalogSidebar/catalogSidebar.interface'
 const Pagination = dynamic(() => import('@/elements/Pagination'), {
   ssr: false,
 })
@@ -11,42 +12,63 @@ const CatalogSidebar = dynamic(() => import('../CatalogSidebar'), {
 })
 
 interface CatalogProps {
-  category:
-    | {
-        name: string
-        url: string
-        skills: string[]
-        subCategories:
-          | {
-              name: string
-              url: string
-            }[]
-      }
-    | undefined
+  category: Category | undefined
   subCategories: string[]
   subCategoriesNames: string[]
 }
-const Catalog = ({ category, subCategories }: CatalogProps) => {
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const totalPaginationPages = 30
+const Catalog = ({
+  category,
+  subCategories,
+  subCategoriesNames,
+}: CatalogProps) => {
+  const {
+    totalPaginationPages,
+    currentPage,
+    setCurrentPage,
+    teachersData,
+    skills,
+    setSkills,
+    country,
+    setCountry,
+    sortingBy,
+    setSortingBy,
+    startPrice,
+    setStartPrice,
+    endPrice,
+    setEndPrice,
+  } = useCatalog({ category, subCategoriesNames })
 
   return (
     <>
       <div className="flex flex-col px-4 sm:px-8  md:flex-row">
-        <CatalogSidebar category={category} subCategories={subCategories} />
+        <CatalogSidebar
+          category={category}
+          subCategories={subCategories}
+          skills={skills}
+          setSkills={setSkills}
+          country={country}
+          setCountry={setCountry}
+          startPrice={startPrice}
+          setStartPrice={setStartPrice}
+          endPrice={endPrice}
+          setEndPrice={setEndPrice}
+        />
+
         <div className="py-4 sm:p-4 md:w-4/5">
           <div className="flex justify-end ">
             <div className="relative inline-flex">
               <select
                 id="sortOrder"
+                onChange={(e) => setSortingBy(e.target.value)}
+                value={sortingBy}
                 className="w-full rounded-md border border-border_gray px-4 py-2 pr-8 text-sm text-text_gray focus:outline-none"
               >
-                <option value="asc">Low to high</option>
-                <option value="desc">High to low</option>
-                <option value="desc">Newest</option>
-                <option value="desc">Oldest</option>
-                <option value="desc">Popular</option>
+                <option value="popular">Popularity</option>
+                <option value="lowtohigh">Low To High</option>
+                <option value="hightolow">High To Low</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="rating">Rating</option>
               </select>
             </div>
           </div>
@@ -54,20 +76,21 @@ const Catalog = ({ category, subCategories }: CatalogProps) => {
             <hr className="border-border_gray" />
           </div>
           <div className="relative z-10 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {teachersDummyData.map((item) => (
+            {teachersData.map((item) => (
               <TeacherPublicPreview
-                key={item.id}
                 price={20}
+                key={item.uid}
                 totalReviews={12}
                 rating={4.5}
-                image="https://familydoctor.org/wp-content/uploads/2018/02/41808433_l.jpg"
-                lastName="Akhalbedashvili"
-                name="Luka"
-                title="I am a teacher, with 12 years of experience I am a teacher, with 12 years of experience"
-                tags={['Math', 'Physics', 'Chemistry']}
+                image={item.image}
+                lastName={item.personalDetails.lastName}
+                name={item.personalDetails.name}
+                title={item.description}
+                tags={[item.skills[0], item.skills[1]]}
               />
             ))}
           </div>
+
           <Pagination
             currentPage={currentPage}
             totalPages={totalPaginationPages}

@@ -31,9 +31,9 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
 
       <div className="p-3">
         <div className="mb-2 flex items-center">
-          {tags.map((tag) => (
+          {tags.map((tag, i) => (
             <p
-              key={tag}
+              key={`${tag}-${i}`}
               className="mr-1 rounded bg-info_notification_bg pt-1 pb-1 pl-3 pr-3 text-xs text-info_icon_blue"
             >
               {tag}

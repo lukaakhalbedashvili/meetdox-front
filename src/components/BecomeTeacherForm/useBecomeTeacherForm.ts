@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSendTeacherCreationQueries } from '@/reactQuery/becomeTeacherQueryies/useSendTeacherCreationQueries'
+import { useSendTeacherCreationQueries } from '@/reactQuery/becomeTeacherQueries/useSendTeacherCreationQueries'
 import {
   BecomeTeacherSectionsErrors,
   FormValues,

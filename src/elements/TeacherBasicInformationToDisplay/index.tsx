@@ -1,16 +1,18 @@
-import React, { FC } from 'react'
+import React, { Dispatch, FC, SetStateAction } from 'react'
 import { BsFillStarFill } from 'react-icons/bs'
+
 import Button from '../Button'
 
 interface TeacherBasicInformationToDisplayProps {
   location: string
   rating: number
   totalReviews: number
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const TeacherBasicInformationToDisplay: FC<
   TeacherBasicInformationToDisplayProps
-> = ({ location, rating, totalReviews }) => {
+> = ({ location, rating, totalReviews, setIsModalOpen }) => {
   return (
     <div>
       <h2 className="text-xl">Basic Information</h2>
@@ -41,6 +43,7 @@ const TeacherBasicInformationToDisplay: FC<
         <Button
           type="button"
           customTailwindClasses="bg-sky border-sky text-white"
+          onClickHandler={() => setIsModalOpen(true)}
         >
           <p className="flex h-10 w-36 items-center justify-center text-base">
             Schedule a meet

@@ -25,6 +25,7 @@
     "lodash.debounce": "^4.0.8",
     "next": "13.2.4",
     "react": "18.2.0",
+    "react-calendar": "^4.2.1",
     "react-dom": "18.2.0",
     "react-easy-crop": "^4.7.4",
     "react-icons": "^4.8.0",

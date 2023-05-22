@@ -20,6 +20,10 @@ export interface GetTeacherData {
   totalItems: number
 }
 
+export interface GetTeacherDataForLanding {
+  [key: string]: TeacherData[] | []
+}
+
 interface TeacherExperience {
   institutionName: string
   startYear: number

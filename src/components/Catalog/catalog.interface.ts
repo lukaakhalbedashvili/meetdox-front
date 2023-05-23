@@ -21,7 +21,12 @@ export interface GetTeacherData {
 }
 
 export interface GetTeacherDataForLanding {
-  [key: string]: TeacherData[] | []
+  categorizedTeachers:
+    | {
+        header: string
+        categoryItems: TeacherData[]
+      }[]
+    | []
 }
 
 interface TeacherExperience {

@@ -10,42 +10,39 @@ import { TeacherData } from '../Catalog/catalog.interface'
 const LandingTeachersContent = () => {
   const router = useRouter()
 
-  const { data, categoryList } = useLandingTeachersContent()
+  const { data } = useLandingTeachersContent()
 
   return (
     <div className="">
-      {categoryList.map((category) => (
-        <SwiperWrapper key={category} title={category}>
-          {data
-            ? categoryList.map((category: string) => {
-                const categoryTeachers = data[category] || []
-                return (
-                  <SwiperWrapper key={category} title={category}>
-                    {categoryTeachers.map((item: TeacherData) => (
-                      <SwiperSlide
-                        key={item.uid}
-                        style={{ width: 'fit-content' }}
-                      >
-                        <TeacherPublicPreview
-                          onClickHandler={() =>
-                            router.push(`teacher/${item.uid}`)
-                          }
-                          price={20}
-                          key={item.uid}
-                          totalReviews={12}
-                          rating={4.5}
-                          image={item.image}
-                          lastName={item.personalDetails.lastName}
-                          name={item.personalDetails.name}
-                          title={item.description}
-                          tags={[item.skills[0], item.skills[1]]}
-                        />
-                      </SwiperSlide>
-                    ))}
-                  </SwiperWrapper>
-                )
-              })
-            : null}
+      {data?.categorizedTeachers?.map((item) => (
+        <SwiperWrapper key={item.header} title={item.header}>
+          <SwiperWrapper title={item.header}>
+            {item.categoryItems.map((categoryTeachers: TeacherData) => (
+              <SwiperSlide
+                key={categoryTeachers.uid}
+                style={{ width: 'fit-content' }}
+              >
+                <TeacherPublicPreview
+                  onClickHandler={() =>
+                    router.push(`teacher/${categoryTeachers.uid}`)
+                  }
+                  price={20}
+                  key={categoryTeachers.uid}
+                  totalReviews={12}
+                  rating={4.5}
+                  image={categoryTeachers.image}
+                  lastName={categoryTeachers.personalDetails.lastName}
+                  name={categoryTeachers.personalDetails.name}
+                  title={categoryTeachers.description}
+                  tags={[
+                    categoryTeachers.skills[0],
+                    categoryTeachers.skills[1],
+                  ]}
+                />
+              </SwiperSlide>
+            ))}
+          </SwiperWrapper>
+          )
         </SwiperWrapper>
       ))}
     </div>

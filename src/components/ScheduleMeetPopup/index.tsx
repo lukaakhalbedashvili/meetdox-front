@@ -5,6 +5,7 @@ import { AiFillDollarCircle } from 'react-icons/ai'
 import './test.css'
 import Calendar from 'react-calendar'
 import Checkbox from '@/elements/Checkbox'
+import SchedulerTimeSlot from '@/elements/SchedulerTimeSlot'
 import 'react-calendar/dist/Calendar.css'
 import useScheduleMeetPopup from './useScheduleMeetPopup'
 
@@ -28,10 +29,15 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
     setMeetDuration,
     selectedMeetDuration,
     totalPrice,
-    meetDay,
-    setMeetDay,
+    meetDate,
+    setMeetDate,
     minData,
     maxDate,
+    meetTimeRange,
+    setMeetTimeRange,
+    meetMonth,
+    meetDay,
+    meetDayInWords,
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
@@ -102,13 +108,40 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
             tileClassName="border-none h-12 w-12 rounded-md text-icon_gray flex justify-center items-center"
             className="h-fit w-full rounded-md border-none"
             showNeighboringMonth={false}
-            value={meetDay}
-            onChange={(value) => value && setMeetDay(value as Date)}
+            value={meetDate}
+            onChange={(value) => value && setMeetDate(value as Date)}
             prev2Label={null}
             next2Label={null}
             minDate={minData}
             maxDate={maxDate}
           />
+
+          <h2 className="mb-3 mt-6 text-base">
+            {meetDayInWords},{meetDay} {meetMonth}
+          </h2>
+
+          <div className="mb-6 flex flex-wrap justify-between">
+            {meetTimeRange &&
+              meetTimeRange.map((item) => {
+                return (
+                  <SchedulerTimeSlot
+                    onClickHandler={(time) =>
+                      setMeetTimeRange(
+                        meetTimeRange.map((item) => {
+                          return {
+                            ...item,
+                            isChosen: item.value === time,
+                          }
+                        })
+                      )
+                    }
+                    key={item.value}
+                    time={item.value}
+                    isChosen={item.isChosen}
+                  />
+                )
+              })}
+          </div>
         </div>
       </div>
     </div>

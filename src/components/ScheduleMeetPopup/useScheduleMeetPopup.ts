@@ -1,29 +1,56 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { get24Hours } from '@/utils/services/time'
+
+interface Range {
+  value: number
+  isChosen: boolean
+}
 
 const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
-  // const monthNames = [
-  //   'January',
-  //   'February',
-  //   'March',
-  //   'April',
-  //   'May',
-  //   'June',
-  //   'July',
-  //   'August',
-  //   'September',
-  //   'October',
-  //   'November',
-  //   'December',
-  // ]
+  const [meetDate, setMeetDate] = useState(new Date())
 
-  const [meetDay, setMeetDay] = useState(new Date())
+  const [meetTimeRange, setMeetTimeRange] = useState<Range[]>()
+
+  useEffect(() => {
+    setMeetTimeRange(get24Hours(meetDate))
+  }, [meetDate])
+
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+  const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday ',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ]
 
   const maxDate = new Date()
+
   maxDate.setMonth(maxDate.getMonth() + 1)
 
   const minData = new Date()
 
-  // const meetMonth = monthNames[meetDay.getMonth()]
+  const meetMonth = monthNames[meetDate.getMonth()]
+
+  const meetDay = meetDate.getDate()
+
+  const meetDayInWords = days[meetDate.getDay()]
 
   const meetDurationsObject = [
     {
@@ -55,10 +82,15 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     setMeetDuration,
     selectedMeetDuration,
     totalPrice,
-    meetDay,
-    setMeetDay,
+    meetDate,
+    setMeetDate,
     minData,
     maxDate,
+    meetTimeRange,
+    setMeetTimeRange,
+    meetMonth,
+    meetDay,
+    meetDayInWords,
   }
 }
 

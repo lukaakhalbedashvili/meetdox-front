@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import Link from 'next/link'
 import navigationBarItems from '@/data/navigationBarItems'
@@ -28,9 +28,18 @@ const SideBar = ({
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(
     null
   )
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+
+    window.scrollTo(0, 0)
+
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [])
 
   return (
-    <div className="md:hidden	">
+    <div className="h-screen overflow-scroll md:hidden	">
       <div className="min-h-screen space-y-1 pt-2 pb-3 ">
         <div>
           {loggedInUser && (

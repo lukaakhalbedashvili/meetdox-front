@@ -6,7 +6,7 @@ interface DropDownInputProps {
   name: string
   onBlurHandler?: (e: React.FocusEvent<HTMLSelectElement>) => void
   errorMessage?: string | undefined | false
-  value: string
+  value: string | number
   options: (string | number)[]
   placeHolderValue?: string
 }

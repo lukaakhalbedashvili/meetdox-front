@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { get24Hours } from '@/utils/services/time'
+import { timeZones } from '@/data/timeZones'
+import { days, monthNames } from '@/utils/consts/consts'
 
 interface Range {
   value: number
@@ -7,41 +9,24 @@ interface Range {
 }
 
 const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
-  const [selectedTimeZone, setSelectedTimeZone] = useState(
-    '(UTC+04:00) Tbilisi'
-  )
   const [meetDate, setMeetDate] = useState(new Date())
+
+  const [selectedTimeOffset, SetSelectedTimeOffset] =
+    useState('(UTC-01:00) Azores')
+
+  useEffect(() => {
+    const offset = meetDate.getTimezoneOffset() / -60 || '(UTC-01:00) Azores'
+
+    SetSelectedTimeOffset(
+      timeZones.find((item) => item.offset === offset)?.text!
+    )
+  }, [meetDate])
 
   const [meetTimeRange, setMeetTimeRange] = useState<Range[]>()
 
   useEffect(() => {
     setMeetTimeRange(get24Hours(meetDate))
   }, [meetDate])
-
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ]
-
-  const days = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday ',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ]
 
   const maxDate = new Date()
 
@@ -94,8 +79,8 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     meetMonth,
     meetDay,
     meetDayInWords,
-    selectedTimeZone,
-    setSelectedTimeZone,
+    selectedTimeOffset,
+    SetSelectedTimeOffset,
   }
 }
 

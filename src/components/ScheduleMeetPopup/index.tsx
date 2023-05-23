@@ -44,8 +44,8 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
     meetMonth,
     meetDay,
     meetDayInWords,
-    selectedTimeZone,
-    setSelectedTimeZone,
+    SetSelectedTimeOffset,
+    selectedTimeOffset,
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
@@ -159,10 +159,16 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
 
           <div className="h-10">
             <DropDownInput
-              value={selectedTimeZone}
+              value={selectedTimeOffset}
               name="time zones"
               options={timeZones.map((item) => item.text)}
-              onChange={(value) => setSelectedTimeZone(value.target.value)}
+              onChange={(value) => {
+                const textToSet = timeZones.find(
+                  (item) => item.text === value.target.value
+                )?.text
+
+                textToSet && SetSelectedTimeOffset(textToSet)
+              }}
             />
           </div>
         </div>

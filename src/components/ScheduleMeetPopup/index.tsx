@@ -30,6 +30,8 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
     totalPrice,
     meetDay,
     setMeetDay,
+    minData,
+    maxDate,
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
@@ -97,13 +99,15 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
           <h2 className="mb-4 mt-5 text-lg">Date & Time selection</h2>
 
           <Calendar
-            // tileClassName="border-none h-12 w-5 rounded-md text-icon_gray flex justify-center items-center p-0"
-            tileClassName="border-none h-12 w-5 rounded-md text-icon_gray flex justify-center items-center p-0"
+            tileClassName="border-none h-12 w-12 rounded-md text-icon_gray flex justify-center items-center"
             className="h-fit w-full rounded-md border-none"
-            // showNavigation={false}
             showNeighboringMonth={false}
             value={meetDay}
             onChange={(value) => value && setMeetDay(value as Date)}
+            prev2Label={null}
+            next2Label={null}
+            minDate={minData}
+            maxDate={maxDate}
           />
         </div>
       </div>

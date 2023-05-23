@@ -1,7 +1,29 @@
 import { useState } from 'react'
 
 const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
+  // const monthNames = [
+  //   'January',
+  //   'February',
+  //   'March',
+  //   'April',
+  //   'May',
+  //   'June',
+  //   'July',
+  //   'August',
+  //   'September',
+  //   'October',
+  //   'November',
+  //   'December',
+  // ]
+
   const [meetDay, setMeetDay] = useState(new Date())
+
+  const maxDate = new Date()
+  maxDate.setMonth(maxDate.getMonth() + 1)
+
+  const minData = new Date()
+
+  // const meetMonth = monthNames[meetDay.getMonth()]
 
   const meetDurationsObject = [
     {
@@ -35,6 +57,8 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     totalPrice,
     meetDay,
     setMeetDay,
+    minData,
+    maxDate,
   }
 }
 

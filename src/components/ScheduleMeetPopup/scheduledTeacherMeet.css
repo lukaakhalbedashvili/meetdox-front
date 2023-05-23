@@ -28,3 +28,7 @@
 .react-calendar__navigation__arrow:disabled {
   opacity: 0.1;
 }
+
+.react-calendar__navigation__label {
+  font-size: small !important;
+}

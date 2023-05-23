@@ -20,6 +20,15 @@ export interface GetTeacherData {
   totalItems: number
 }
 
+export interface GetTeacherDataForLanding {
+  categorizedTeachers:
+    | {
+        header: string
+        categoryItems: TeacherData[]
+      }[]
+    | []
+}
+
 interface TeacherExperience {
   institutionName: string
   startYear: number

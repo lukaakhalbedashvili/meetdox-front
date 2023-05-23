@@ -18,8 +18,8 @@ const LandingCategorySwiper: FC<LandingCategorySwiperProps> = ({
   const [swiper, setSwiper] = useState<SwiperCore>()
 
   return (
-    <div className="px-2 sm:px-12">
-      <h2 className="text-2xl">{title}</h2>
+    <div className="px-2 py-6 sm:px-12">
+      <h2 className="ml-2 text-xl">{title}</h2>
 
       <div className="flex items-center">
         <div

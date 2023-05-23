@@ -42,7 +42,6 @@ const LandingTeachersContent = () => {
               </SwiperSlide>
             ))}
           </SwiperWrapper>
-          )
         </SwiperWrapper>
       ))}
     </div>

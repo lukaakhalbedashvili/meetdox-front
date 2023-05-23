@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React, { FC } from 'react'
 import { AiFillClockCircle } from 'react-icons/ai'
 import { AiFillDollarCircle } from 'react-icons/ai'
+import './test.css'
 import Calendar from 'react-calendar'
 import Checkbox from '@/elements/Checkbox'
 import 'react-calendar/dist/Calendar.css'
@@ -22,8 +23,14 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
   lastName,
   pricePerHour,
 }) => {
-  const { meetDurations, setMeetDuration, selectedMeetDuration, totalPrice } =
-    useScheduleMeetPopup({ pricePerHour })
+  const {
+    meetDurations,
+    setMeetDuration,
+    selectedMeetDuration,
+    totalPrice,
+    meetDay,
+    setMeetDay,
+  } = useScheduleMeetPopup({ pricePerHour })
 
   return (
     <div className="h-full overflow-scroll bg-white pt-4">
@@ -87,17 +94,16 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
         })}
 
         <div>
-          <h2 className="mb-3 mt-5 text-lg">Date & Time selection</h2>
+          <h2 className="mb-4 mt-5 text-lg">Date & Time selection</h2>
 
           <Calendar
             // tileClassName="border-none h-12 w-5 rounded-md text-icon_gray flex justify-center items-center p-0"
-            tileClassName={({ activeStartDate, date, view }) =>
-              'border-none h-12 w-5 rounded-md text-icon_gray flex justify-center items-center p-0'
-            }
-            className="h-fit w-fit rounded-md border-none"
-            showNavigation={false}
+            tileClassName="border-none h-12 w-5 rounded-md text-icon_gray flex justify-center items-center p-0"
+            className="h-fit w-full rounded-md border-none"
+            // showNavigation={false}
             showNeighboringMonth={false}
-            defaultActiveStartDate={new Date()}
+            value={meetDay}
+            onChange={(value) => value && setMeetDay(value as Date)}
           />
         </div>
       </div>

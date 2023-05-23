@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
+  const [meetDay, setMeetDay] = useState(new Date())
+
   const meetDurationsObject = [
     {
       value: 15,
@@ -26,7 +28,14 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
 
   const totalPrice = pricePerMinute * selectedMeetDuration!
 
-  return { meetDurations, setMeetDuration, selectedMeetDuration, totalPrice }
+  return {
+    meetDurations,
+    setMeetDuration,
+    selectedMeetDuration,
+    totalPrice,
+    meetDay,
+    setMeetDay,
+  }
 }
 
 export default useScheduleMeetPopup

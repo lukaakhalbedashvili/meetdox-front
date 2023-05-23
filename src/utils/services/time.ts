@@ -4,6 +4,7 @@ const getTimeAgo = (timeMs: number) => {
   const minute = 60 * 1000
   const hour = 60 * minute
   const day = 24 * hour
+
   if (diff < minute) {
     return 'Just now'
   } else if (diff < hour) {
@@ -18,4 +19,27 @@ const getTimeAgo = (timeMs: number) => {
   }
 }
 
-export { getTimeAgo }
+const get24Hours = (daySelected: Date) => {
+  const TimeRange = []
+
+  const month = daySelected.getMonth() + 1
+  const day = daySelected.getDate()
+  const selectedTime = [month, day].join('/')
+
+  const now = new Date()
+
+  const monthNow = now.getMonth() + 1
+  const dayNow = now.getDate()
+  const nowTime = [monthNow, dayNow].join('/')
+
+  const isITToday = selectedTime === nowTime
+
+  const startTime = isITToday ? now.getHours() + 2 : 1
+
+  for (let i = startTime; i <= 24; i++) {
+    TimeRange.push({ value: i, isChosen: false })
+  }
+  return TimeRange
+}
+
+export { getTimeAgo, get24Hours }

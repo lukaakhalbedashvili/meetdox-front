@@ -2,9 +2,15 @@ import Image from 'next/image'
 import React, { FC } from 'react'
 import { AiFillClockCircle } from 'react-icons/ai'
 import { AiFillDollarCircle } from 'react-icons/ai'
+import './test.css'
 import Calendar from 'react-calendar'
+import { IoIosClose } from 'react-icons/io'
 import Checkbox from '@/elements/Checkbox'
+import SchedulerTimeSlot from '@/elements/SchedulerTimeSlot'
 import 'react-calendar/dist/Calendar.css'
+import Button from '@/elements/Button'
+import DropDownInput from '@/elements/DropDownInput'
+import { timeZones } from '@/data/timeZones'
 import useScheduleMeetPopup from './useScheduleMeetPopup'
 
 interface ScheduleMeetPopupProps {
@@ -13,6 +19,7 @@ interface ScheduleMeetPopupProps {
   name: string
   lastName: string
   pricePerHour: number
+  setIsModalOpen: (value: boolean) => void
 }
 
 const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
@@ -21,13 +28,34 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
   name,
   lastName,
   pricePerHour,
+  setIsModalOpen,
 }) => {
-  const { meetDurations, setMeetDuration, selectedMeetDuration, totalPrice } =
-    useScheduleMeetPopup({ pricePerHour })
+  const {
+    meetDurations,
+    setMeetDuration,
+    selectedMeetDuration,
+    totalPrice,
+    meetDate,
+    setMeetDate,
+    minData,
+    maxDate,
+    meetTimeRange,
+    setMeetTimeRange,
+    meetMonth,
+    meetDay,
+    meetDayInWords,
+    SetSelectedTimeOffset,
+    selectedTimeOffset,
+  } = useScheduleMeetPopup({ pricePerHour })
 
   return (
-    <div className="h-full overflow-scroll bg-white pt-4">
-      <div className="mx-4 border-b-[1px] border-border_gray pb-4">
+    <div className=" h-full overflow-scroll bg-white pt-4">
+      <div className="relative mx-4 border-b-[1px] border-border_gray pb-4">
+        <IoIosClose
+          className="absolute -top-2 -right-2 h-10 w-10 cursor-pointer fill-black"
+          onClick={() => setIsModalOpen(false)}
+        />
+
         <div className="mt-4 flex items-center">
           <div className="relative flex h-16 w-16 rounded-full">
             <Image
@@ -59,7 +87,6 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
           </div>
         </div>
       </div>
-
       <div className="mx-4 mt-4 flex flex-col">
         <h2 className="mb-3 text-lg">Duration</h2>
 
@@ -87,19 +114,77 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
         })}
 
         <div>
-          <h2 className="mb-3 mt-5 text-lg">Date & Time selection</h2>
+          <h2 className="mb-4 mt-5 text-lg">Date & Time selection</h2>
 
           <Calendar
-            // tileClassName="border-none h-12 w-5 rounded-md text-icon_gray flex justify-center items-center p-0"
-            tileClassName={({ activeStartDate, date, view }) =>
-              'border-none h-12 w-5 rounded-md text-icon_gray flex justify-center items-center p-0'
-            }
-            className="h-fit w-fit rounded-md border-none"
-            showNavigation={false}
+            tileClassName="border-none h-12 w-12 rounded-md text-icon_gray flex justify-center items-center"
+            className="h-fit w-full rounded-md border-none"
             showNeighboringMonth={false}
-            defaultActiveStartDate={new Date()}
+            value={meetDate}
+            onChange={(value) => value && setMeetDate(value as Date)}
+            prev2Label={null}
+            next2Label={null}
+            minDate={minData}
+            maxDate={maxDate}
           />
+
+          <h2 className="mb-3 mt-6 text-base">
+            {meetDayInWords},{meetDay} {meetMonth}
+          </h2>
+
+          <div className="mb-6 flex flex-wrap justify-between">
+            {meetTimeRange &&
+              meetTimeRange.map((item) => {
+                return (
+                  <SchedulerTimeSlot
+                    onClickHandler={(time) =>
+                      setMeetTimeRange(
+                        meetTimeRange.map((item) => {
+                          return {
+                            ...item,
+                            isChosen: item.value === time,
+                          }
+                        })
+                      )
+                    }
+                    key={item.value}
+                    time={item.value}
+                    isChosen={item.isChosen}
+                  />
+                )
+              })}
+          </div>
+
+          <h2 className="mb-3 mt-6 text-base">Time Zone</h2>
+
+          <div className="h-10">
+            <DropDownInput
+              value={selectedTimeOffset}
+              name="time zones"
+              options={timeZones.map((item) => item.text)}
+              onChange={(value) => {
+                const textToSet = timeZones.find(
+                  (item) => item.text === value.target.value
+                )?.text
+
+                textToSet && SetSelectedTimeOffset(textToSet)
+              }}
+            />
+          </div>
         </div>
+      </div>
+      <div className="my-4 flex h-12 justify-end pr-4 sm:px-12">
+        <Button
+          type="button"
+          customTailwindClasses="bg-sky border-sky text-white"
+          onClickHandler={(e) => {
+            e.preventDefault()
+          }}
+        >
+          <p className="flex h-[36px] w-32 items-center justify-center text-sm">
+            Save
+          </p>
+        </Button>
       </div>
     </div>
   )

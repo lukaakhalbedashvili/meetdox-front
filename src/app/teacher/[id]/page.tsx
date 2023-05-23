@@ -118,6 +118,7 @@ const Teacher = () => {
           }}
         >
           <ScheduleMeetPopup
+            setIsModalOpen={setIsModalOpen}
             pricePerHour={salary}
             domain={domain}
             image={image}

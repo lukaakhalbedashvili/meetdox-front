@@ -1,0 +1,30 @@
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+  border: none !important;
+}
+
+.react-calendar__tile.react-calendar__tile--active {
+  background-color: #427ef6 !important;
+  color: white;
+}
+
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;
+}
+
+.react-calendar__month-view__days .react-calendar__tile {
+  margin: 3px;
+}
+
+/* .custom-calendar .disabled {
+  background-color: red !important;
+  /* Add any additional styles for disabled tiles here */
+
+.react-calendar__tile:disabled abbr {
+  opacity: 0.1;
+}
+
+.react-calendar__navigation__arrow:disabled {
+  opacity: 0.1;
+}

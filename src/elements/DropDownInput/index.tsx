@@ -4,9 +4,9 @@ interface DropDownInputProps {
   type?: HTMLInputTypeAttribute
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
   name: string
-  onBlurHandler: (e: React.FocusEvent<HTMLSelectElement>) => void
-  errorMessage: string | undefined | false
-  value: string
+  onBlurHandler?: (e: React.FocusEvent<HTMLSelectElement>) => void
+  errorMessage?: string | undefined | false
+  value: string | number
   options: (string | number)[]
   placeHolderValue?: string
 }
@@ -47,6 +47,7 @@ const DropDownInput: FC<DropDownInputProps> = ({
           )
         })}
       </select>
+
       <div className="absolute -bottom-2 right-2 w-fit bg-white px-1 text-sm text-error">
         {errorMessage}
       </div>

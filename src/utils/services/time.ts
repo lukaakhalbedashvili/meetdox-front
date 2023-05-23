@@ -4,6 +4,7 @@ const getTimeAgo = (timeMs: number) => {
   const minute = 60 * 1000
   const hour = 60 * minute
   const day = 24 * hour
+
   if (diff < minute) {
     return 'Just now'
   } else if (diff < hour) {

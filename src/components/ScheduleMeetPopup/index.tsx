@@ -4,6 +4,7 @@ import { AiFillClockCircle } from 'react-icons/ai'
 import { AiFillDollarCircle } from 'react-icons/ai'
 import './test.css'
 import Calendar from 'react-calendar'
+import { IoIosClose } from 'react-icons/io'
 import Checkbox from '@/elements/Checkbox'
 import SchedulerTimeSlot from '@/elements/SchedulerTimeSlot'
 import 'react-calendar/dist/Calendar.css'
@@ -18,6 +19,7 @@ interface ScheduleMeetPopupProps {
   name: string
   lastName: string
   pricePerHour: number
+  setIsModalOpen: (value: boolean) => void
 }
 
 const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
@@ -26,6 +28,7 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
   name,
   lastName,
   pricePerHour,
+  setIsModalOpen,
 }) => {
   const {
     meetDurations,
@@ -46,8 +49,13 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
-    <div className="h-full overflow-scroll bg-white pt-4">
-      <div className="mx-4 border-b-[1px] border-border_gray pb-4">
+    <div className=" h-full overflow-scroll bg-white pt-4">
+      <div className="relative mx-4 border-b-[1px] border-border_gray pb-4">
+        <IoIosClose
+          className="absolute -top-2 -right-2 h-10 w-10 cursor-pointer fill-black"
+          onClick={() => setIsModalOpen(false)}
+        />
+
         <div className="mt-4 flex items-center">
           <div className="relative flex h-16 w-16 rounded-full">
             <Image
@@ -79,7 +87,6 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
           </div>
         </div>
       </div>
-
       <div className="mx-4 mt-4 flex flex-col">
         <h2 className="mb-3 text-lg">Duration</h2>
 
@@ -160,7 +167,6 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
           </div>
         </div>
       </div>
-
       <div className="my-4 flex h-12 justify-end pr-4 sm:px-12">
         <Button
           type="button"

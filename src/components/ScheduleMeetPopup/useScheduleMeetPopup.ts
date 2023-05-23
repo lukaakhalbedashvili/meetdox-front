@@ -7,6 +7,9 @@ interface Range {
 }
 
 const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
+  const [selectedTimeZone, setSelectedTimeZone] = useState(
+    '(UTC+04:00) Tbilisi'
+  )
   const [meetDate, setMeetDate] = useState(new Date())
 
   const [meetTimeRange, setMeetTimeRange] = useState<Range[]>()
@@ -91,6 +94,8 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     meetMonth,
     meetDay,
     meetDayInWords,
+    selectedTimeZone,
+    setSelectedTimeZone,
   }
 }
 

@@ -7,6 +7,9 @@ import Calendar from 'react-calendar'
 import Checkbox from '@/elements/Checkbox'
 import SchedulerTimeSlot from '@/elements/SchedulerTimeSlot'
 import 'react-calendar/dist/Calendar.css'
+import Button from '@/elements/Button'
+import DropDownInput from '@/elements/DropDownInput'
+import { timeZones } from '@/data/timeZones'
 import useScheduleMeetPopup from './useScheduleMeetPopup'
 
 interface ScheduleMeetPopupProps {
@@ -38,6 +41,8 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
     meetMonth,
     meetDay,
     meetDayInWords,
+    selectedTimeZone,
+    setSelectedTimeZone,
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
@@ -142,7 +147,32 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
                 )
               })}
           </div>
+
+          <h2 className="mb-3 mt-6 text-base">Time Zone</h2>
+
+          <div className="h-10">
+            <DropDownInput
+              value={selectedTimeZone}
+              name="time zones"
+              options={timeZones.map((item) => item.text)}
+              onChange={(value) => setSelectedTimeZone(value.target.value)}
+            />
+          </div>
         </div>
+      </div>
+
+      <div className="my-4 flex h-12 justify-end pr-4 sm:px-12">
+        <Button
+          type="button"
+          customTailwindClasses="bg-sky border-sky text-white"
+          onClickHandler={(e) => {
+            e.preventDefault()
+          }}
+        >
+          <p className="flex h-[36px] w-32 items-center justify-center text-sm">
+            Save
+          </p>
+        </Button>
       </div>
     </div>
   )

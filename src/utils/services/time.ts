@@ -33,7 +33,7 @@ const get24Hours = (daySelected: Date) => {
 
   const isITToday = selectedTime === nowTime
 
-  const startTime = isITToday ? now.getHours() + 1 : 1
+  const startTime = isITToday ? now.getHours() + 2 : 1
 
   for (let i = startTime; i <= 24; i++) {
     TimeRange.push({ value: i, isChosen: false })

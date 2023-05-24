@@ -3,7 +3,7 @@ import { get24Hours } from '@/utils/services/time'
 import { timeZones } from '@/data/timeZones'
 import { days, monthNames } from '@/utils/consts/consts'
 
-interface Range {
+export interface TimeRange {
   value: number
   isChosen: boolean
 }
@@ -11,18 +11,18 @@ interface Range {
 const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
   const [meetDate, setMeetDate] = useState(new Date())
 
-  const [selectedTimeOffset, SetSelectedTimeOffset] =
+  const [selectedTimeOffset, setSelectedTimeOffset] =
     useState('(UTC-01:00) Azores')
 
   useEffect(() => {
     const offset = meetDate.getTimezoneOffset() / -60 || '(UTC-01:00) Azores'
 
-    SetSelectedTimeOffset(
+    setSelectedTimeOffset(
       timeZones.find((item) => item.offset === offset)?.text!
     )
   }, [meetDate])
 
-  const [meetTimeRange, setMeetTimeRange] = useState<Range[]>()
+  const [meetTimeRange, setMeetTimeRange] = useState<TimeRange[]>()
 
   useEffect(() => {
     setMeetTimeRange(get24Hours(meetDate))
@@ -80,7 +80,7 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     meetDay,
     meetDayInWords,
     selectedTimeOffset,
-    SetSelectedTimeOffset,
+    setSelectedTimeOffset,
   }
 }
 

@@ -16,6 +16,7 @@ const useBecameTeacherForm = () => {
       domain: true,
       contact: true,
       about: true,
+      compensationForm: true,
     })
 
   const [values, setValues] = useState<FormValues>({
@@ -32,17 +33,19 @@ const useBecameTeacherForm = () => {
     contact: { country: '', phone: '' },
     teacherExperience: [],
     about: { description: '' },
+    compensationForm: { compensation: '' },
   })
 
   const { mutate } = useSendTeacherCreationQueries()
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    const { personalDetails, contact, about, domain } = values
+    const { personalDetails, contact, about, domain, compensationForm } = values
     const { birthMonth, birthYear, lastName, name, image } = personalDetails
     const { country, phone } = contact
     const { description } = about
     const { category, subCategories } = domain
+    const { compensation } = compensationForm
 
     if (
       birthMonth &&
@@ -54,6 +57,7 @@ const useBecameTeacherForm = () => {
       phone &&
       description &&
       category &&
+      compensation &&
       subCategories.length > 0
     ) {
       mutate({ data: values })

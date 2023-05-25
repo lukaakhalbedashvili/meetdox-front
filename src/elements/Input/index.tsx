@@ -41,6 +41,7 @@ const Input: FC<InputProps> = ({
         onChange={onChange}
         onFocus={onFocus}
       />
+
       <div className="absolute -bottom-2 right-2 w-fit bg-white px-1 text-sm text-error">
         {errorMessage}
       </div>

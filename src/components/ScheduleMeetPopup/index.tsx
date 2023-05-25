@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import './scheduledTeacherMeet.css'
 import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css'
 import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
 import useScheduleMeetPopup from './useScheduleMeetPopup'

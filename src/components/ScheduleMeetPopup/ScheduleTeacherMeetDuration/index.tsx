@@ -2,11 +2,12 @@ import React, { Dispatch, FC, SetStateAction } from 'react'
 import Checkbox from '@/elements/Checkbox'
 
 interface ScheduleTeacherMeetDurationProps {
-  meetDurations: { value: number; isChecked: boolean }[]
+  meetDurations: { value: number; isChecked: boolean; text: string }[]
   setMeetDuration: Dispatch<
     SetStateAction<
       {
         value: number
+        text: string
         isChecked: boolean
       }[]
     >
@@ -24,7 +25,7 @@ const ScheduleTeacherMeetDuration: FC<ScheduleTeacherMeetDurationProps> = ({
       <div className="lg:flex lg:items-center">
         {meetDurations.map((item) => {
           return (
-            <div key={item.value} className="mr-4 flex items-center">
+            <div key={item.value} className="mr-4 flex items-center lg:mr-8">
               <Checkbox
                 isChecked={item.isChecked}
                 id={item.value}
@@ -40,7 +41,7 @@ const ScheduleTeacherMeetDuration: FC<ScheduleTeacherMeetDurationProps> = ({
                 }
               />
 
-              <p className="ml-3 lg:text-sm">{item.value} mins</p>
+              <p className="ml-3 lg:text-sm">{item.text}</p>
             </div>
           )
         })}

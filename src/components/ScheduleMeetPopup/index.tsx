@@ -3,6 +3,7 @@ import './scheduledTeacherMeet.css'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { IoIosClose } from 'react-icons/io'
+import Button from '@/elements/Button'
 import useScheduleMeetPopup from './useScheduleMeetPopup'
 import ScheduleTeacherPersonalInfo from './ScheduleTeacherPersonalInfo'
 import ScheduleTeacherMeetDuration from './ScheduleTeacherMeetDuration'
@@ -92,9 +93,9 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
         </div>
       </div>
 
-      <div className="mx-4 lg:w-fit">
+      <div className="mx-4 lg:relative lg:w-fit lg:overflow-hidden">
         <h2 className="mb-3 mt-6 text-base lg:mt-0 lg:text-base">
-          {meetDayInWords},{meetDay} {meetMonth}
+          {meetDayInWords}, {meetDay} {meetMonth}
         </h2>
 
         {meetTimeRange && (
@@ -103,6 +104,19 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
             setMeetTimeRange={setMeetTimeRange}
           />
         )}
+        <div className="my-4 flex h-12 justify-end sm:px-12 lg:absolute lg:bottom-2 lg:right-0 lg:px-0">
+          <Button
+            type="button"
+            customTailwindClasses="bg-sky border-sky text-white"
+            onClickHandler={(e) => {
+              e.preventDefault()
+            }}
+          >
+            <p className="flex h-10 w-36 items-center justify-center text-sm">
+              Save
+            </p>
+          </Button>
+        </div>
       </div>
     </div>
   )

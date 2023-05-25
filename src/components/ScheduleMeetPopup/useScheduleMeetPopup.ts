@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { get24Hours } from '@/utils/services/time'
 import { timeZones } from '@/data/timeZones'
 import { days, monthNames } from '@/utils/consts/consts'
+import { meetDurationsObject } from '@/data/teachersDummyData'
 
 export interface TimeRange {
   value: number
@@ -39,21 +40,6 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
   const meetDay = meetDate.getDate()
 
   const meetDayInWords = days[meetDate.getDay()]
-
-  const meetDurationsObject = [
-    {
-      value: 15,
-      isChecked: false,
-    },
-    {
-      value: 30,
-      isChecked: true,
-    },
-    {
-      value: 45,
-      isChecked: false,
-    },
-  ]
 
   const [meetDurations, setMeetDuration] = useState(meetDurationsObject)
 

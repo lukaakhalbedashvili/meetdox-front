@@ -45,7 +45,7 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
-    <div className="h-full overflow-scroll bg-white pt-4 lg:relative lg:mt-6 lg:flex lg:h-[700px] lg:w-[1200px] lg:overflow-hidden lg:rounded-md lg:p-10">
+    <div className="h-full overflow-scroll bg-white pt-4 lg:relative lg:flex lg:h-[700px] lg:w-[1200px] lg:overflow-hidden lg:rounded-md lg:p-10">
       <IoIosClose
         className="absolute top-2 right-2 h-10 w-10 cursor-pointer fill-black lg:top-0 lg:right-0 lg:h-8 lg:w-8"
         onClick={() => setIsModalOpen(false)}

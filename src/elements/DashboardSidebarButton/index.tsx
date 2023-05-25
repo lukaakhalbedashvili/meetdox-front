@@ -14,12 +14,13 @@ const DashboardSidebarButton: React.FC<DashboardSidebarButtonProps> = ({
   isSelected,
   onClick,
 }) => {
-  const buttonClasses = `flex items-center px-4 py-3 w-56 text-icon_gray rounded-xl ${
-    isSelected ? 'bg-sky text-black text-white' : 'text-gray'
-  }`
-
   return (
-    <button className={buttonClasses} onClick={onClick}>
+    <button
+      className={`flex w-56 items-center rounded-xl px-4 py-3 text-icon_gray ${
+        isSelected ? 'bg-sky text-white' : 'text-gray'
+      }`}
+      onClick={onClick}
+    >
       <Icon
         className="mr-2 h-5 w-5"
         color={`${isSelected ? 'white' : '#5F6D7E'}`}

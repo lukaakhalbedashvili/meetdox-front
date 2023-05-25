@@ -1,15 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import dashboardItems from '@/data/dashboardItems'
 import DashboardSidebarButton from '@/elements/DashboardSidebarButton'
+import useDashboardSidebar from './useDashboardSidebar'
 
 const DashboardSidebar: React.FC = () => {
-  const [selectedButton, setSelectedButton] = useState<string>(
-    dashboardItems[0].title
-  )
-
-  const handleDashboardItemChange = (index: string) => {
-    setSelectedButton(index)
-  }
+  const { selectedButton, handleDashboardItemChange } = useDashboardSidebar()
 
   return (
     <div className="bg-gray-200 flex h-screen w-72 flex-col justify-between p-4">

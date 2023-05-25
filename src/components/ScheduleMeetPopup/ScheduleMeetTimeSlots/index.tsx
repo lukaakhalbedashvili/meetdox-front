@@ -12,7 +12,7 @@ const ScheduleMeetTimeSlots: FC<ScheduleMeetTimeSlotsProps> = ({
   setMeetTimeRange,
 }) => {
   return (
-    <div className="mb-6 flex flex-wrap justify-between lg:grid  lg:h-full lg:grid-cols-2 lg:flex-nowrap lg:gap-2 lg:overflow-scroll">
+    <div className="mb-6 flex flex-wrap justify-between lg:grid lg:max-h-[500px]  lg:grid-cols-2 lg:flex-nowrap lg:gap-2 lg:overflow-scroll">
       {meetTimeRange &&
         meetTimeRange.map((item) => {
           return (

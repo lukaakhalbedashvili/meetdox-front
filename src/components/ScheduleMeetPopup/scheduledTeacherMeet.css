@@ -17,9 +17,9 @@
   margin: 3px;
 }
 
-/* .custom-calendar .disabled {
-  background-color: red !important;
-  /* Add any additional styles for disabled tiles here */
+.react-calendar__tile--now {
+  background: white !important;
+}
 
 .react-calendar__tile:disabled abbr {
   opacity: 0.1;
@@ -27,4 +27,8 @@
 
 .react-calendar__navigation__arrow:disabled {
   opacity: 0.1;
+}
+
+.react-calendar__navigation__label {
+  font-size: small !important;
 }

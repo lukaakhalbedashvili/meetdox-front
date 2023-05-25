@@ -193,3 +193,31 @@ export const months = [
   'November',
   'December',
 ]
+
+export const meetDurationsObject = [
+  {
+    value: 15,
+    text: '15m',
+    isChecked: false,
+  },
+  {
+    value: 30,
+    text: '30m',
+    isChecked: true,
+  },
+  {
+    value: 60,
+    text: '1h',
+    isChecked: false,
+  },
+  {
+    value: 90,
+    text: '1h 30m',
+    isChecked: false,
+  },
+  {
+    value: 120,
+    text: '2h',
+    isChecked: false,
+  },
+]

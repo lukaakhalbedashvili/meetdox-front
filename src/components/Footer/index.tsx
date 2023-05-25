@@ -107,7 +107,7 @@ const Footer = () => {
         <div className="mt-10 border-t border-footer_text pt-8 md:flex md:items-center md:justify-between">
           <div>
             <p className="text-footer_text">
-              Fuck all the rights &copy; 2023 My Website
+              All rights reserved &copy; 2023 My Website
             </p>
           </div>
           <div className="mt-4 md:mt-0">

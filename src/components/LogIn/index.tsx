@@ -24,7 +24,7 @@ const LogIn: FC<LogInProps> = ({
   const { LogInFormValidation } = useLogIn({ setIsLogInPopupOpen })
 
   return (
-    <div className="h-screen w-screen rounded-md bg-white sm:h-[550px] sm:w-[400px] ">
+    <div className=" h-[550px] w-[400px] rounded-md bg-white ">
       <div className="flex items-center justify-end">
         <FaTimes
           className="mr-3 mt-3 h-6 w-6 cursor-pointer"

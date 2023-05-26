@@ -16,7 +16,7 @@ const DashboardSidebarButton: React.FC<DashboardSidebarButtonProps> = ({
 }) => {
   return (
     <button
-      className={`flex w-full items-center rounded-xl px-4 py-3 text-icon_gray sm:w-56 ${
+      className={`flex w-full items-center rounded-md px-4 py-3 text-icon_gray sm:w-56 ${
         isSelected ? 'bg-sky text-white' : 'text-gray'
       }`}
       onClick={onClick}

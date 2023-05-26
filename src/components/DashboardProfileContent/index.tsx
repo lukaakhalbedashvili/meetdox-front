@@ -3,7 +3,7 @@ import React from 'react'
 const DashboardProfileContent = () => {
   return (
     <div className="">
-      <div className="mb-8 rounded-xl bg-background_gray p-8">
+      <div className="mb-8 rounded-md bg-background_gray p-8">
         <div className="flex items-center ">
           <div className="h-24 w-24 rounded-full bg-sky"></div>{' '}
           {/* Rounded Picture */}
@@ -41,7 +41,7 @@ const DashboardProfileContent = () => {
           placeholder="Phone Number"
         />
       </div>
-      <div className="mb-8 rounded-xl bg-background_gray p-8">
+      <div className="mb-8 rounded-md bg-background_gray p-8">
         <div className="flex items-center ">
           <div className="h-24 w-24 rounded-full bg-sky"></div>{' '}
           {/* Rounded Picture */}

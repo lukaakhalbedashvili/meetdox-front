@@ -17,7 +17,7 @@ const DashboardSidebar: React.FC = () => {
     <div className="flex h-full flex-col sm:w-72 sm:flex-col">
       <div className="w-full space-y-4 sm:hidden">
         <button
-          className={`flex w-full items-center justify-center space-x-32 rounded-xl bg-sky px-4 py-2 text-white`}
+          className={`flex w-full items-center justify-center space-x-32 rounded-md bg-sky px-4 py-2 text-white`}
           onClick={toggleDropdown}
         >
           <span className="flex w-3/4">
@@ -32,7 +32,7 @@ const DashboardSidebar: React.FC = () => {
         </button>
 
         {isDropdownOpen && (
-          <div className="flex-col justify-center rounded-xl border border-border_gray bg-white py-4 px-4">
+          <div className="flex-col justify-center rounded-md border border-border_gray bg-white py-4 px-4">
             {dashboardItems.map((item) => (
               <DashboardSidebarButton
                 key={item.id}

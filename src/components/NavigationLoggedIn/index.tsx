@@ -9,30 +9,35 @@ import {
   profileBtnsSectionTwo,
 } from '@/data/profileModuleItems'
 import handleLogout from '@/utils/services/handleLogout'
+import { NotificationStructure } from './navigationLoggedIn.interface'
 import useNavigationLoggedIn from './useNavigationLoggedIn'
 interface NavigationLoggedInProps {
   photoUrl: string
   username: string
+  notifications: NotificationStructure[]
+  uid: string
 }
 
 const NavigationLoggedIn = ({
   photoUrl,
   username,
+  notifications,
+  uid,
 }: NavigationLoggedInProps) => {
   const {
     handleNotificationsClick,
     handleProfileClick,
     isNotificationsOpen,
     isProfileOpen,
-    notifications,
     profileDropdownRef,
     userAvatarRef,
     notificationsDropDownRef,
     notificationsIconRef,
     router,
     setIsProfileOpen,
-  } = useNavigationLoggedIn()
-
+    notificationsList,
+    unreadNotificationsNum,
+  } = useNavigationLoggedIn({ uid, notifications })
   return (
     <>
       <div className="hidden items-center md:flex">
@@ -48,7 +53,9 @@ const NavigationLoggedIn = ({
               }`}
             />
 
-            <div className="absolute right-5 top-1 h-2 w-2 rounded-full bg-error"></div>
+            {unreadNotificationsNum > 0 && (
+              <div className="absolute right-5 top-1 h-2 w-2 rounded-full bg-error"></div>
+            )}
           </button>
           {isNotificationsOpen && (
             <div
@@ -61,19 +68,24 @@ const NavigationLoggedIn = ({
                   className="text-sm
                 "
                 >
-                  Notifications ({notifications.length})
+                  Notifications ({unreadNotificationsNum})
                 </p>
               </div>
               <div className="flex max-h-80 flex-col overflow-y-scroll bg-empty_gray">
-                {notifications.map((notification) => (
-                  <NotificationModuleSingleBtn
-                    id={notification.id}
-                    key={notification.id}
-                    text={notification.text}
-                    msTime={notification.msTime}
-                    url={notification.url}
-                  />
-                ))}
+                {notificationsList.map(
+                  (notification: NotificationStructure) => (
+                    <NotificationModuleSingleBtn
+                      id={notification.id}
+                      key={notification.id}
+                      text={notification.body}
+                      title={notification.title}
+                      isRead={notification.read}
+                      type={notification.type}
+                      msTime={notification.createdAt}
+                      url={notification.url}
+                    />
+                  )
+                )}
               </div>
             </div>
           )}

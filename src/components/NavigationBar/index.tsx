@@ -70,8 +70,10 @@ const NavigationBar = () => {
             </div>
             {loggedInUser ? (
               <NavigationLoggedIn
+                uid={loggedInUser.uid}
                 photoUrl={loggedInUser.photoURL}
                 username={loggedInUser.username}
+                notifications={loggedInUser.notifications}
               />
             ) : (
               <div className="flex items-center">

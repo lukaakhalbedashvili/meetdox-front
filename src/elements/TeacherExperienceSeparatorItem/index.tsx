@@ -1,14 +1,8 @@
 import React, { FC } from 'react'
+import { TeacherExperience } from '@/components/Catalog/catalog.interface'
 
 interface TeacherExperienceSeparatorItemProps {
-  experiences: {
-    id: number
-    title: string
-    company: string
-    startDate: string
-    endDate: string
-    description: string
-  }[]
+  experiences: TeacherExperience[]
 }
 
 const TeacherExperienceSeparatorItem: FC<

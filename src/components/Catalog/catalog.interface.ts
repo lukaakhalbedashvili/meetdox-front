@@ -13,6 +13,9 @@ export interface TeacherData {
   personalDetails: PersonalDetails
   status: string
   updatedAt: Timestamp
+  rate: number
+  perHour: number
+  reviews: []
 }
 
 export interface GetTeacherData {
@@ -29,12 +32,15 @@ export interface GetTeacherDataForLanding {
     | []
 }
 
-interface TeacherExperience {
-  institutionName: string
-  startYear: number
+export interface TeacherExperience {
+  company: string
+  major: string
+  startDate: number
   description: string
   title: string
-  endYear: number
+  endDate: number
+  id: number
+  position: string
 }
 
 interface ContactDetails {
@@ -42,12 +48,12 @@ interface ContactDetails {
   phoneExtension: string
 }
 
-interface TeacherEducation {
-  institutionName: string
-  degree: string
-  startYear: number
-  description: string
-  endYear: number
+export interface TeacherEducation {
+  university: string
+  major: string
+  startDate: number
+  endDate: number
+  id: number
 }
 
 interface Domain {

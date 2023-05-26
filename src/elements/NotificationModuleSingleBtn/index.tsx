@@ -4,9 +4,12 @@ import { getTimeAgo } from '@/utils/services/time'
 
 interface NotificationModuleSingleBtnProps {
   url: string
-  id: number
+  id: string
   text: string
+  title: string
+  type: string
   msTime: number
+  isRead: boolean
 }
 
 const NotificationModuleSingleBtn: FC<NotificationModuleSingleBtnProps> = ({
@@ -14,10 +17,18 @@ const NotificationModuleSingleBtn: FC<NotificationModuleSingleBtnProps> = ({
   id,
   text,
   msTime,
+  isRead,
+  title,
+  type,
 }) => {
   return (
     <Link href={url} key={id}>
-      <div className="relative flex flex-col border-b-[1px] border-solid border-border_gray bg-white py-2 px-4 hover:bg-gray ">
+      <div
+        className={`${type} relative flex flex-col border-b-[1px] border-solid border-border_gray hover:bg-white ${
+          isRead ? 'bg-white' : 'bg-gray'
+        } py-2  px-4 `}
+      >
+        <h3 className="text-sm font-medium">{title}</h3>
         <div className="flex items-center justify-between">
           <p className="mb-5 w-80 text-sm text-text_gray line-clamp-3">
             {text}

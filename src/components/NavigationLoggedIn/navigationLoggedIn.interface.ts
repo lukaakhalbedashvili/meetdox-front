@@ -1,7 +1,9 @@
 export interface NotificationStructure {
-  id: number
-  text: string
-  msTime: number
-  isRead: boolean
+  createdAt: number
+  id: string
+  body: string
+  title: string
+  read: boolean
+  type: string
   url: string
 }

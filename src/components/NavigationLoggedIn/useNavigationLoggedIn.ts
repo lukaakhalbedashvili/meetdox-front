@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import useOnOutsideClick from '@/hooks/useDetectOutsideClick'
-import { NotificationStructure } from './navigationLoggedIn.interface'
 
 const useNavigationLoggedIn = () => {
   const router = useRouter()
@@ -11,9 +10,6 @@ const useNavigationLoggedIn = () => {
   const notificationsIconRef = useRef<HTMLButtonElement>(null)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
-  const [notifications, setNotifications] = useState<NotificationStructure[]>(
-    []
-  )
 
   useOnOutsideClick([profileDropdownRef, userAvatarRef], () =>
     setIsProfileOpen(false)
@@ -39,8 +35,6 @@ const useNavigationLoggedIn = () => {
     isNotificationsOpen,
     isProfileOpen,
     setIsProfileOpen,
-    notifications,
-    setNotifications,
     profileDropdownRef,
     userAvatarRef,
     notificationsDropDownRef,

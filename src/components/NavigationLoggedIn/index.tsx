@@ -9,22 +9,29 @@ import {
   profileBtnsSectionTwo,
 } from '@/data/profileModuleItems'
 import handleLogout from '@/utils/services/handleLogout'
+import { NotificationStructure } from './navigationLoggedIn.interface'
 import useNavigationLoggedIn from './useNavigationLoggedIn'
+// notificationAmount={loggedInUser.notificationAmount}
+// unreadNotificationAmount={loggedInUser.unreadNotificationAmount}
+// notifications={loggedInUser.notifications}
 interface NavigationLoggedInProps {
   photoUrl: string
   username: string
+  unreadNotificationAmount: number
+  notifications: NotificationStructure[]
 }
 
 const NavigationLoggedIn = ({
   photoUrl,
   username,
+  unreadNotificationAmount,
+  notifications,
 }: NavigationLoggedInProps) => {
   const {
     handleNotificationsClick,
     handleProfileClick,
     isNotificationsOpen,
     isProfileOpen,
-    notifications,
     profileDropdownRef,
     userAvatarRef,
     notificationsDropDownRef,
@@ -48,7 +55,9 @@ const NavigationLoggedIn = ({
               }`}
             />
 
-            <div className="absolute right-5 top-1 h-2 w-2 rounded-full bg-error"></div>
+            {unreadNotificationAmount > 0 && (
+              <div className="absolute right-5 top-1 h-2 w-2 rounded-full bg-error"></div>
+            )}
           </button>
           {isNotificationsOpen && (
             <div
@@ -61,16 +70,19 @@ const NavigationLoggedIn = ({
                   className="text-sm
                 "
                 >
-                  Notifications ({notifications.length})
+                  Notifications ({unreadNotificationAmount})
                 </p>
               </div>
               <div className="flex max-h-80 flex-col overflow-y-scroll bg-empty_gray">
-                {notifications.map((notification) => (
+                {notifications.map((notification: NotificationStructure) => (
                   <NotificationModuleSingleBtn
                     id={notification.id}
                     key={notification.id}
-                    text={notification.text}
-                    msTime={notification.msTime}
+                    text={notification.body}
+                    title={notification.title}
+                    isRead={notification.read}
+                    type={notification.type}
+                    msTime={notification.createdAt}
                     url={notification.url}
                   />
                 ))}

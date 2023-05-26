@@ -9,6 +9,7 @@ import TeacherDomain from './TeacherDomain'
 import TeacherContact from './TeacherContact'
 import AboutU from './AboutTeacher'
 import useBecameTeacherForm from './useBecomeTeacherForm'
+import TeacherCompensation from './TeacherCompensation'
 
 const BecomeTeacherForm = () => {
   const {
@@ -63,6 +64,12 @@ const BecomeTeacherForm = () => {
       />
 
       <TeacherContact
+        setFormValues={setValues}
+        isFormSubmitted={isFormSubmitted}
+        setErroredSections={setErroredSections}
+      />
+
+      <TeacherCompensation
         setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}

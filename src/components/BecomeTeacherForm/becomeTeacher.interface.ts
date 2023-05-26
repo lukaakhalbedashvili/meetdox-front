@@ -14,6 +14,7 @@ export interface BecomeTeacherSectionsErrors {
   domain: boolean
   contact: boolean
   about: boolean
+  compensationForm: boolean
 }
 
 export interface FormValues {
@@ -24,4 +25,5 @@ export interface FormValues {
   domain: TeacherDomainInfoValidationForm
   contact: TeacherContactValidationForm
   about: AboutTeacherForm
+  perHour: string
 }

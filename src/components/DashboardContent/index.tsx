@@ -3,7 +3,7 @@ import DashboardProfileContent from '../DashboardProfileContent'
 
 const DashboardContentWrapper = () => {
   return (
-    <div className="w-screen pl-8">
+    <div className="mt-4 w-full sm:mt-0 sm:pl-8">
       <DashboardProfileContent />
     </div>
   )

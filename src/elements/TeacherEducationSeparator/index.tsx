@@ -1,13 +1,8 @@
 import React, { FC } from 'react'
+import { TeacherEducation } from '@/components/Catalog/catalog.interface'
 
 interface TeacherEducationSeparatorProps {
-  educations: {
-    id: number
-    university: string
-    major: string
-    startDate: string
-    endDate: string
-  }[]
+  educations: TeacherEducation[]
 }
 
 const TeacherEducationSeparator: FC<TeacherEducationSeparatorProps> = ({

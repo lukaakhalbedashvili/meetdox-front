@@ -27,6 +27,7 @@ module.exports = {
       border_gray: '#dae1e7',
       error: '#ff0000',
       text_gray: '#414755',
+      background_gray: '#f9f8f8',
       success_border_green: '#2D8A39',
       success_body_green: '#f0faf0',
       info_icon_blue: '#437EF7',

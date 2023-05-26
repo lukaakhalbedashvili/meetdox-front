@@ -19,7 +19,7 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
   const [selectedTimeOffset, setSelectedTimeOffset] =
     useState('(UTC-01:00) Azores')
 
-  const offset = meetDate.getTimezoneOffset() / -60 || '(UTC-01:00) Azores'
+  const offset = meetDate.getTimezoneOffset() / -60 || 4
 
   useEffect(() => {
     setSelectedTimeOffset(

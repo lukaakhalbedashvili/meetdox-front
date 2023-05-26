@@ -6,7 +6,7 @@ export const sendScheduleMeetApiReq = async (data: {
   duration: number
   date: string
   time: number
-  timeZone: number | string
+  timeZone: number
   teacherUid: string
 }) => {
   const token = await auth.currentUser?.getIdToken()

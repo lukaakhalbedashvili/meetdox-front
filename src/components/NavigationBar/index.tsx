@@ -70,9 +70,9 @@ const NavigationBar = () => {
             </div>
             {loggedInUser ? (
               <NavigationLoggedIn
+                uid={loggedInUser.uid}
                 photoUrl={loggedInUser.photoURL}
                 username={loggedInUser.username}
-                unreadNotificationAmount={loggedInUser.unreadNotificationAmount}
                 notifications={loggedInUser.notifications}
               />
             ) : (

@@ -8,6 +8,5 @@ export interface UserData {
     uid: string
     isTeacher: boolean
     notifications: NotificationStructure[]
-    unreadNotificationAmount: number
   }
 }

@@ -7,7 +7,7 @@ const DashboardSidebar: React.FC = () => {
   const { selectedButton, handleDashboardItemChange } = useDashboardSidebar()
 
   return (
-    <div className="bg-gray-200 flex h-screen w-72 flex-col justify-between p-4">
+    <div className="bg-gray-200 flex h-screen w-72 flex-col justify-between pr-4">
       <div className="space-y-4">
         {dashboardItems.map((item) => (
           <DashboardSidebarButton

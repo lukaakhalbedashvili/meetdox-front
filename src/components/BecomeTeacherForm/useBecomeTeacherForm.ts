@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useSendTeacherCreationQueries } from '@/reactQuery/becomeTeacherQueries/useSendTeacherCreationQueries'
+import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import {
   BecomeTeacherSectionsErrors,
   FormValues,
 } from './becomeTeacher.interface'
 
 const useBecameTeacherForm = () => {
+  const router = useRouter()
+  const { data } = useFetchLoggedInUserData()
+
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const [erroredSections, setErroredSections] =
     useState<BecomeTeacherSectionsErrors>({
@@ -33,19 +38,18 @@ const useBecameTeacherForm = () => {
     contact: { country: '', phone: '' },
     teacherExperience: [],
     about: { description: '' },
-    compensationForm: { compensation: '' },
+    perHour: '',
   })
 
   const { mutate } = useSendTeacherCreationQueries()
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    const { personalDetails, contact, about, domain, compensationForm } = values
+    const { personalDetails, contact, about, domain, perHour } = values
     const { birthMonth, birthYear, lastName, name, image } = personalDetails
     const { country, phone } = contact
     const { description } = about
     const { category, subCategories } = domain
-    const { compensation } = compensationForm
 
     if (
       birthMonth &&
@@ -57,10 +61,15 @@ const useBecameTeacherForm = () => {
       phone &&
       description &&
       category &&
-      compensation &&
+      perHour &&
       subCategories.length > 0
     ) {
-      mutate({ data: values })
+      mutate(
+        {
+          data: { ...values },
+        },
+        { onSuccess: () => router.push(`teacher/${data?.data.data.uid}`) }
+      )
     } else {
       setIsFormSubmitted(false)
     }

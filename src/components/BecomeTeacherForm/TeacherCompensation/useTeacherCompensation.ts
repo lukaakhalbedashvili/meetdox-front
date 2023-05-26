@@ -14,25 +14,25 @@ const useTeacherCompensation = (
 ) => {
   const validationSchema: Yup.ObjectSchema<TeacherCompensationFields> =
     Yup.object({
-      compensation: Yup.string().required('required'),
+      perHour: Yup.string().required('required'),
     })
 
   const teacherCompensationValidation = useFormik<TeacherCompensationFields>({
     initialValues: {
-      compensation: '',
+      perHour: '',
     },
 
     validationSchema,
 
     onSubmit: async (values) => {
-      const { compensation } = values
+      const { perHour } = values
       setErroredSections((prevState) => ({
         ...prevState,
         contact: false,
       }))
 
-      setFormValues((state) => {
-        return { ...state, compensationForm: { compensation } }
+      setFormValues((state): FormValues => {
+        return { ...state, perHour }
       })
     },
   })

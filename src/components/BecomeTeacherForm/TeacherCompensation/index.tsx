@@ -36,13 +36,13 @@ const TeacherCompensation: FC<TeacherCompensationProps> = ({
           <Input
             placeholder="Compensation"
             type="number"
-            value={teacherCompensationValidation.values.compensation}
-            name={TeacherCompensationFieldsNames.COMPENSATION}
+            value={teacherCompensationValidation.values.perHour}
+            name={TeacherCompensationFieldsNames.PER_HOUR}
             onChange={teacherCompensationValidation.handleChange}
             onBlurHandler={teacherCompensationValidation.handleBlur}
             errorMessage={
-              teacherCompensationValidation.touched.compensation &&
-              teacherCompensationValidation.errors.compensation
+              teacherCompensationValidation.touched.perHour &&
+              teacherCompensationValidation.errors.perHour
             }
           />
         </div>

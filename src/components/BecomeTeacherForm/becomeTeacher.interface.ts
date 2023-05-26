@@ -1,5 +1,4 @@
 import { AboutTeacherForm } from './AboutTeacher/AboutTeacher.interface'
-import { TeacherCompensationFields } from './TeacherCompensation/teacherCompensation.interface'
 import { TeacherContactValidationForm } from './TeacherContact/teacherContact.interface'
 import { TeacherDomainInfoValidationForm } from './TeacherDomain/teacherDomain.interface'
 
@@ -26,5 +25,5 @@ export interface FormValues {
   domain: TeacherDomainInfoValidationForm
   contact: TeacherContactValidationForm
   about: AboutTeacherForm
-  compensationForm: TeacherCompensationFields
+  perHour: string
 }

@@ -16,6 +16,7 @@ interface ScheduleMeetPopupProps {
   lastName: string
   pricePerHour: number
   setIsModalOpen: (value: boolean) => void
+  teacherUid: string
 }
 
 const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
@@ -25,6 +26,7 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
   lastName,
   pricePerHour,
   setIsModalOpen,
+  teacherUid,
 }) => {
   const {
     meetDurations,
@@ -42,6 +44,9 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
     meetDayInWords,
     setSelectedTimeOffset,
     selectedTimeOffset,
+    offset,
+    mutate,
+    router,
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
@@ -103,11 +108,30 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
             setMeetTimeRange={setMeetTimeRange}
           />
         )}
+
         <div className="my-4 flex h-12 justify-end sm:px-12 lg:absolute lg:bottom-2 lg:right-0 lg:px-0">
           <Button
             type="button"
             customTailwindClasses="bg-sky border-sky text-white"
             onClickHandler={(e) => {
+              const chosenTime = meetTimeRange?.find(
+                (time) => time.isChosen
+              )?.value
+
+              if (selectedMeetDuration && chosenTime && offset && chosenTime) {
+                mutate(
+                  {
+                    duration: selectedMeetDuration,
+                    date: `${meetDay}-${
+                      meetDate.getMonth() + 1
+                    }-${meetDate.getFullYear()}`,
+                    time: chosenTime,
+                    timeZone: offset,
+                    teacherUid: teacherUid,
+                  },
+                  { onSuccess: () => router.push(`/dashboard`) }
+                )
+              }
               e.preventDefault()
             }}
           >

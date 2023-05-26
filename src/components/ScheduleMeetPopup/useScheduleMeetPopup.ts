@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { get24Hours } from '@/utils/services/time'
 import { timeZones } from '@/data/timeZones'
 import { days, monthNames } from '@/utils/consts/consts'
 import { meetDurationsObject } from '@/data/teachersDummyData'
+import { useSendScheduleMeet } from '@/reactQuery/useSendScheduleMeet'
 
 export interface TimeRange {
   value: number
@@ -10,18 +12,20 @@ export interface TimeRange {
 }
 
 const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
+  const router = useRouter()
+  const { mutate } = useSendScheduleMeet()
   const [meetDate, setMeetDate] = useState(new Date())
 
   const [selectedTimeOffset, setSelectedTimeOffset] =
     useState('(UTC-01:00) Azores')
 
-  useEffect(() => {
-    const offset = meetDate.getTimezoneOffset() / -60 || '(UTC-01:00) Azores'
+  const offset = meetDate.getTimezoneOffset() / -60 || 4
 
+  useEffect(() => {
     setSelectedTimeOffset(
       timeZones.find((item) => item.offset === offset)?.text!
     )
-  }, [meetDate])
+  }, [offset])
 
   const [meetTimeRange, setMeetTimeRange] = useState<TimeRange[]>()
 
@@ -67,6 +71,9 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     meetDayInWords,
     selectedTimeOffset,
     setSelectedTimeOffset,
+    offset,
+    mutate,
+    router,
   }
 }
 

@@ -138,6 +138,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
             image={data.image}
             name={name}
             lastName={lastName}
+            teacherUid={params.id}
           />
         </PopupItemWrapper>
       )}

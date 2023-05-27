@@ -3,6 +3,7 @@ import './scheduledTeacherMeet.css'
 import Calendar from 'react-calendar'
 import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
+import TextArea from '@/elements/Textarea'
 import useScheduleMeetPopup from './useScheduleMeetPopup'
 import ScheduleTeacherPersonalInfo from './ScheduleTeacherPersonalInfo'
 import ScheduleTeacherMeetDuration from './ScheduleTeacherMeetDuration'
@@ -47,6 +48,8 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
     offset,
     mutate,
     router,
+    description,
+    setDescription,
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
@@ -56,16 +59,27 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
         onClick={() => setIsModalOpen(false)}
       />
 
-      {selectedMeetDuration && (
-        <ScheduleTeacherPersonalInfo
-          domain={domain}
-          image={image}
-          lastName={lastName}
-          name={name}
-          selectedMeetDuration={selectedMeetDuration}
-          totalPrice={totalPrice}
-        />
-      )}
+      <div className="flex flex-col">
+        {selectedMeetDuration && (
+          <ScheduleTeacherPersonalInfo
+            domain={domain}
+            image={image}
+            lastName={lastName}
+            name={name}
+            selectedMeetDuration={selectedMeetDuration}
+            totalPrice={totalPrice}
+          />
+        )}
+
+        <div className="mx-4 h-96 max-h-56 py-4 lg:mx-0 lg:max-h-80">
+          <TextArea
+            name="description"
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+            placeholder="describe what are your reason to meet"
+          />
+        </div>
+      </div>
 
       <div className="mx-4 mt-4 flex flex-col lg:mt-0">
         <ScheduleTeacherMeetDuration
@@ -128,6 +142,7 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
                     time: chosenTime,
                     timeZone: offset,
                     teacherUid: teacherUid,
+                    comment: description,
                   },
                   { onSuccess: () => router.push(`/dashboard`) }
                 )

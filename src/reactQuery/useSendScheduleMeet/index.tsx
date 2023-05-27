@@ -9,6 +9,7 @@ export const useSendScheduleMeet = () => {
       time: number
       timeZone: number
       teacherUid: string
+      comment: string
     }) => {
       await sendScheduleMeetApiReq(payload)
     },

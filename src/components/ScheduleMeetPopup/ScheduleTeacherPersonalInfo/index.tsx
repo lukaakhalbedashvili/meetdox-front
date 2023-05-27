@@ -21,7 +21,7 @@ const ScheduleTeacherPersonalInfo: FC<ScheduleTeacherPersonalInfoProps> = ({
   totalPrice,
 }) => {
   return (
-    <div className="relative mx-4  border-b-[1px] border-border_gray pb-4 lg:mx-0 lg:mr-10 lg:border-none">
+    <div className="relative mx-4 pb-4 lg:mx-0 lg:mr-10 lg:border-none">
       <div className="mt-4 flex items-center lg:mt-0">
         <div className="relative flex h-16 w-16 rounded-full">
           <Image

@@ -29,7 +29,7 @@ const TextArea: FC<InputProps> = ({
       } align-center relative flex h-full w-full justify-center rounded-md border border-border_gray`}
     >
       <textarea
-        className="h-full w-full resize-none rounded-md bg-white pl-5 pt-2 text-sm outline-none"
+        className="h-full w-full resize-none rounded-md bg-white px-5 pt-2 text-sm outline-none"
         value={value}
         onBlur={onBlurHandler}
         name={name}

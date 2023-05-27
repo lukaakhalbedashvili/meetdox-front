@@ -13,8 +13,11 @@ export interface TimeRange {
 
 const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
   const router = useRouter()
+
   const { mutate } = useSendScheduleMeet()
+
   const [meetDate, setMeetDate] = useState(new Date())
+  const [description, setDescription] = useState('')
 
   const [selectedTimeOffset, setSelectedTimeOffset] =
     useState('(UTC-01:00) Azores')
@@ -74,6 +77,8 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     offset,
     mutate,
     router,
+    description,
+    setDescription,
   }
 }
 

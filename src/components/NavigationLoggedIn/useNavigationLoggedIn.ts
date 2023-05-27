@@ -30,16 +30,6 @@ const useNavigationLoggedIn = ({
     setIsProfileOpen(false)
   )
 
-  // onSnapshot(notificationColRef, (snapshot) => {
-  //   console.log('yo')
-  //   const notifs = snapshot.docs.map(
-  //     (doc) => doc.data() as NotificationStructure
-  //   )
-  //   const unreadNotifs = notifs.filter((notif) => !notif.read)
-  //   setNotificationsList(notifs)
-  //   setUnreadNotificationsNum(unreadNotifs.length)
-  // })
-
   useEffect(() => {
     const userDocRef = doc(usersCol, uid)
     const notificationColRef = collection(userDocRef, 'notifications')

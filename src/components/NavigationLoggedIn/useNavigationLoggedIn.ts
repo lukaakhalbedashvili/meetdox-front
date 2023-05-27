@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { doc, onSnapshot, collection } from 'firebase/firestore'
 import useOnOutsideClick from '@/hooks/useDetectOutsideClick'
@@ -30,17 +30,24 @@ const useNavigationLoggedIn = ({
     setIsProfileOpen(false)
   )
 
-  const userDocRef = doc(usersCol, uid)
-  const notificationColRef = collection(userDocRef, 'notifications')
+  useEffect(() => {
+    const userDocRef = doc(usersCol, uid)
+    const notificationColRef = collection(userDocRef, 'notifications')
 
-  onSnapshot(notificationColRef, (snapshot) => {
-    const notifs = snapshot.docs.map(
-      (doc) => doc.data() as NotificationStructure
-    )
-    const unreadNotifs = notifs.filter((notif) => !notif.read)
-    setNotificationsList(notifs)
-    setUnreadNotificationsNum(unreadNotifs.length)
-  })
+    const unsubscribe = onSnapshot(notificationColRef, (snapshot: any) => {
+      const notifs = snapshot.docs.map(
+        (doc: any) => doc.data() as NotificationStructure
+      )
+      const unreadNotifs = notifs.filter(
+        (notif: NotificationStructure) => !notif.read
+      )
+
+      setNotificationsList(notifs)
+      setUnreadNotificationsNum(unreadNotifs.length)
+    })
+
+    return () => unsubscribe()
+  }, [])
 
   useOnOutsideClick([notificationsDropDownRef, notificationsIconRef], () =>
     setIsNotificationsOpen(false)

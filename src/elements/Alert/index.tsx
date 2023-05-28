@@ -1,7 +1,10 @@
+'use client'
 import { IoCloseOutline } from 'react-icons/io5'
 import useNotifications from './useAlert'
 
-const Notification = () => {
+const Alert = () => {
+  const data = useNotifications()!
+  if (!data) return <></>
   const {
     message,
     onClick,
@@ -9,7 +12,7 @@ const Notification = () => {
     selectedNotificationBG,
     selectedNotificationBorder,
     selectedNotificationIcon,
-  } = useNotifications()!
+  } = data
 
   return (
     <div
@@ -27,4 +30,4 @@ const Notification = () => {
   )
 }
 
-export default Notification
+export default Alert

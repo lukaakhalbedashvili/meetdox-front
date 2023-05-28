@@ -38,6 +38,7 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
           className="ml-3 mt-3 h-6 w-6 cursor-pointer"
           onClick={() => setPrevStage(ForgotPasswordStages.ENTER_EMAIL)}
         />
+
         <FaTimes
           className="mr-3 mt-3 h-6 w-6 cursor-pointer"
           onClick={onClose}
@@ -47,6 +48,7 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
       <div className="flex items-center justify-center">
         <h1 className="text-xl text-text_gray">Verify your Email Address!</h1>
       </div>
+
       <div className="mt-5 flex w-full items-center justify-center">
         <div className="flex w-[320px] items-center justify-center text-center">
           <small className="text-text_gray">
@@ -72,7 +74,7 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
                 EmailVerifyCodeValidation.errors.code
               }
               onBlurHandler={EmailVerifyCodeValidation.handleBlur}
-            ></Input>
+            />
           </div>
 
           <div className="mt-8 h-12">
@@ -85,13 +87,14 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
               </p>
             </Button>
           </div>
+
           <div className="mt-3">
             <small className="text-center text-text_gray">
               {" Didn't receive the code? "}
               <span
-                className={`${
+                className={
                   !isResendClicked ? 'cursor-pointer text-sky' : 'text-gray'
-                } `}
+                }
                 onClick={() => {
                   if (!isResendClicked) handleResend(email)
                 }}

@@ -53,12 +53,15 @@ const LogIn: FC<LogInProps> = ({
           </div>
         </Button>
       </div>
+
       <div className="mt-5 flex w-full items-center justify-center">
         <div className="flex w-[320px] items-center justify-center">
           <div className="h-0.5 flex-1 bg-border_gray"></div>
+
           <div className="px-5 text-xs text-text_gray">
             Sign in with your Email
           </div>
+
           <div className="h-0.5 flex-1 bg-border_gray"></div>
         </div>
       </div>
@@ -81,8 +84,9 @@ const LogIn: FC<LogInProps> = ({
                 LogInFormValidation.errors.email
               }
               onBlurHandler={LogInFormValidation.handleBlur}
-            ></Input>
+            />
           </div>
+
           <p className="mb-1  mt-3 text-sm text-text_gray">Password</p>
 
           <div className="h-[44px]">
@@ -96,8 +100,9 @@ const LogIn: FC<LogInProps> = ({
                 LogInFormValidation.errors.password
               }
               onBlurHandler={LogInFormValidation.handleBlur}
-            ></Input>
+            />
           </div>
+
           <div className="mt-7 flex w-full items-center justify-between">
             <div className="flex items-center">
               <input
@@ -107,8 +112,10 @@ const LogIn: FC<LogInProps> = ({
                 onChange={LogInFormValidation.handleChange}
                 className="h-4 w-4 rounded-md border border-border_gray"
               />
+
               <p className="ml-2 text-sm text-text_gray">Keep me logged in </p>
             </div>
+
             <p
               onClick={() => {
                 onClose()
@@ -132,6 +139,7 @@ const LogIn: FC<LogInProps> = ({
           </div>
         </form>
       </div>
+
       <div className="flex w-full items-center justify-center">
         <p className="mt-1 w-[320px] text-sm text-text_gray">
           {`Don't have an account?`}

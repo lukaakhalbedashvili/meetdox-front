@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import NavigationBar from '@/components/NavigationBar'
 import Footer from '@/components/Footer'
 import ReactQueryWrapper from '@/components/ReactQueryWrapper'
+import Alert from '@/elements/Alert'
 
 const inter = Inter({
   weight: ['400', '500', '700'],
@@ -17,6 +18,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <html lang="en" className={inter.className}>
       <body>
         <ReactQueryWrapper>
+          <div className="absolute right-10 top-20 z-30">
+            <Alert />
+          </div>
+
           <NavigationBar />
           {children}
           <Footer />

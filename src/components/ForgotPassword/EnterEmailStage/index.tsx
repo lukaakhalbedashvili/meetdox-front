@@ -36,6 +36,7 @@ const EnterEmailStage: FC<EnterEmailStageProps> = ({
       <div className="flex items-center justify-center">
         <h1 className="text-xl text-text_gray">Reset your password</h1>
       </div>
+
       <div className="mt-5 flex w-full items-center justify-center">
         <div className="flex w-[320px] items-center justify-center text-center">
           <small className="text-text_gray ">

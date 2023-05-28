@@ -49,8 +49,9 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
         .then(() => {
           signInWithEmailAndPassword(auth, email, password).then(() => {
             setIsLogInPopupOpen(false)
+
             setAlert({
-              message: 'user created successfully ',
+              message: 'success',
               type: AlertType.SUCCESS,
               onClick: () => {},
               duration: 2000,

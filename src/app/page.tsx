@@ -6,6 +6,7 @@ const Home = () => {
   return (
     <main className="bg-white font-ubuntu">
       <CategoryNav />
+
       <LandingTeachersContent />
     </main>
   )

@@ -3,7 +3,7 @@ import { DashboardItemsNames } from './dashboard.interface'
 
 const useDashboard = () => {
   const [currentTab, setCurrentTab] = useState<DashboardItemsNames>(
-    DashboardItemsNames.PROFILE
+    DashboardItemsNames.MEETINGS
   )
   return {
     currentTab,

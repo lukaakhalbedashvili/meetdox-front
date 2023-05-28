@@ -1,10 +1,9 @@
 import React from 'react'
 import dashboardItems from '@/data/dashboardItems'
-// import DashboardProfileContent from '../DashboardProfileContent'
-// import DashboardPasswordChangeContent from '../DashboardPasswordChangeContent'
+import { DashboardItemsNames } from '../Dashboard/dashboard.interface'
 
 interface DashboardContentWrapperProps {
-  currentTab: string
+  currentTab: DashboardItemsNames
 }
 
 const DashboardContentWrapper = ({
@@ -12,7 +11,8 @@ const DashboardContentWrapper = ({
 }: DashboardContentWrapperProps) => {
   const CurrentTabData = dashboardItems.find(
     (item) => item.title === currentTab
-  )?.tab as React.ElementType
+  )?.tab!
+
   return (
     <div className="mt-4 w-full sm:mt-0 sm:pl-8">
       <CurrentTabData />

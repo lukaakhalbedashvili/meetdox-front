@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import dashboardItems from '@/data/dashboardItems'
+import { DashboardItemsNames } from '../Dashboard/dashboard.interface'
 
 interface UseDashboardSidebarProps {
-  currentTab: string
-  setCurrentTab: React.Dispatch<React.SetStateAction<string>>
+  currentTab: DashboardItemsNames
+  setCurrentTab: Dispatch<SetStateAction<DashboardItemsNames>>
 }
 
 const useDashboardSidebar = ({
@@ -12,7 +13,7 @@ const useDashboardSidebar = ({
 }: UseDashboardSidebarProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
-  const handleDashboardItemChange = (title: string) => {
+  const handleDashboardItemChange = (title: DashboardItemsNames) => {
     setCurrentTab(title)
     setIsDropdownOpen(false)
   }

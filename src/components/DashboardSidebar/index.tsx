@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { FiChevronDown as ChevronDownIcon } from 'react-icons/fi'
 import dashboardItems from '@/data/dashboardItems'
 import DashboardSidebarButton from '@/elements/DashboardSidebarButton'
 import useDashboardSidebar from './useDashboardSidebar'
+import { DashboardItemsNames } from '../Dashboard/dashboard.interface'
 
 interface DashboardSidebarProps {
-  currentTab: string
-  setCurrentTab: React.Dispatch<React.SetStateAction<string>>
+  currentTab: DashboardItemsNames
+  setCurrentTab: Dispatch<SetStateAction<DashboardItemsNames>>
 }
 
 const DashboardSidebar = ({
@@ -52,6 +53,7 @@ const DashboardSidebar = ({
           </div>
         )}
       </div>
+
       <div className="hidden flex-col justify-between pr-4 sm:flex">
         {dashboardItems.map((item) => (
           <DashboardSidebarButton

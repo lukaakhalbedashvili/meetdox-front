@@ -53,6 +53,7 @@ const DashboardSidebar = ({
           </div>
         )}
       </div>
+
       <div className="hidden flex-col justify-between pr-4 sm:flex">
         {dashboardItems.map((item) => (
           <DashboardSidebarButton

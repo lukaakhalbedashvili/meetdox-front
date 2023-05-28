@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import dashboardItems from '@/data/dashboardItems'
+import { DashboardItemsNames } from './dashboard.interface'
 
 const useDashboard = () => {
-  const [currentTab, setCurrentTab] = useState(dashboardItems[0].title)
+  const [currentTab, setCurrentTab] = useState<DashboardItemsNames>(
+    DashboardItemsNames.PROFILE
+  )
   return {
     currentTab,
     setCurrentTab,

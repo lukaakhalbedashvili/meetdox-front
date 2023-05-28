@@ -9,6 +9,7 @@ const Dashboard = () => {
   return (
     <div className="flex w-screen flex-col px-4 sm:flex-row sm:px-12 ">
       <DashboardSidebar currentTab={currentTab} setCurrentTab={setCurrentTab} />
+
       <DashboardContentWrapper currentTab={currentTab} />
     </div>
   )

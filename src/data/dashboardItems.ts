@@ -1,18 +1,18 @@
-// user icon
-import { FiUser, FiLock } from 'react-icons/fi'
+import { FiUser as UserIcon, FiLock } from 'react-icons/fi'
 import DashboardProfileContent from '@/components/DashboardProfileContent'
 import DashboardPasswordChangeContent from '@/components/DashboardPasswordChangeContent'
+import { DashboardItemsNames } from '@/components/Dashboard/dashboard.interface'
 
 const dashboardItems = [
   {
     id: 1,
-    title: 'Profile',
-    icon: FiUser,
+    title: DashboardItemsNames.PROFILE,
+    icon: UserIcon,
     tab: DashboardProfileContent,
   },
   {
     id: 2,
-    title: 'Password',
+    title: DashboardItemsNames.PASSWORD,
     icon: FiLock,
     tab: DashboardPasswordChangeContent,
   },

@@ -25,8 +25,11 @@ const MobileNotifications: FC<MobileNotificationsProps> = ({ onClose }) => {
           <NotificationModuleSingleBtn
             id={notification.id}
             key={notification.id}
-            text={notification.text}
-            msTime={notification.msTime}
+            text={notification.body}
+            title={notification.title}
+            isRead={notification.read}
+            type={notification.type}
+            msTime={notification.createdAt}
             url={notification.url}
           />
         ))}

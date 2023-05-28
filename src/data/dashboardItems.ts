@@ -1,35 +1,20 @@
-import { FiPhoneCall } from 'react-icons/fi'
+// user icon
+import { FiUser, FiLock } from 'react-icons/fi'
+import DashboardProfileContent from '@/components/DashboardProfileContent'
+import DashboardPasswordChangeContent from '@/components/DashboardPasswordChangeContent'
 
 const dashboardItems = [
   {
     id: 1,
-    title: 'Current Calls',
-    icon: FiPhoneCall,
+    title: 'Profile',
+    icon: FiUser,
+    tab: DashboardProfileContent,
   },
   {
     id: 2,
-    title: 'Current Calls 2',
-    icon: FiPhoneCall,
-  },
-  {
-    id: 3,
-    title: 'Current Calls 3',
-    icon: FiPhoneCall,
-  },
-  {
-    id: 4,
-    title: 'Current Calls 4',
-    icon: FiPhoneCall,
-  },
-  {
-    id: 5,
-    title: 'Current Calls 5',
-    icon: FiPhoneCall,
-  },
-  {
-    id: 6,
-    title: 'Current Calls 6',
-    icon: FiPhoneCall,
+    title: 'Password',
+    icon: FiLock,
+    tab: DashboardPasswordChangeContent,
   },
 ]
 

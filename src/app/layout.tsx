@@ -5,6 +5,13 @@ import NavigationBar from '@/components/NavigationBar'
 import Footer from '@/components/Footer'
 import ReactQueryWrapper from '@/components/ReactQueryWrapper'
 import Alert from '@/elements/Alert'
+import { ErrorObject } from './app.interface'
+
+declare module '@tanstack/react-query' {
+  interface Register {
+    defaultError: ErrorObject
+  }
+}
 
 const inter = Inter({
   weight: ['400', '500', '700'],

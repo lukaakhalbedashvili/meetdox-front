@@ -1,17 +1,25 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { FiChevronDown as ChevronDownIcon } from 'react-icons/fi'
 import dashboardItems from '@/data/dashboardItems'
 import DashboardSidebarButton from '@/elements/DashboardSidebarButton'
 import useDashboardSidebar from './useDashboardSidebar'
+import { DashboardItemsNames } from '../Dashboard/dashboard.interface'
 
-const DashboardSidebar: React.FC = () => {
+interface DashboardSidebarProps {
+  currentTab: DashboardItemsNames
+  setCurrentTab: Dispatch<SetStateAction<DashboardItemsNames>>
+}
+
+const DashboardSidebar = ({
+  currentTab,
+  setCurrentTab,
+}: DashboardSidebarProps) => {
   const {
-    selectedButton,
     handleDashboardItemChange,
     isDropdownOpen,
     toggleDropdown,
     ActiveIcon,
-  } = useDashboardSidebar()
+  } = useDashboardSidebar({ currentTab, setCurrentTab })
 
   return (
     <div className="flex h-full flex-col sm:w-72 sm:flex-col">
@@ -22,7 +30,7 @@ const DashboardSidebar: React.FC = () => {
         >
           <span className="flex w-3/4">
             <ActiveIcon className="mr-2 mt-[2px] h-5 w-5" color={`white`} />
-            <span>{selectedButton}</span>
+            <span>{currentTab}</span>
           </span>
           <ChevronDownIcon
             className={`relative right-0 h-7 w-7 ${
@@ -38,20 +46,21 @@ const DashboardSidebar: React.FC = () => {
                 key={item.id}
                 Icon={item.icon}
                 text={item.title}
-                isSelected={selectedButton === item.title}
+                isSelected={currentTab === item.title}
                 onClick={() => handleDashboardItemChange(item.title)}
               />
             ))}
           </div>
         )}
       </div>
+
       <div className="hidden flex-col justify-between pr-4 sm:flex">
         {dashboardItems.map((item) => (
           <DashboardSidebarButton
             key={item.id}
             Icon={item.icon}
             text={item.title}
-            isSelected={selectedButton === item.title}
+            isSelected={currentTab === item.title}
             onClick={() => handleDashboardItemChange(item.title)}
           />
         ))}

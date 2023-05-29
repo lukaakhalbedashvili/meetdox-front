@@ -50,9 +50,9 @@ const useEmailVerify = ({
             onClose()
             onLogInClickHandler()
           },
-          onError: () => {
+          onError: (error) => {
             setAlert({
-              message: 'incorrect code',
+              message: error.response.data.message,
               type: AlertType.ERROR,
               onClick: () => {},
               duration: 3000,

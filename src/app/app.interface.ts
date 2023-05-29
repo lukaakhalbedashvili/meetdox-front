@@ -1,9 +1,7 @@
 export interface ErrorObject {
-  error: {
-    response: {
-      data: {
-        message: string
-      }
+  response: {
+    data: {
+      message: string
     }
   }
 }

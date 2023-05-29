@@ -48,9 +48,9 @@ const useEmailVerify = ({
               duration: 3000,
             })
           },
-          onError: () => {
+          onError: (error) => {
             setAlert({
-              message: 'not a valid code',
+              message: error.response.data.message,
               type: AlertType.ERROR,
               onClick: () => {},
               duration: 3000,

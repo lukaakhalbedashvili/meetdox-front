@@ -157,7 +157,7 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
                         duration: 3000,
                       })
                     },
-                    onError: ({ error }) => {
+                    onError: (error) => {
                       setAlert({
                         message: error.response.data.message,
                         type: AlertType.ERROR,

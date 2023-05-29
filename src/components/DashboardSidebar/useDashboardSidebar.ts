@@ -1,14 +1,20 @@
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import dashboardItems from '@/data/dashboardItems'
+import { DashboardItemsNames } from '../Dashboard/dashboard.interface'
 
-const useDashboardSidebar = () => {
-  const [selectedButton, setSelectedButton] = useState<string>(
-    dashboardItems[0].title
-  )
+interface UseDashboardSidebarProps {
+  currentTab: DashboardItemsNames
+  setCurrentTab: Dispatch<SetStateAction<DashboardItemsNames>>
+}
+
+const useDashboardSidebar = ({
+  currentTab,
+  setCurrentTab,
+}: UseDashboardSidebarProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
-  const handleDashboardItemChange = (index: string) => {
-    setSelectedButton(index)
+  const handleDashboardItemChange = (title: DashboardItemsNames) => {
+    setCurrentTab(title)
     setIsDropdownOpen(false)
   }
 
@@ -16,12 +22,10 @@ const useDashboardSidebar = () => {
     setIsDropdownOpen(!isDropdownOpen)
   }
 
-  const ActiveIcon = dashboardItems.find(
-    (item) => item.title === selectedButton
-  )?.icon as React.ElementType
+  const ActiveIcon = dashboardItems.find((item) => item.title === currentTab)
+    ?.icon as React.ElementType
 
   return {
-    selectedButton,
     handleDashboardItemChange,
     isDropdownOpen,
     toggleDropdown,

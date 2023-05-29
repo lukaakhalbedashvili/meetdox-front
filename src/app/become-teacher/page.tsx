@@ -1,7 +1,7 @@
 import React from 'react'
 import BecameTeacherForm from '@/components/BecomeTeacherForm'
 
-const page = () => {
+const Page = () => {
   return (
     <div className="pt-8">
       <BecameTeacherForm />
@@ -9,4 +9,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

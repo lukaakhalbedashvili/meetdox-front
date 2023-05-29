@@ -22,7 +22,7 @@ const Alert = () => {
       <div className="flex items-center">
         {selectedNotificationIcon}
 
-        <p className="ml-5 mr-5 text-base">{message}</p>
+        <p className="ml-5 mr-5 text-sm lg:text-base">{message}</p>
       </div>
 
       <IoCloseOutline className="h-5 w-5" color="gray" onClick={onClose} />

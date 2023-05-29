@@ -18,6 +18,7 @@ const useEmailVerify = ({
   onLogInClickHandler,
 }: EmailVerifyProps) => {
   const { setAlert } = useZustandStore()
+
   const { mutate } = useRegisterUserQuery()
 
   const EmailVerifyCodeValidation = useFormik({

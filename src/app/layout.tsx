@@ -31,7 +31,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <html lang="en" className={inter.className}>
       <body>
         <ReactQueryWrapper>
-          <div className="absolute right-10 top-20 z-30">
+          <div className="absolute right-0 top-5 z-30 mx-2 lg:right-10 lg:top-20">
             <Alert />
           </div>
 

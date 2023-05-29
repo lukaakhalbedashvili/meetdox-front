@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { fetchTeacherPublicDataApiReq } from '@/utils/api/fetchTeacherPublicDataApiReq'
 import { QueryKey } from '../../reactQuery.interface'
 

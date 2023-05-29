@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 import { FormValues } from '@/components/BecomeTeacherForm/becomeTeacher.interface'
 import { createTeacher } from '@/utils/api/becameTeacherApis'
 

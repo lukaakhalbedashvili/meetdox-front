@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { getTeachersListForLanding } from '@/utils/api/getTeachersListForLanding'
 import { QueryKey } from '../../reactQuery.interface'
 

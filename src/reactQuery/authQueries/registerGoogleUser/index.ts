@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 import { googleRegistrationApiRequest } from '@/utils/api/authentication'
 import { Payload } from './registerGoogleUser.interface'
 

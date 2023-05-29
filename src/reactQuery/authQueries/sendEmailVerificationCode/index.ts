@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 import { sendEmailCodeApiRequest } from '@/utils/api/authentication'
 import { Payload } from './sendEmailVerificationCode.interface'
 

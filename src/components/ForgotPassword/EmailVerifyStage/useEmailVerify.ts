@@ -1,6 +1,8 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useCheckForgotPasswordCode } from '@/reactQuery/authQueries/checkForgotPasswordCode'
+import { useZustandStore } from '@/zustand'
+import { AlertType } from '@/zustand/zustand.interface'
 import { VerifyField } from './emailVerify.interface'
 import { ForgotPasswordStages } from '../forgot.interface'
 
@@ -15,7 +17,10 @@ const useEmailVerify = ({
   setForgotPasswordStage,
   email,
 }: EmailVerifyProps) => {
+  const { setAlert } = useZustandStore()
+
   const { mutate } = useCheckForgotPasswordCode()
+
   const EmailVerifyCodeValidation = useFormik({
     initialValues: {
       [VerifyField.CODE]: '',
@@ -36,6 +41,20 @@ const useEmailVerify = ({
           onSuccess: () => {
             setForgotPasswordStage(ForgotPasswordStages.RESET_PASSWORD)
             setCode(code)
+            setAlert({
+              message: 'code verified',
+              type: AlertType.SUCCESS,
+              onClick: () => {},
+              duration: 3000,
+            })
+          },
+          onError: (error) => {
+            setAlert({
+              message: error.response.data.message,
+              type: AlertType.ERROR,
+              onClick: () => {},
+              duration: 3000,
+            })
           },
         }
       )

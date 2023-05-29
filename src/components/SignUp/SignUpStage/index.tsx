@@ -61,9 +61,11 @@ const SignUpStage: FC<SignUpStageProps> = ({
       <div className="mt-5 flex w-full items-center justify-center">
         <div className="flex w-[320px] items-center justify-center">
           <div className="h-0.5 flex-1 bg-border_gray"></div>
+
           <div className="px-5 text-xs text-text_gray">
             Sign up with your Email
           </div>
+
           <div className="h-0.5 flex-1 bg-border_gray"></div>
         </div>
       </div>
@@ -86,8 +88,9 @@ const SignUpStage: FC<SignUpStageProps> = ({
                 SignUpFormValidation.errors.email
               }
               onBlurHandler={SignUpFormValidation.handleBlur}
-            ></Input>
+            />
           </div>
+
           <p className="mb-1  mt-3 text-sm text-text_gray ">Username</p>
 
           <div className="h-[44px]">
@@ -101,7 +104,7 @@ const SignUpStage: FC<SignUpStageProps> = ({
                 SignUpFormValidation.errors.username
               }
               onBlurHandler={SignUpFormValidation.handleBlur}
-            ></Input>
+            />
           </div>
           <p className="mb-1  mt-3 text-sm text-text_gray">Password</p>
 
@@ -116,8 +119,9 @@ const SignUpStage: FC<SignUpStageProps> = ({
                 SignUpFormValidation.errors.password
               }
               onBlurHandler={SignUpFormValidation.handleBlur}
-            ></Input>
+            />
           </div>
+
           <p className="mb-1  mt-3 text-sm text-text_gray ">Repeat Password</p>
 
           <div className="h-[44px] ">
@@ -131,7 +135,7 @@ const SignUpStage: FC<SignUpStageProps> = ({
                 SignUpFormValidation.errors.confirmPassword
               }
               onBlurHandler={SignUpFormValidation.handleBlur}
-            ></Input>
+            />
           </div>
 
           <div className="mt-7 h-12">
@@ -146,6 +150,7 @@ const SignUpStage: FC<SignUpStageProps> = ({
           </div>
         </form>
       </div>
+
       <div className="flex w-full items-center justify-center">
         <p className="mt-1 w-[320px] text-sm text-text_gray">
           Already have an account?{' '}

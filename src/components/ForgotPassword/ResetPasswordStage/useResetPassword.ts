@@ -1,6 +1,8 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useResetPasswordQuery } from '@/reactQuery/authQueries/resetPassword'
+import { useZustandStore } from '@/zustand'
+import { AlertType } from '@/zustand/zustand.interface'
 import { PasswordField } from './resetPassword.interface'
 
 interface ResetPasswordProps {
@@ -16,6 +18,8 @@ const useResetPassword = ({
   onClose,
   onLoginClickHandler,
 }: ResetPasswordProps) => {
+  const { setAlert } = useZustandStore()
+
   const { mutate } = useResetPasswordQuery()
 
   const EmailVerifyCodeValidation = useFormik({
@@ -38,9 +42,21 @@ const useResetPassword = ({
     }),
     onSubmit: async (values) => {
       const { password } = values
-      mutate({ email, code, password })
-      onClose()
-      onLoginClickHandler()
+      mutate(
+        { email, code, password },
+        {
+          onSuccess: () => {
+            setAlert({
+              message: 'password is changed',
+              type: AlertType.SUCCESS,
+              onClick: () => {},
+              duration: 3000,
+            })
+            onClose()
+            onLoginClickHandler()
+          },
+        }
+      )
     },
   })
   return { EmailVerifyCodeValidation }

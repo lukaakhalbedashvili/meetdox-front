@@ -1,7 +1,10 @@
+'use client'
 import { IoCloseOutline } from 'react-icons/io5'
 import useNotifications from './useAlert'
 
-const Notification = () => {
+const Alert = () => {
+  const data = useNotifications()!
+  if (!data) return <></>
   const {
     message,
     onClick,
@@ -9,7 +12,7 @@ const Notification = () => {
     selectedNotificationBG,
     selectedNotificationBorder,
     selectedNotificationIcon,
-  } = useNotifications()!
+  } = data
 
   return (
     <div
@@ -19,7 +22,7 @@ const Notification = () => {
       <div className="flex items-center">
         {selectedNotificationIcon}
 
-        <p className="ml-5 mr-5 text-base">{message}</p>
+        <p className="ml-5 mr-5 text-sm lg:text-base">{message}</p>
       </div>
 
       <IoCloseOutline className="h-5 w-5" color="gray" onClick={onClose} />
@@ -27,4 +30,4 @@ const Notification = () => {
   )
 }
 
-export default Notification
+export default Alert

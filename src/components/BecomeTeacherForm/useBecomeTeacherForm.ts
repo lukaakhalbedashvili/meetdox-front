@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSendTeacherCreationQueries } from '@/reactQuery/becomeTeacherQueries/useSendTeacherCreationQueries'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
+import { AlertType } from '@/zustand/zustand.interface'
+import { useZustandStore } from '@/zustand'
 import {
   BecomeTeacherSectionsErrors,
   FormValues,
 } from './becomeTeacher.interface'
 
 const useBecameTeacherForm = () => {
+  const { setAlert } = useZustandStore()
   const router = useRouter()
   const { data } = useFetchLoggedInUserData()
 
@@ -68,7 +71,17 @@ const useBecameTeacherForm = () => {
         {
           data: { ...values },
         },
-        { onSuccess: () => router.push(`teacher/${data?.data.data.uid}`) }
+        {
+          onSuccess: () => {
+            router.push(`teacher/${data?.data.data.uid}`)
+            setAlert({
+              message: 'teacher created successfully',
+              type: AlertType.SUCCESS,
+              onClick: () => {},
+              duration: 5000,
+            })
+          },
+        }
       )
     } else {
       setIsFormSubmitted(false)

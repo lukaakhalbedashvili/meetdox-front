@@ -1,7 +1,7 @@
 'use client'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React, { FC } from 'react'
-import { QueryClientProvider, QueryClient } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
 
 interface ReactQueryWrapperProps {
   children: React.ReactNode

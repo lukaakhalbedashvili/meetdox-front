@@ -3,6 +3,7 @@ import './scheduledTeacherMeet.css'
 import Calendar from 'react-calendar'
 import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
+import { AlertType } from '@/zustand/zustand.interface'
 import TextArea from '@/elements/Textarea'
 import useScheduleMeetPopup from './useScheduleMeetPopup'
 import ScheduleTeacherPersonalInfo from './ScheduleTeacherPersonalInfo'
@@ -50,6 +51,7 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
     router,
     description,
     setDescription,
+    setAlert,
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
@@ -144,7 +146,26 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
                     teacherUid: teacherUid,
                     comment: description,
                   },
-                  { onSuccess: () => router.push(`/dashboard`) }
+                  {
+                    onSuccess: () => {
+                      router.push(`/dashboard`)
+
+                      setAlert({
+                        message: 'scheduled successfully',
+                        type: AlertType.SUCCESS,
+                        onClick: () => {},
+                        duration: 3000,
+                      })
+                    },
+                    onError: (error) => {
+                      setAlert({
+                        message: error.response.data.message,
+                        type: AlertType.ERROR,
+                        onClick: () => {},
+                        duration: 3000,
+                      })
+                    },
+                  }
                 )
               }
               e.preventDefault()

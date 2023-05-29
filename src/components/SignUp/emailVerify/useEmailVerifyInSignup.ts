@@ -1,6 +1,8 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useRegisterUserQuery } from '@/reactQuery/authQueries/registerUser'
+import { useZustandStore } from '@/zustand'
+import { AlertType } from '@/zustand/zustand.interface'
 import { VerifyField } from './emailVerify.interface'
 import { User } from '../registrationStages.interface'
 
@@ -15,6 +17,8 @@ const useEmailVerify = ({
   onClose,
   onLogInClickHandler,
 }: EmailVerifyProps) => {
+  const { setAlert } = useZustandStore()
+
   const { mutate } = useRegisterUserQuery()
 
   const EmailVerifyCodeValidation = useFormik({
@@ -30,13 +34,33 @@ const useEmailVerify = ({
     }),
 
     onSubmit: async (values) => {
-      mutate({
-        email: userInfo.email,
-        username: userInfo.username,
-        code: values[VerifyField.CODE],
-      })
-      onClose()
-      onLogInClickHandler()
+      mutate(
+        {
+          email: userInfo.email,
+          username: userInfo.username,
+          code: values[VerifyField.CODE],
+        },
+        {
+          onSuccess: () => {
+            setAlert({
+              message: 'user created successfully',
+              type: AlertType.SUCCESS,
+              onClick: () => {},
+              duration: 3000,
+            })
+            onClose()
+            onLogInClickHandler()
+          },
+          onError: (error) => {
+            setAlert({
+              message: error.response.data.message,
+              type: AlertType.ERROR,
+              onClick: () => {},
+              duration: 3000,
+            })
+          },
+        }
+      )
     },
   })
 

@@ -3,6 +3,8 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { VerifyEmailCodeType } from '@/utils/api/api.interface'
 import { useSendEmailVerificationCodeQuery } from '@/reactQuery/authQueries/sendEmailVerificationCode'
+import { useZustandStore } from '@/zustand'
+import { AlertType } from '@/zustand/zustand.interface'
 import { SignUpFormFields } from './signUp.interface'
 import { RegistrationStages } from '../registrationStages.interface'
 
@@ -18,6 +20,7 @@ interface SignupProps {
 }
 
 const useSignup = ({ setRegistrationStage, setUserInfo }: SignupProps) => {
+  const { setAlert } = useZustandStore()
   const { mutate } = useSendEmailVerificationCodeQuery()
 
   const SignUpFormValidation = useFormik({
@@ -54,9 +57,22 @@ const useSignup = ({ setRegistrationStage, setUserInfo }: SignupProps) => {
 
     onSubmit: async (values) => {
       const { email, username, password } = values
-      setUserInfo({ email, username, password })
-      setRegistrationStage(RegistrationStages.EMAIL_VERIFY)
-      mutate({ email, type: VerifyEmailCodeType.REGISTRATION })
+
+      mutate(
+        { email, type: VerifyEmailCodeType.REGISTRATION },
+        {
+          onSuccess: () => {
+            setAlert({
+              message: 'verify code sent',
+              type: AlertType.SUCCESS,
+              onClick: () => {},
+              duration: 2000,
+            })
+            setUserInfo({ email, username, password })
+            setRegistrationStage(RegistrationStages.EMAIL_VERIFY)
+          },
+        }
+      )
     },
   })
   return { SignUpFormValidation }

@@ -5,6 +5,7 @@ import { timeZones } from '@/data/timeZones'
 import { days, monthNames } from '@/utils/consts/consts'
 import { meetDurationsObject } from '@/data/teachersDummyData'
 import { useSendScheduleMeet } from '@/reactQuery/useSendScheduleMeet'
+import { useZustandStore } from '@/zustand'
 
 export interface TimeRange {
   value: number
@@ -12,6 +13,8 @@ export interface TimeRange {
 }
 
 const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
+  const { setAlert } = useZustandStore()
+
   const router = useRouter()
 
   const { mutate } = useSendScheduleMeet()
@@ -79,6 +82,7 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     router,
     description,
     setDescription,
+    setAlert,
   }
 }
 

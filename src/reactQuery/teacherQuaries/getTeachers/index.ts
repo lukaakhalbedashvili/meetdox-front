@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { auth } from '@/utils/firebase/init'
 import { getTeachersList } from '@/utils/api/getTeachersList'
 import { TeacherFilter } from './getTeachers.interface'

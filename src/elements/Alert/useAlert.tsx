@@ -7,8 +7,8 @@ import { AlertType } from '@/zustand/zustand.interface'
 
 const useNotifications = () => {
   const { alert, setAlert } = useZustandStore((state) => state)
-
-  const { type, message, onClick } = alert!
+  if (!alert) return
+  const { type, message, onClick } = alert
 
   const onClose = () => {
     setAlert(undefined)

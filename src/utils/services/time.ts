@@ -42,4 +42,34 @@ const get24Hours = (daySelected: Date) => {
   return TimeRange
 }
 
-export { getTimeAgo, get24Hours }
+function formatScheduledDate(dateString: string, timeZoneOffset: number) {
+  const parts = dateString.split('-')
+  const day = parseInt(parts[0])
+  const month = parseInt(parts[1]) - 1 // Months are zero-based in JavaScript
+  const year = parseInt(parts[2])
+
+  const date = new Date(year, month, day)
+  const utcTime = date.getTime() + date.getTimezoneOffset() * 60000
+  const convertedTime = new Date(utcTime + timeZoneOffset * 3600000)
+
+  const formattedDate = convertedTime.toLocaleDateString('en-US', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+
+  return formattedDate
+}
+
+function convertToLocalTime(hour: number, offset: number) {
+  const currentOffsetInMinutes = new Date().getTimezoneOffset()
+  const offsetInMinutes = offset * 60
+
+  const localHour = hour + (currentOffsetInMinutes + offsetInMinutes) / 60
+  const localOffset = currentOffsetInMinutes / -60
+
+  return `${localHour}:00 (GMT${localOffset > 0 ? '+' : '-'}${localOffset})`
+}
+
+export { getTimeAgo, get24Hours, formatScheduledDate, convertToLocalTime }

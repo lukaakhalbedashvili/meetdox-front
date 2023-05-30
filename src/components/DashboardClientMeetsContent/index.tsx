@@ -22,11 +22,11 @@ const DashboardClientMeetsContent = () => {
             Your {index === 0 ? 'Current' : 'Completed'} Meetings
           </h1>
 
-          <div className="mb-8 rounded-md bg-background_gray lg:p-8">
+          <div className="lg: mb-8 rounded-md py-4 sm:bg-background_gray lg:px-8">
             {meetings.map((meeting) => (
               <div
                 key={meeting.teacherImg}
-                className="meeting-card rounded-md bg-sky bg-opacity-20 py-4 px-4 lg:px-8"
+                className="meeting-card mt-4 mb-4 rounded-md bg-sky bg-opacity-20 py-4 px-4 lg:px-8"
               >
                 <div className="flex flex-col sm:flex-row sm:space-x-4">
                   <div className="mb-2 flex w-full justify-center overflow-hidden rounded-full sm:h-16 sm:w-16">

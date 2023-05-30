@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { FiChevronDown as ChevronDownIcon } from 'react-icons/fi'
-import dashboardItems from '@/data/dashboardItems'
+
 import DashboardSidebarButton from '@/elements/DashboardSidebarButton'
 import useDashboardSidebar from './useDashboardSidebar'
 import { DashboardItemsNames } from '../Dashboard/dashboard.interface'
@@ -19,6 +19,7 @@ const DashboardSidebar = ({
     isDropdownOpen,
     toggleDropdown,
     ActiveIcon,
+    dashboardItems,
   } = useDashboardSidebar({ currentTab, setCurrentTab })
 
   return (

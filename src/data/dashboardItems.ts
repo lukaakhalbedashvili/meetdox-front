@@ -5,7 +5,7 @@ import DashboardPasswordChangeContent from '@/components/DashboardPasswordChange
 import { DashboardItemsNames } from '@/components/Dashboard/dashboard.interface'
 import DashboardTeacherMeetsContent from '@/components/DashboardClientMeetsContent'
 
-const dashboardItems = [
+const clientDashboardItems = [
   {
     id: 1,
     title: DashboardItemsNames.PROFILE,
@@ -26,4 +26,37 @@ const dashboardItems = [
   },
 ]
 
-export default dashboardItems
+const teacherDashboardItems = [
+  {
+    id: 1,
+    title: DashboardItemsNames.PROFILE,
+    icon: UserIcon,
+    tab: DashboardProfileContent,
+  },
+  {
+    id: 2,
+    title: DashboardItemsNames.PASSWORD,
+    icon: FiLock,
+    tab: DashboardPasswordChangeContent,
+  },
+  {
+    id: 3,
+    title: DashboardItemsNames.MEETINGS,
+    icon: AiOutlineSchedule,
+    tab: DashboardTeacherMeetsContent,
+  },
+  {
+    id: 4,
+    title: DashboardItemsNames.PAYMENTS,
+    icon: FiLock,
+    tab: DashboardPasswordChangeContent,
+  },
+  {
+    id: 5,
+    title: DashboardItemsNames.MEETINGS_AS_TEACHER,
+    icon: AiOutlineSchedule,
+    tab: DashboardTeacherMeetsContent,
+  },
+]
+
+export { clientDashboardItems, teacherDashboardItems }

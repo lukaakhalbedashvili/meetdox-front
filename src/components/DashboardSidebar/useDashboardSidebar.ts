@@ -1,6 +1,14 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
-import dashboardItems from '@/data/dashboardItems'
-import { DashboardItemsNames } from '../Dashboard/dashboard.interface'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import {
+  clientDashboardItems,
+  teacherDashboardItems,
+} from '@/data/dashboardItems'
+import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
+
+import {
+  DashboardItemsNames,
+  DashboardItemStructure,
+} from '../Dashboard/dashboard.interface'
 
 interface UseDashboardSidebarProps {
   currentTab: DashboardItemsNames
@@ -12,6 +20,8 @@ const useDashboardSidebar = ({
   setCurrentTab,
 }: UseDashboardSidebarProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [dashboardItems, setDashboardItems] =
+    useState<DashboardItemStructure[]>(clientDashboardItems)
 
   const handleDashboardItemChange = (title: DashboardItemsNames) => {
     setCurrentTab(title)
@@ -22,14 +32,24 @@ const useDashboardSidebar = ({
     setIsDropdownOpen(!isDropdownOpen)
   }
 
-  const ActiveIcon = dashboardItems.find((item) => item.title === currentTab)
-    ?.icon as React.ElementType
+  const { data } = useFetchLoggedInUserData()
+
+  useEffect(() => {
+    if (data?.data.data.isTeacher === true) {
+      setDashboardItems(teacherDashboardItems)
+    }
+  }, [data])
+
+  const ActiveIcon = dashboardItems.find(
+    (item: DashboardItemStructure) => item.title === currentTab
+  )?.icon as React.ElementType
 
   return {
     handleDashboardItemChange,
     isDropdownOpen,
     toggleDropdown,
     ActiveIcon,
+    dashboardItems,
   }
 }
 

@@ -31,7 +31,11 @@ const DashboardClientMeetsContent = () => {
                 <div className="flex flex-col sm:flex-row sm:space-x-4">
                   <div className="mb-2 flex w-full justify-center overflow-hidden rounded-full sm:h-16 sm:w-16">
                     <Image
-                      src={meeting.teacherImg}
+                      src={
+                        meeting.teacherImg
+                          ? meeting.teacherImg
+                          : '/unknown_user.png'
+                      }
                       alt="Google Logo"
                       width={64}
                       height={64}

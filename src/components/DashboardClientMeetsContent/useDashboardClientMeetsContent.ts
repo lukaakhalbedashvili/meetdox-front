@@ -12,7 +12,7 @@ const useDashboardClientMeetsContent = () => {
   >([])
   const [currentMeets, setCurrentMeets] = useState<ScheduledMeetStructure[]>([])
 
-  const { data } = useFetchMyMeetings(ScheduleTypes.MEETINGS_AS_TEACHER)
+  const { data } = useFetchMyMeetings(ScheduleTypes.MEETINGS_AS_CLIENT)
 
   useEffect(() => {
     if (data) {

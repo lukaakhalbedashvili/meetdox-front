@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useFetchMyMeetings } from '@/reactQuery/getMyMeetings'
 import { ScheduledMeetStructure } from '@/reactQuery/getMyMeetings/getUserData.interface'
+import {
+  ScheduleStepStatus,
+  ScheduleTypes,
+} from '../Dashboard/dashboard.interface'
 
 const useDashboardTeacherMeetsContent = () => {
   const [completedMeets, setCompletedMeets] = useState<
@@ -8,15 +12,17 @@ const useDashboardTeacherMeetsContent = () => {
   >([])
   const [currentMeets, setCurrentMeets] = useState<ScheduledMeetStructure[]>([])
 
-  const { data } = useFetchMyMeetings('meetingsAsTeacher')
+  const { data } = useFetchMyMeetings(ScheduleTypes.MEETINGS_AS_TEACHER)
 
   useEffect(() => {
     if (data) {
       const completed = data.filter(
-        (meet: ScheduledMeetStructure) => meet.status === 'completed'
+        (meet: ScheduledMeetStructure) =>
+          meet.status === ScheduleStepStatus.COMPLETED
       )
       const current = data.filter(
-        (meet: ScheduledMeetStructure) => meet.status !== 'completed'
+        (meet: ScheduledMeetStructure) =>
+          meet.status !== ScheduleStepStatus.COMPLETED
       )
       setCompletedMeets(completed)
       setCurrentMeets(current)

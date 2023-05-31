@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import {
   clientDashboardItems,
   teacherDashboardItems,
@@ -42,7 +42,7 @@ const useDashboardSidebar = ({
 
   const ActiveIcon = dashboardItems.find(
     (item: DashboardItemStructure) => item.title === currentTab
-  )?.icon as React.ElementType
+  )!.icon
 
   return {
     handleDashboardItemChange,

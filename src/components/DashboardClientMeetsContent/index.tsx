@@ -10,6 +10,7 @@ import {
 } from '@/utils/services/time'
 import { scheduleSteps } from '@/data/scheduleSteps'
 import useDashboardClientMeetsContent from './useDashboardClientMeetsContent'
+import { ScheduleTypes } from '../Dashboard/dashboard.interface'
 
 const DashboardClientMeetsContent = () => {
   const { completedMeets, currentMeets } = useDashboardClientMeetsContent()
@@ -91,35 +92,43 @@ const DashboardClientMeetsContent = () => {
                     <span
                       className={`
                     ${
-                      scheduleSteps['clientMeeting'][meeting.status][
-                        'title1'
-                      ] === ''
+                      scheduleSteps[ScheduleTypes.MEETINGS_AS_CLIENT][
+                        meeting.status
+                      ]['title1'] === ''
                         ? 'hidden'
                         : 'block'
                     } mb-2 w-full rounded-xl bg-blue_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-blue_label`}
                     >
-                      {scheduleSteps['clientMeeting'][meeting.status]['title1']}
+                      {
+                        scheduleSteps[ScheduleTypes.MEETINGS_AS_CLIENT][
+                          meeting.status
+                        ]['title1']
+                      }
                     </span>
 
                     <span
                       className={`
                     ${
-                      scheduleSteps['clientMeeting'][meeting.status][
-                        'title2'
-                      ] === ''
+                      scheduleSteps[ScheduleTypes.MEETINGS_AS_CLIENT][
+                        meeting.status
+                      ]['title2'] === ''
                         ? 'hidden'
                         : 'block'
                     } mb-2 w-full rounded-xl bg-orange_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-orange_label`}
                     >
-                      {scheduleSteps['clientMeeting'][meeting.status]['title2']}
+                      {
+                        scheduleSteps[ScheduleTypes.MEETINGS_AS_CLIENT][
+                          meeting.status
+                        ]['title2']
+                      }
                     </span>
 
                     <div className="flex w-full justify-center sm:space-x-2">
                       <Button
                         customTailwindClasses={` ${
-                          scheduleSteps['clientMeeting'][meeting.status][
-                            'buttonRed'
-                          ] === ''
+                          scheduleSteps[ScheduleTypes.MEETINGS_AS_CLIENT][
+                            meeting.status
+                          ]['buttonRed'] === ''
                             ? 'hidden'
                             : 'block'
                         } bg-error bg-opacity-20 border-border_gray w-1/2 `}
@@ -129,9 +138,9 @@ const DashboardClientMeetsContent = () => {
                             className={`flex items-center justify-center text-sm font-medium text-error`}
                           >
                             {
-                              scheduleSteps['clientMeeting'][meeting.status][
-                                'buttonRed'
-                              ]
+                              scheduleSteps[ScheduleTypes.MEETINGS_AS_CLIENT][
+                                meeting.status
+                              ]['buttonRed']
                             }
                           </p>
                         </div>
@@ -139,9 +148,9 @@ const DashboardClientMeetsContent = () => {
 
                       <Button
                         customTailwindClasses={` ${
-                          scheduleSteps['clientMeeting'][meeting.status][
-                            'buttonGreen'
-                          ] === ''
+                          scheduleSteps[ScheduleTypes.MEETINGS_AS_CLIENT][
+                            meeting.status
+                          ]['buttonGreen'] === ''
                             ? 'hidden'
                             : 'block'
                         } bg-success_border_green bg-opacity-20 border-border_gray w-1/2`}
@@ -151,9 +160,9 @@ const DashboardClientMeetsContent = () => {
                             className={`flex items-center justify-center text-sm font-medium text-success_border_green`}
                           >
                             {
-                              scheduleSteps['clientMeeting'][meeting.status][
-                                'buttonGreen'
-                              ]
+                              scheduleSteps[ScheduleTypes.MEETINGS_AS_CLIENT][
+                                meeting.status
+                              ]['buttonGreen']
                             }
                           </p>
                         </div>

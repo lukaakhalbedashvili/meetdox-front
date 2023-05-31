@@ -1,3 +1,5 @@
+import { ScheduleStepStatus } from '@/components/Dashboard/dashboard.interface'
+
 export interface ScheduledMeetStructure {
   clientImg: string
   clientUid: string
@@ -8,7 +10,7 @@ export interface ScheduledMeetStructure {
   duration: number
   meetId: string
   perHour: number
-  status: string
+  status: ScheduleStepStatus
   teacherImg: string
   teacherUid: string
   teacherUsername: string

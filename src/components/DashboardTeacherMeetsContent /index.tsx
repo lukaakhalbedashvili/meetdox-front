@@ -16,7 +16,8 @@ import {
 } from '../Dashboard/dashboard.interface'
 
 const DashboardTeacherMeetsContent = () => {
-  const { completedMeets, currentMeets } = useDashboardTeacherMeetsContent()
+  const { completedMeets, currentMeets, mutate, refetch } =
+    useDashboardTeacherMeetsContent()
 
   return (
     <div className="scheduled-meetings">
@@ -130,6 +131,28 @@ const DashboardTeacherMeetsContent = () => {
 
                     <div className="flex w-full justify-center sm:space-x-2">
                       <Button
+                        onClickHandler={() =>
+                          mutate(
+                            {
+                              newStatus:
+                                scheduleSteps[
+                                  ScheduleTypes.MEETINGS_AS_TEACHER
+                                ][meeting.status][
+                                  ScheduleComponentStructureNames
+                                    .ON_BUTTON_RED_CLICK
+                                ],
+                              meetId: meeting.meetId,
+                              teacherUid: meeting.teacherUid,
+                              clientUid: meeting.clientUid,
+                            },
+                            {
+                              onSuccess: () => {
+                                refetch()
+                              },
+                              onError: () => {},
+                            }
+                          )
+                        }
                         customTailwindClasses={` ${
                           scheduleSteps[ScheduleTypes.MEETINGS_AS_TEACHER][
                             meeting.status
@@ -152,6 +175,26 @@ const DashboardTeacherMeetsContent = () => {
                       </Button>
 
                       <Button
+                        onClickHandler={() =>
+                          mutate(
+                            {
+                              newStatus:
+                                scheduleSteps[
+                                  ScheduleTypes.MEETINGS_AS_TEACHER
+                                ][meeting.status][
+                                  ScheduleComponentStructureNames
+                                    .ON_BUTTON_GREEN_CLICK
+                                ],
+                              meetId: meeting.meetId,
+                              teacherUid: meeting.teacherUid,
+                              clientUid: meeting.clientUid,
+                            },
+                            {
+                              onSuccess: () => {},
+                              onError: () => {},
+                            }
+                          )
+                        }
                         customTailwindClasses={` ${
                           scheduleSteps[ScheduleTypes.MEETINGS_AS_TEACHER][
                             meeting.status

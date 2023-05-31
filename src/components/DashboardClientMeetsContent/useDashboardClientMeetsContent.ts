@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useFetchMyMeetings } from '@/reactQuery/getMyMeetings'
 import { ScheduledMeetStructure } from '@/reactQuery/getMyMeetings/getUserData.interface'
+import { useUpdateMeet } from '@/reactQuery/useUpdateMeet'
 import {
   ScheduleStepStatus,
   ScheduleTypes,
@@ -12,7 +13,8 @@ const useDashboardClientMeetsContent = () => {
   >([])
   const [currentMeets, setCurrentMeets] = useState<ScheduledMeetStructure[]>([])
 
-  const { data } = useFetchMyMeetings(ScheduleTypes.MEETINGS_AS_CLIENT)
+  const { data, refetch } = useFetchMyMeetings(ScheduleTypes.MEETINGS_AS_CLIENT)
+  const { mutate } = useUpdateMeet()
 
   useEffect(() => {
     if (data) {
@@ -31,6 +33,8 @@ const useDashboardClientMeetsContent = () => {
   return {
     completedMeets,
     currentMeets,
+    mutate,
+    refetch,
   }
 }
 

@@ -44,8 +44,8 @@ export interface ScheduleComponentStructure {
   [ScheduleComponentStructureNames.TITLE2]: string
   [ScheduleComponentStructureNames.BUTTON_RED]: string
   [ScheduleComponentStructureNames.BUTTON_GREEN]: string
-  [ScheduleComponentStructureNames.ON_BUTTON_RED_CLICK]: (params: any) => void
-  [ScheduleComponentStructureNames.ON_BUTTON_GREEN_CLICK]: (params: any) => void
+  [ScheduleComponentStructureNames.ON_BUTTON_RED_CLICK]: string
+  [ScheduleComponentStructureNames.ON_BUTTON_GREEN_CLICK]: string
 }
 
 export interface MeetingSteps {

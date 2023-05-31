@@ -20,11 +20,15 @@ const useDashboardClientMeetsContent = () => {
     if (data) {
       const completed = data.filter(
         (meet: ScheduledMeetStructure) =>
-          meet.status === ScheduleStepStatus.COMPLETED
+          meet.status === ScheduleStepStatus.COMPLETED ||
+          meet.status === ScheduleStepStatus.CANCELED_BY_TEACHER ||
+          meet.status === ScheduleStepStatus.CANCELED_BY_USER
       )
       const current = data.filter(
         (meet: ScheduledMeetStructure) =>
-          meet.status !== ScheduleStepStatus.COMPLETED
+          meet.status !== ScheduleStepStatus.COMPLETED &&
+          meet.status !== ScheduleStepStatus.CANCELED_BY_TEACHER &&
+          meet.status !== ScheduleStepStatus.CANCELED_BY_USER
       )
       setCompletedMeets(completed)
       setCurrentMeets(current)

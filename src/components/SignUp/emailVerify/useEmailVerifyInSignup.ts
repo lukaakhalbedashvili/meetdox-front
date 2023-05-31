@@ -19,7 +19,7 @@ const useEmailVerify = ({
 }: EmailVerifyProps) => {
   const { setAlert } = useZustandStore()
 
-  const { mutate } = useRegisterUserQuery()
+  const { mutate, isPending } = useRegisterUserQuery()
 
   const EmailVerifyCodeValidation = useFormik({
     initialValues: {
@@ -64,7 +64,7 @@ const useEmailVerify = ({
     },
   })
 
-  return { EmailVerifyCodeValidation }
+  return { EmailVerifyCodeValidation, isPending }
 }
 
 export default useEmailVerify

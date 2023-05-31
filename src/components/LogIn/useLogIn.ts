@@ -6,6 +6,7 @@ import {
   browserLocalPersistence,
   browserSessionPersistence,
 } from 'firebase/auth'
+import { useState } from 'react'
 import { useZustandStore } from '@/zustand'
 import { AlertType } from '@/zustand/zustand.interface'
 import { LogInFormFields } from './logIn.interface'
@@ -17,6 +18,7 @@ interface UseLoginProps {
 
 const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
   const { setAlert } = useZustandStore()
+  const [isLoading, setIsLoading] = useState(false)
 
   const LogInFormValidation = useFormik({
     initialValues: {
@@ -41,7 +43,7 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
 
     onSubmit: async (values, { resetForm }) => {
       const { password, email, isRememberMe } = values
-
+      setIsLoading(true)
       setPersistence(
         auth,
         isRememberMe ? browserLocalPersistence : browserSessionPersistence
@@ -49,6 +51,8 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
         .then(() => {
           signInWithEmailAndPassword(auth, email, password).then(() => {
             setIsLogInPopupOpen(false)
+
+            setIsLoading(false)
 
             setAlert({
               message: 'success',
@@ -63,7 +67,7 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
         })
     },
   })
-  return { LogInFormValidation }
+  return { LogInFormValidation, isLoading }
 }
 
 export default useLogIn

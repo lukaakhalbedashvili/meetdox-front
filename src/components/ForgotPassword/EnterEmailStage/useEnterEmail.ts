@@ -2,9 +2,10 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { AlertType } from '@/zustand/zustand.interface'
 import { useZustandStore } from '@/zustand'
+import { useSendEmailVerificationCodeQuery } from '@/reactQuery/authQueries/sendEmailVerificationCode'
+import { VerifyEmailCodeType } from '@/utils/api/api.interface'
 import { EnterEmailField } from './enterEmail.interface'
 import { ForgotPasswordStages } from '../forgot.interface'
-import { sendEmailCodeApiRequest } from '../../../utils/api/authentication'
 
 interface EnterEmailProps {
   setEmail(email: string): void
@@ -15,6 +16,8 @@ const useEnterEmail = ({
   setEmail,
   setForgotPasswordStage,
 }: EnterEmailProps) => {
+  const { mutate, isPending } = useSendEmailVerificationCodeQuery()
+
   const { setAlert } = useZustandStore()
 
   const EmailValidation = useFormik({
@@ -31,18 +34,25 @@ const useEnterEmail = ({
 
     onSubmit: async (values) => {
       const { email } = values
-      await sendEmailCodeApiRequest(email)
-      setAlert({
-        message: 'verify code sent',
-        type: AlertType.SUCCESS,
-        onClick: () => {},
-        duration: 3000,
-      })
-      setEmail(email)
-      setForgotPasswordStage(ForgotPasswordStages.EMAIL_VERIFY)
+
+      mutate(
+        { email, type: VerifyEmailCodeType.FORGOT_PASSWORD },
+        {
+          onSuccess: () => {
+            setAlert({
+              message: 'verify code sent',
+              type: AlertType.SUCCESS,
+              onClick: () => {},
+              duration: 3000,
+            })
+            setEmail(email)
+            setForgotPasswordStage(ForgotPasswordStages.EMAIL_VERIFY)
+          },
+        }
+      )
     },
   })
-  return { EmailValidation }
+  return { EmailValidation, isPending }
 }
 
 export default useEnterEmail

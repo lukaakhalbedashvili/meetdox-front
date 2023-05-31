@@ -20,7 +20,7 @@ const useResetPassword = ({
 }: ResetPasswordProps) => {
   const { setAlert } = useZustandStore()
 
-  const { mutate } = useResetPasswordQuery()
+  const { mutate, isPending } = useResetPasswordQuery()
 
   const EmailVerifyCodeValidation = useFormik({
     initialValues: {
@@ -59,7 +59,7 @@ const useResetPassword = ({
       )
     },
   })
-  return { EmailVerifyCodeValidation }
+  return { EmailVerifyCodeValidation, isPending }
 }
 
 export default useResetPassword

@@ -1,13 +1,13 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { IoIosArrowForward } from 'react-icons/io'
-// import NotificationModuleSingleBtn from '@/elements/NotificationModuleSingleBtn'
-// import { NotificationStructure } from '@/components/NavigationLoggedIn/navigationLoggedIn.interface'
+import NotificationModuleSingleBtn from '@/elements/NotificationModuleSingleBtn'
+import { NotificationStructure } from '@/components/NavigationLoggedIn/navigationLoggedIn.interface'
 
 interface MobileNotificationsProps {
   onClose: () => void
 }
 const MobileNotifications: FC<MobileNotificationsProps> = ({ onClose }) => {
-  // const [notifications] = useState<NotificationStructure[]>([])
+  const [notifications] = useState<NotificationStructure[]>([])
 
   return (
     <div className="w-full">
@@ -22,7 +22,7 @@ const MobileNotifications: FC<MobileNotificationsProps> = ({ onClose }) => {
         </div>
       </div>
 
-      {/* <div className="flex max-h-80 flex-col overflow-y-scroll bg-empty_gray">
+      <div className="flex max-h-80 flex-col overflow-y-scroll bg-empty_gray">
         {notifications.map((notification) => (
           <NotificationModuleSingleBtn
             id={notification.id}
@@ -35,7 +35,7 @@ const MobileNotifications: FC<MobileNotificationsProps> = ({ onClose }) => {
             url={notification.url}
           />
         ))}
-      </div> */}
+      </div>
     </div>
   )
 }

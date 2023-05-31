@@ -19,9 +19,9 @@ interface SignupProps {
   >
 }
 
-const useSignup = ({ setRegistrationStage, setUserInfo }: SignupProps) => {
+const useSignUpStage = ({ setRegistrationStage, setUserInfo }: SignupProps) => {
   const { setAlert } = useZustandStore()
-  const { mutate } = useSendEmailVerificationCodeQuery()
+  const { mutate, isPending } = useSendEmailVerificationCodeQuery()
 
   const SignUpFormValidation = useFormik({
     initialValues: {
@@ -75,7 +75,7 @@ const useSignup = ({ setRegistrationStage, setUserInfo }: SignupProps) => {
       )
     },
   })
-  return { SignUpFormValidation }
+  return { SignUpFormValidation, isPending }
 }
 
-export default useSignup
+export default useSignUpStage

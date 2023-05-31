@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { FC } from 'react'
+import { ClipLoader } from 'react-spinners'
 import TeacherSkillsToDisplay from '@/elements/TeacherSkillsToDisplay'
 import TeacherBasicInformationToDisplay from '@/elements/TeacherBasicInformationToDisplay'
 import TeacherExperienceSeparatorItem from '@/elements/TeacherExperienceSeparatorItem'
@@ -18,10 +19,21 @@ interface TeacherProps {
 }
 
 const Teacher: FC<TeacherProps> = ({ params }) => {
-  const { activeSection, isModalOpen, setActiveSection, setIsModalOpen, data } =
-    useTeacher({ teacherUid: params.id })
+  const {
+    activeSection,
+    isModalOpen,
+    setActiveSection,
+    setIsModalOpen,
+    data,
+    isLoading,
+  } = useTeacher({ teacherUid: params.id })
 
-  if (!data) return <h1>loading...</h1>
+  // if (isLoading)
+  //   return (
+  //     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
+  //       <ClipLoader color="#36d7b7" />
+  //     </div>
+  //   )
 
   const {
     domain,
@@ -33,61 +45,69 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
     reviews,
     teacherExperience,
     teacherEducation,
-  } = data
+  } = data || {}
 
-  const { category, subCategories } = domain
+  const { category, subCategories } = domain || {}
 
-  const { lastName, name } = personalDetails
+  const { lastName, name } = personalDetails || {}
 
   return (
     <>
-      {data && (
-        <div className="mx-2 lg:flex lg:items-start lg:bg-gray lg:px-6 lg:py-10">
-          <div className="flex flex-col items-center rounded-md border-border_gray bg-white px-3  lg:w-1/3 lg:py-6">
-            {image && (
-              <div className="relative flex h-44 w-44 max-w-[300px] rounded-full">
-                <Image
-                  src={data.image}
-                  fill
-                  alt="profile image"
-                  className="rounded-full object-cover"
-                />
-              </div>
-            )}
+      <div className="mx-2 lg:relative lg:flex lg:items-start lg:bg-gray lg:px-6 lg:py-10">
+        {isLoading && (
+          <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
+            <ClipLoader color="#36d7b7" />
+          </div>
+        )}
 
-            <h2 className="font-semi-bold mt-4 overflow-hidden whitespace-nowrap text-xl">
-              {personalDetails.name} {personalDetails.lastName}
-            </h2>
+        <div className="flex flex-col items-center rounded-md border-border_gray bg-white px-3  lg:w-1/3 lg:py-6">
+          {image && (
+            <div className="relative flex h-44 w-44 max-w-[300px] rounded-full">
+              <Image
+                src={image}
+                fill
+                alt="profile image"
+                className="rounded-full object-cover"
+              />
+            </div>
+          )}
 
-            <div className="my-3 flex flex-col items-center text-sm text-icon_gray">
-              <div className="flex items-center">
-                <p>{`${category} -`}</p>
+          <h2 className="font-semi-bold mt-4 overflow-hidden whitespace-nowrap text-xl">
+            {name} {lastName}
+          </h2>
 
-                {subCategories?.map((item, index) => {
-                  return (
-                    <div key={item} className="mx-[2px] flex">
-                      {item}
-                      {index === subCategories.length - 1 ? '' : ','}
-                    </div>
-                  )
-                })}
-              </div>
+          <div className="my-3 flex flex-col items-center text-sm text-icon_gray">
+            <div className="flex items-center">
+              <p>{`${category} -`}</p>
 
-              <p>{`${perHour}/hr`}</p>
+              {subCategories?.map((item, index) => {
+                return (
+                  <div key={item} className="mx-[2px] flex">
+                    {item}
+                    {index === subCategories.length - 1 ? '' : ','}
+                  </div>
+                )
+              })}
             </div>
 
-            <div className="mb-10 mt-3 flex items-center text-center text-sm text-black lg:mx-4">
-              {description}
-            </div>
+            <p>{`${perHour}/hr`}</p>
+          </div>
 
+          <div className="mb-10 mt-3 flex items-center text-center text-sm text-black lg:mx-4">
+            {description}
+          </div>
+
+          {skills && (
             <div className="lg:ml-4">
-              {skills.length > 0 && (
+              {length > 0 && (
                 <TeacherSkillsToDisplay header="Skills" skills={skills} />
               )}
             </div>
-          </div>
+          )}
+        </div>
 
-          <div className="lg:ml-10 lg:w-1/2">
+        <div className="lg:ml-10 lg:w-1/2">
+          {reviews && (
             <div className="mt-10 rounded-md bg-white p-4 px-4 lg:mt-0 lg:p-6">
               {location && data && (
                 <TeacherBasicInformationToDisplay
@@ -98,34 +118,33 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
                 />
               )}
             </div>
+          )}
 
-            <div className="mt-10 rounded-md bg-white p-4 px-6">
-              <ContentSeparator
-                sections={[
-                  TeacherSections.EXPERIENCE,
-                  TeacherSections.EDUCATION,
-                ]}
-                activeSection={activeSection}
-                handleChange={(section) => {
-                  setActiveSection(section)
-                }}
-              >
-                {activeSection === TeacherSections.EXPERIENCE && (
+          <div className="mt-10 rounded-md bg-white p-4 px-6">
+            <ContentSeparator
+              sections={[TeacherSections.EXPERIENCE, TeacherSections.EDUCATION]}
+              activeSection={activeSection}
+              handleChange={(section) => {
+                setActiveSection(section)
+              }}
+            >
+              {activeSection === TeacherSections.EXPERIENCE &&
+                teacherExperience && (
                   <TeacherExperienceSeparatorItem
                     experiences={teacherExperience}
                   />
                 )}
 
-                {activeSection === TeacherSections.EDUCATION && (
+              {activeSection === TeacherSections.EDUCATION &&
+                teacherEducation && (
                   <TeacherEducationSeparator educations={teacherEducation} />
                 )}
-              </ContentSeparator>
-            </div>
+            </ContentSeparator>
           </div>
         </div>
-      )}
+      </div>
 
-      {data && isModalOpen && (
+      {data && isModalOpen && perHour && category && name && lastName && (
         <PopupItemWrapper
           onOutsideClickHandler={() => {
             setIsModalOpen(false)

@@ -10,7 +10,10 @@ import {
 } from '@/utils/services/time'
 import { scheduleSteps } from '@/data/scheduleSteps'
 import useDashboardTeacherMeetsContent from './useDashboardTeacherMeetsContent'
-import { ScheduleTypes } from '../Dashboard/dashboard.interface'
+import {
+  ScheduleComponentStructureNames,
+  ScheduleTypes,
+} from '../Dashboard/dashboard.interface'
 
 const DashboardTeacherMeetsContent = () => {
   const { completedMeets, currentMeets } = useDashboardTeacherMeetsContent()
@@ -94,7 +97,7 @@ const DashboardTeacherMeetsContent = () => {
                     ${
                       scheduleSteps[ScheduleTypes.MEETINGS_AS_TEACHER][
                         meeting.status
-                      ]['title1'] === ''
+                      ][ScheduleComponentStructureNames.TITLE1] === ''
                         ? 'hidden'
                         : 'block'
                     }
@@ -104,7 +107,7 @@ const DashboardTeacherMeetsContent = () => {
                       {
                         scheduleSteps[ScheduleTypes.MEETINGS_AS_TEACHER][
                           meeting.status
-                        ]['title1']
+                        ][ScheduleComponentStructureNames.TITLE1]
                       }
                     </span>
 
@@ -113,7 +116,7 @@ const DashboardTeacherMeetsContent = () => {
                     ${
                       scheduleSteps[ScheduleTypes.MEETINGS_AS_TEACHER][
                         meeting.status
-                      ]['title2'] === ''
+                      ][ScheduleComponentStructureNames.TITLE2] === ''
                         ? 'hidden'
                         : 'block'
                     } mb-2 w-full rounded-xl bg-orange_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-orange_label`}
@@ -121,7 +124,7 @@ const DashboardTeacherMeetsContent = () => {
                       {
                         scheduleSteps[ScheduleTypes.MEETINGS_AS_TEACHER][
                           meeting.status
-                        ]['title2']
+                        ][ScheduleComponentStructureNames.TITLE2]
                       }
                     </span>
 
@@ -130,7 +133,7 @@ const DashboardTeacherMeetsContent = () => {
                         customTailwindClasses={` ${
                           scheduleSteps[ScheduleTypes.MEETINGS_AS_TEACHER][
                             meeting.status
-                          ]['buttonRed'] === ''
+                          ][ScheduleComponentStructureNames.BUTTON_RED] === ''
                             ? 'hidden'
                             : 'block'
                         } bg-error bg-opacity-20 border-border_gray w-1/2 `}
@@ -142,7 +145,7 @@ const DashboardTeacherMeetsContent = () => {
                             {
                               scheduleSteps[ScheduleTypes.MEETINGS_AS_TEACHER][
                                 meeting.status
-                              ]['buttonRed']
+                              ][ScheduleComponentStructureNames.BUTTON_RED]
                             }
                           </p>
                         </div>
@@ -152,7 +155,7 @@ const DashboardTeacherMeetsContent = () => {
                         customTailwindClasses={` ${
                           scheduleSteps[ScheduleTypes.MEETINGS_AS_TEACHER][
                             meeting.status
-                          ]['buttonGreen'] === ''
+                          ][ScheduleComponentStructureNames.BUTTON_GREEN] === ''
                             ? 'hidden'
                             : 'block'
                         } bg-success_border_green bg-opacity-20 border-border_gray w-1/2`}
@@ -164,7 +167,7 @@ const DashboardTeacherMeetsContent = () => {
                             {
                               scheduleSteps[ScheduleTypes.MEETINGS_AS_TEACHER][
                                 meeting.status
-                              ]['buttonGreen']
+                              ][ScheduleComponentStructureNames.BUTTON_GREEN]
                             }
                           </p>
                         </div>

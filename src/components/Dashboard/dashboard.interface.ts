@@ -25,20 +25,27 @@ export enum ScheduleStepStatus {
   COMPLETED = 'completed',
 }
 
-// upper case
-
 export enum ScheduleTypes {
   MEETINGS_AS_CLIENT = 'meetingsAsClient',
   MEETINGS_AS_TEACHER = 'meetingsAsTeacher',
 }
 
+export enum ScheduleComponentStructureNames {
+  TITLE1 = 'title1',
+  TITLE2 = 'title2',
+  BUTTON_RED = 'buttonRed',
+  BUTTON_GREEN = 'buttonGreen',
+  ON_BUTTON_RED_CLICK = 'onButtonRedClick',
+  ON_BUTTON_GREEN_CLICK = 'onButtonGreenClick',
+}
+
 export interface ScheduleComponentStructure {
-  title1: string
-  title2: string
-  buttonRed: string
-  buttonGreen: string
-  onButtonRedClick: (params: any) => void
-  onButtonGreenClick: (params: any) => void
+  [ScheduleComponentStructureNames.TITLE1]: string
+  [ScheduleComponentStructureNames.TITLE2]: string
+  [ScheduleComponentStructureNames.BUTTON_RED]: string
+  [ScheduleComponentStructureNames.BUTTON_GREEN]: string
+  [ScheduleComponentStructureNames.ON_BUTTON_RED_CLICK]: (params: any) => void
+  [ScheduleComponentStructureNames.ON_BUTTON_GREEN_CLICK]: (params: any) => void
 }
 
 export interface MeetingSteps {

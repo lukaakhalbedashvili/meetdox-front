@@ -55,11 +55,13 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
-    <div className="h-full overflow-scroll bg-white pt-4 lg:relative lg:flex lg:h-[700px] lg:w-[1200px] lg:overflow-hidden lg:rounded-md lg:p-10">
-      <IoIosClose
-        className="absolute top-2 right-2 h-10 w-10 cursor-pointer fill-black lg:top-0 lg:right-0 lg:h-8 lg:w-8"
-        onClick={() => setIsModalOpen(false)}
-      />
+    <div className="h-full overflow-scroll bg-white pt-4 lg:relative lg:flex lg:h-[700px] lg:w-full lg:overflow-hidden lg:rounded-md lg:p-10">
+      <div className="flex items-center justify-end lg:absolute lg:top-2 lg:right-2 ">
+        <IoIosClose
+          className="h-10 w-10 cursor-pointer fill-black lg:top-0 lg:right-0 lg:h-8 lg:w-8"
+          onClick={() => setIsModalOpen(false)}
+        />
+      </div>
 
       <div className="flex flex-col">
         {selectedMeetDuration && (
@@ -125,7 +127,7 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
           />
         )}
 
-        <div className="my-4 flex h-12 justify-end sm:px-12 lg:absolute lg:bottom-2 lg:right-0 lg:px-0">
+        <div className="my-4 flex h-12 justify-end lg:absolute lg:bottom-2 lg:right-0 lg:px-0">
           <Button
             type="button"
             customTailwindClasses="bg-sky border-sky text-white"

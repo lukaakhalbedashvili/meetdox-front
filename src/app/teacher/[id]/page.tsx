@@ -60,7 +60,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
             </h2>
 
             <div className="my-3 flex flex-col items-center text-sm text-icon_gray">
-              <div className="flex items-center">
+              <div className="flex flex-wrap items-center justify-center lg:mx-6">
                 <p>{`${category} -`}</p>
 
                 {subCategories?.map((item, index) => {
@@ -99,7 +99,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
               )}
             </div>
 
-            <div className="mt-10 rounded-md bg-white p-4 px-6">
+            <div className="mt-10 rounded-md bg-white p-4 px-4">
               <ContentSeparator
                 sections={[
                   TeacherSections.EXPERIENCE,

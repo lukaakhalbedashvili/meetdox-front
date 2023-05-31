@@ -5,7 +5,7 @@ import { QueryKey } from '../reactQuery.interface'
 
 export const useFetchMyMeetings = (type: string) =>
   useQuery({
-    queryKey: [QueryKey.GET_MY_MEETINGS],
+    queryKey: [QueryKey.GET_MY_MEETINGS, type],
     queryFn: async () => {
       const token = await auth.currentUser?.getIdToken()
       return fetchMyMeetings(token, type)

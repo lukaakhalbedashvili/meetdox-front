@@ -3,7 +3,8 @@ import { AiOutlineSchedule } from 'react-icons/ai'
 import DashboardProfileContent from '@/components/DashboardProfileContent'
 import DashboardPasswordChangeContent from '@/components/DashboardPasswordChangeContent'
 import { DashboardItemsNames } from '@/components/Dashboard/dashboard.interface'
-import DashboardTeacherMeetsContent from '@/components/DashboardClientMeetsContent'
+import DashboardClientMeetsContent from '@/components/DashboardClientMeetsContent'
+import DashboardTeacherMeetsContent from '@/components/DashboardTeacherMeetsContent '
 
 const clientDashboardItems = [
   {
@@ -22,7 +23,7 @@ const clientDashboardItems = [
     id: 3,
     title: DashboardItemsNames.MEETINGS,
     icon: AiOutlineSchedule,
-    tab: DashboardTeacherMeetsContent,
+    tab: DashboardClientMeetsContent,
   },
 ]
 
@@ -43,7 +44,7 @@ const teacherDashboardItems = [
     id: 3,
     title: DashboardItemsNames.MEETINGS,
     icon: AiOutlineSchedule,
-    tab: DashboardTeacherMeetsContent,
+    tab: DashboardClientMeetsContent,
   },
   {
     id: 4,

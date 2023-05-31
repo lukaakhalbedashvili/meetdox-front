@@ -9,10 +9,10 @@ import {
   getTimeAgo,
 } from '@/utils/services/time'
 import { scheduleSteps } from '@/data/scheduleSteps'
-import useDashboardClientMeetsContent from './useDashboardClientMeetsContent'
+import useDashboardTeacherMeetsContent from './useDashboardTeacherMeetsContent'
 
-const DashboardClientMeetsContent = () => {
-  const { completedMeets, currentMeets } = useDashboardClientMeetsContent()
+const DashboardTeacherMeetsContent = () => {
+  const { completedMeets, currentMeets } = useDashboardTeacherMeetsContent()
 
   return (
     <div className="scheduled-meetings">
@@ -33,7 +33,7 @@ const DashboardClientMeetsContent = () => {
                     <Image
                       src={
                         meeting.teacherImg
-                          ? meeting.teacherImg
+                          ? meeting.clientImg
                           : '/unknown_user.png'
                       }
                       alt="Google Logo"
@@ -44,7 +44,7 @@ const DashboardClientMeetsContent = () => {
 
                   <div className="flex flex-col">
                     <div className="flex items-center justify-center space-x-2 sm:justify-start">
-                      <h2 className="font-medium">{meeting.teacherUsername}</h2>
+                      <h2 className="font-medium">{meeting.clientUsername}</h2>
                     </div>
 
                     <div className="mt-1 flex items-center space-x-2">
@@ -91,33 +91,43 @@ const DashboardClientMeetsContent = () => {
                     <span
                       className={`
                     ${
-                      scheduleSteps['clientMeeting'][meeting.status][
+                      scheduleSteps['teacherMeeting'][meeting.status][
                         'title1'
                       ] === ''
                         ? 'hidden'
                         : 'block'
-                    } mb-2 w-full rounded-xl bg-blue_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-blue_label`}
+                    }
+                    
+                    mb-2 w-full rounded-xl bg-blue_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-blue_label`}
                     >
-                      {scheduleSteps['clientMeeting'][meeting.status]['title1']}
+                      {
+                        scheduleSteps['teacherMeeting'][meeting.status][
+                          'title1'
+                        ]
+                      }
                     </span>
 
                     <span
                       className={`
                     ${
-                      scheduleSteps['clientMeeting'][meeting.status][
+                      scheduleSteps['teacherMeeting'][meeting.status][
                         'title2'
                       ] === ''
                         ? 'hidden'
                         : 'block'
                     } mb-2 w-full rounded-xl bg-orange_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-orange_label`}
                     >
-                      {scheduleSteps['clientMeeting'][meeting.status]['title2']}
+                      {
+                        scheduleSteps['teacherMeeting'][meeting.status][
+                          'title2'
+                        ]
+                      }
                     </span>
 
                     <div className="flex w-full justify-center sm:space-x-2">
                       <Button
                         customTailwindClasses={` ${
-                          scheduleSteps['clientMeeting'][meeting.status][
+                          scheduleSteps['teacherMeeting'][meeting.status][
                             'buttonRed'
                           ] === ''
                             ? 'hidden'
@@ -129,7 +139,7 @@ const DashboardClientMeetsContent = () => {
                             className={`flex items-center justify-center text-sm font-medium text-error`}
                           >
                             {
-                              scheduleSteps['clientMeeting'][meeting.status][
+                              scheduleSteps['teacherMeeting'][meeting.status][
                                 'buttonRed'
                               ]
                             }
@@ -139,7 +149,7 @@ const DashboardClientMeetsContent = () => {
 
                       <Button
                         customTailwindClasses={` ${
-                          scheduleSteps['clientMeeting'][meeting.status][
+                          scheduleSteps['teacherMeeting'][meeting.status][
                             'buttonGreen'
                           ] === ''
                             ? 'hidden'
@@ -151,7 +161,7 @@ const DashboardClientMeetsContent = () => {
                             className={`flex items-center justify-center text-sm font-medium text-success_border_green`}
                           >
                             {
-                              scheduleSteps['clientMeeting'][meeting.status][
+                              scheduleSteps['teacherMeeting'][meeting.status][
                                 'buttonGreen'
                               ]
                             }
@@ -170,4 +180,4 @@ const DashboardClientMeetsContent = () => {
   )
 }
 
-export default DashboardClientMeetsContent
+export default DashboardTeacherMeetsContent

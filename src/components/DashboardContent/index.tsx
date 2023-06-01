@@ -1,5 +1,5 @@
 import React from 'react'
-import dashboardItems from '@/data/dashboardItems'
+import { teacherDashboardItems } from '@/data/dashboardItems'
 import { DashboardItemsNames } from '../Dashboard/dashboard.interface'
 
 interface DashboardContentWrapperProps {
@@ -9,7 +9,7 @@ interface DashboardContentWrapperProps {
 const DashboardContentWrapper = ({
   currentTab,
 }: DashboardContentWrapperProps) => {
-  const CurrentTabData = dashboardItems.find(
+  const CurrentTabData = teacherDashboardItems.find(
     (item) => item.title === currentTab
   )?.tab!
 

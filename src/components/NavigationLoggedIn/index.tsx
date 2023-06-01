@@ -96,7 +96,7 @@ const NavigationLoggedIn = ({
             onClick={handleProfileClick}
             ref={userAvatarRef}
           >
-            <ProfileCircledPic photoUrl={photoUrl} username={username} />
+            <ProfileCircledPic photoUrl={photoUrl} />
           </button>
 
           {isProfileOpen && (
@@ -106,7 +106,7 @@ const NavigationLoggedIn = ({
             >
               <div className="flex flex-col items-center bg-white px-4 pt-2  pb-2">
                 <button className="relative h-10 w-10">
-                  <ProfileCircledPic photoUrl={photoUrl} username={username} />
+                  <ProfileCircledPic photoUrl={photoUrl} />
                 </button>
 
                 <p className="mt-2 text-sm">{username}</p>

@@ -9,11 +9,11 @@ import {
   getTimeAgo,
 } from '@/utils/services/time'
 import { scheduleSteps } from '@/data/scheduleSteps'
-import useDashboardClientMeetsContent from './useDashboardClientMeetsContent'
+import useDashboardTeacherMeetsContent from './useDashboardTeacherMeetsContent'
 
-const DashboardClientMeetsContent = () => {
+const DashboardTeacherMeetsContent = () => {
   const { completedMeets, currentMeets, mutate, refetch } =
-    useDashboardClientMeetsContent()
+    useDashboardTeacherMeetsContent()
 
   return (
     <div className="scheduled-meetings">
@@ -25,7 +25,7 @@ const DashboardClientMeetsContent = () => {
 
           <div className="lg: mb-8 rounded-md py-4 sm:bg-background_gray lg:px-8">
             {meetings.map((meeting) => {
-              const currMeet = scheduleSteps.meetingsAsClient[meeting.status]
+              const currMeet = scheduleSteps.meetingsAsTeacher[meeting.status]
               return (
                 <div
                   key={meeting.teacherImg}
@@ -36,7 +36,7 @@ const DashboardClientMeetsContent = () => {
                       <Image
                         src={
                           meeting.teacherImg
-                            ? meeting.teacherImg
+                            ? meeting.clientImg
                             : '/unknown_user.png'
                         }
                         alt="Google Logo"
@@ -48,7 +48,7 @@ const DashboardClientMeetsContent = () => {
                     <div className="flex flex-col">
                       <div className="flex items-center justify-center space-x-2 sm:justify-start">
                         <h2 className="font-medium">
-                          {meeting.teacherUsername}
+                          {meeting.clientUsername}
                         </h2>
                       </div>
 
@@ -127,7 +127,9 @@ const DashboardClientMeetsContent = () => {
                             customTailwindClasses="bg-error bg-opacity-20 border-border_gray w-1/2"
                           >
                             <div className="flex h-[35px] items-center justify-center">
-                              <p className="flex items-center justify-center text-sm font-medium text-error">
+                              <p
+                                className={`flex items-center justify-center text-sm font-medium text-error`}
+                              >
                                 {currMeet.buttonRed}
                               </p>
                             </div>
@@ -176,4 +178,4 @@ const DashboardClientMeetsContent = () => {
   )
 }
 
-export default DashboardClientMeetsContent
+export default DashboardTeacherMeetsContent

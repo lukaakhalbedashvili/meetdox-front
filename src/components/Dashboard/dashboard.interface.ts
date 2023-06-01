@@ -30,34 +30,25 @@ export enum ScheduleTypes {
   MEETINGS_AS_TEACHER = 'meetingsAsTeacher',
 }
 
-export enum ScheduleComponentStructureNames {
-  TITLE1 = 'title1',
-  TITLE2 = 'title2',
-  BUTTON_RED = 'buttonRed',
-  BUTTON_GREEN = 'buttonGreen',
-  ON_BUTTON_RED_CLICK = 'onButtonRedClick',
-  ON_BUTTON_GREEN_CLICK = 'onButtonGreenClick',
-}
-
 export interface ScheduleComponentStructure {
-  [ScheduleComponentStructureNames.TITLE1]: string
-  [ScheduleComponentStructureNames.TITLE2]: string
-  [ScheduleComponentStructureNames.BUTTON_RED]: string
-  [ScheduleComponentStructureNames.BUTTON_GREEN]: string
-  [ScheduleComponentStructureNames.ON_BUTTON_RED_CLICK]: string
-  [ScheduleComponentStructureNames.ON_BUTTON_GREEN_CLICK]: string
+  title1: string
+  title2: string
+  buttonRed: string
+  buttonGreen: string
+  onButtonRedClick: string
+  onButtonGreenClick: string
 }
 
 export interface MeetingSteps {
-  [ScheduleStepStatus.SCHEDULED_BY_USER]: ScheduleComponentStructure
-  [ScheduleStepStatus.CANCELED_BY_USER]: ScheduleComponentStructure
-  [ScheduleStepStatus.CANCELED_BY_TEACHER]: ScheduleComponentStructure
-  [ScheduleStepStatus.CONFIRMED_BY_TEACHER]: ScheduleComponentStructure
-  [ScheduleStepStatus.PAID_BY_USER]: ScheduleComponentStructure
-  [ScheduleStepStatus.COMPLETED]: ScheduleComponentStructure
+  scheduledByUser: ScheduleComponentStructure
+  canceledByUser: ScheduleComponentStructure
+  canceledByTeacher: ScheduleComponentStructure
+  confirmedByTeacher: ScheduleComponentStructure
+  paidByUser: ScheduleComponentStructure
+  completed: ScheduleComponentStructure
 }
 
 export interface ScheduleSteps {
-  [ScheduleTypes.MEETINGS_AS_CLIENT]: MeetingSteps
-  [ScheduleTypes.MEETINGS_AS_TEACHER]: MeetingSteps
+  meetingsAsClient: MeetingSteps
+  meetingsAsTeacher: MeetingSteps
 }

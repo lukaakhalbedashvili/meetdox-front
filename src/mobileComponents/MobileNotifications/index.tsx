@@ -16,10 +16,12 @@ const MobileNotifications: FC<MobileNotificationsProps> = ({ onClose }) => {
           className="ml-3 mt-4 mr-2 h-6 w-6 cursor-pointer"
           onClick={onClose}
         />
+
         <div className="mt-4">
           <p className="ml-5 text-lg ">Notifications (0)</p>
         </div>
       </div>
+
       <div className="flex max-h-80 flex-col overflow-y-scroll bg-empty_gray">
         {notifications.map((notification) => (
           <NotificationModuleSingleBtn

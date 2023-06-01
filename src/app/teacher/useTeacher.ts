@@ -7,13 +7,20 @@ interface UseTeacherProps {
 }
 
 const useTeacher = ({ teacherUid }: UseTeacherProps) => {
-  const { data } = useGetTeacherPublicData(teacherUid)
+  const { data, isLoading } = useGetTeacherPublicData(teacherUid)
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<TeacherSections>(
     TeacherSections.EXPERIENCE
   )
-  return { activeSection, setActiveSection, isModalOpen, setIsModalOpen, data }
+  return {
+    activeSection,
+    setActiveSection,
+    isModalOpen,
+    setIsModalOpen,
+    data,
+    isLoading,
+  }
 }
 
 export default useTeacher

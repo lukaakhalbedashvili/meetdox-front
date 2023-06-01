@@ -17,9 +17,10 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
 
   const router = useRouter()
 
-  const { mutate } = useSendScheduleMeet()
+  const { mutate, isPending } = useSendScheduleMeet()
 
   const [meetDate, setMeetDate] = useState(new Date())
+
   const [description, setDescription] = useState('')
 
   const [selectedTimeOffset, setSelectedTimeOffset] =
@@ -83,6 +84,7 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     description,
     setDescription,
     setAlert,
+    isPending,
   }
 }
 

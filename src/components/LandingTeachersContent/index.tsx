@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
+import { ClipLoader } from 'react-spinners'
 import { useRouter } from 'next/navigation'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import useLandingTeachersContent from './useLandingTeachersContent'
@@ -10,10 +11,16 @@ import { TeacherData } from '../Catalog/catalog.interface'
 const LandingTeachersContent = () => {
   const router = useRouter()
 
-  const { data } = useLandingTeachersContent()
+  const { data, isLoading } = useLandingTeachersContent()
 
   return (
-    <div className="">
+    <div className="min-h-screen">
+      {isLoading && (
+        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
+          <ClipLoader color="#36d7b7" />
+        </div>
+      )}
+
       {data?.categorizedTeachers?.map((item) => (
         <SwiperWrapper key={item.header} title={item.header}>
           {item.categoryItems.map((categoryTeachers: TeacherData) => (

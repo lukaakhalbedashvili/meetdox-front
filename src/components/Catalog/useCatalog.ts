@@ -37,7 +37,7 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
     endPrice,
   ])
 
-  const { data } = useGetTeachers({
+  const { data, isLoading } = useGetTeachers({
     limit: 20,
     category: category?.name,
     sortingBy,
@@ -70,6 +70,7 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
     setStartPrice,
     endPrice,
     setEndPrice,
+    isLoading,
   }
 }
 

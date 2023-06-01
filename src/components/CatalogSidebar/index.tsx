@@ -199,7 +199,7 @@ const CatalogSidebar = ({
             <ul className="text-xs text-text_gray">
               {skills &&
                 skills?.length > 0 &&
-                skills.map((item) => (
+                skills?.map((item) => (
                   <div
                     className="flex h-9 cursor-pointer items-center rounded-md pl-2 hover:bg-border_gray"
                     key={item.name}

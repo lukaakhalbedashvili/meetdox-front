@@ -66,10 +66,12 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
 
       {!isPending && (
         <>
-          <IoIosClose
-            className="absolute top-2 right-2 h-10 w-10 cursor-pointer fill-black lg:top-0 lg:right-0 lg:h-8 lg:w-8"
+          <div
             onClick={() => setIsModalOpen(false)}
-          />
+            className="flex items-center justify-end lg:block"
+          >
+            <IoIosClose className="top-2 right-2 h-10 w-10 cursor-pointer fill-black lg:absolute lg:top-0 lg:right-0 lg:h-8 lg:w-8" />
+          </div>
 
           <div className="flex flex-col">
             {selectedMeetDuration && (

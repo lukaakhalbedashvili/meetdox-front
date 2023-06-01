@@ -99,9 +99,11 @@ const DashboardClientMeetsContent = () => {
                         </span>
                       )}
 
-                      <span className="mb-2 w-full rounded-xl bg-orange_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-orange_label">
-                        {currMeet.title2}
-                      </span>
+                      {currMeet.title2 && (
+                        <span className="mb-2 w-full rounded-xl bg-orange_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-orange_label">
+                          {currMeet.title2}
+                        </span>
+                      )}
 
                       <div className="flex w-full justify-center sm:space-x-2">
                         {currMeet.buttonRed && (
@@ -143,7 +145,9 @@ const DashboardClientMeetsContent = () => {
                                   clientUid: meeting.clientUid,
                                 },
                                 {
-                                  onSuccess: () => {},
+                                  onSuccess: () => {
+                                    refetch()
+                                  },
                                   onError: () => {},
                                 }
                               )

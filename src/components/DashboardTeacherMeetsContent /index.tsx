@@ -147,12 +147,14 @@ const DashboardTeacherMeetsContent = () => {
                                   clientUid: meeting.clientUid,
                                 },
                                 {
-                                  onSuccess: () => {},
+                                  onSuccess: () => {
+                                    refetch()
+                                  },
                                   onError: () => {},
                                 }
                               )
                             }
-                            customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2`"
+                            customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"
                           >
                             <div className="flex h-[35px]  items-center justify-center">
                               <p

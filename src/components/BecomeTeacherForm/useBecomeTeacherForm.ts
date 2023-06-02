@@ -55,19 +55,7 @@ const useBecameTeacherForm = () => {
     const { country, phone } = contact
     const { description } = about
     const { category, subCategories } = domain
-    // console.log(
-    //   birthMonth,
-    //   birthYear,
-    //   lastName,
-    //   name,
-    //   image,
-    //   country,
-    //   phone,
-    //   description,
-    //   category,
-    //   perHour,
-    //   subCategories.length > 0
-    // )
+
     if (
       birthMonth &&
       birthYear &&
@@ -111,6 +99,7 @@ const useBecameTeacherForm = () => {
     setIsFormSubmitted,
     values,
     teacherData: teacherData.data,
+    isTeacherDataLoading: teacherData.isLoading,
   }
 }
 

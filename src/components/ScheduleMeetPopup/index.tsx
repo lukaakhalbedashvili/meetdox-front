@@ -57,9 +57,9 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
   } = useScheduleMeetPopup({ pricePerHour })
 
   return (
-    <div className="h-full overflow-scroll bg-white pt-4 lg:relative lg:flex lg:h-[700px] lg:w-[1200px] lg:overflow-hidden lg:rounded-md lg:p-10">
+    <div className="h-full overflow-scroll bg-white pt-4 lg:relative lg:flex lg:h-[700px] lg:w-fit lg:overflow-hidden lg:rounded-md lg:p-10">
       {isPending && (
-        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
+        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform">
           <ClipLoader color="#36d7b7" />
         </div>
       )}
@@ -93,7 +93,7 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
             </div>
           </div>
 
-          <div className="mx-4 mt-4 flex flex-col lg:mt-0">
+          <div className="mx-4 mt-4 flex flex-col lg:mx-10 lg:mt-0 lg:w-96">
             <ScheduleTeacherMeetDuration
               meetDurations={meetDurations}
               setMeetDuration={setMeetDuration}

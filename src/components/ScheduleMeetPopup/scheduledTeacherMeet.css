@@ -9,8 +9,14 @@
 }
 
 .react-calendar__month-view__days {
-  display: grid;
-  grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;
+  display: grid !important;
+  grid-template-columns: repeat(7, 14.5%);
+}
+
+.react-calendar__tile.react-calendar__month-view__days__day:first-child {
+  margin: 0 !important;
+  margin-left: 4px !important;
+  margin-top: 3px !important;
 }
 
 .react-calendar__month-view__days .react-calendar__tile {

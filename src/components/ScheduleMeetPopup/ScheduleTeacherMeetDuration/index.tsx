@@ -25,7 +25,10 @@ const ScheduleTeacherMeetDuration: FC<ScheduleTeacherMeetDurationProps> = ({
       <div className="lg:flex lg:items-center">
         {meetDurations.map((item) => {
           return (
-            <div key={item.value} className="mr-4 flex items-center lg:mr-8">
+            <div
+              key={item.value}
+              className="mr-4 flex items-center whitespace-nowrap lg:mr-8"
+            >
               <Checkbox
                 isChecked={item.isChecked}
                 id={item.value}

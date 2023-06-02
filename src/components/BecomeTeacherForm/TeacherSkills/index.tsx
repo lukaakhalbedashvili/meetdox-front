@@ -14,6 +14,7 @@ interface TeacherSkillsProps {
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
   selectedDomain: string
+  defaultValues?: string[]
 }
 
 const TeacherSkills: FC<TeacherSkillsProps> = ({
@@ -21,6 +22,7 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
   setErroredSections,
   setFormValues,
   selectedDomain,
+  defaultValues,
 }) => {
   const {
     teacherSkillsValidation,
@@ -33,7 +35,8 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
     isFormSubmitted,
     setErroredSections,
     setFormValues,
-    selectedDomain
+    selectedDomain,
+    defaultValues
   )
 
   return (

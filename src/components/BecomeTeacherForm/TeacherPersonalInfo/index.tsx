@@ -6,6 +6,7 @@ import DropDownInput from '@/elements/DropDownInput'
 import { getAgeRange } from '@/utils/services/getTeacherAgeRange'
 import { months } from '@/data/teachersDummyData'
 import Button from '@/elements/Button'
+import { PersonalDetails } from '@/components/Catalog/catalog.interface'
 import { uploadImageToFirebase } from '@/utils/firebase/uploadImageToFirebase'
 import useTeacherPersonalInfo from './useTeacherPersonalInfo'
 import { TeacherPersonalInfoFormInputNames } from './teacherPersonalInfo.interface'
@@ -20,12 +21,14 @@ interface TeacherPersonalInfoProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
+  defaultValues?: { data?: PersonalDetails; image?: string }
 }
 
 const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
   isFormSubmitted,
   setErroredSections,
   setFormValues,
+  defaultValues,
 }) => {
   const {
     teacherPersonalInfoValidation,
@@ -42,7 +45,12 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
     isImageError,
     userId,
     setImageFromFirebase,
-  } = useTeacherPersonalInfo(isFormSubmitted, setErroredSections, setFormValues)
+  } = useTeacherPersonalInfo(
+    isFormSubmitted,
+    setErroredSections,
+    setFormValues,
+    defaultValues
+  )
 
   return (
     <>
@@ -192,12 +200,6 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
                   userId,
                   imageToUpload: image.blob,
                   onSuccessHandler: (url) => {
-                    // setFormValues((prevState): FormValues => {
-                    //   return {
-                    //     ...prevState,
-                    //     personalDetails: { ...prevState.personalDetails, image: url },
-                    //   }
-                    // })
                     setImageFromFirebase(url)
                   },
                 })

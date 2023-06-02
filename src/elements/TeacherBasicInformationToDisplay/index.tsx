@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import React, { FC } from 'react'
 import { BsFillStarFill } from 'react-icons/bs'
 
 import Button from '../Button'
@@ -7,12 +7,13 @@ interface TeacherBasicInformationToDisplayProps {
   location: string
   rating: number
   totalReviews: number
-  setIsModalOpen: Dispatch<SetStateAction<boolean>>
+  primaryBtnText?: string
+  onPrimaryBtnClick: () => void
 }
 
 const TeacherBasicInformationToDisplay: FC<
   TeacherBasicInformationToDisplayProps
-> = ({ location, rating, totalReviews, setIsModalOpen }) => {
+> = ({ location, rating, totalReviews, primaryBtnText, onPrimaryBtnClick }) => {
   return (
     <div>
       <h2 className="text-xl">Basic Information</h2>
@@ -43,10 +44,10 @@ const TeacherBasicInformationToDisplay: FC<
         <Button
           type="button"
           customTailwindClasses="bg-sky border-sky text-white"
-          onClickHandler={() => setIsModalOpen(true)}
+          onClickHandler={onPrimaryBtnClick}
         >
           <p className="flex h-10 w-36 items-center justify-center text-base">
-            Schedule a meet
+            {primaryBtnText}
           </p>
         </Button>
       </div>

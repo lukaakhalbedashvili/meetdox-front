@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import * as Yup from 'yup'
+import { PersonalDetails } from '@/components/Catalog/catalog.interface'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import { TeacherPersonalInfoForm } from './teacherPersonalInfo.interface'
 import {
@@ -11,21 +12,31 @@ import {
 const useTeacherPersonalInfo = (
   isFormSubmitted: boolean,
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
-  setFormValues: Dispatch<SetStateAction<FormValues>>
+  setFormValues: Dispatch<SetStateAction<FormValues>>,
+  defaultValues?: { data?: PersonalDetails; image?: string }
 ) => {
   const { data } = useFetchLoggedInUserData()
+
   const [userImage, setUserImage] = useState<string>()
+
+  useEffect(() => {
+    defaultValues?.image && setUserImage(defaultValues?.image)
+  }, [defaultValues?.image])
+
   const [uploadedImage, setUploadedImage] = useState<
     string | ArrayBuffer | null | undefined
   >()
+
   const [imageFromFirebase, setImageFromFirebase] = useState<string>()
 
   const [isImageError, setIsImageError] = useState<boolean>(false)
+
   const [isUploadImageModalOpen, setIsUploadImageModalOpen] = useState(false)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const placeholderBirthMonth = 'Birth month'
+
   const placeholderBirthYear = 'Birth year'
 
   const validationSchema: Yup.ObjectSchema<TeacherPersonalInfoForm> =
@@ -49,7 +60,7 @@ const useTeacherPersonalInfo = (
     initialValues: {
       birthMonth: placeholderBirthMonth,
       birthYear: placeholderBirthYear,
-      lastName: '',
+      lastName: defaultValues?.data?.lastName || '',
       name: '',
     },
 
@@ -78,6 +89,18 @@ const useTeacherPersonalInfo = (
       setUploadedImage(reader.result)
     }
   }
+
+  useEffect(() => {
+    teacherPersonalInfoValidation.setValues({
+      birthMonth: defaultValues?.data?.birthMonth || placeholderBirthMonth,
+      birthYear:
+        defaultValues?.data?.birthYear.toString() || placeholderBirthYear,
+      lastName: defaultValues?.data?.lastName || '',
+      name: defaultValues?.data?.name || '',
+    })
+    setImageFromFirebase(defaultValues?.image)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValues])
 
   useEffect(() => {
     isFormSubmitted && teacherPersonalInfoValidation.submitForm()

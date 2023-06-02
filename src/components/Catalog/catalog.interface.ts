@@ -43,7 +43,7 @@ export interface TeacherExperience {
   position: string
 }
 
-interface ContactDetails {
+export interface ContactDetails {
   phone: string
   phoneExtension: string
 }
@@ -56,12 +56,12 @@ export interface TeacherEducation {
   id: number
 }
 
-interface Domain {
+export interface Domain {
   category: string
   subCategories: string[]
 }
 
-interface PersonalDetails {
+export interface PersonalDetails {
   lastName: string
   birthMonth: string
   birthYear: number

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useGetTeacherPublicData } from '@/reactQuery/teacherQuaries/getTeacherPublicData'
+import { useFetchLoggedInUserData } from '@/reactQuery/teacherQuaries/getLoggedInUserData'
 import { TeacherSections } from './teacher.interface'
 
 interface UseTeacherProps {
@@ -8,6 +9,8 @@ interface UseTeacherProps {
 
 const useTeacher = ({ teacherUid }: UseTeacherProps) => {
   const { data, isLoading } = useGetTeacherPublicData(teacherUid)
+  const userData = useFetchLoggedInUserData()
+  const loggedInUserUid = userData.data?.data.data.uid
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<TeacherSections>(
@@ -20,6 +23,7 @@ const useTeacher = ({ teacherUid }: UseTeacherProps) => {
     setIsModalOpen,
     data,
     isLoading,
+    loggedInUserUid,
   }
 }
 

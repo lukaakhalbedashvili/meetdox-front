@@ -3,6 +3,7 @@ import DropDownInput from '@/elements/DropDownInput'
 import { getNumberArray } from '@/utils/services/getNumberArray'
 import TextArea from '@/elements/Textarea'
 import Input from '@/elements/Input'
+import { TeacherExperience as TeacherExpType } from '@/components/Catalog/catalog.interface'
 import useTeacherExperience from './useTeacherExperienceFormSection'
 import { TeacherExperienceInfoValidationFormInputNames } from './teacherExperience.interface'
 import {
@@ -15,6 +16,7 @@ interface TeacherExperienceFormSectioProps {
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
   formId: number
+  defaultValue?: TeacherExpType
 }
 
 const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
@@ -22,6 +24,7 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
   setErroredSections,
   formId,
   setFormValues,
+  defaultValue,
 }) => {
   const {
     teacherExperienceValidation,
@@ -32,7 +35,8 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
     isFormSubmitted,
     setErroredSections,
     formId,
-    setFormValues
+    setFormValues,
+    defaultValue
   )
 
   return (

@@ -23,7 +23,8 @@ const useTeacherSkills = (
   isFormSubmitted: boolean,
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
   setFormValues: Dispatch<SetStateAction<FormValues>>,
-  selectedDomain: string
+  selectedDomain: string,
+  defaultValues?: string[]
 ) => {
   const [skills, setSkills] = useState<string[]>([])
   const [selectedSkills, setSelectedSkills] = useState<string[]>([])
@@ -83,6 +84,13 @@ const useTeacherSkills = (
     isFormSubmitted && teacherSkillsValidation.submitForm()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
+
+  useEffect(() => {
+    const defaultSkills = Object.keys(defaultValues as object)
+    defaultSkills &&
+      defaultSkills?.length > 0 &&
+      setSelectedSkills(defaultSkills)
+  }, [defaultValues])
 
   return {
     teacherSkillsValidation,

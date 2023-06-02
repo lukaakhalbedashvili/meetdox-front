@@ -1,5 +1,6 @@
 import React, { Dispatch, FC, SetStateAction } from 'react'
 import DropDownInput from '@/elements/DropDownInput'
+import { Domain } from '@/components/Catalog/catalog.interface'
 import Checkbox from '@/elements/Checkbox'
 import useTeacherDomain from './useTeacherDomain'
 import { DomainNames } from './teacherDomain.interface'
@@ -12,12 +13,14 @@ interface TeacherDomainProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
+  defaultValue?: Domain
 }
 
 const TeacherDomain: FC<TeacherDomainProps> = ({
   isFormSubmitted,
   setErroredSections,
   setFormValues,
+  defaultValue,
 }) => {
   const {
     teacherDomainValidation,
@@ -25,7 +28,12 @@ const TeacherDomain: FC<TeacherDomainProps> = ({
     categoriesData,
     subCategoriesData,
     setSubCategoriesData,
-  } = useTeacherDomain(isFormSubmitted, setErroredSections, setFormValues)
+  } = useTeacherDomain(
+    isFormSubmitted,
+    setErroredSections,
+    setFormValues,
+    defaultValue
+  )
   return (
     <div className="mx-4 mt-5  border-t-[1px] border-border_gray pt-5 sm:mx-12">
       <h2 className="text-xl">Domain</h2>

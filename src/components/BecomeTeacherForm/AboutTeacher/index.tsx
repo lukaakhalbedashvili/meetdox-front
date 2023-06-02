@@ -12,17 +12,20 @@ interface AboutTeacherProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
+  defaultValue?: string
 }
 
 const AboutTeacher: FC<AboutTeacherProps> = ({
   isFormSubmitted,
   setErroredSections,
   setFormValues,
+  defaultValue,
 }) => {
   const { aboutTeacherValidation } = useAboutTeacher({
     isFormSubmitted,
     setErroredSections,
     setFormValues,
+    defaultValue,
   })
   return (
     <div className="mx-4 mt-5 border-t-[1px] border-border_gray pt-5  sm:mx-12">

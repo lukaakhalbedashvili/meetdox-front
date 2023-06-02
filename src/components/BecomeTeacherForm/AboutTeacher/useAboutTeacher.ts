@@ -11,12 +11,14 @@ interface UseAboutProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
+  defaultValue?: string
 }
 
 const useAboutTeacher = ({
   isFormSubmitted,
   setErroredSections,
   setFormValues,
+  defaultValue,
 }: UseAboutProps) => {
   const validationSchema: Yup.ObjectSchema<AboutTeacherForm> = Yup.object({
     description: Yup.string().required('required'),
@@ -50,6 +52,15 @@ const useAboutTeacher = ({
     isFormSubmitted && aboutTeacherValidation.submitForm()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
+
+  useEffect(() => {
+    defaultValue &&
+      aboutTeacherValidation.setValues({
+        description: defaultValue,
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue])
+
   return { aboutTeacherValidation }
 }
 

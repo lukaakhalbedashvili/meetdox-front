@@ -18,11 +18,16 @@ const BecomeTeacherForm = () => {
     isFormSubmitted,
     setIsFormSubmitted,
     values,
+    teacherData,
   } = useBecameTeacherForm()
 
   return (
     <form>
       <TeacherPersonalInfo
+        defaultValues={{
+          data: teacherData?.personalDetails,
+          image: teacherData?.image,
+        }}
         setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
@@ -30,6 +35,7 @@ const BecomeTeacherForm = () => {
 
       <div className="mt-2">
         <TeacherEducation
+          defaultValues={teacherData?.teacherEducation}
           setFormValues={setValues}
           isFormSubmitted={isFormSubmitted}
           setErroredSections={setErroredSections}
@@ -37,6 +43,7 @@ const BecomeTeacherForm = () => {
       </div>
 
       <TeacherExperience
+        defaultValues={teacherData?.teacherExperience}
         setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
@@ -46,11 +53,15 @@ const BecomeTeacherForm = () => {
         setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
+        defaultValue={teacherData?.domain}
       />
 
-      {values.domain.category && (
+      {(values.domain.category || teacherData?.domain.category) && (
         <TeacherSkills
-          selectedDomain={values.domain.category}
+          defaultValues={teacherData?.skills}
+          selectedDomain={
+            teacherData?.domain.category || values.domain.category
+          }
           setFormValues={setValues}
           isFormSubmitted={isFormSubmitted}
           setErroredSections={setErroredSections}
@@ -58,18 +69,21 @@ const BecomeTeacherForm = () => {
       )}
 
       <AboutU
+        defaultValue={teacherData?.description}
         setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
       />
 
       <TeacherContact
+        defaultValues={teacherData?.contactDetails}
         setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}
       />
 
       <TeacherCompensation
+        defaultValues={teacherData?.perHour.toString()}
         setFormValues={setValues}
         isFormSubmitted={isFormSubmitted}
         setErroredSections={setErroredSections}

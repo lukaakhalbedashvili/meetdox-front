@@ -10,7 +10,8 @@ import {
 const useTeacherCompensation = (
   setFormValues: Dispatch<SetStateAction<FormValues>>,
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
+  defaultValues?: string
 ) => {
   const validationSchema: Yup.ObjectSchema<TeacherCompensationFields> =
     Yup.object({
@@ -41,6 +42,14 @@ const useTeacherCompensation = (
     isFormSubmitted && teacherCompensationValidation.submitForm()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
+
+  useEffect(() => {
+    defaultValues &&
+      teacherCompensationValidation.setValues({
+        perHour: defaultValues,
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValues])
 
   return { teacherCompensationValidation }
 }

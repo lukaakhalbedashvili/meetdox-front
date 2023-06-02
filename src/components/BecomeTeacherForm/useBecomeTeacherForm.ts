@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation'
 import { useSendTeacherCreationQueries } from '@/reactQuery/becomeTeacherQueries/useSendTeacherCreationQueries'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import { AlertType } from '@/zustand/zustand.interface'
+import { useGetTeacherPublicData } from '@/reactQuery/teacherQuaries/getTeacherPublicData'
 import { useZustandStore } from '@/zustand'
 import {
   BecomeTeacherSectionsErrors,
@@ -13,6 +14,7 @@ const useBecameTeacherForm = () => {
   const { setAlert } = useZustandStore()
   const router = useRouter()
   const { data } = useFetchLoggedInUserData()
+  const teacherData = useGetTeacherPublicData(data?.data.data.uid)
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const [erroredSections, setErroredSections] =
@@ -53,7 +55,19 @@ const useBecameTeacherForm = () => {
     const { country, phone } = contact
     const { description } = about
     const { category, subCategories } = domain
-
+    // console.log(
+    //   birthMonth,
+    //   birthYear,
+    //   lastName,
+    //   name,
+    //   image,
+    //   country,
+    //   phone,
+    //   description,
+    //   category,
+    //   perHour,
+    //   subCategories.length > 0
+    // )
     if (
       birthMonth &&
       birthYear &&
@@ -96,6 +110,7 @@ const useBecameTeacherForm = () => {
     isFormSubmitted,
     setIsFormSubmitted,
     values,
+    teacherData: teacherData.data,
   }
 }
 

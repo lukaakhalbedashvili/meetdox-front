@@ -2,6 +2,7 @@ import React, { Dispatch, FC, SetStateAction } from 'react'
 import { countries } from '@/data/countries'
 import CountriesDropDown from '@/elements/CountriesDropDown'
 import CountriesInput from '@/elements/CountriesInput'
+import { ContactDetails } from '@/components/Catalog/catalog.interface'
 import { ContactName } from './teacherContact.interface'
 import useTeacherContact from './useTeacherContact'
 import {
@@ -13,15 +14,22 @@ interface TeacherContactProps {
   setFormValues: Dispatch<React.SetStateAction<FormValues>>
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
+  defaultValues?: ContactDetails
 }
 
 const TeacherContact: FC<TeacherContactProps> = ({
   isFormSubmitted,
   setErroredSections,
   setFormValues,
+  defaultValues,
 }) => {
   const { teacherContactValidation, updatePhoneExtension, phoneExtension } =
-    useTeacherContact(setFormValues, isFormSubmitted, setErroredSections)
+    useTeacherContact(
+      setFormValues,
+      isFormSubmitted,
+      setErroredSections,
+      defaultValues
+    )
 
   const countriesList = countries.map((country) => {
     return { value: country.name, flag: country.flag }

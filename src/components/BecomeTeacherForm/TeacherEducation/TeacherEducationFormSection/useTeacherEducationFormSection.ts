@@ -12,6 +12,7 @@ import debounce from 'lodash.debounce'
 import { useGetCollegeList } from '@/reactQuery/becomeTeacherQueries/getCollegeList'
 import { search } from '@/utils/services/search'
 import { majors } from '@/data/majors'
+import { TeacherEducation as TeacherEduType } from '@/components/Catalog/catalog.interface'
 import {
   TeacherEducationInfoValidationForm,
   TeacherEducationInfoValidationFormInputNames,
@@ -25,7 +26,8 @@ const useTeacherEducation = (
   isFormSubmitted: boolean,
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
   setFormValues: Dispatch<SetStateAction<FormValues>>,
-  formId: number
+  formId: number,
+  defaultValue?: TeacherEduType
 ) => {
   const [collegeSearchResults, setCollegeSearchResults] = useState<string[]>()
   const [majorSearchResults, setMajorSearchResults] = useState<string[]>()
@@ -129,6 +131,18 @@ const useTeacherEducation = (
     isFormSubmitted && teacherEducationInfoValidation.submitForm()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
+
+  useEffect(() => {
+    defaultValue &&
+      teacherEducationInfoValidation.setValues({
+        endDate: defaultValue.endDate.toString(),
+        id: defaultValue.id,
+        major: defaultValue.major,
+        startDate: defaultValue.startDate.toString(),
+        university: defaultValue.university,
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue])
 
   return {
     teacherEducationInfoValidation,

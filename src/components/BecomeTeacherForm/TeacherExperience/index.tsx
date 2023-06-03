@@ -2,6 +2,7 @@
 import { Dispatch, FC, SetStateAction } from 'react'
 import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
+import { TeacherExperience as TeacherExpType } from '@/components/Catalog/catalog.interface'
 import TeacherExperienceFormSection from './TeacherExperienceFormSection'
 import useTeacherExperience from './useTeacherExperience'
 import {
@@ -13,12 +14,14 @@ interface TeacherExperienceProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
+  defaultValues?: TeacherExpType[]
 }
 
 const TeacherExperience: FC<TeacherExperienceProps> = ({
   isFormSubmitted,
   setErroredSections,
   setFormValues,
+  defaultValues,
 }) => {
   const { experiences, setExperiences } = useTeacherExperience()
 
@@ -50,6 +53,7 @@ const TeacherExperience: FC<TeacherExperienceProps> = ({
               setFormValues={setFormValues}
               isFormSubmitted={isFormSubmitted}
               setErroredSections={setErroredSections}
+              defaultValue={defaultValues?.find((item2) => item2.id === item)}
             />
           </div>
         )

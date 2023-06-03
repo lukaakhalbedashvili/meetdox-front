@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { FC } from 'react'
 import { ClipLoader } from 'react-spinners'
+import { useRouter } from 'next/navigation'
 import TeacherSkillsToDisplay from '@/elements/TeacherSkillsToDisplay'
 import TeacherBasicInformationToDisplay from '@/elements/TeacherBasicInformationToDisplay'
 import TeacherExperienceSeparatorItem from '@/elements/TeacherExperienceSeparatorItem'
@@ -26,6 +27,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
     setIsModalOpen,
     data,
     isLoading,
+    loggedInUserUid,
   } = useTeacher({ teacherUid: params.id })
 
   const {
@@ -43,6 +45,8 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
   const { category, subCategories } = domain || {}
 
   const { lastName, name } = personalDetails || {}
+
+  const router = useRouter()
 
   return (
     <>
@@ -107,7 +111,16 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
                   location={data.country}
                   rating={data.rate}
                   totalReviews={reviews.length}
-                  setIsModalOpen={setIsModalOpen}
+                  onPrimaryBtnClick={() =>
+                    loggedInUserUid === params.id
+                      ? router.push('/become-teacher')
+                      : setIsModalOpen(true)
+                  }
+                  primaryBtnText={
+                    loggedInUserUid === params.id
+                      ? 'Edit Your Profile'
+                      : 'Schedule a meet'
+                  }
                 />
               )}
             </div>

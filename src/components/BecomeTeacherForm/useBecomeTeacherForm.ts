@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation'
 import { useSendTeacherCreationQueries } from '@/reactQuery/becomeTeacherQueries/useSendTeacherCreationQueries'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import { AlertType } from '@/zustand/zustand.interface'
+import { useGetTeacherPublicData } from '@/reactQuery/teacherQuaries/getTeacherPublicData'
 import { useZustandStore } from '@/zustand'
 import {
   BecomeTeacherSectionsErrors,
@@ -13,6 +14,7 @@ const useBecameTeacherForm = () => {
   const { setAlert } = useZustandStore()
   const router = useRouter()
   const { data } = useFetchLoggedInUserData()
+  const teacherData = useGetTeacherPublicData(data?.data.data.uid)
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const [erroredSections, setErroredSections] =
@@ -96,6 +98,8 @@ const useBecameTeacherForm = () => {
     isFormSubmitted,
     setIsFormSubmitted,
     values,
+    teacherData: teacherData.data,
+    isTeacherDataLoading: teacherData.isLoading,
   }
 }
 

@@ -2,6 +2,7 @@ import React, { Dispatch, FC, SetStateAction } from 'react'
 import DropDownInput from '@/elements/DropDownInput'
 import TypeAheadInput from '@/elements/TypeAheadInput'
 import { getNumberArray } from '@/utils/services/getNumberArray'
+import { TeacherEducation as TeacherEduType } from '@/components/Catalog/catalog.interface'
 import useTeacherEducation from './useTeacherEducationFormSection'
 import { TeacherEducationInfoValidationFormInputNames } from './teacherEducation.interface'
 import {
@@ -14,6 +15,7 @@ interface TeacherEducationFormSectionProps {
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
   formId: number
+  defaultValue?: TeacherEduType
 }
 
 const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
@@ -21,6 +23,7 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
   setErroredSections,
   setFormValues,
   formId,
+  defaultValue,
 }) => {
   const {
     teacherEducationInfoValidation,
@@ -35,7 +38,8 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
     isFormSubmitted,
     setErroredSections,
     setFormValues,
-    formId
+    formId,
+    defaultValue
   )
 
   return (

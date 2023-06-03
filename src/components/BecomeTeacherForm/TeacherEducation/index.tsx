@@ -2,6 +2,7 @@
 import { Dispatch, FC, SetStateAction } from 'react'
 import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
+import { TeacherEducation as TeacherEduType } from '@/components/Catalog/catalog.interface'
 import TeacherEducationFormSection from './TeacherEducationFormSection'
 import useTeacherEducation from './useTeacherEducation'
 import {
@@ -13,14 +14,18 @@ interface TeacherEducationProps {
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
   setFormValues: Dispatch<SetStateAction<FormValues>>
+  defaultValues?: TeacherEduType[]
 }
 
 const TeacherEducation: FC<TeacherEducationProps> = ({
   isFormSubmitted,
   setErroredSections,
   setFormValues,
+  defaultValues,
 }) => {
-  const { educationForms, setEducationForms } = useTeacherEducation()
+  const { educationForms, setEducationForms } = useTeacherEducation({
+    defaultValues,
+  })
 
   return (
     <div className="mx-4 mt-5 border-t-[1px] border-border_gray pt-5 sm:mx-12">
@@ -38,6 +43,7 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
                       (educationIndex) => educationIndex !== item
                     )
                   )
+
                   setFormValues((state) => {
                     return { ...state }
                   })
@@ -51,6 +57,7 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
                 setFormValues={setFormValues}
                 isFormSubmitted={isFormSubmitted}
                 setErroredSections={setErroredSections}
+                defaultValue={defaultValues?.find((item2) => item2.id === item)}
               />
             </div>
           </div>

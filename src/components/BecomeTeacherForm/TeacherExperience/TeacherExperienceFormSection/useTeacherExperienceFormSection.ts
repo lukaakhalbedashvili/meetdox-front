@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
 import { Dispatch, SetStateAction, useEffect } from 'react'
 import * as Yup from 'yup'
+import { TeacherExperience as TeacherExpType } from '@/components/Catalog/catalog.interface'
 import { TeacherExperienceForm } from './teacherExperience.interface'
 import {
   BecomeTeacherSectionsErrors,
@@ -11,7 +12,8 @@ const useTeacherEducation = (
   isFormSubmitted: boolean,
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
   formId: number,
-  setFormValues: Dispatch<SetStateAction<FormValues>>
+  setFormValues: Dispatch<SetStateAction<FormValues>>,
+  defaultValue?: TeacherExpType
 ) => {
   const CurrentlyJob = 'Currently Job'
   const placeholderStartDate = 'Start date'
@@ -71,6 +73,19 @@ const useTeacherEducation = (
     isFormSubmitted && teacherExperienceValidation.submitForm()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFormSubmitted])
+
+  useEffect(() => {
+    defaultValue &&
+      teacherExperienceValidation.setValues({
+        company: defaultValue.company,
+        position: defaultValue.position,
+        description: defaultValue.description,
+        startDate: defaultValue.startDate.toString(),
+        endDate: defaultValue.endDate.toString(),
+        id: defaultValue.id,
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue])
 
   return {
     teacherExperienceValidation,

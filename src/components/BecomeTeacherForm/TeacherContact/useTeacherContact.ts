@@ -2,6 +2,7 @@ import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { countries } from '@/data/countries'
+import { ContactDetails } from '@/components/Catalog/catalog.interface'
 import { TeacherContactValidationForm } from './teacherContact.interface'
 import {
   BecomeTeacherSectionsErrors,
@@ -11,7 +12,8 @@ import {
 const useTeacherContact = (
   setFormValues: Dispatch<SetStateAction<FormValues>>,
   isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
+  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
+  defaultValues?: ContactDetails
 ) => {
   const defaultCountry = 'Georgia'
 
@@ -53,6 +55,21 @@ const useTeacherContact = (
       })
     },
   })
+
+  useEffect(() => {
+    defaultValues?.phoneExtension &&
+      setPhoneExtension(defaultValues.phoneExtension)
+
+    defaultValues?.phone &&
+      teacherContactValidation.setValues({
+        country:
+          countries.find(
+            (item) => item.dial_code === defaultValues?.phoneExtension
+          )?.name || 'Georgia',
+
+        phone: defaultValues.phone,
+      })
+  }, [defaultValues])
 
   useEffect(() => {
     isFormSubmitted && teacherContactValidation.submitForm()

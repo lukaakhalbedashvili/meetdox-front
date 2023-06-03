@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Domain } from '@/components/Catalog/catalog.interface'
 import { categories } from '@/data/categoryItems'
 import { TeacherDomainInfoValidationForm } from './teacherDomain.interface'
 import {
@@ -11,7 +12,8 @@ import {
 const useTeacherDomain = (
   isFormSubmitted: boolean,
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
-  setFormValues: Dispatch<SetStateAction<FormValues>>
+  setFormValues: Dispatch<SetStateAction<FormValues>>,
+  defaultValue?: Domain
 ) => {
   const placeholderCategoryValue = 'Choose Category'
 
@@ -65,10 +67,24 @@ const useTeacherDomain = (
       categories
         .find((item) => item.name === teacherDomainValidation.values.category)
         ?.subCategories.map((item) => {
-          return { name: item.name, checked: false }
+          return {
+            name: item.name,
+            checked: defaultValue?.subCategories.includes(item.name) || false,
+          }
         }) || []
     )
-  }, [teacherDomainValidation.values.category])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [teacherDomainValidation.values.category, defaultValue])
+
+  useEffect(() => {
+    defaultValue &&
+      teacherDomainValidation.setValues({
+        category: defaultValue.category,
+        subCategories: defaultValue.subCategories,
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue])
 
   useEffect(() => {
     isFormSubmitted && teacherDomainValidation.submitForm()

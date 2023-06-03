@@ -11,17 +11,20 @@ interface TeacherCompensationProps {
   setFormValues: Dispatch<SetStateAction<FormValues>>
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
+  defaultValues?: string
 }
 
 const TeacherCompensation: FC<TeacherCompensationProps> = ({
   setFormValues,
   isFormSubmitted,
   setErroredSections,
+  defaultValues,
 }) => {
   const { teacherCompensationValidation } = useTeacherCompensation(
     setFormValues,
     isFormSubmitted,
-    setErroredSections
+    setErroredSections,
+    defaultValues
   )
   return (
     <div className="mx-4 mt-5  border-t-[1px] border-border_gray pt-5 sm:mx-12">

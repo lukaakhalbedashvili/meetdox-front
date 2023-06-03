@@ -1,7 +1,9 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { usePasswordChange } from '@/reactQuery/usePasswordChange'
 
 const useDashboardPasswordChangeContent = () => {
+  const { mutate, isPending } = usePasswordChange()
   const formik = useFormik({
     initialValues: {
       currentPassword: '',
@@ -20,7 +22,16 @@ const useDashboardPasswordChangeContent = () => {
         .oneOf([Yup.ref('newPassword')], 'Passwords must match'),
     }),
     onSubmit: (values) => {
-      console.error(values)
+      mutate(
+        {
+          oldPassword: values.currentPassword,
+          newPassword: values.newPassword,
+        },
+        {
+          onSuccess: () => {},
+          onError: () => {},
+        }
+      )
       formik.resetForm()
     },
   })
@@ -33,6 +44,7 @@ const useDashboardPasswordChangeContent = () => {
     values,
     errors,
     touched,
+    isPending,
   }
 }
 

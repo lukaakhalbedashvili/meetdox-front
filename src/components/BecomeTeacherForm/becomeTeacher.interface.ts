@@ -25,5 +25,5 @@ export interface FormValues {
   domain: TeacherDomainInfoValidationForm
   contact: TeacherContactValidationForm
   about: AboutTeacherForm
-  perHour: string
+  perHour: string | number
 }

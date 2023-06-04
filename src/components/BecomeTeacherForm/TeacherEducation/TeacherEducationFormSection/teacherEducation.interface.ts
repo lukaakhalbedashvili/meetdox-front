@@ -2,8 +2,8 @@ export interface TeacherEducationInfoValidationForm {
   id: number
   university: string
   major: string
-  startDate: string
-  endDate: string
+  startDate: string | number
+  endDate: string | number
 }
 
 export enum TeacherEducationInfoValidationFormInputNames {

@@ -11,7 +11,7 @@ const useTeacherCompensation = (
   setFormValues: Dispatch<SetStateAction<FormValues>>,
   isFormSubmitted: boolean,
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
-  defaultValues?: string
+  defaultValues?: string | number
 ) => {
   const validationSchema: Yup.ObjectSchema<TeacherCompensationFields> =
     Yup.object({

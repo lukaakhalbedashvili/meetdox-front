@@ -26,7 +26,7 @@ const CatalogRoutes: React.FC<CatalogProps> = ({
           </Link>
         </li>
 
-        {subCategories[0] && subCategories[0] !== 'null' && (
+        {subCategories[0] && (
           <>
             <span className="mx-2 mb-[2px] text-xl">•</span>
             {subCategories.map((subCategory, i) => (

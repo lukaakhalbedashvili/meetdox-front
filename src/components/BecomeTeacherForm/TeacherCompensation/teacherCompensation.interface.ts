@@ -1,5 +1,5 @@
 export interface TeacherCompensationFields {
-  perHour: string
+  perHour: string | number
 }
 
 export enum TeacherCompensationFieldsNames {

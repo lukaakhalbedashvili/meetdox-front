@@ -93,8 +93,7 @@ const useTeacherPersonalInfo = (
   useEffect(() => {
     teacherPersonalInfoValidation.setValues({
       birthMonth: defaultValues?.data?.birthMonth || placeholderBirthMonth,
-      birthYear:
-        defaultValues?.data?.birthYear.toString() || placeholderBirthYear,
+      birthYear: defaultValues?.data?.birthYear || placeholderBirthYear,
       lastName: defaultValues?.data?.lastName || '',
       name: defaultValues?.data?.name || '',
     })

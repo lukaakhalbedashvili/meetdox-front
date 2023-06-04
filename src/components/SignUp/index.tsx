@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import SignUpStage from './SignUpStage'
-import EmailVerifyStage from './EmailVerify'
 import { RegistrationStages } from './registrationStages.interface'
 import useSignUp from './useSignUp'
+import EmailVerifyStage from './emailVerify'
 
 interface SignUpProps {
   onClose: () => void

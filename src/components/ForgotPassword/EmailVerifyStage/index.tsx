@@ -2,7 +2,7 @@ import React, { Dispatch, FC, SetStateAction } from 'react'
 import { FaTimes, FaArrowLeft } from 'react-icons/fa'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
-import useEmailVerify from './useEmailVerify'
+import useEmailVerify from './useEmailVerifyForRecoverPassword'
 import { VerifyField } from './emailVerify.interface'
 import { ForgotPasswordStages } from '../forgot.interface'
 

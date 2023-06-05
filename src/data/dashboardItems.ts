@@ -4,6 +4,7 @@ import DashboardPasswordChangeContent from '@/components/DashboardPasswordChange
 import { DashboardItemsNames } from '@/components/Dashboard/dashboard.interface'
 import DashboardClientMeetsContent from '@/components/DashboardClientMeetsContent'
 import DashboardTeacherMeetsContent from '@/components/DashboardTeacherMeetsContent '
+import DashboardBillingContent from '@/components/DashboardBillingContent'
 
 const clientDashboardItems = [
   {
@@ -38,7 +39,7 @@ const teacherDashboardItems = [
     id: 4,
     title: DashboardItemsNames.PAYMENTS,
     icon: FiLock,
-    tab: DashboardPasswordChangeContent,
+    tab: DashboardBillingContent,
   },
   {
     id: 2,

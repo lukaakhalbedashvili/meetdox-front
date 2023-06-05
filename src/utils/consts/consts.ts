@@ -1,4 +1,8 @@
-export const API_URL = 'http://localhost:8000/api'
+const isProd = process.env.NODE_ENV === 'production'
+
+export const API_URL = isProd
+  ? 'https://tipppbackkk.onrender.com/api'
+  : 'http://localhost:8000/api'
 
 export const monthNames = [
   'January',

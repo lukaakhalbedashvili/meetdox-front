@@ -93,7 +93,7 @@ const BecomeTeacherForm = () => {
           />
 
           <TeacherCompensation
-            defaultValues={teacherData?.perHour.toString()}
+            defaultValues={teacherData?.perHour}
             setFormValues={setValues}
             isFormSubmitted={isFormSubmitted}
             setErroredSections={setErroredSections}

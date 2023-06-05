@@ -33,13 +33,13 @@ export const profileBtnsSectionOne: ProfileModuleItem[] = [
 
 export const profileBtnsSectionTwo: ProfileModuleItem[] = [
   {
-    id: 2,
+    id: 4,
     text: 'Help & Support',
     url: '/help',
     Icon: BiHelpCircle,
   },
   {
-    id: 3,
+    id: 5,
     text: 'Send Feedback',
     url: '/feedback',
     Icon: BiMessageError,

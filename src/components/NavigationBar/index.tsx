@@ -74,6 +74,7 @@ const NavigationBar = () => {
                 photoUrl={loggedInUser.photoURL}
                 username={loggedInUser.username}
                 notifications={loggedInUser.notifications}
+                isTeacher={loggedInUser.isTeacher}
               />
             ) : (
               <div className="flex items-center">

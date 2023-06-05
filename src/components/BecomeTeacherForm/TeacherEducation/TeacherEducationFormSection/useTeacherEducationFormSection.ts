@@ -135,10 +135,10 @@ const useTeacherEducation = (
   useEffect(() => {
     defaultValue &&
       teacherEducationInfoValidation.setValues({
-        endDate: defaultValue.endDate.toString(),
+        endDate: defaultValue.endDate,
         id: defaultValue.id,
         major: defaultValue.major,
-        startDate: defaultValue.startDate.toString(),
+        startDate: defaultValue.startDate,
         university: defaultValue.university,
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -2,8 +2,8 @@ export interface TeacherExperienceForm {
   company: string
   position: string
   description: string
-  startDate: string
-  endDate: string
+  startDate: string | number
+  endDate: string | number
   id: number
 }
 

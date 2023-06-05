@@ -11,7 +11,7 @@ interface TeacherCompensationProps {
   setFormValues: Dispatch<SetStateAction<FormValues>>
   isFormSubmitted: boolean
   setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
-  defaultValues?: string
+  defaultValues?: string | number
 }
 
 const TeacherCompensation: FC<TeacherCompensationProps> = ({
@@ -39,7 +39,11 @@ const TeacherCompensation: FC<TeacherCompensationProps> = ({
           <Input
             placeholder="Compensation"
             type="number"
-            value={teacherCompensationValidation.values.perHour}
+            value={
+              teacherCompensationValidation.values.perHour
+                ? teacherCompensationValidation.values.perHour.toString()
+                : ''
+            }
             name={TeacherCompensationFieldsNames.PER_HOUR}
             onChange={teacherCompensationValidation.handleChange}
             onBlurHandler={teacherCompensationValidation.handleBlur}

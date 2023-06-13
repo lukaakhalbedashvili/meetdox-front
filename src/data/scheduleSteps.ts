@@ -37,7 +37,6 @@ export const scheduleSteps: ScheduleSteps = {
       buttonGreen: 'Pay',
       onButtonRedClick: ScheduleStepStatus.CANCELED_BY_USER,
       onButtonGreenClick: (meeting: ScheduledMeetStructure) => {
-        console.log('meeting', meeting)
         window.open(meeting.paymentDetails.transactionUrl, '_blank')
       },
     },

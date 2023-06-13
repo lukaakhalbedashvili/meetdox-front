@@ -108,22 +108,28 @@ const DashboardClientMeetsContent = () => {
                       <div className="flex w-full justify-center sm:space-x-2">
                         {currMeet.buttonRed && (
                           <Button
-                            onClickHandler={() =>
-                              mutate(
-                                {
-                                  newStatus: currMeet.onButtonRedClick,
-                                  meetId: meeting.meetId,
-                                  teacherUid: meeting.teacherUid,
-                                  clientUid: meeting.clientUid,
-                                },
-                                {
-                                  onSuccess: () => {
-                                    refetch()
+                            onClickHandler={() => {
+                              if (
+                                typeof currMeet.onButtonRedClick === 'string'
+                              ) {
+                                mutate(
+                                  {
+                                    newStatus: currMeet.onButtonRedClick,
+                                    meetId: meeting.meetId,
+                                    teacherUid: meeting.teacherUid,
+                                    clientUid: meeting.clientUid,
                                   },
-                                  onError: () => {},
-                                }
-                              )
-                            }
+                                  {
+                                    onSuccess: () => {
+                                      refetch()
+                                    },
+                                    onError: () => {},
+                                  }
+                                )
+                              } else {
+                                currMeet.onButtonRedClick()
+                              }
+                            }}
                             customTailwindClasses="bg-error bg-opacity-20 border-border_gray w-1/2"
                           >
                             <div className="flex h-[35px] items-center justify-center">
@@ -136,22 +142,28 @@ const DashboardClientMeetsContent = () => {
 
                         {currMeet.buttonGreen && (
                           <Button
-                            onClickHandler={() =>
-                              mutate(
-                                {
-                                  newStatus: currMeet.onButtonGreenClick,
-                                  meetId: meeting.meetId,
-                                  teacherUid: meeting.teacherUid,
-                                  clientUid: meeting.clientUid,
-                                },
-                                {
-                                  onSuccess: () => {
-                                    refetch()
+                            onClickHandler={() => {
+                              if (
+                                typeof currMeet.onButtonGreenClick === 'string'
+                              ) {
+                                mutate(
+                                  {
+                                    newStatus: currMeet.onButtonGreenClick,
+                                    meetId: meeting.meetId,
+                                    teacherUid: meeting.teacherUid,
+                                    clientUid: meeting.clientUid,
                                   },
-                                  onError: () => {},
-                                }
-                              )
-                            }
+                                  {
+                                    onSuccess: () => {
+                                      refetch()
+                                    },
+                                    onError: () => {},
+                                  }
+                                )
+                              } else {
+                                currMeet.onButtonGreenClick(meeting)
+                              }
+                            }}
                             customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"
                           >
                             <div className="flex h-[35px]  items-center justify-center">

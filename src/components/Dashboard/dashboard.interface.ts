@@ -35,8 +35,8 @@ export interface ScheduleComponentStructure {
   title2: string
   buttonRed: string
   buttonGreen: string
-  onButtonRedClick: string
-  onButtonGreenClick: string
+  onButtonRedClick: string | Function
+  onButtonGreenClick: string | Function
 }
 
 export interface MeetingSteps {

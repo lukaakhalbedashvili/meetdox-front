@@ -107,16 +107,21 @@ const NavigationBar = () => {
             >
               <SearchScreen onClose={() => setIsShowSearchScreen(false)} />
             </div>
-
-            <div
-              className={`${
-                isShowNotificationScreen ? 'translate-x-0' : 'translate-x-full'
-              } fixed top-0 right-0 bottom-0 left-0 z-50 flex h-full w-full border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden `}
-            >
-              <MobileNotifications
-                onClose={() => setIsShowNotificationScreen(false)}
-              />
-            </div>
+            {loggedInUser && (
+              <div
+                className={`${
+                  isShowNotificationScreen
+                    ? 'translate-x-0'
+                    : 'translate-x-full'
+                } fixed top-0 right-0 bottom-0 left-0 z-50 flex h-full w-full border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden `}
+              >
+                <MobileNotifications
+                  uid={loggedInUser.uid}
+                  notifications={loggedInUser.notifications}
+                  onClose={() => setIsShowNotificationScreen(false)}
+                />
+              </div>
+            )}
 
             <div className="flex md:hidden">
               {loggedInUser && (

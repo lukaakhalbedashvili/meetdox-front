@@ -32,7 +32,7 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
   })
 
   return (
-    <div className=" h-[370px] w-[400px] rounded-md bg-white ">
+    <div className="h-full w-full rounded-md bg-white sm:h-[370px] sm:w-[400px] ">
       <div className="flex items-center justify-between">
         <FaArrowLeft
           className="ml-3 mt-3 h-6 w-6 cursor-pointer"

@@ -26,7 +26,7 @@ const EnterEmailStage: FC<EnterEmailStageProps> = ({
   })
 
   return (
-    <div className=" h-[350px] w-[400px] rounded-md bg-white ">
+    <div className="h-full w-full rounded-md bg-white sm:h-[350px] sm:w-[400px] ">
       {isPending && (
         <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
           <ClipLoader color="#36d7b7" />

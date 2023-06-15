@@ -2,6 +2,7 @@ import {
   ScheduleSteps,
   ScheduleStepStatus,
 } from '@/components/Dashboard/dashboard.interface'
+import { ScheduledMeetStructure } from '@/reactQuery/getMyMeetings/getUserData.interface'
 
 export const scheduleSteps: ScheduleSteps = {
   meetingsAsClient: {
@@ -35,7 +36,9 @@ export const scheduleSteps: ScheduleSteps = {
       buttonRed: 'Cancel',
       buttonGreen: 'Pay',
       onButtonRedClick: ScheduleStepStatus.CANCELED_BY_USER,
-      onButtonGreenClick: ScheduleStepStatus.PAID_BY_USER,
+      onButtonGreenClick: (meeting: ScheduledMeetStructure) => {
+        window.open(meeting.paymentDetails.transactionUrl, '_blank')
+      },
     },
     paidByUser: {
       title1: 'Scheduled Successfully',

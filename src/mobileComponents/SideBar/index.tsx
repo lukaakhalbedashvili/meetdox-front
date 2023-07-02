@@ -156,19 +156,25 @@ const SideBar = ({
             </div>
             {profileBtnsSectionOne
               .concat(profileBtnsSectionTwo)
-              .map((item: { id: number; text: string; url: string }) => (
-                <Link key={item.url} href={item.url}>
-                  <div className="relative z-0">
-                    <p
-                      className={`hover:text-gray-400 relative block rounded px-4 py-2 text-sm font-medium transition duration-200 ${
-                        item.url === pathname ? 'text-sky' : 'text-text_gray'
-                      }`}
-                    >
-                      {item.text}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+              .map((item: { id: number; text: string; url: string }) => {
+                if (loggedInUser.isTeacher && item.id === 3) {
+                  item.url = `/teacher/${loggedInUser.uid}`
+                  item.text = 'Teacher page'
+                }
+                return (
+                  <Link key={item.url} href={item.url}>
+                    <div className="relative z-0">
+                      <p
+                        className={`hover:text-gray-400 relative block rounded px-4 py-2 text-sm font-medium transition duration-200 ${
+                          item.url === pathname ? 'text-sky' : 'text-text_gray'
+                        }`}
+                      >
+                        {item.text}
+                      </p>
+                    </div>
+                  </Link>
+                )
+              })}
             <div className="px-4 py-2">
               <hr className="border-border_gray" />
             </div>

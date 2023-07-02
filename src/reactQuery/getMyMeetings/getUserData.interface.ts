@@ -16,4 +16,10 @@ export interface ScheduledMeetStructure {
   teacherUsername: string
   time: number
   timeZone: number
+  paymentDetails: {
+    createdDate: string
+    transactionId: string
+    transactionUrl: string
+  }
+  googleMeetingDetails: any
 }

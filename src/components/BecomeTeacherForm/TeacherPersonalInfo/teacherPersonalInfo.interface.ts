@@ -2,7 +2,7 @@ export interface TeacherPersonalInfoForm {
   name: string
   lastName: string
   birthMonth: string
-  birthYear: string
+  birthYear: string | number
   image?: string | null
 }
 

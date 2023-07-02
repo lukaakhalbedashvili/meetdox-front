@@ -2,7 +2,7 @@ import React, { Dispatch, FC, SetStateAction } from 'react'
 import { FaTimes, FaArrowLeft } from 'react-icons/fa'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
-import useEmailVerify from './useEmailVerify'
+import useEmailVerify from './useEmailVerifyForRecoverPassword'
 import { VerifyField } from './emailVerify.interface'
 import { ForgotPasswordStages } from '../forgot.interface'
 
@@ -32,7 +32,7 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
   })
 
   return (
-    <div className=" h-[370px] w-[400px] rounded-md bg-white ">
+    <div className="h-full w-full rounded-md bg-white sm:h-[370px] sm:w-[400px] ">
       <div className="flex items-center justify-between">
         <FaArrowLeft
           className="ml-3 mt-3 h-6 w-6 cursor-pointer"

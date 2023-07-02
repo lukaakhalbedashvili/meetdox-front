@@ -80,8 +80,8 @@ const useTeacherEducation = (
         company: defaultValue.company,
         position: defaultValue.position,
         description: defaultValue.description,
-        startDate: defaultValue.startDate.toString(),
-        endDate: defaultValue.endDate.toString(),
+        startDate: defaultValue.startDate,
+        endDate: defaultValue.endDate,
         id: defaultValue.id,
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps

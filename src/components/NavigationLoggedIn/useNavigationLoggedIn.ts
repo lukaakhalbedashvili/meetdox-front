@@ -42,7 +42,17 @@ const useNavigationLoggedIn = ({
         (notif: NotificationStructure) => !notif.read
       )
 
-      setNotificationsList(notifs)
+      setNotificationsList(
+        notifs.sort((a: NotificationStructure, b: NotificationStructure) => {
+          if (a.read && !b.read) {
+            return 1 // 'a' is read, 'b' is unread, so 'a' should come after 'b'
+          } else if (!a.read && b.read) {
+            return -1 // 'a' is unread, 'b' is read, so 'a' should come before 'b'
+          } else {
+            return b.createdAt - a.createdAt // Sort by 'createdAt' in descending order
+          }
+        })
+      )
       setUnreadNotificationsNum(unreadNotifs.length)
     })
 

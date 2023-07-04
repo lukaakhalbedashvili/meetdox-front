@@ -86,6 +86,7 @@ const useTeacherSkills = (
   }, [isFormSubmitted])
 
   useEffect(() => {
+    if (!defaultValues) return
     const defaultSkills = Object.keys(defaultValues as object)
     defaultSkills &&
       defaultSkills?.length > 0 &&

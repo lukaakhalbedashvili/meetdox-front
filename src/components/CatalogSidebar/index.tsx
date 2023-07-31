@@ -5,8 +5,8 @@ import Checkbox from '@/elements/Checkbox'
 import useCatalogSideBar from './useCatalogSideBar'
 import { Category, SubCategory } from './catalogSidebar.interface'
 export interface CatalogSidebarProps {
-  category: Category | undefined
-  subCategories: string[]
+  category?: Category | undefined
+  subCategories?: string[]
   skills: SubCategory[]
   setSkills: React.Dispatch<React.SetStateAction<SubCategory[]>>
   country: string

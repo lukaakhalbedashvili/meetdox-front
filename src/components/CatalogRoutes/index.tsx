@@ -26,7 +26,7 @@ const CatalogRoutes: React.FC<CatalogProps> = ({
           </Link>
         </li>
 
-        {subCategories[0] && (
+        {subCategories?.[0] && (
           <>
             <span className="mx-2 mb-[2px] text-xl">•</span>
             {subCategories.map((subCategory, i) => (
@@ -43,7 +43,7 @@ const CatalogRoutes: React.FC<CatalogProps> = ({
                   className="text-xs"
                 >
                   &nbsp;
-                  {subCategoriesNames[i]}&nbsp;
+                  {subCategoriesNames?.[i]}&nbsp;
                   {i !== subCategories.length - 1 && '& '}
                 </Link>
               </li>

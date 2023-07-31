@@ -14,8 +14,8 @@ const CatalogSidebar = dynamic(() => import('../CatalogSidebar'), {
 
 export interface CatalogProps {
   category: Category | undefined
-  subCategories: string[]
-  subCategoriesNames: string[]
+  subCategories?: string[]
+  subCategoriesNames?: string[]
 }
 const Catalog = ({
   category,

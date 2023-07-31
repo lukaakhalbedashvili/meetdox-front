@@ -14,35 +14,32 @@ interface CategoryPageProps {
 const CategoryPage = ({ params }: CategoryPageProps) => {
   const searchParams = useSearchParams()
 
-  const subCategories = decodeURIComponent(
-    searchParams.get('sub-categories')!
-  ).split(',')
+  const subCategories = searchParams.get('sub-categories')?.split(',')
 
   const category = categories.find((cat) => cat.url === params.category)
 
-  const subCategoriesNames = subCategories.map((subCategory) => {
-    const subCategoryName = category?.subCategories.find(
-      (subCat) => subCat.url === subCategory
-    )?.name
+  const subCategoriesNames = subCategories
+    ?.map((subCategory) => {
+      const subCategoryName = category?.subCategories.find(
+        (subCat) => subCat.url === subCategory
+      )?.name
 
-    if (subCategoryName === undefined) {
-      return 'null'
-    }
-    return subCategoryName
-  })
+      return subCategoryName
+    })
+    .filter((singleSubCategoryName) => !!singleSubCategoryName)
 
   return (
     <div className="bg-white font-ubuntu">
       <CatalogRoutes
         category={category}
         subCategories={subCategories}
-        subCategoriesNames={subCategoriesNames}
+        subCategoriesNames={subCategoriesNames as string[]}
       />
 
       <Catalog
         category={category}
         subCategories={subCategories}
-        subCategoriesNames={subCategoriesNames}
+        subCategoriesNames={subCategoriesNames as string[]}
       />
     </div>
   )

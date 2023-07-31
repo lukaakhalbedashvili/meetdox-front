@@ -34,7 +34,7 @@ const useCatalogSideBar = ({
         return {
           name: item.name,
           url: item.url,
-          checked: subCategories.includes(item.url) ? true : false,
+          checked: !!subCategories?.includes(item.url),
         }
       }) || []
     )
@@ -44,7 +44,7 @@ const useCatalogSideBar = ({
         return {
           name: item,
           url: item,
-          checked: subCategories.includes(item) ? true : false,
+          checked: !!subCategories?.includes(item),
         }
       }) || []
     )

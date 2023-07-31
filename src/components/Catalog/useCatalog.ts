@@ -8,7 +8,7 @@ import {
 
 interface UseCatalogProps {
   category: Category | undefined
-  subCategoriesNames: string[]
+  subCategoriesNames?: string[]
 }
 
 const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
@@ -41,7 +41,7 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
     limit: 20,
     category: category?.name,
     sortingBy,
-    subCategories: subCategoriesNames[0] ? [] : subCategoriesNames,
+    subCategories: subCategoriesNames?.[0] ? [] : subCategoriesNames,
     skills: onlyNamesPickedFromSkills,
     startPrice,
     endPrice,

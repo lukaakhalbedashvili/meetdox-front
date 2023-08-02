@@ -23,7 +23,7 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
 
   const onlyNamesPickedFromSkills = skills
     .filter((item) => item.checked)
-    .map((item) => item.name)
+    .map((item) => item.name.toLowerCase())
 
   useEffect(() => {
     setCurrentPage(1)
@@ -41,7 +41,7 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
     limit: 20,
     category: category?.name,
     sortingBy,
-    subCategories: subCategoriesNames?.[0] ? [] : subCategoriesNames,
+    subCategories: subCategoriesNames?.[0] ? subCategoriesNames : [],
     skills: onlyNamesPickedFromSkills,
     startPrice,
     endPrice,

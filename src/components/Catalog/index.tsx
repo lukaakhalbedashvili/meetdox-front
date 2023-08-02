@@ -76,9 +76,9 @@ const Catalog = ({
                     <option value="popular">Popularity</option>
                     <option value="lowtohigh">Low To High</option>
                     <option value="hightolow">High To Low</option>
-                    <option value="newest">Newest</option>
+                    {/* <option value="newest">Newest</option>
                     <option value="oldest">Oldest</option>
-                    <option value="rating">Rating</option>
+                    <option value="rating">Rating</option> */}
                   </select>
                 </div>
               </div>
@@ -88,19 +88,22 @@ const Catalog = ({
               </div>
 
               <div className="relative z-10 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {teachersData.map((item) => (
-                  <TeacherPublicPreview
-                    price={20}
-                    key={item.uid}
-                    totalReviews={12}
-                    rating={4.5}
-                    image={item.image}
-                    lastName={item.personalDetails.lastName}
-                    name={item.personalDetails.name}
-                    title={item.description}
-                    tags={[item.skills[0], item.skills[1]]}
-                  />
-                ))}
+                {teachersData.map((item) => {
+                  const skills = Object.keys(item.skills)
+                  return (
+                    <TeacherPublicPreview
+                      price={20}
+                      key={item.uid}
+                      totalReviews={12}
+                      rating={4.5}
+                      image={item.image}
+                      lastName={item.personalDetails.lastName}
+                      name={item.personalDetails.name}
+                      title={item.description}
+                      tags={[skills[0], skills[1]]}
+                    />
+                  )
+                })}
               </div>
 
               <Pagination

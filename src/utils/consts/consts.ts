@@ -1,8 +1,5 @@
 const isProd = process.env.NODE_ENV === 'production'
 
-// eslint-disable-next-line no-console
-console.log(process.env.NODE_ENV, 'process.env.NODE_ENV')
-
 export const API_URL = isProd
   ? 'https://tipppbackkk.onrender.com/api'
   : 'http://localhost:8000/api'

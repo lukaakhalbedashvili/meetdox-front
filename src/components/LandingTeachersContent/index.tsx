@@ -40,7 +40,10 @@ const LandingTeachersContent = () => {
                 lastName={categoryTeachers.personalDetails.lastName}
                 name={categoryTeachers.personalDetails.name}
                 title={categoryTeachers.description}
-                tags={[categoryTeachers.skills[0], categoryTeachers.skills[1]]}
+                tags={[
+                  Object.keys(categoryTeachers.skills)[0],
+                  Object.keys(categoryTeachers.skills)[1],
+                ]}
               />
             </SwiperSlide>
           ))}

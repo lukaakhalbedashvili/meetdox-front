@@ -28,6 +28,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
     data,
     isLoading,
     loggedInUserUid,
+    setIsLogInPopupOpen,
   } = useTeacher({ teacherUid: params.id })
 
   const {
@@ -111,11 +112,15 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
                   location={data.country}
                   rating={data.rate}
                   totalReviews={reviews.length}
-                  onPrimaryBtnClick={() =>
+                  onPrimaryBtnClick={() => {
+                    if (!loggedInUserUid) {
+                      setIsLogInPopupOpen(true)
+                      return
+                    }
                     loggedInUserUid === params.id
                       ? router.push('/become-teacher')
                       : setIsModalOpen(true)
-                  }
+                  }}
                   primaryBtnText={
                     loggedInUserUid === params.id
                       ? 'Edit Your Profile'

@@ -14,5 +14,7 @@ export interface AlertStructure {
 
 export interface BearState {
   alert: AlertStructure | undefined
+  isLogInPopupOpen: boolean
   setAlert: (alert: AlertStructure | undefined) => void
+  setIsLogInPopupOpen: (isPopupOpen: boolean) => void
 }

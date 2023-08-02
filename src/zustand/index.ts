@@ -3,6 +3,8 @@ import { BearState } from './zustand.interface'
 
 export const useZustandStore = create<BearState>((set) => ({
   alert: undefined,
+  // const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
+  isLogInPopupOpen: false,
 
   setAlert: (alert) => {
     setTimeout(() => {
@@ -17,4 +19,9 @@ export const useZustandStore = create<BearState>((set) => ({
       }
     })
   },
+
+  setIsLogInPopupOpen: (isPopupOpen: boolean) =>
+    set((state) => {
+      return { ...state, isLogInPopupOpen: isPopupOpen }
+    }),
 }))

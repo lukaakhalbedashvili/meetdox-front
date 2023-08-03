@@ -15,7 +15,7 @@ interface Props {
   loggedInUser: any
   pathname: string
   setIsSignUpPopupOpen: React.Dispatch<React.SetStateAction<boolean>>
-  setIsLogInPopupOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setIsLogInPopupOpen: (isPopupOpen: boolean) => void
 }
 
 const SideBar = ({

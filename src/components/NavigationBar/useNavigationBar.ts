@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
+import { useZustandStore } from '@/zustand'
 
 const useNavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false)
-  const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
+
   const [isForgotPasswordPopupOpen, setIsForgotPasswordPopupOpen] =
     useState(false)
   const [isShowSearchScreen, setIsShowSearchScreen] = useState(false)
@@ -15,6 +16,8 @@ const useNavigationBar = () => {
     useState(false)
 
   const { data } = useFetchLoggedInUserData()
+
+  const { isLogInPopupOpen, setIsLogInPopupOpen } = useZustandStore()
 
   const loggedInUser = data?.data.data
 

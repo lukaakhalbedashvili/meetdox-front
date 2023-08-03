@@ -36,7 +36,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
 
           <NavigationBar />
+
           {children}
+
           <Footer />
         </ReactQueryWrapper>
       </body>

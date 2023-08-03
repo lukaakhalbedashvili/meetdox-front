@@ -28,6 +28,7 @@ const TeacherDomain: FC<TeacherDomainProps> = ({
     categoriesData,
     subCategoriesData,
     setSubCategoriesData,
+    isDomainFormSubmitted,
   } = useTeacherDomain(
     isFormSubmitted,
     setErroredSections,
@@ -37,6 +38,15 @@ const TeacherDomain: FC<TeacherDomainProps> = ({
   return (
     <div className="mx-4 mt-5  border-t-[1px] border-border_gray pt-5 sm:mx-12">
       <h2 className="text-xl">Domain</h2>
+
+      {subCategoriesData
+        ?.filter((item) => item.checked)
+        .map((item) => item.name).length === 0 &&
+        isDomainFormSubmitted && (
+          <p className="text-sm text-error">
+            you should select at least 1 subdomain
+          </p>
+        )}
 
       <div className="sm:w-1/2">
         <div className="mt-2 h-10">

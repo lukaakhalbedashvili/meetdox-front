@@ -17,6 +17,8 @@ const useTeacherDomain = (
 ) => {
   const placeholderCategoryValue = 'Choose Category'
 
+  const [isDomainFormSubmitted, setIsDomainFormSubmitted] = useState(false)
+
   const [subCategoriesData, setSubCategoriesData] = useState<SubCategory[]>([])
 
   interface SubCategory {
@@ -39,6 +41,7 @@ const useTeacherDomain = (
     validationSchema,
 
     onSubmit: async (values) => {
+      setIsDomainFormSubmitted(true)
       const { category } = values
       setErroredSections((prevState) => ({
         ...prevState,
@@ -98,6 +101,7 @@ const useTeacherDomain = (
     categoriesData,
     subCategoriesData,
     setSubCategoriesData,
+    isDomainFormSubmitted,
   }
 }
 

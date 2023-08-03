@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
@@ -15,11 +15,15 @@ const useNavigationBar = () => {
   const [isShowNotificationScreen, setIsShowNotificationScreen] =
     useState(false)
 
-  const { data } = useFetchLoggedInUserData()
+  const { data, refetch } = useFetchLoggedInUserData()
 
   const { isLogInPopupOpen, setIsLogInPopupOpen } = useZustandStore()
 
   const loggedInUser = data?.data.data
+
+  useEffect(() => {
+    refetch()
+  }, [])
 
   return {
     isOpen,

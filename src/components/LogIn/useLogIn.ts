@@ -9,6 +9,7 @@ import {
 import { useState } from 'react'
 import { useZustandStore } from '@/zustand'
 import { AlertType } from '@/zustand/zustand.interface'
+import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import { LogInFormFields } from './logIn.interface'
 import { auth } from '../../utils/firebase/init'
 
@@ -18,6 +19,7 @@ interface UseLoginProps {
 
 const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
   const { setAlert } = useZustandStore()
+  const { refetch } = useFetchLoggedInUserData()
   const [isLoading, setIsLoading] = useState(false)
 
   const LogInFormValidation = useFormik({
@@ -51,7 +53,7 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
         .then(() => {
           signInWithEmailAndPassword(auth, email, password).then(() => {
             setIsLogInPopupOpen(false)
-
+            refetch()
             setIsLoading(false)
 
             setAlert({

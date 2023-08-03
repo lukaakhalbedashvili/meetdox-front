@@ -6,7 +6,7 @@ interface UseTeacherEducation {
 }
 
 const useTeacherEducation = ({ defaultValues }: UseTeacherEducation) => {
-  const [educationForms, setEducationForms] = useState<number[]>([0])
+  const [educationForms, setEducationForms] = useState<number[]>([])
 
   useEffect(() => {
     defaultValues &&

@@ -13,9 +13,8 @@ import {
 const useBecameTeacherForm = () => {
   const { setAlert } = useZustandStore()
   const router = useRouter()
-  const { data } = useFetchLoggedInUserData()
+  const { data, refetch } = useFetchLoggedInUserData()
   const teacherData = useGetTeacherPublicData(data?.data.data.uid)
-
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const [erroredSections, setErroredSections] =
     useState<BecomeTeacherSectionsErrors>({
@@ -47,6 +46,10 @@ const useBecameTeacherForm = () => {
   })
 
   const { mutate } = useSendTeacherCreationQueries()
+
+  useEffect(() => {
+    refetch()
+  }, [])
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/naming-convention

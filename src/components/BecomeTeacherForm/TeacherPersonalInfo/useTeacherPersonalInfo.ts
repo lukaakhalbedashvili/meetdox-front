@@ -99,7 +99,7 @@ const useTeacherPersonalInfo = (
     })
     setImageFromFirebase(defaultValues?.image)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultValues])
+  }, [])
 
   useEffect(() => {
     isFormSubmitted && teacherPersonalInfoValidation.submitForm()

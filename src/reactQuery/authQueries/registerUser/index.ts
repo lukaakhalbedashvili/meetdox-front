@@ -5,7 +5,7 @@ import { Payload } from './registerUser.interface'
 export const useRegisterUserQuery = () =>
   useMutation({
     mutationFn: async (payload: Payload) => {
-      const { code, email, username } = payload
-      await registrationApiRequest(email, username, code)
+      const { code, email, username, password } = payload
+      await registrationApiRequest(email, username, code, password)
     },
   })

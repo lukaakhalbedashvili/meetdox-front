@@ -5,7 +5,8 @@ import { API_URL } from '../consts/consts'
 export const registrationApiRequest = async (
   email: string,
   username: string,
-  code: string
+  code: string,
+  password: string
 ) => {
   const response = await axios.post(
     `${API_URL}/users/authentication/registration`,
@@ -13,6 +14,7 @@ export const registrationApiRequest = async (
       email,
       username,
       code,
+      password,
     }
   )
   return response

@@ -4,6 +4,8 @@ import {
   UserCredential,
 } from 'firebase/auth'
 import { useRegisterGoogleUserQuery } from '@/reactQuery/authQueries/registerGoogleUser'
+import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
+import { useZustandStore } from '@/zustand'
 import { auth } from './init'
 
 interface GoogleAuthResponse {
@@ -21,6 +23,9 @@ interface GoogleAuthResponse {
 export const useGoogleAuth = () => {
   const provider = new GoogleAuthProvider()
   const { mutate } = useRegisterGoogleUserQuery()
+  const { refetch } = useFetchLoggedInUserData()
+  const { setIsLogInPopupOpen } = useZustandStore()
+
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result: GoogleAuthResponse | UserCredential) => {
@@ -37,7 +42,8 @@ export const useGoogleAuth = () => {
             console.error(error)
           }
         } else {
-          window.location.reload()
+          refetch()
+          setIsLogInPopupOpen(false)
         }
       })
       .catch(() => {})

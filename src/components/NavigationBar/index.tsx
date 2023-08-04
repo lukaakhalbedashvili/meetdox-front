@@ -53,6 +53,7 @@ const NavigationBar = () => {
                   />
                 </div>
               </Link>
+
               <div className="ml-2 hidden md:flex md:items-center md:space-x-8">
                 {navigationBarItems.map((item) => (
                   <NavigationBarItem
@@ -65,9 +66,11 @@ const NavigationBar = () => {
                 ))}
               </div>
             </div>
+
             <div className="hidden md:flex md:items-center md:space-x-8">
               <NavigationSearchBar />
             </div>
+
             {loggedInUser ? (
               <NavigationLoggedIn
                 uid={loggedInUser.uid}
@@ -138,12 +141,14 @@ const NavigationBar = () => {
                   </button>
                 </div>
               )}
+
               <div className="mr-6 flex  items-center">
                 <AiOutlineSearch
                   className="h-6 w-6"
                   onClick={() => setIsShowSearchScreen(true)}
                 />
               </div>
+
               <div className="flex items-center  md:hidden">
                 <div className="flex" onClick={() => setIsOpen(!isOpen)}>
                   {isOpen ? (

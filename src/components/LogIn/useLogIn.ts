@@ -51,18 +51,38 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
         isRememberMe ? browserLocalPersistence : browserSessionPersistence
       )
         .then(() => {
-          signInWithEmailAndPassword(auth, email, password).then(() => {
-            setIsLogInPopupOpen(false)
-            refetch()
-            setIsLoading(false)
+          signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+              setIsLogInPopupOpen(false)
+              refetch()
+              setIsLoading(false)
 
-            setAlert({
-              message: 'success',
-              type: AlertType.SUCCESS,
-              onClick: () => {},
-              duration: 2000,
+              setAlert({
+                message: 'User logged in successfully',
+                type: AlertType.SUCCESS,
+                onClick: () => {},
+                duration: 2000,
+              })
             })
-          })
+            .catch((err) => {
+              if (err.code === 'auth/user-not-found') {
+                setAlert({
+                  message: 'User not found',
+                  type: AlertType.ERROR,
+                  onClick: () => {},
+                  duration: 3000,
+                })
+                setIsLoading(false)
+              } else if (err.code === 'auth/wrong-password') {
+                setAlert({
+                  message: 'Password is wrong',
+                  type: AlertType.ERROR,
+                  onClick: () => {},
+                  duration: 3000,
+                })
+                setIsLoading(false)
+              }
+            })
         })
         .catch(() => {
           resetForm()

@@ -38,6 +38,7 @@ const useEmailVerify = ({
         {
           email: userInfo.email,
           username: userInfo.username,
+          password: userInfo.password,
           code: values[VerifyField.CODE],
         },
         {

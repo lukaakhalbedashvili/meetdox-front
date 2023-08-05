@@ -19,7 +19,7 @@ const LandingCategorySwiper: FC<LandingCategorySwiperProps> = ({
 
   return (
     <div className="px-2 py-6 sm:px-12">
-      <h2 className="ml-2 text-xl">{title}</h2>
+      <h2 className="ml-2 text-lg">{title}</h2>
 
       <div className="flex items-center">
         <div

@@ -8,8 +8,8 @@ const navigationBarItems = [
     path: '/about',
   },
   {
-    name: 'Contact',
-    path: '/contact',
+    name: 'How to',
+    path: '/how-to',
   },
   {
     name: 'Blog',

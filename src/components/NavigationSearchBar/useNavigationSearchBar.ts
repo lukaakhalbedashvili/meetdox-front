@@ -1,55 +1,32 @@
-import React, { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useGetSearchedUserData } from '@/reactQuery/teacherQuaries/getSearchedTeachersData'
+import { TeacherData } from '../Catalog/catalog.interface'
 
 const useNavigationSearchBar = () => {
-  const [searchText, setSearchText] = useState('')
+  const inputElement = useRef<HTMLInputElement>(null)
+  const router = useRouter()
   const [isShowDropdown, setIsShowDropdown] = useState(false)
+  const [dropdownItems, setDropdownItems] = useState<TeacherData[] | []>([])
+  const { data } = useGetSearchedUserData(inputElement.current?.value)
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value
-    setSearchText(value)
-    setIsShowDropdown(value.length > 0)
+  const handleInputChange = () => {
+    setDropdownItems([])
   }
+
+  useEffect(() => {
+    if (!data) return
+    setDropdownItems(data)
+    setIsShowDropdown(data.length > 0)
+  }, [data])
 
   const handleDropdownItemClick = (item: string) => {
-    setSearchText(item)
     setIsShowDropdown(false)
+    router.push('/teacher/' + item)
   }
 
-  const categoriesAndSubcategories = [
-    'Doctor',
-    'Dentist',
-    'Teacher',
-    'Lawyer',
-    'Accountant',
-    'Psychologist',
-    'Nutritionist',
-    'Dietitian',
-    'Fitness Trainer',
-  ]
-
-  const users = [
-    'John Doe',
-    'Jane Doe',
-    'John Smith',
-    'Lasha Markhvaidze',
-    'Luka Akhalbedashvili',
-  ]
-
-  const filteredCategoriesAndSubcategories = categoriesAndSubcategories.filter(
-    (item) => item.toLowerCase().includes(searchText.toLowerCase())
-  )
-
-  const filteredUsers = users.filter((item) =>
-    item.toLowerCase().includes(searchText.toLowerCase())
-  )
-
-  const dropdownItems =
-    filteredCategoriesAndSubcategories.length > 0
-      ? filteredCategoriesAndSubcategories.slice(0, 10)
-      : filteredUsers.slice(0, 10)
-
   return {
-    searchText,
+    inputElement,
     isShowDropdown,
     dropdownItems,
     handleInputChange,

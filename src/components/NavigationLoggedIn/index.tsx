@@ -62,7 +62,7 @@ const NavigationLoggedIn = ({
           </button>
           {isNotificationsOpen && (
             <div
-              className="absolute right-0 z-10 mt-1 w-96 rounded-sm  border-[1px] border-border_gray bg-white py-2"
+              className="absolute right-0 z-20 mt-1 w-96 rounded-sm  border-[1px] border-border_gray bg-white py-2"
               ref={notificationsDropDownRef}
             >
               <div className="border-1 flex items-start border-b-[1px] border-solid border-border_gray px-4 py-1 pb-2">

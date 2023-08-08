@@ -26,9 +26,19 @@ const inter = Inter({
   variable: '--inter',
 })
 
+export const metadata = {
+  title: 'Meetnox',
+  description: 'Find your perfect teacher today and start learning !',
+}
+
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className={inter.className}>
+      <head>
+        <link rel="icon" href="/cow.png" sizes="any" />
+        <title>Meetnox</title>
+      </head>
+
       <body>
         <ReactQueryWrapper>
           <div className="absolute right-0 top-5 z-30 mx-2 lg:right-10 lg:top-20">

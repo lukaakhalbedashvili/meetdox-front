@@ -8,7 +8,7 @@ const CategoryNav = () => {
   const [activeCategory, setActiveCategory] = useState('')
 
   return (
-    <nav className="hidden w-full border-border_gray bg-white  px-12 font-normal text-text_gray md:flex">
+    <nav className="hidden w-full border-border_gray bg-white  px-10 font-normal text-text_gray md:flex">
       <div className="flex h-[40px]">
         {categories.map((category, i) => (
           <div

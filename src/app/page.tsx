@@ -1,13 +1,13 @@
 import React from 'react'
-import CategoryNav from '@/components/CategoryNav'
 import LandingTeachersContent from '@/components/LandingTeachersContent'
+import Footer from '@/components/Footer'
 
 const Home = () => {
   return (
-    <main className="bg-white font-ubuntu">
-      <CategoryNav />
-
+    <main className="mt-[50px] flex h-full flex-col bg-white font-ubuntu sm:mt-[90px]">
       <LandingTeachersContent />
+
+      <Footer />
     </main>
   )
 }

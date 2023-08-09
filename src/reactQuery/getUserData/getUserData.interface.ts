@@ -6,6 +6,7 @@ export interface UserData {
     username: string
     photoURL: string
     uid: string
+    teacherBalance: number
     isTeacher: boolean
     notifications: NotificationStructure[]
   }

@@ -4,7 +4,7 @@ import useNavigationSearchBar from './useNavigationSearchBar'
 
 const NavigationSearchBar = () => {
   const {
-    searchText,
+    inputElement,
     isShowDropdown,
     dropdownItems,
     handleInputChange,
@@ -22,10 +22,12 @@ const NavigationSearchBar = () => {
         type="text"
         placeholder="Who are you looking for?"
         className="z-20 w-full rounded-l-md rounded-r-none border-[1px] border-border_gray py-2 px-4 pl-10 text-sm font-medium focus:outline-none md:w-[250px] xl:w-[300px]"
-        value={searchText}
-        onChange={handleInputChange}
+        ref={inputElement}
       />
-      <button className="hover:bg-blue-600 focus:bg-blue-600 z-20 rounded-r-md rounded-l-none bg-sky px-4 text-sm font-medium text-white focus:outline-none">
+      <button
+        className="hover:bg-blue-600 focus:bg-blue-600 z-20 rounded-r-md rounded-l-none bg-sky px-4 text-sm font-medium text-white focus:outline-none"
+        onClick={() => handleInputChange()}
+      >
         Search
       </button>
       {isShowDropdown && (
@@ -34,13 +36,13 @@ const NavigationSearchBar = () => {
             <div
               key={index}
               className="flex cursor-pointer px-2 py-1 pl-[12px] text-sm hover:bg-gray"
-              onClick={() => handleDropdownItemClick(item)}
+              onClick={() => handleDropdownItemClick(item.uid)}
             >
               <AiOutlineSearch
                 className=" z-30 mr-[8px] text-icon_gray"
                 size={20}
               />
-              {item}
+              {`${item.personalDetails.name} ${item.personalDetails.lastName}`}
             </div>
           ))}
         </div>

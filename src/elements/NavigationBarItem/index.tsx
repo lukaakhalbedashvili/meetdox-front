@@ -13,9 +13,9 @@ const NavigationBarItem: FC<NavigationBarItemProps> = ({
   activePath,
 }) => (
   <Link href={href}>
-    <div className="relative z-0 w-[50px]">
+    <div className="w-18 relative z-0 ">
       <p
-        className={`hover:text-gray-400 relative block rounded px-4 py-2 text-sm font-medium transition duration-200 md:px-8 ${
+        className={`relative block rounded px-4 py-2 text-sm font-medium transition duration-200 hover:text-sky md:px-4 ${
           href === activePath ? 'text-sky' : 'text-text_gray'
         }`}
       >

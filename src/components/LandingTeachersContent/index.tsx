@@ -8,27 +8,28 @@ import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import useLandingTeachersContent from './useLandingTeachersContent'
 import SwiperWrapper from '../SwiperWrapper'
 import { TeacherData } from '../Catalog/catalog.interface'
-import LandingBaner from '../LandingBaner'
+import LandingBanner from '../LandingBanner'
 
 const LandingTeachersContent = () => {
   const router = useRouter()
 
   const { data, isLoading } = useLandingTeachersContent()
   return (
-    <div className="min-h-screen ">
+    <div>
       {isLoading && (
-        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
+        <div className="absolute top-2/3 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
           <ClipLoader color="#36d7b7" />
         </div>
       )}
+
       <div className="relative flex h-96 w-full items-center justify-center">
-        <span className="relative top-0 z-10 -mt-36 bg-gray pt-4  sm:pt-0 ">
-          <LandingBaner />
+        <span className="relative top-0 z-10 -mt-36 w-full bg-gray  pt-4 sm:pt-0">
+          <LandingBanner />
         </span>
+
         <Image
           src="/arc-div.svg"
-          className="absolute mt-16 h-full w-full sm:mt-0"
-          objectFit="cover"
+          className="absolute mt-16 h-full w-full object-cover sm:mt-0"
           fill
           alt="cont"
         />

@@ -17,6 +17,7 @@ import LogIn from '../LogIn'
 import ForgotPassword from '../ForgotPassword'
 import NavigationLoggedIn from '../NavigationLoggedIn'
 import NavigationSearchBar from '../NavigationSearchBar'
+import CategoryNav from '../CategoryNav'
 
 const NavigationBar = () => {
   const {
@@ -38,9 +39,9 @@ const NavigationBar = () => {
 
   return (
     <>
-      <nav className="bg-white">
-        <div className="mx-auto h-[60px] border-b-[1px] border-border_gray px-4 sm:px-6 lg:px-12">
-          <div className="flex h-[60px] w-full justify-between">
+      <nav className="fixed top-0 left-0 z-20  w-full bg-white ">
+        <div className="mx-auto h-[50px] border-b-[1px] border-border_gray px-4 sm:px-6 lg:px-12">
+          <div className="flex h-full w-full justify-between">
             <div className="flex items-center">
               <Link href="/">
                 <div className="mr-6">
@@ -161,6 +162,8 @@ const NavigationBar = () => {
             </div>
           </div>
         </div>
+
+        <CategoryNav />
 
         {isOpen && (
           <SideBar

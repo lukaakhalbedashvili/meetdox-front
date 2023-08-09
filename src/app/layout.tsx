@@ -3,7 +3,7 @@ import React from 'react'
 import { Inter } from 'next/font/google'
 import dynamic from 'next/dynamic'
 import NavigationBar from '@/components/NavigationBar'
-import Footer from '@/components/Footer'
+
 const ReactQueryWrapper = dynamic(
   () => import('@/components/ReactQueryWrapper'),
   {
@@ -27,7 +27,7 @@ const inter = Inter({
 })
 
 export const metadata = {
-  title: 'Meetnox',
+  title: 'Meetdox',
   description: 'Find your perfect teacher today and start learning !',
 }
 
@@ -36,7 +36,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <html lang="en" className={inter.className}>
       <head>
         <link rel="icon" href="/cow.png" sizes="any" />
-        <title>Meetnox</title>
+        <title>Meetdox</title>
       </head>
 
       <body>
@@ -48,8 +48,6 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           <NavigationBar />
 
           {children}
-
-          <Footer />
         </ReactQueryWrapper>
       </body>
     </html>

@@ -13,8 +13,8 @@ interface ProfileModuleItem {
 export const profileBtnsSectionOne: ProfileModuleItem[] = [
   {
     id: 1,
-    text: 'Profile',
-    url: '/profile',
+    text: 'Dashboard',
+    url: '/dashboard',
     Icon: BiUser,
   },
   {
@@ -25,8 +25,8 @@ export const profileBtnsSectionOne: ProfileModuleItem[] = [
   },
   {
     id: 3,
-    text: 'Become teacher',
-    url: '/become-teacher',
+    text: 'Become mentor',
+    url: '/become-mentor',
     Icon: IoAddOutline,
   },
 ]

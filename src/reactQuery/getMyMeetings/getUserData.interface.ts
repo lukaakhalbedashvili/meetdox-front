@@ -3,6 +3,7 @@ import { ScheduleStepStatus } from '@/components/Dashboard/dashboard.interface'
 export interface ScheduledMeetStructure {
   clientImg: string
   clientUid: string
+  hangoutLink: string
   clientUsername: string
   comment: string
   createdAt: number

@@ -46,7 +46,9 @@ export const scheduleSteps: ScheduleSteps = {
       buttonRed: '',
       buttonGreen: 'Join',
       onButtonRedClick: '',
-      onButtonGreenClick: '',
+      onButtonGreenClick: (meeting: ScheduledMeetStructure) => {
+        window.open(meeting.hangoutLink, '_blank')
+      },
     },
     completed: {
       title1: 'Meeting completed',
@@ -96,7 +98,9 @@ export const scheduleSteps: ScheduleSteps = {
       buttonRed: '',
       buttonGreen: 'Join',
       onButtonRedClick: '',
-      onButtonGreenClick: '',
+      onButtonGreenClick: (meeting: ScheduledMeetStructure) => {
+        window.open(meeting.hangoutLink, '_blank')
+      },
     },
     completed: {
       title1: 'Meeting completed',

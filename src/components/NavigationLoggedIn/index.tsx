@@ -17,6 +17,7 @@ interface NavigationLoggedInProps {
   username: string
   notifications: NotificationStructure[]
   uid: string
+  teacherBalance: number
   isTeacher: boolean
 }
 
@@ -25,6 +26,7 @@ const NavigationLoggedIn = ({
   username,
   notifications,
   uid,
+  teacherBalance,
   isTeacher,
 }: NavigationLoggedInProps) => {
   const {
@@ -113,6 +115,11 @@ const NavigationLoggedIn = ({
                 </button>
 
                 <p className="mt-2 text-sm">{username}</p>
+                {isTeacher && (
+                  <p className="mt-2 text-sm text-text_gray">
+                    ${teacherBalance}
+                  </p>
+                )}
               </div>
               <div className="mb-1 mt-2 flex items-start border-b-[1px] border-border_gray px-4"></div>
 

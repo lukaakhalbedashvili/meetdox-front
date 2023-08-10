@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useGetTeachers } from '@/reactQuery/teacherQuaries/getTeachers'
 import { TeacherData } from '@/components/Catalog/catalog.interface'
 import {
@@ -20,6 +21,8 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
   const [sortingBy, setSortingBy] = useState<string>('popular')
   const [startPrice, setStartPrice] = useState<number>(0)
   const [endPrice, setEndPrice] = useState<number>(10000)
+
+  const router = useRouter()
 
   const onlyNamesPickedFromSkills = skills
     .filter((item) => item.checked)
@@ -71,6 +74,7 @@ const useCatalog = ({ category, subCategoriesNames }: UseCatalogProps) => {
     endPrice,
     setEndPrice,
     isLoading,
+    router,
   }
 }
 

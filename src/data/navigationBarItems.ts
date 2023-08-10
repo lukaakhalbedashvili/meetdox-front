@@ -11,10 +11,6 @@ const navigationBarItems = [
     name: 'How to',
     path: '/how-to',
   },
-  {
-    name: 'Blog',
-    path: '/blog',
-  },
 ]
 
 export default navigationBarItems

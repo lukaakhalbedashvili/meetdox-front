@@ -38,6 +38,7 @@ const Catalog = ({
     endPrice,
     setEndPrice,
     isLoading,
+    router,
   } = useCatalog({ category, subCategoriesNames })
 
   return (
@@ -87,7 +88,7 @@ const Catalog = ({
                 <hr className="border-border_gray" />
               </div>
 
-              <div className="relative z-10 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="relative z-20 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {teachersData.map((item) => {
                   const skills = Object.keys(item.skills)
                   return (
@@ -101,6 +102,7 @@ const Catalog = ({
                       name={item.personalDetails.name}
                       title={item.description}
                       tags={[skills[0], skills[1]]}
+                      onClickHandler={() => router.push(`teacher/${item.uid}`)}
                     />
                   )
                 })}

@@ -74,6 +74,7 @@ const NavigationBar = () => {
 
             {loggedInUser ? (
               <NavigationLoggedIn
+                teacherBalance={loggedInUser.teacherBalance}
                 uid={loggedInUser.uid}
                 photoUrl={loggedInUser.photoURL}
                 username={loggedInUser.username}

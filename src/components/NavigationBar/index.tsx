@@ -47,10 +47,10 @@ const NavigationBar = () => {
                 <div className="mr-6">
                   <Image
                     className="hover:rotate-12"
-                    src="/cow.png"
+                    src="/cowWithMakeup.svg"
                     alt="My Logo"
-                    width={40}
-                    height={40}
+                    width={50}
+                    height={50}
                   />
                 </div>
               </Link>

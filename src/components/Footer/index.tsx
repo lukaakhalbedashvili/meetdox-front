@@ -9,9 +9,9 @@ const Footer = () => {
           <div className="mb-8 w-full md:mb-0 md:w-1/3 lg:w-auto">
             <div className="flex items-center">
               <Image
-                src="/cow.png"
-                width={35}
-                height={35}
+                src="/cowWithMakeup.svg"
+                width={50}
+                height={50}
                 alt="cow"
                 className="mr-2"
               />

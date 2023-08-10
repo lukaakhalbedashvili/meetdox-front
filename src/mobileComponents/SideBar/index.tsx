@@ -159,7 +159,7 @@ const SideBar = ({
               .map((item: { id: number; text: string; url: string }) => {
                 if (loggedInUser.isTeacher && item.id === 3) {
                   item.url = `/teacher/${loggedInUser.uid}`
-                  item.text = 'Teacher page'
+                  item.text = 'Mentor page'
                 }
                 return (
                   <Link key={item.url} href={item.url}>

@@ -127,7 +127,7 @@ const NavigationLoggedIn = ({
                 let { Icon } = btn
                 if (isTeacher && btn.id === 3) {
                   btn.url = `/teacher/${uid}`
-                  btn.text = 'Teacher page'
+                  btn.text = 'Mentor page'
                   Icon = MdOutlineContactPage
                 }
                 return (

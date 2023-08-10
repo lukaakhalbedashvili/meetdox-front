@@ -15,13 +15,7 @@ const LandingTeachersContent = () => {
 
   const { data, isLoading } = useLandingTeachersContent()
   return (
-    <div>
-      {isLoading && (
-        <div className="absolute top-2/3 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
-          <ClipLoader color="#36d7b7" />
-        </div>
-      )}
-
+    <div className="">
       <div className="relative flex h-96 w-full items-center justify-center">
         <span className="relative top-0 z-10 -mt-36 w-full bg-gray  pt-4 sm:pt-0">
           <LandingBanner />
@@ -34,6 +28,12 @@ const LandingTeachersContent = () => {
           alt="cont"
         />
       </div>
+
+      {isLoading && (
+        <div className=" flex h-screen justify-center">
+          <ClipLoader color="#36d7b7" />
+        </div>
+      )}
 
       {data?.categorizedTeachers?.map((item) => {
         if (item.categoryItems.length === 0) {

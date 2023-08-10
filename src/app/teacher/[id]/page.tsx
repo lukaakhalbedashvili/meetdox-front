@@ -10,6 +10,7 @@ import TeacherEducationSeparator from '@/elements/TeacherEducationSeparator'
 import PopupItemWrapper from '@/components/PopupItemWrapper'
 import ScheduleMeetPopup from '@/components/ScheduleMeetPopup'
 import ContentSeparator from '@/elements/ContentSeparator'
+import Footer from '@/components/Footer'
 import { TeacherSections } from '../teacher.interface'
 import useTeacher from '../useTeacher'
 
@@ -50,7 +51,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
   const router = useRouter()
 
   return (
-    <>
+    <div className="flex h-full flex-col justify-between">
       <div className="mx-2 lg:relative lg:flex lg:items-start lg:bg-gray lg:px-6 lg:py-10">
         {isLoading && (
           <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
@@ -172,7 +173,9 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
           />
         </PopupItemWrapper>
       )}
-    </>
+
+      <Footer />
+    </div>
   )
 }
 

@@ -117,7 +117,7 @@ const NavigationLoggedIn = ({
                 <p className="mt-2 text-sm">{username}</p>
                 {isTeacher && (
                   <p className="mt-2 text-sm text-text_gray">
-                    ${teacherBalance}
+                    ${teacherBalance || 0}
                   </p>
                 )}
               </div>

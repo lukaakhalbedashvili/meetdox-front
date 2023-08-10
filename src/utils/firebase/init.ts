@@ -3,18 +3,18 @@ import { getAuth } from 'firebase/auth'
 import { getFirestore, collection } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDdW73biokdxfPB9EU9jM8aKOd_Oj8hT-M',
-  authDomain: 'tippp-5dee3.firebaseapp.com',
-  projectId: 'tippp-5dee3',
-  storageBucket: 'tippp-5dee3.appspot.com',
-  messagingSenderId: '1011580709611',
-  appId: '1:1011580709611:web:ac7febd4761ef30ea0acae',
-  measurementId: 'G-501H1ZT139',
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 }
 
 const app = initializeApp(firebaseConfig)
 const db = getFirestore()
-const usersCol = collection(db, 'db', 'test', 'users')
+const usersCol = collection(db, 'db', 'prod', 'users')
 const auth = getAuth(app)
 
 export { auth, usersCol }

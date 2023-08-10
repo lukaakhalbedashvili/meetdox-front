@@ -39,7 +39,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <title>Meetdox</title>
       </head>
 
-      <body>
+      <body className="mt-[50px] sm:mt-[90px] ">
         <ReactQueryWrapper>
           <div className="absolute right-0 top-5 z-30 mx-2 lg:right-10 lg:top-20">
             <Alert />

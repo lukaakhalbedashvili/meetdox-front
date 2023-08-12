@@ -28,7 +28,7 @@ const inter = Inter({
 
 export const metadata = {
   title: 'Meetdox',
-  description: 'Find your perfect teacher today and start learning !',
+  description: 'Find your mentor teacher today and start learning !',
 }
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {

@@ -49,6 +49,7 @@ const useBecameTeacherForm = () => {
 
   useEffect(() => {
     refetch()
+    teacherData.refetch()
   }, [])
 
   useEffect(() => {

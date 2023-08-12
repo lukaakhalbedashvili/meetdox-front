@@ -2,7 +2,6 @@
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
 import { ClipLoader } from 'react-spinners'
-import Image from 'next/image'
 import Link from 'next/link'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import useLandingTeachersContent from './useLandingTeachersContent'
@@ -11,30 +10,20 @@ import { TeacherData } from '../Catalog/catalog.interface'
 import LandingBanner from '../LandingBanner'
 
 const LandingTeachersContent = () => {
-  const { data, isLoading, itemsRef } = useLandingTeachersContent()
+  const { data, isLoading, categoriesSwiperSectionRef } =
+    useLandingTeachersContent()
 
   return (
     <div className="">
-      <div className="relative flex h-96 w-full items-center justify-center">
-        <span className="relative top-0 z-10 -mt-36 w-full bg-gray  pt-4 sm:pt-0">
-          <LandingBanner itemsRef={itemsRef} />
-        </span>
-
-        <Image
-          src="/arc-div.svg"
-          className="absolute mt-16 h-full w-full object-cover sm:mt-0"
-          fill
-          alt="cont"
-        />
-      </div>
+      <LandingBanner itemsRef={categoriesSwiperSectionRef} />
 
       {isLoading && (
-        <div className=" flex h-screen justify-center">
+        <div className=" mt-32 flex h-screen justify-center">
           <ClipLoader color="#36d7b7" />
         </div>
       )}
 
-      <div ref={itemsRef} className="pt-20">
+      <div ref={categoriesSwiperSectionRef} className="pt-20">
         {data?.categorizedTeachers?.map((item) => {
           if (item.categoryItems.length === 0) {
             return null

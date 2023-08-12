@@ -3,12 +3,12 @@ import { useGetLandingTeachers } from '@/reactQuery/teacherQuaries/getLandingTea
 
 const useLandingTeachersContent = () => {
   const { data, isLoading } = useGetLandingTeachers()
-  const itemsRef = useRef<HTMLDivElement>(null)
+  const categoriesSwiperSectionRef = useRef<HTMLDivElement>(null)
 
   return {
     data,
     isLoading,
-    itemsRef,
+    categoriesSwiperSectionRef,
   }
 }
 

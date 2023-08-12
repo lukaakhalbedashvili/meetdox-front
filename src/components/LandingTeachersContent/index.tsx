@@ -2,8 +2,8 @@
 import React from 'react'
 import { SwiperSlide } from 'swiper/react'
 import { ClipLoader } from 'react-spinners'
-import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 import TeacherPublicPreview from '@/elements/TeacherPublicPreview'
 import useLandingTeachersContent from './useLandingTeachersContent'
 import SwiperWrapper from '../SwiperWrapper'
@@ -11,8 +11,6 @@ import { TeacherData } from '../Catalog/catalog.interface'
 import LandingBanner from '../LandingBanner'
 
 const LandingTeachersContent = () => {
-  const router = useRouter()
-
   const { data, isLoading } = useLandingTeachersContent()
   return (
     <div className="">
@@ -49,23 +47,23 @@ const LandingTeachersContent = () => {
                 key={categoryTeachers.uid}
                 style={{ width: 'fit-content' }}
               >
-                <TeacherPublicPreview
-                  onClickHandler={() =>
-                    router.push(`teacher/${categoryTeachers.uid}`)
-                  }
-                  price={20}
-                  key={categoryTeachers.uid}
-                  totalReviews={12}
-                  rating={4.5}
-                  image={categoryTeachers.image}
-                  lastName={categoryTeachers.personalDetails.lastName}
-                  name={categoryTeachers.personalDetails.name}
-                  title={categoryTeachers.description}
-                  tags={[
-                    Object.keys(categoryTeachers.skills)[0],
-                    Object.keys(categoryTeachers.skills)[1],
-                  ]}
-                />
+                <Link href={`teacher/${categoryTeachers.uid}`}>
+                  <TeacherPublicPreview
+                    onClickHandler={() => {}}
+                    price={20}
+                    key={categoryTeachers.uid}
+                    totalReviews={12}
+                    rating={4.5}
+                    image={categoryTeachers.image}
+                    lastName={categoryTeachers.personalDetails.lastName}
+                    name={categoryTeachers.personalDetails.name}
+                    title={categoryTeachers.description}
+                    tags={[
+                      Object.keys(categoryTeachers.skills)[0],
+                      Object.keys(categoryTeachers.skills)[1],
+                    ]}
+                  />
+                </Link>
               </SwiperSlide>
             ))}
           </SwiperWrapper>

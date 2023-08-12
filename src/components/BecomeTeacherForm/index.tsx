@@ -66,9 +66,7 @@ const BecomeTeacherForm = () => {
             defaultValue={teacherData?.domain}
           />
 
-          {(values.domain.category ||
-            (teacherData?.domain?.category &&
-              teacherData?.domain.category)) && (
+          {(values.domain.category || teacherData?.domain?.category) && (
             <TeacherSkills
               defaultValues={teacherData?.skills}
               selectedDomain={

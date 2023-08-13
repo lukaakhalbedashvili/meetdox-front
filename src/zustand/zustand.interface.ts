@@ -21,4 +21,6 @@ export interface BearState {
   setIsLogInPopupOpen: (isPopupOpen: boolean) => void
   loggedInUser: UserFromUserData | undefined
   setLoggedInUser: (user: UserFromUserData | undefined) => void
+  isSignupPopupOpen: boolean
+  setIsSignupPopupOpen: (isPopupOpen: boolean) => void
 }

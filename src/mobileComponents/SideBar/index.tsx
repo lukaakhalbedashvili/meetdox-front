@@ -14,14 +14,14 @@ import handleLogout from '@/utils/services/handleLogout'
 interface Props {
   loggedInUser: any
   pathname: string
-  setIsSignUpPopupOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setIsSignupPopupOpen: (payload: boolean) => void
   setIsLogInPopupOpen: (isPopupOpen: boolean) => void
 }
 
 const SideBar = ({
   loggedInUser,
   pathname,
-  setIsSignUpPopupOpen,
+  setIsSignupPopupOpen,
   setIsLogInPopupOpen,
 }: Props) => {
   const [isShowCategories, setIsShowCategories] = useState(false)
@@ -196,7 +196,7 @@ const SideBar = ({
               <div className="flex items-center justify-center">
                 <Button
                   customTailwindClasses="bg-transparent border-transparent text-sky"
-                  onClickHandler={() => setIsSignUpPopupOpen(true)}
+                  onClickHandler={() => setIsSignupPopupOpen(true)}
                 >
                   <p className="flex	h-[45px] w-[90px] items-center justify-center font-medium">
                     Sign up

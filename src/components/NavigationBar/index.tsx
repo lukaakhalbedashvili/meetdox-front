@@ -24,8 +24,8 @@ const NavigationBar = () => {
     isOpen,
     setIsOpen,
     pathname,
-    isSignUpPopupOpen,
-    setIsSignUpPopupOpen,
+    isSignupPopupOpen,
+    setIsSignupPopupOpen,
     isLogInPopupOpen,
     setIsLogInPopupOpen,
     isForgotPasswordPopupOpen,
@@ -35,6 +35,7 @@ const NavigationBar = () => {
     loggedInUser,
     isShowNotificationScreen,
     setIsShowNotificationScreen,
+    router,
   } = useNavigationBar()
 
   return (
@@ -86,7 +87,7 @@ const NavigationBar = () => {
                 <div className="mr-5 hidden md:flex md:items-center md:space-x-4">
                   <Button
                     customTailwindClasses="bg-transparent border-transparent text-sky"
-                    onClickHandler={() => setIsSignUpPopupOpen(true)}
+                    onClickHandler={() => setIsSignupPopupOpen(true)}
                   >
                     <p className="flex	h-[45px] w-[90px] items-center justify-center font-medium">
                       Sign up
@@ -95,7 +96,10 @@ const NavigationBar = () => {
 
                   <Button
                     customTailwindClasses="bg-sky border-sky text-text_gray"
-                    onClickHandler={() => setIsLogInPopupOpen(true)}
+                    onClickHandler={() => {
+                      setIsLogInPopupOpen(true)
+                      router.push('/')
+                    }}
                   >
                     <p className="flex h-[30px] w-[90px] items-center justify-center font-medium text-white">
                       Log In
@@ -170,19 +174,19 @@ const NavigationBar = () => {
           <SideBar
             loggedInUser={loggedInUser}
             pathname={pathname}
-            setIsSignUpPopupOpen={setIsSignUpPopupOpen}
+            setIsSignupPopupOpen={setIsSignupPopupOpen}
             setIsLogInPopupOpen={setIsLogInPopupOpen}
           />
         )}
       </nav>
 
-      {isSignUpPopupOpen && (
+      {isSignupPopupOpen && (
         <PopupItemWrapper
-          onOutsideClickHandler={() => setIsSignUpPopupOpen(false)}
+          onOutsideClickHandler={() => setIsSignupPopupOpen(false)}
         >
           <SignUp
             onLogInClickHandler={() => setIsLogInPopupOpen(true)}
-            onClose={() => setIsSignUpPopupOpen(false)}
+            onClose={() => setIsSignupPopupOpen(false)}
           />
         </PopupItemWrapper>
       )}
@@ -192,7 +196,7 @@ const NavigationBar = () => {
           onOutsideClickHandler={() => setIsLogInPopupOpen(false)}
         >
           <LogIn
-            onSignUpClickHandler={() => setIsSignUpPopupOpen(true)}
+            onSignUpClickHandler={() => setIsSignupPopupOpen(true)}
             onClose={() => setIsLogInPopupOpen(false)}
             onForgotPasswordClickHandler={() =>
               setIsForgotPasswordPopupOpen(true)

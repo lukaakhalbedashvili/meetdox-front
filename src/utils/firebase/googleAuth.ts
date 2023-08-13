@@ -37,7 +37,8 @@ export const useGoogleAuth = () => {
               photoURL: result?.user.photoURL,
               uid: result?.user.uid,
             })
-            window.location.reload()
+
+            refetch()
           } catch (error) {
             console.error(error)
           }

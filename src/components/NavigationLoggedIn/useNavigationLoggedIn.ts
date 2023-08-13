@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { doc, onSnapshot, collection } from 'firebase/firestore'
 import useOnOutsideClick from '@/hooks/useDetectOutsideClick'
+import { useZustandStore } from '@/zustand'
 import { usersCol } from '@/utils/firebase/init'
 import { NotificationStructure } from './navigationLoggedIn.interface'
 
@@ -73,6 +74,8 @@ const useNavigationLoggedIn = ({
     setIsNotificationsOpen(false)
   }
 
+  const setLoggedInUser = useZustandStore((state) => state.setLoggedInUser)
+
   return {
     handleNotificationsClick,
     handleProfileClick,
@@ -88,6 +91,7 @@ const useNavigationLoggedIn = ({
     setNotificationsList,
     unreadNotificationsNum,
     setUnreadNotificationsNum,
+    setLoggedInUser,
   }
 }
 

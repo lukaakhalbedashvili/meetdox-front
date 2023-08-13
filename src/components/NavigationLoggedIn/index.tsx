@@ -42,6 +42,7 @@ const NavigationLoggedIn = ({
     setIsProfileOpen,
     notificationsList,
     unreadNotificationsNum,
+    setLoggedInUser,
   } = useNavigationLoggedIn({ uid, notifications })
   return (
     <>
@@ -164,7 +165,10 @@ const NavigationLoggedIn = ({
               <div className="mb-1 mt-1 flex items-start border-b-[1px] border-border_gray px-4"></div>
               <div
                 className="flex cursor-pointer items-start px-4 pt-2 pb-2 hover:bg-gray"
-                onClick={handleLogout}
+                onClick={() => {
+                  handleLogout()
+                  setLoggedInUser(undefined)
+                }}
               >
                 <BiLogOut className="h-5 w-5 text-text_gray" />
                 <p className="ml-3 text-sm ">Logout</p>

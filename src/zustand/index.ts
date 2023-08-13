@@ -1,10 +1,12 @@
 import { create } from 'zustand'
+import { UserFromUserData } from '@/reactQuery/getUserData/getUserData.interface'
 import { BearState } from './zustand.interface'
 
 export const useZustandStore = create<BearState>((set) => ({
   alert: undefined,
-  // const [isLogInPopupOpen, setIsLogInPopupOpen] = useState(false)
   isLogInPopupOpen: false,
+
+  loggedInUser: undefined,
 
   setAlert: (alert) => {
     setTimeout(() => {
@@ -23,5 +25,10 @@ export const useZustandStore = create<BearState>((set) => ({
   setIsLogInPopupOpen: (isPopupOpen: boolean) =>
     set((state) => {
       return { ...state, isLogInPopupOpen: isPopupOpen }
+    }),
+
+  setLoggedInUser: (user?: UserFromUserData) =>
+    set((state) => {
+      return { ...state, loggedInUser: user }
     }),
 }))

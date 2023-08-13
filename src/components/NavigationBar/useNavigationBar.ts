@@ -17,13 +17,20 @@ const useNavigationBar = () => {
 
   const { data, refetch } = useFetchLoggedInUserData()
 
-  const { isLogInPopupOpen, setIsLogInPopupOpen } = useZustandStore()
-
-  const loggedInUser = data?.data.data
+  const {
+    isLogInPopupOpen,
+    setIsLogInPopupOpen,
+    setLoggedInUser,
+    loggedInUser,
+  } = useZustandStore()
 
   useEffect(() => {
     refetch()
   }, [])
+
+  useEffect(() => {
+    data?.data?.data && setLoggedInUser(data?.data.data)
+  }, [data?.data?.data, setLoggedInUser])
 
   return {
     isOpen,

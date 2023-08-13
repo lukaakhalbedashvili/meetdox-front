@@ -26,11 +26,6 @@ const inter = Inter({
   variable: '--inter',
 })
 
-export const metadata = {
-  title: 'Meetdox',
-  description: 'Find your mentor teacher today and start learning !',
-}
-
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className={inter.className}>

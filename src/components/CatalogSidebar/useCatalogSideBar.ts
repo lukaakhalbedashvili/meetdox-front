@@ -69,12 +69,8 @@ const useCatalogSideBar = ({
           ...item,
           checked: !item.checked,
         }
-      } else {
-        return {
-          ...item,
-          checked: false,
-        }
       }
+      return item
     })
 
     const renewedCheckedSubCategories = renewedSubCategoriesData.filter(

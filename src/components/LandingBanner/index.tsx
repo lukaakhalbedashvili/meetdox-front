@@ -10,12 +10,13 @@ const LandingBanner: FC<LandingBannerProps> = ({ itemsRef }) => {
       <div className="absolute h-full w-[150%]  rounded-b-[50%]  bg-gray sm:w-[110%]"></div>
 
       <div className="z-10 flex w-full flex-col items-center justify-center">
-        <h1 className="text-3xl font-medium text-sky sm:text-4xl">
-          Schedule your meet
+        <h1 className="mt-5 text-center text-xl font-medium text-sky sm:text-3xl">
+          Schedule Your Virtual Mentor Meet
         </h1>
 
-        <p className="mt-2 text-base font-thin text-text_gray">
-          Find your perfect mentor today and start learning
+        <p className="mt-2 px-5 text-center text-sm font-thin text-text_gray sm:mt-5 sm:text-lg ">
+          Connect with expert mentors. Schedule personalized online meetings for
+          career, skills, and insights.
         </p>
 
         <div className="mt-8 flex   flex-col items-center justify-center sm:flex-row sm:items-start sm:justify-start">

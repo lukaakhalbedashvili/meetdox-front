@@ -32,14 +32,14 @@ const CatalogSidebar = ({
   const {
     subCategoriesData,
     checkboxHandler,
-    // countriesList,
+    countriesList,
     setExpandedCategory,
     // setExpandedPrice,
-    // setExpandedCountry,
+    setExpandedCountry,
     setExpandedSkills,
     isExpandedCategory,
     // isExpandedPrice,
-    // isExpandedCountry,
+    isExpandedCountry,
     isExpandedSkills,
     // handlePriceStartChange,
     // handlePriceEndChange,
@@ -136,7 +136,7 @@ const CatalogSidebar = ({
         )}
       </div> */}
 
-      {/* <div className="w-full border-b-[1px] border-border_gray py-4 pr-2">
+      <div className="w-full border-b-[1px] border-border_gray py-4 pr-2">
         <div className="flex items-center justify-between">
           <h1 className="block text-sm font-medium text-text_gray">Country</h1>
 
@@ -174,7 +174,7 @@ const CatalogSidebar = ({
             </select>
           </div>
         )}
-      </div> */}
+      </div>
 
       <div className="w-full pr-2 pt-4">
         <div className="flex items-center justify-between">
@@ -210,12 +210,8 @@ const CatalogSidebar = ({
                             ...skill,
                             checked: !skill.checked,
                           }
-                        } else {
-                          return {
-                            ...skill,
-                            checked: false,
-                          }
                         }
+                        return skill
                       })
                       setSkills(newArr)
                     }}

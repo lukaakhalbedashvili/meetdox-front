@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useFetchMyMeetings } from '@/reactQuery/getMyMeetings'
 import { ScheduledMeetStructure } from '@/reactQuery/getMyMeetings/getUserData.interface'
 import { useUpdateMeet } from '@/reactQuery/useUpdateMeet'
+import { isMeetTimeExpired } from '@/utils/services/time'
 import {
   ScheduleStepStatus,
   ScheduleTypes,
@@ -18,15 +19,25 @@ const useDashboardClientMeetsContent = () => {
 
   useEffect(() => {
     if (data) {
-      const completed = data.filter(
-        (meet: ScheduledMeetStructure) =>
-          meet.status === ScheduleStepStatus.COMPLETED ||
-          meet.status === ScheduleStepStatus.CANCELED_BY_TEACHER ||
-          meet.status === ScheduleStepStatus.CANCELED_BY_USER
-      )
+      const completed = data
+        .filter((meet) =>
+          meet.status === ScheduleStepStatus.PAID_BY_USER
+            ? isMeetTimeExpired(meet.date, meet.time, meet.duration)
+            : meet.status === ScheduleStepStatus.COMPLETED ||
+              meet.status === ScheduleStepStatus.CANCELED_BY_TEACHER ||
+              meet.status === ScheduleStepStatus.CANCELED_BY_USER
+        )
+        .map((meet) =>
+          meet.status === ScheduleStepStatus.PAID_BY_USER &&
+          isMeetTimeExpired(meet.date, meet.time, meet.duration)
+            ? { ...meet, status: ScheduleStepStatus.COMPLETED }
+            : meet
+        )
+
       const current = data.filter(
         (meet: ScheduledMeetStructure) =>
           meet.status !== ScheduleStepStatus.COMPLETED &&
+          !isMeetTimeExpired(meet.date, meet.time, meet.duration) &&
           meet.status !== ScheduleStepStatus.CANCELED_BY_TEACHER &&
           meet.status !== ScheduleStepStatus.CANCELED_BY_USER
       )

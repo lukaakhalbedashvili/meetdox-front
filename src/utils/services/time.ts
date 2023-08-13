@@ -72,4 +72,31 @@ function convertToLocalTime(hour: number, offset: number) {
   return `${localHour}:00 (GMT${localOffset > 0 ? '+' : '-'}${localOffset})`
 }
 
-export { getTimeAgo, get24Hours, formatScheduledDate, convertToLocalTime }
+function isMeetTimeExpired(
+  dateStr: string,
+  time: number,
+  durationInMinutes: number
+) {
+  var dateComponents = dateStr.split('-')
+  var day = parseInt(dateComponents[0])
+  var month = parseInt(dateComponents[1]) - 1
+  var year = parseInt(dateComponents[2])
+
+  var targetDate = new Date(year, month, day, time, 0, 0)
+
+  var expirationTime = new Date(
+    targetDate.getTime() + durationInMinutes * 60000
+  )
+
+  var currentDate = new Date()
+
+  return expirationTime <= currentDate
+}
+
+export {
+  getTimeAgo,
+  get24Hours,
+  formatScheduledDate,
+  convertToLocalTime,
+  isMeetTimeExpired,
+}

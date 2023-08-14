@@ -7,7 +7,14 @@ import {
   browserSessionPersistence,
 } from 'firebase/auth'
 import { useState } from 'react'
+<<<<<<< Updated upstream
 import { useSearchParams } from 'next/navigation'
+=======
+<<<<<<< Updated upstream
+=======
+import { useRouter, useSearchParams } from 'next/navigation'
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 import { useZustandStore } from '@/zustand'
 import { AlertType } from '@/zustand/zustand.interface'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
@@ -22,8 +29,17 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
   const { setAlert, setLoggedInUser } = useZustandStore()
   const { refetch, data } = useFetchLoggedInUserData()
   const [isLoading, setIsLoading] = useState(false)
+<<<<<<< Updated upstream
   const searchParams = useSearchParams()
   console.error(searchParams.get('redirect-to'))
+=======
+<<<<<<< Updated upstream
+=======
+  const searchParams = useSearchParams()
+  const redirectTo = searchParams.get('redirect-to')
+  const router = useRouter()
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
   const LogInFormValidation = useFormik({
     initialValues: {
@@ -66,6 +82,9 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
                 onClick: () => {},
                 duration: 2000,
               })
+              if (redirectTo) {
+                router.push(redirectTo)
+              }
             })
             .catch((err) => {
               if (err.code === 'auth/user-not-found') {

@@ -10,20 +10,20 @@ import { TeacherData } from '../Catalog/catalog.interface'
 import LandingBanner from '../LandingBanner'
 
 const LandingTeachersContent = () => {
-  const { data, isLoading, categoriesSwiperSectionRef } =
+  const { data, isLoading, categoriesSwiperSectionRef, loggedInUser } =
     useLandingTeachersContent()
 
   return (
     <div className="">
-      <LandingBanner itemsRef={categoriesSwiperSectionRef} />
-
-      {isLoading && (
-        <div className=" mt-32 flex h-screen justify-center">
-          <ClipLoader color="#36d7b7" />
-        </div>
-      )}
+      {!loggedInUser && <LandingBanner itemsRef={categoriesSwiperSectionRef} />}
 
       <div ref={categoriesSwiperSectionRef} className="pt-20">
+        {isLoading && (
+          <div className=" mt-32 flex h-screen justify-center">
+            <ClipLoader color="#36d7b7" />
+          </div>
+        )}
+
         {data?.categorizedTeachers?.map((item) => {
           if (item.categoryItems.length === 0) {
             return null

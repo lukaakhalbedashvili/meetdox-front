@@ -7,6 +7,7 @@ import {
   browserSessionPersistence,
 } from 'firebase/auth'
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { useZustandStore } from '@/zustand'
 import { AlertType } from '@/zustand/zustand.interface'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
@@ -18,9 +19,11 @@ interface UseLoginProps {
 }
 
 const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
-  const { setAlert } = useZustandStore()
-  const { refetch } = useFetchLoggedInUserData()
+  const { setAlert, setLoggedInUser } = useZustandStore()
+  const { refetch, data } = useFetchLoggedInUserData()
   const [isLoading, setIsLoading] = useState(false)
+  const searchParams = useSearchParams()
+  console.error(searchParams.get('redirect-to'))
 
   const LogInFormValidation = useFormik({
     initialValues: {
@@ -56,7 +59,7 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
               setIsLogInPopupOpen(false)
               refetch()
               setIsLoading(false)
-
+              setLoggedInUser(data?.data.data)
               setAlert({
                 message: 'User logged in successfully',
                 type: AlertType.SUCCESS,

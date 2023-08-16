@@ -3,6 +3,7 @@ import {
   GoogleAuthProvider,
   UserCredential,
 } from 'firebase/auth'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useRegisterGoogleUserQuery } from '@/reactQuery/authQueries/registerGoogleUser'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import { useZustandStore } from '@/zustand'
@@ -24,7 +25,11 @@ export const useGoogleAuth = () => {
   const provider = new GoogleAuthProvider()
   const { mutate } = useRegisterGoogleUserQuery()
   const { refetch, data } = useFetchLoggedInUserData()
-  const { setIsLogInPopupOpen, setLoggedInUser } = useZustandStore()
+  const { setIsLogInPopupOpen, setLoggedInUser, setIsSignupPopupOpen } =
+    useZustandStore()
+  const searchParams = useSearchParams()
+  const redirectTo = searchParams.get('redirect-to')
+  const router = useRouter()
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
@@ -43,9 +48,14 @@ export const useGoogleAuth = () => {
             console.error(error)
           }
         } else {
-          refetch()
           setIsLogInPopupOpen(false)
+          setIsSignupPopupOpen(false)
+
+          refetch()
           setLoggedInUser(data?.data.data)
+          if (redirectTo) {
+            router.push(redirectTo)
+          }
         }
       })
       .catch(() => {})

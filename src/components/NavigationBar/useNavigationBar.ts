@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import { useZustandStore } from '@/zustand'
@@ -7,8 +7,7 @@ import { useZustandStore } from '@/zustand'
 const useNavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
-  const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false)
-
+  const router = useRouter()
   const [isForgotPasswordPopupOpen, setIsForgotPasswordPopupOpen] =
     useState(false)
   const [isShowSearchScreen, setIsShowSearchScreen] = useState(false)
@@ -22,6 +21,8 @@ const useNavigationBar = () => {
     setIsLogInPopupOpen,
     setLoggedInUser,
     loggedInUser,
+    isSignupPopupOpen,
+    setIsSignupPopupOpen,
   } = useZustandStore()
 
   useEffect(() => {
@@ -36,8 +37,8 @@ const useNavigationBar = () => {
     isOpen,
     setIsOpen,
     pathname,
-    isSignUpPopupOpen,
-    setIsSignUpPopupOpen,
+    isSignupPopupOpen,
+    setIsSignupPopupOpen,
     isLogInPopupOpen,
     setIsLogInPopupOpen,
     isForgotPasswordPopupOpen,
@@ -47,6 +48,7 @@ const useNavigationBar = () => {
     loggedInUser,
     isShowNotificationScreen,
     setIsShowNotificationScreen,
+    router,
   }
 }
 

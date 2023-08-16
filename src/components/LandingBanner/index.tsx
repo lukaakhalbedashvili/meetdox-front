@@ -1,10 +1,15 @@
 import React, { FC, MutableRefObject } from 'react'
+import { useRouter } from 'next/navigation'
+import useLandingBanner from './useLandingBanner'
 
 interface LandingBannerProps {
   itemsRef: MutableRefObject<null | HTMLDivElement>
 }
 
 const LandingBanner: FC<LandingBannerProps> = ({ itemsRef }) => {
+  const { setIsSignupPopupOpen } = useLandingBanner()
+  const router = useRouter()
+
   return (
     <div className="relative flex h-80 items-center  justify-center overflow-hidden  sm:h-72">
       <div className="absolute h-full w-[150%]  rounded-b-[50%]  bg-gray sm:w-[110%]"></div>
@@ -20,7 +25,13 @@ const LandingBanner: FC<LandingBannerProps> = ({ itemsRef }) => {
         </p>
 
         <div className="mt-8 flex   flex-col items-center justify-center sm:flex-row sm:items-start sm:justify-start">
-          <button className="mb-4 w-64 rounded-full bg-text_gray py-4 px-8 text-xs font-medium text-white hover:bg-sky sm:mr-2">
+          <button
+            className="mb-4 w-64 rounded-full bg-text_gray py-4 px-8 text-xs font-medium text-white hover:bg-sky sm:mr-2"
+            onClick={() => {
+              setIsSignupPopupOpen(true)
+              router.push('?redirect-to=become-mentor')
+            }}
+          >
             GET STARTED AS MENTOR
           </button>
 

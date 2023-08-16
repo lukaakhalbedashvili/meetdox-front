@@ -3,6 +3,12 @@ import { useFetchMyMeetings } from '@/reactQuery/getMyMeetings'
 import { ScheduledMeetStructure } from '@/reactQuery/getMyMeetings/getUserData.interface'
 import { useUpdateMeet } from '@/reactQuery/useUpdateMeet'
 import {
+  isItCompletedMeet,
+  isItCurrentMeet,
+  isItExpiredMeet,
+  isItSuccCompletedMeet,
+} from '@/utils/services/meetStatus'
+import {
   ScheduleStepStatus,
   ScheduleTypes,
 } from '../Dashboard/dashboard.interface'
@@ -20,18 +26,30 @@ const useDashboardTeacherMeetsContent = () => {
 
   useEffect(() => {
     if (data) {
-      const completed = data.filter(
-        (meet: ScheduledMeetStructure) =>
-          meet.status === ScheduleStepStatus.COMPLETED ||
-          meet.status === ScheduleStepStatus.CANCELED_BY_TEACHER ||
-          meet.status === ScheduleStepStatus.CANCELED_BY_USER
-      )
-      const current = data.filter(
-        (meet: ScheduledMeetStructure) =>
-          meet.status !== ScheduleStepStatus.COMPLETED &&
-          meet.status !== ScheduleStepStatus.CANCELED_BY_TEACHER &&
-          meet.status !== ScheduleStepStatus.CANCELED_BY_USER
-      )
+      const completed = data
+        .map((meet) => {
+          if (isItCompletedMeet(meet)) {
+            if (isItSuccCompletedMeet(meet)) {
+              return {
+                ...meet,
+                status: ScheduleStepStatus.COMPLETED,
+              }
+            } else if (isItExpiredMeet(meet)) {
+              return {
+                ...meet,
+                status: ScheduleStepStatus.EXPIRED,
+              }
+            }
+          }
+          return meet
+        })
+        .filter((meet) => isItCompletedMeet(meet))
+
+      const current = data.filter((meet) => {
+        if (isItCurrentMeet(meet)) {
+          return meet
+        }
+      })
       setCompletedMeets(completed)
       setCurrentMeets(current)
     }

@@ -58,6 +58,14 @@ export const scheduleSteps: ScheduleSteps = {
       onButtonRedClick: '',
       onButtonGreenClick: '',
     },
+    expired: {
+      title1: 'Meeting expired',
+      title2: '',
+      buttonRed: '',
+      buttonGreen: '',
+      onButtonRedClick: '',
+      onButtonGreenClick: '',
+    },
   },
   meetingsAsTeacher: {
     scheduledByUser: {
@@ -104,6 +112,14 @@ export const scheduleSteps: ScheduleSteps = {
     },
     completed: {
       title1: 'Meeting completed',
+      title2: '',
+      buttonRed: '',
+      buttonGreen: '',
+      onButtonRedClick: '',
+      onButtonGreenClick: '',
+    },
+    expired: {
+      title1: 'Meeting expired',
       title2: '',
       buttonRed: '',
       buttonGreen: '',

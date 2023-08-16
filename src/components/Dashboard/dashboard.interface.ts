@@ -23,6 +23,7 @@ export enum ScheduleStepStatus {
   CONFIRMED_BY_TEACHER = 'confirmedByTeacher',
   PAID_BY_USER = 'paidByUser',
   COMPLETED = 'completed',
+  EXPIRED = 'expired',
 }
 
 export enum ScheduleTypes {
@@ -46,6 +47,7 @@ export interface MeetingSteps {
   confirmedByTeacher: ScheduleComponentStructure
   paidByUser: ScheduleComponentStructure
   completed: ScheduleComponentStructure
+  expired: ScheduleComponentStructure
 }
 
 export interface ScheduleSteps {

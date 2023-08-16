@@ -56,7 +56,11 @@ const DashboardTeacherMeetsContent = () => {
                         <CalendarIcon className="h-4 w-4 text-icon_gray" />
 
                         <span className="text-sm text-icon_gray">
-                          {formatScheduledDate(meeting.date,meeting.time, meeting.timeZone)}
+                          {formatScheduledDate(
+                            meeting.date,
+                            meeting.time,
+                            meeting.timeZone
+                          )}
                         </span>
                       </div>
 

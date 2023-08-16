@@ -42,54 +42,77 @@ const get24Hours = (daySelected: Date) => {
   return TimeRange
 }
 
-function formatScheduledDate(dateString: string, timeZoneOffset: number) {
-  const parts = dateString.split('-')
-  const day = parseInt(parts[0])
-  const month = parseInt(parts[1]) - 1 // Months are zero-based in JavaScript
-  const year = parseInt(parts[2])
+function formatScheduledDate(
+  dateString: string,
+  hour: number,
+  timeZoneOffset: number
+) {
+  const [day, month, year] = dateString.split('-').map(Number)
+  const inputDate = new Date(year, month - 1, day, hour)
 
-  const date = new Date(year, month, day)
-  const utcTime = date.getTime() + date.getTimezoneOffset() * 60000
-  const convertedTime = new Date(utcTime + timeZoneOffset * 3600000)
+  const userOffset = new Date().getTimezoneOffset() * 60 * 1000
+  const inputOffset = timeZoneOffset * 60 * 60 * 1000
 
-  const formattedDate = convertedTime.toLocaleDateString('en-US', {
+  const convertedTime = new Date(inputDate.getTime() - inputOffset - userOffset)
+
+  const options: Intl.DateTimeFormatOptions = {
     weekday: 'short',
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-  })
+  }
+
+  const formatter = new Intl.DateTimeFormat('en-US', options)
+  const formattedDate = formatter.format(convertedTime)
 
   return formattedDate
 }
 
-function convertToLocalTime(hour: number, offset: number) {
-  const currentOffsetInMinutes = new Date().getTimezoneOffset()
-  const offsetInMinutes = offset * 60
+function convertToLocalTime(date: string, hour: number, offset: number) {
+  const [day, month, year] = date.split('-').map(Number)
+  const inputDate = new Date(year, month - 1, day, hour)
 
-  const localHour = hour + (currentOffsetInMinutes + offsetInMinutes) / 60
-  const localOffset = currentOffsetInMinutes / -60
+  const userOffset = new Date().getTimezoneOffset() * 60 * 1000
+  const inputOffset = offset * 60 * 60 * 1000
 
-  return `${localHour}:00 (GMT${localOffset > 0 ? '+' : '-'}${localOffset})`
+  const convertedTime = new Date(inputDate.getTime() - inputOffset - userOffset)
+
+  const localTimeOptions: Intl.DateTimeFormatOptions = {
+    hour: 'numeric',
+    minute: 'numeric',
+    timeZoneName: 'short',
+  }
+
+  const formattedDateTime = convertedTime.toLocaleString(
+    'en-US',
+    localTimeOptions
+  )
+  return `${formattedDateTime}`
 }
 
 function isMeetTimeExpired(
   dateStr: string,
   time: number,
-  durationInMinutes: number
+  durationInMinutes: number,
+  timezoneOffset: number
 ) {
-  var dateComponents = dateStr.split('-')
-  var day = parseInt(dateComponents[0])
-  var month = parseInt(dateComponents[1]) - 1
-  var year = parseInt(dateComponents[2])
+  const parsedDate = new Date(
+    formatScheduledDate(dateStr, time, timezoneOffset)
+  )
+  const parsedTime = convertToLocalTime(dateStr, time, timezoneOffset).split(
+    ':'
+  )
+  const hours = parseInt(parsedTime[0])
+  const minutes = parseInt(parsedTime[1])
 
-  var targetDate = new Date(year, month, day, time, 0, 0)
+  parsedDate.setHours(hours)
+  parsedDate.setMinutes(minutes)
 
-  var expirationTime = new Date(
-    targetDate.getTime() + durationInMinutes * 60000
+  const expirationTime = new Date(
+    parsedDate.getTime() + durationInMinutes * 60000
   )
 
-  var currentDate = new Date()
-
+  const currentDate = new Date()
   return expirationTime <= currentDate
 }
 

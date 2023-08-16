@@ -56,7 +56,7 @@ const DashboardClientMeetsContent = () => {
                         <CalendarIcon className="h-4 w-4 text-icon_gray" />
 
                         <span className="text-sm text-icon_gray">
-                          {formatScheduledDate(meeting.date, meeting.timeZone)}
+                          {formatScheduledDate(meeting.date, meeting.time, meeting.timeZone)}
                         </span>
                       </div>
 
@@ -64,7 +64,11 @@ const DashboardClientMeetsContent = () => {
                         <TimeIcon className="h-4 w-4 text-icon_gray" />
 
                         <span className="text-sm text-icon_gray">
-                          {convertToLocalTime(meeting.time, meeting.timeZone)}
+                          {convertToLocalTime(
+                            meeting.date,
+                            meeting.time,
+                            meeting.timeZone
+                          )}
                         </span>
                       </div>
                       <div className="mt-1 flex items-center space-x-2">

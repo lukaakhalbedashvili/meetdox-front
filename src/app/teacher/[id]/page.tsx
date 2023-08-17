@@ -76,12 +76,10 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
           </h2>
 
           <div className="my-3 flex flex-col items-center text-sm text-icon_gray">
-            <div className="flex items-center">
-              <p>{`${category} -`}</p>
-
+            <div className="mx-4 flex flex-wrap items-center justify-center">
               {subCategories?.map((item, index) => {
                 return (
-                  <div key={item} className="mx-[2px] flex">
+                  <div key={item} className="mx-[2px] flex whitespace-nowrap">
                     {item}
                     {index === subCategories.length - 1 ? '' : ','}
                   </div>
@@ -97,7 +95,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
           </div>
 
           {skills && (
-            <div className="lg:ml-4">
+            <div className="flex-col bg-sky lg:ml-4">
               {length > 0 && (
                 <TeacherSkillsToDisplay header="Skills" skills={skills} />
               )}

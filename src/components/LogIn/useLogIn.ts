@@ -18,6 +18,8 @@ interface UseLoginProps {
   setIsLogInPopupOpen: (value: boolean) => void
 }
 
+//
+
 const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
   const { setAlert, setLoggedInUser } = useZustandStore()
   const { refetch } = useFetchLoggedInUserData()

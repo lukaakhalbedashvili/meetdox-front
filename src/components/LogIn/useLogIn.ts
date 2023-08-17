@@ -7,7 +7,7 @@ import {
   browserSessionPersistence,
 } from 'firebase/auth'
 import { useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useZustandStore } from '@/zustand'
 import { AlertType } from '@/zustand/zustand.interface'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
@@ -18,12 +18,15 @@ interface UseLoginProps {
   setIsLogInPopupOpen: (value: boolean) => void
 }
 
+//
+
 const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
   const { setAlert, setLoggedInUser } = useZustandStore()
-  const { refetch, data } = useFetchLoggedInUserData()
+  const { refetch } = useFetchLoggedInUserData()
   const [isLoading, setIsLoading] = useState(false)
   const searchParams = useSearchParams()
-  console.error(searchParams.get('redirect-to'))
+  const redirectTo = searchParams.get('redirect-to')
+  const router = useRouter()
 
   const LogInFormValidation = useFormik({
     initialValues: {
@@ -57,15 +60,20 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
           signInWithEmailAndPassword(auth, email, password)
             .then(() => {
               setIsLogInPopupOpen(false)
-              refetch()
+              refetch().then((res) => {
+                setLoggedInUser(res.data?.data.data)
+              })
               setIsLoading(false)
-              setLoggedInUser(data?.data.data)
+
               setAlert({
                 message: 'User logged in successfully',
                 type: AlertType.SUCCESS,
                 onClick: () => {},
                 duration: 2000,
               })
+              if (redirectTo) {
+                router.push(redirectTo)
+              }
             })
             .catch((err) => {
               if (err.code === 'auth/user-not-found') {

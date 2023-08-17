@@ -31,7 +31,7 @@ const useNavigationBar = () => {
 
   useEffect(() => {
     data?.data?.data && setLoggedInUser(data?.data.data)
-  }, [data?.data?.data, setLoggedInUser])
+  }, [data, setLoggedInUser])
 
   return {
     isOpen,

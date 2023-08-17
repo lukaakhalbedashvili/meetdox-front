@@ -19,7 +19,7 @@ interface UseLoginProps {
 }
 
 const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
-  const { setAlert } = useZustandStore()
+  const { setAlert, setLoggedInUser } = useZustandStore()
   const { refetch } = useFetchLoggedInUserData()
   const [isLoading, setIsLoading] = useState(false)
   const searchParams = useSearchParams()
@@ -58,7 +58,9 @@ const useLogIn = ({ setIsLogInPopupOpen }: UseLoginProps) => {
           signInWithEmailAndPassword(auth, email, password)
             .then(() => {
               setIsLogInPopupOpen(false)
-              refetch()
+              refetch().then((res) => {
+                setLoggedInUser(res.data?.data.data)
+              })
               setIsLoading(false)
 
               setAlert({

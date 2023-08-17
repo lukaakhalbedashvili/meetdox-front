@@ -1,3 +1,5 @@
+import { timeZones } from '@/data/timeZones'
+
 const getTimeAgo = (timeMs: number) => {
   const now = Date.now()
   const diff = now - timeMs
@@ -19,6 +21,19 @@ const getTimeAgo = (timeMs: number) => {
   }
 }
 
+const getRemainingTimeSlots = (selectedTimeOffset: string) => {
+  const offset = timeZones.find((item) => item.text === selectedTimeOffset)
+    ?.offset!
+
+  const now = new Date()
+
+  const offsetMillis = offset * 60 * 60 * 1000
+  const userOffset = new Date().getTimezoneOffset() * -60 * 1000
+
+  const daySelected = new Date(now.getTime() + offsetMillis - userOffset)
+  return daySelected
+}
+
 const get24Hours = (daySelected: Date) => {
   const TimeRange = []
 
@@ -26,15 +41,13 @@ const get24Hours = (daySelected: Date) => {
   const day = daySelected.getDate()
   const selectedTime = [month, day].join('/')
 
-  const now = new Date()
-
-  const monthNow = now.getMonth() + 1
-  const dayNow = now.getDate()
+  const monthNow = daySelected.getMonth() + 1
+  const dayNow = daySelected.getDate()
   const nowTime = [monthNow, dayNow].join('/')
 
   const isITToday = selectedTime === nowTime
 
-  const startTime = isITToday ? now.getHours() + 2 : 1
+  const startTime = isITToday ? daySelected.getHours() + 2 : 1
 
   for (let i = startTime; i <= 24; i++) {
     TimeRange.push({ value: i, isChosen: i === startTime ? true : false })
@@ -122,4 +135,5 @@ export {
   formatScheduledDate,
   convertToLocalTime,
   isMeetTimeExpired,
+  getRemainingTimeSlots,
 }

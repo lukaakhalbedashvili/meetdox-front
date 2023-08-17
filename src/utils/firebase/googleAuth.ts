@@ -51,8 +51,12 @@ export const useGoogleAuth = () => {
           setIsLogInPopupOpen(false)
           setIsSignupPopupOpen(false)
 
-          refetch()
-          setLoggedInUser(data?.data.data)
+          refetch().then(() => {
+            if (data?.data.data) {
+              setLoggedInUser(data?.data.data)
+            }
+          })
+
           if (redirectTo) {
             router.push(redirectTo)
           }

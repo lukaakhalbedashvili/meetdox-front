@@ -11,10 +11,10 @@ const useDashboard = () => {
     DashboardItemsNames.MEETINGS
   )
   const { setAlert, setIsLogInPopupOpen } = useZustandStore()
-  const { data, refetch } = useFetchLoggedInUserData()
+  const { refetch } = useFetchLoggedInUserData()
 
-  refetch().then(() => {
-    if (!data?.data) {
+  refetch().then((returnedData) => {
+    if (!returnedData.data) {
       router.push('/')
       setAlert({
         message: 'Sign in first',

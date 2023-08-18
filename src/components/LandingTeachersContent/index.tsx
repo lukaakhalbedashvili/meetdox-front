@@ -39,7 +39,7 @@ const LandingTeachersContent = () => {
                   key={categoryTeachers.uid}
                   style={{ width: 'fit-content' }}
                 >
-                  <Link href={`teacher/${categoryTeachers.uid}`}>
+                  <Link href={`expert/${categoryTeachers.uid}`}>
                     <TeacherPublicPreview
                       onClickHandler={() => {}}
                       price={20}

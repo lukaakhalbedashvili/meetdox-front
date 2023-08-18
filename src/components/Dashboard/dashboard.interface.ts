@@ -6,7 +6,7 @@ export enum DashboardItemsNames {
   PASSWORD = 'Password',
   MEETINGS = 'Meetings',
   PAYMENTS = 'Payments',
-  MEETINGS_AS_TEACHER = 'Meetings as mentor',
+  MEETINGS_AS_TEACHER = 'Meetings as expert',
 }
 
 export interface DashboardItemStructure {

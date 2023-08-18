@@ -100,9 +100,7 @@ const Catalog = ({
                         name={item.personalDetails.name}
                         title={item.description}
                         tags={[skills[0], skills[1]]}
-                        onClickHandler={() =>
-                          router.push(`teacher/${item.uid}`)
-                        }
+                        onClickHandler={() => router.push(`expert/${item.uid}`)}
                       />
                     )
                   })}
@@ -118,7 +116,7 @@ const Catalog = ({
             ) : (
               <div className="flex h-64 items-center justify-center">
                 <p className="text-lg font-medium text-text_gray">
-                  No mentors found
+                  No experts found
                 </p>
               </div>
             )}

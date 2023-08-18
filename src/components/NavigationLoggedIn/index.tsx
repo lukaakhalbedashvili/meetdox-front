@@ -127,8 +127,8 @@ const NavigationLoggedIn = ({
               {profileBtnsSectionOne.map((btn) => {
                 let { Icon } = btn
                 if (isTeacher && btn.id === 3) {
-                  btn.url = `/teacher/${uid}`
-                  btn.text = 'Mentor page'
+                  btn.url = `/expert/${uid}`
+                  btn.text = 'Expert page'
                   Icon = MdOutlineContactPage
                 }
                 return (

@@ -22,7 +22,7 @@ const useNavigationSearchBar = () => {
 
   const handleDropdownItemClick = (item: string) => {
     setIsShowDropdown(false)
-    router.push('/teacher/' + item)
+    router.push('/expert/' + item)
   }
 
   return {

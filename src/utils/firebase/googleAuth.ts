@@ -24,7 +24,7 @@ interface GoogleAuthResponse {
 export const useGoogleAuth = () => {
   const provider = new GoogleAuthProvider()
   const { mutate } = useRegisterGoogleUserQuery()
-  const { refetch, data } = useFetchLoggedInUserData()
+  const { refetch } = useFetchLoggedInUserData()
   const { setIsLogInPopupOpen, setLoggedInUser, setIsSignupPopupOpen } =
     useZustandStore()
   const searchParams = useSearchParams()
@@ -51,9 +51,9 @@ export const useGoogleAuth = () => {
           setIsLogInPopupOpen(false)
           setIsSignupPopupOpen(false)
 
-          refetch().then(() => {
-            if (data?.data.data) {
-              setLoggedInUser(data?.data.data)
+          refetch().then((returnedData) => {
+            if (returnedData.data?.data) {
+              setLoggedInUser(returnedData.data?.data.data)
             }
           })
 

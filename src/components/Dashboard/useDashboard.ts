@@ -20,7 +20,7 @@ const useDashboard = () => {
         message: 'Sign in first',
         type: AlertType.ERROR,
         onClick: () => {},
-        duration: 5000,
+        duration: 2000,
       })
       setIsLogInPopupOpen(true)
     }

@@ -6,6 +6,5 @@ export const useGetTeacherPublicData = (uid?: string) => {
   return useQuery({
     queryKey: [QueryKey.GET_TEACHER_PUBLIC_DATA, uid],
     queryFn: () => fetchTeacherPublicDataApiReq(uid),
-    enabled: false,
   })
 }

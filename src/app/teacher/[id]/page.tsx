@@ -28,7 +28,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
     setIsModalOpen,
     data,
     isLoading,
-    loggedInUserUid,
+    loggedInUser,
     setIsLogInPopupOpen,
   } = useTeacher({ teacherUid: params.id })
 
@@ -112,16 +112,16 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
                   rating={data.rate}
                   totalReviews={reviews.length}
                   onPrimaryBtnClick={() => {
-                    if (!loggedInUserUid) {
+                    if (!loggedInUser?.uid) {
                       setIsLogInPopupOpen(true)
                       return
                     }
-                    loggedInUserUid === params.id
+                    loggedInUser.uid === params.id
                       ? router.push('/become-mentor')
                       : setIsModalOpen(true)
                   }}
                   primaryBtnText={
-                    loggedInUserUid === params.id
+                    loggedInUser?.uid === params.id
                       ? 'Edit Your Profile'
                       : 'Schedule a meet'
                   }

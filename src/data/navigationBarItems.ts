@@ -7,10 +7,6 @@ const navigationBarItems = [
     name: 'About',
     path: '/about',
   },
-  {
-    name: 'How to',
-    path: '/how-to',
-  },
 ]
 
 export default navigationBarItems

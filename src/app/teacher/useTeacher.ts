@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useGetTeacherPublicData } from '@/reactQuery/teacherQuaries/getTeacherPublicData'
 import { useZustandStore } from '@/zustand'
-import { useFetchLoggedInUserData } from '@/reactQuery/teacherQuaries/getLoggedInUserData'
 import { TeacherSections } from './teacher.interface'
 
 interface UseTeacherProps {
@@ -9,19 +8,14 @@ interface UseTeacherProps {
 }
 
 const useTeacher = ({ teacherUid }: UseTeacherProps) => {
-  const { data, isLoading, refetch } = useGetTeacherPublicData(teacherUid)
-  const userData = useFetchLoggedInUserData()
-  const loggedInUserUid = userData.data?.data.data.uid
-  const { setIsLogInPopupOpen } = useZustandStore()
+  const { data, isLoading } = useGetTeacherPublicData(teacherUid)
+
+  const { setIsLogInPopupOpen, loggedInUser } = useZustandStore()
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<TeacherSections>(
     TeacherSections.EXPERIENCE
   )
-
-  useEffect(() => {
-    refetch()
-  }, [])
 
   return {
     activeSection,
@@ -30,8 +24,8 @@ const useTeacher = ({ teacherUid }: UseTeacherProps) => {
     setIsModalOpen,
     data,
     isLoading,
-    loggedInUserUid,
     setIsLogInPopupOpen,
+    loggedInUser,
   }
 }
 

@@ -117,7 +117,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
                       return
                     }
                     loggedInUser.uid === params.id
-                      ? router.push('/become-mentor')
+                      ? router.push('/become-expert')
                       : setIsModalOpen(true)
                   }}
                   primaryBtnText={

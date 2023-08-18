@@ -21,7 +21,7 @@ const Footer = () => {
 
             <p className="mt-2 w-1/2 text-sm text-footer_text sm:w-80">
               Welcome to Meetdox, your ultimate online destination for
-              connecting with mentors across a wide range of fields!
+              connecting with experts across a wide range of fields!
             </p>
           </div>
 

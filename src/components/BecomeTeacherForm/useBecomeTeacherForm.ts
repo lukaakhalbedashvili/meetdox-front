@@ -90,7 +90,7 @@ const useBecameTeacherForm = () => {
         },
         {
           onSuccess: () => {
-            router.push(`teacher/${data?.data.data.uid}`)
+            router.push(`expert/${data?.data.data.uid}`)
             setAlert({
               message: 'teacher created successfully',
               type: AlertType.SUCCESS,

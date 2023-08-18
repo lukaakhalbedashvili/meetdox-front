@@ -18,8 +18,8 @@ export const profileBtnsSectionOne: ProfileModuleItem[] = [
   },
   {
     id: 3,
-    text: 'Become mentor',
-    url: '/become-mentor',
+    text: 'Become expert',
+    url: '/become-expert',
     Icon: IoAddOutline,
   },
 ]

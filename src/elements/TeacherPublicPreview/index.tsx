@@ -5,25 +5,25 @@ import { BsFillStarFill } from 'react-icons/bs'
 interface TeacherPublicPreviewProps {
   image: string
   title: string
-  rating: number
   totalReviews: number
   price: number
   name: string
   lastName: string
   tags: string[]
   onClickHandler: () => void
+  rate: number
 }
 
 const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
   image,
   price,
-  rating,
   title,
   totalReviews,
   name,
   lastName,
   tags,
   onClickHandler,
+  rate,
 }) => {
   return (
     <div
@@ -56,7 +56,7 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
           <div className="flex items-center">
             <BsFillStarFill className="fill-star_gold" />
 
-            <p className="ml-1 mr-1">{rating}</p>
+            <p className="ml-1 mr-1">{rate}</p>
 
             <p className="text-icon_gray">{`(${totalReviews})`}</p>
           </div>

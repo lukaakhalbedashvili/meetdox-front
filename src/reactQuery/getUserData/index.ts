@@ -11,4 +11,6 @@ export const useFetchLoggedInUserData = () =>
       const token = await auth.currentUser?.getIdToken()
       return fetchLoggedInUserData(token)
     },
+    retry: 0,
+    retryDelay: 1000,
   })

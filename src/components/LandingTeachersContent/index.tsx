@@ -28,6 +28,7 @@ const LandingTeachersContent = () => {
           if (item.categoryItems.length === 0) {
             return null
           }
+
           return (
             <SwiperWrapper
               key={item.header}
@@ -44,7 +45,6 @@ const LandingTeachersContent = () => {
                       price={20}
                       key={categoryTeachers.uid}
                       totalReviews={12}
-                      rating={4.5}
                       image={categoryTeachers.image}
                       lastName={categoryTeachers.personalDetails.lastName}
                       name={categoryTeachers.personalDetails.name}
@@ -53,6 +53,7 @@ const LandingTeachersContent = () => {
                         Object.keys(categoryTeachers.skills)[0],
                         Object.keys(categoryTeachers.skills)[1],
                       ]}
+                      rate={categoryTeachers.rate}
                     />
                   </Link>
                 </SwiperSlide>

@@ -11,7 +11,7 @@ import {
 } from './becomeTeacher.interface'
 
 const useBecameTeacherForm = () => {
-  const { setAlert } = useZustandStore()
+  const { setAlert, setIsLogInPopupOpen } = useZustandStore()
   const router = useRouter()
   const { data, refetch } = useFetchLoggedInUserData()
   const teacherData = useGetTeacherPublicData(data?.data.data.uid)
@@ -48,7 +48,18 @@ const useBecameTeacherForm = () => {
   const { mutate } = useSendTeacherCreationQueries()
 
   useEffect(() => {
-    refetch()
+    refetch().then((returnedData) => {
+      if (!returnedData.data) {
+        router.push('/')
+        setAlert({
+          message: 'Sign in first',
+          type: AlertType.ERROR,
+          onClick: () => {},
+          duration: 5000,
+        })
+        setIsLogInPopupOpen(true)
+      }
+    })
     teacherData.refetch()
   }, [])
 

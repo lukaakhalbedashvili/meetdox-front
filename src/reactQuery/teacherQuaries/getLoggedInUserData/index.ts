@@ -10,4 +10,5 @@ export const useFetchLoggedInUserData = () =>
       const token = await auth.currentUser?.getIdToken()
       return fetchLoggedInUserData(token)
     },
+    refetchOnWindowFocus: false,
   })

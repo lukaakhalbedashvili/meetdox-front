@@ -13,4 +13,5 @@ export const useFetchLoggedInUserData = () =>
     },
     retry: 1,
     retryDelay: 1000,
+    refetchOnWindowFocus: false,
   })

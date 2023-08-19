@@ -9,5 +9,6 @@ export const useGetCollegeList = (searchParam: string | undefined) => {
       return searchParam && (await fetchCollegeList(searchParam))
     },
     enabled: false,
+    refetchOnWindowFocus: false,
   })
 }

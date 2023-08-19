@@ -12,4 +12,5 @@ export const useGetTeachers = (filter: TeacherFilter) =>
       const response = await getTeachersList(token, filter)
       return response
     },
+    refetchOnWindowFocus: false,
   })

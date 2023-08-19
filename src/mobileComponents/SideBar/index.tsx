@@ -154,13 +154,9 @@ const SideBar = ({
             <div className="px-4 py-2">
               <hr className="border-border_gray" />
             </div>
-            {profileBtnsSectionOne
+            {profileBtnsSectionOne(loggedInUser.isTeacher, loggedInUser.uid)
               .concat(profileBtnsSectionTwo)
               .map((item: { id: number; text: string; url: string }) => {
-                if (loggedInUser.isTeacher && item.id === 3) {
-                  item.url = `/expert/${loggedInUser.uid}`
-                  item.text = 'Expert page'
-                }
                 return (
                   <Link key={item.url} href={item.url}>
                     <div className="relative z-0">

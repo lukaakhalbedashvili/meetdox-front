@@ -9,4 +9,5 @@ export const useGetLandingTeachers = () =>
       const response = await getTeachersListForLanding()
       return response
     },
+    refetchOnWindowFocus: false,
   })

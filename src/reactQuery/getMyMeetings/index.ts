@@ -10,4 +10,5 @@ export const useFetchMyMeetings = (type: string) =>
       const token = await auth.currentUser?.getIdToken()
       return fetchMyMeetings(token, type)
     },
+    refetchOnWindowFocus: false,
   })

@@ -6,5 +6,6 @@ export const useGetSearchedUserData = (keyword?: string) => {
   return useQuery({
     queryKey: [QueryKey.GET_TEACHER_PUBLIC_DATA, keyword],
     queryFn: () => searchTeacherApiReq(keyword),
+    refetchOnWindowFocus: false,
   })
 }

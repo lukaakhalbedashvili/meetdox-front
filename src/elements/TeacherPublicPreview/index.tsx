@@ -25,15 +25,6 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
   rate,
   perHour,
 }) => {
-  let renewedTags = tags
-  let tagsTogether = renewedTags.join('___')
-  while (tagsTogether.length > 28) {
-    renewedTags = renewedTags.slice(0, renewedTags.length - 1)
-    tagsTogether = renewedTags.join('___')
-  }
-  if (renewedTags.length === 0 && tags.length > 0) {
-    renewedTags.push('...')
-  }
   return (
     <div
       className="-z-30 m-2 h-80 w-64 cursor-pointer border border-teacher_template_border"
@@ -44,8 +35,8 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
       </div>
 
       <div className="p-3">
-        <div className="mb-2 flex items-center">
-          {renewedTags.map((tag, i) => (
+        <div className="mb-2 flex items-center overflow-hidden">
+          {tags.map((tag, i) => (
             <p
               key={`${tag}-${i}`}
               className="mr-1 rounded bg-info_notification_bg pt-1 pb-1 pl-3 pr-3 text-xs text-info_icon_blue"

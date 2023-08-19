@@ -88,18 +88,17 @@ const Catalog = ({
               <>
                 <div className="relative z-20 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {teachersData.map((item) => {
-                    const skills = Object.keys(item.skills)
                     return (
                       <TeacherPublicPreview
-                        price={20}
+                        perHour={item.perHour}
                         key={item.uid}
-                        totalReviews={12}
+                        totalReviews={item.reviews.length}
                         rate={item.rate}
                         image={item.image}
                         lastName={item.personalDetails.lastName}
                         name={item.personalDetails.name}
                         title={item.description}
-                        tags={[skills[0], skills[1]]}
+                        tags={item.skills}
                         onClickHandler={() => router.push(`expert/${item.uid}`)}
                       />
                     )

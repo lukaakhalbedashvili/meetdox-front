@@ -42,18 +42,15 @@ const LandingTeachersContent = () => {
                   <Link href={`expert/${categoryTeachers.uid}`}>
                     <TeacherPublicPreview
                       onClickHandler={() => {}}
-                      price={20}
                       key={categoryTeachers.uid}
-                      totalReviews={12}
+                      totalReviews={categoryTeachers.reviews.length}
                       image={categoryTeachers.image}
                       lastName={categoryTeachers.personalDetails.lastName}
                       name={categoryTeachers.personalDetails.name}
                       title={categoryTeachers.description}
-                      tags={[
-                        Object.keys(categoryTeachers.skills)[0],
-                        Object.keys(categoryTeachers.skills)[1],
-                      ]}
+                      tags={categoryTeachers.skills}
                       rate={categoryTeachers.rate}
+                      perHour={categoryTeachers.perHour}
                     />
                   </Link>
                 </SwiperSlide>

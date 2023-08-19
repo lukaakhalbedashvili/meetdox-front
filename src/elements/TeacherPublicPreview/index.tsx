@@ -6,17 +6,16 @@ interface TeacherPublicPreviewProps {
   image: string
   title: string
   totalReviews: number
-  price: number
   name: string
   lastName: string
   tags: string[]
   onClickHandler: () => void
   rate: number
+  perHour: number
 }
 
 const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
   image,
-  price,
   title,
   totalReviews,
   name,
@@ -24,7 +23,17 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
   tags,
   onClickHandler,
   rate,
+  perHour,
 }) => {
+  let renewedTags = tags
+  let tagsTogether = renewedTags.join('___')
+  while (tagsTogether.length > 28) {
+    renewedTags = renewedTags.slice(0, renewedTags.length - 1)
+    tagsTogether = renewedTags.join('___')
+  }
+  if (renewedTags.length === 0 && tags.length > 0) {
+    renewedTags.push('...')
+  }
   return (
     <div
       className="-z-30 m-2 h-80 w-64 cursor-pointer border border-teacher_template_border"
@@ -36,7 +45,7 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
 
       <div className="p-3">
         <div className="mb-2 flex items-center">
-          {tags.map((tag, i) => (
+          {renewedTags.map((tag, i) => (
             <p
               key={`${tag}-${i}`}
               className="mr-1 rounded bg-info_notification_bg pt-1 pb-1 pl-3 pr-3 text-xs text-info_icon_blue"
@@ -44,13 +53,18 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
               {tag}
             </p>
           ))}
+          {tags.length === 0 && (
+            <p className="mr-1 rounded bg-info_notification_bg pt-1 pb-1 pl-3 pr-3 text-center text-xs text-error">
+              No Skills Provided
+            </p>
+          )}
         </div>
 
         <p className="mb-2">
           {name} {lastName}
         </p>
 
-        <p className="text-sm text-icon_gray line-clamp-2">{title}</p>
+        <p className="h-10 text-sm text-icon_gray line-clamp-2">{title}</p>
 
         <div className="mt-2 flex items-center justify-between">
           <div className="flex items-center">
@@ -61,7 +75,7 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
             <p className="text-icon_gray">{`(${totalReviews})`}</p>
           </div>
 
-          <p>{`${price}$`}</p>
+          <p>{`$${perHour}/hr`}</p>
         </div>
       </div>
     </div>

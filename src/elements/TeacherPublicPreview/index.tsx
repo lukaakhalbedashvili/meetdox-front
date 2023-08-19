@@ -6,17 +6,16 @@ interface TeacherPublicPreviewProps {
   image: string
   title: string
   totalReviews: number
-  price: number
   name: string
   lastName: string
   tags: string[]
   onClickHandler: () => void
   rate: number
+  perHour: number
 }
 
 const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
   image,
-  price,
   title,
   totalReviews,
   name,
@@ -24,6 +23,7 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
   tags,
   onClickHandler,
   rate,
+  perHour,
 }) => {
   return (
     <div
@@ -35,7 +35,7 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
       </div>
 
       <div className="p-3">
-        <div className="mb-2 flex items-center">
+        <div className="mb-2 flex items-center overflow-hidden">
           {tags.map((tag, i) => (
             <p
               key={`${tag}-${i}`}
@@ -44,13 +44,18 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
               {tag}
             </p>
           ))}
+          {tags.length === 0 && (
+            <p className="mr-1 rounded bg-info_notification_bg pt-1 pb-1 pl-3 pr-3 text-center text-xs text-error">
+              No Skills Provided
+            </p>
+          )}
         </div>
 
         <p className="mb-2">
           {name} {lastName}
         </p>
 
-        <p className="text-sm text-icon_gray line-clamp-2">{title}</p>
+        <p className="h-10 text-sm text-icon_gray line-clamp-2">{title}</p>
 
         <div className="mt-2 flex items-center justify-between">
           <div className="flex items-center">
@@ -61,7 +66,7 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
             <p className="text-icon_gray">{`(${totalReviews})`}</p>
           </div>
 
-          <p>{`${price}$`}</p>
+          <p>{`$${perHour}/hr`}</p>
         </div>
       </div>
     </div>

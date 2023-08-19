@@ -1,18 +1,14 @@
 import React, { FC } from 'react'
 
 interface TeacherSkillsToDisplayProps {
-  header: string
   skills: string[]
 }
 
 const TeacherSkillsToDisplay: FC<TeacherSkillsToDisplayProps> = ({
-  header,
   skills,
 }) => {
   return (
     <div className="pt-6">
-      <h2 className="text-xl font-medium">{header}</h2>
-
       <div className="mt-1 flex flex-wrap">
         {skills.length > 0 &&
           skills?.map((item) => {

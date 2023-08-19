@@ -49,7 +49,6 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
   const { lastName, name } = personalDetails || {}
 
   const router = useRouter()
-
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="mx-2 lg:relative lg:flex lg:items-start lg:bg-gray lg:px-6 lg:py-10">
@@ -72,11 +71,13 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
           )}
 
           <h2 className="font-semi-bold mt-4 overflow-hidden whitespace-nowrap text-xl">
-            {name} {lastName}
+            {domain?.category} {name} {lastName}
           </h2>
 
           <div className="my-3 flex flex-col items-center text-sm text-icon_gray">
-            <div className="mx-4 flex flex-wrap items-center justify-center">
+            <p className="text-base">{`$${perHour}/hr`}</p>
+
+            <div className="mx-4 mt-4 flex flex-wrap items-center justify-center">
               {subCategories?.map((item, index) => {
                 return (
                   <div key={item} className="mx-[2px] flex whitespace-nowrap">
@@ -86,19 +87,15 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
                 )
               })}
             </div>
-
-            <p>{`${perHour}/hr`}</p>
           </div>
 
-          <div className="mb-10 mt-3 flex items-center text-center text-sm text-black lg:mx-4">
+          <div className="mb-2 mt-3 flex items-center text-center text-sm text-black lg:mx-4">
             {description}
           </div>
 
           {skills && (
-            <div className="flex-col bg-sky lg:ml-4">
-              {length > 0 && (
-                <TeacherSkillsToDisplay header="Skills" skills={skills} />
-              )}
+            <div className="flex-col lg:ml-4">
+              {skills.length > 0 && <TeacherSkillsToDisplay skills={skills} />}
             </div>
           )}
         </div>

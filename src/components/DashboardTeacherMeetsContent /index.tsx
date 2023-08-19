@@ -18,7 +18,7 @@ const DashboardTeacherMeetsContent = () => {
   return (
     <div className="scheduled-meetings">
       {[currentMeets, completedMeets].map((meetings, index) => (
-        <>
+        <div key={index}>
           <h1 className="title mb-4 text-xl font-medium">
             Your {index === 0 ? 'Current' : 'Completed'} Meetings
           </h1>
@@ -28,7 +28,7 @@ const DashboardTeacherMeetsContent = () => {
               const currMeet = scheduleSteps.meetingsAsTeacher[meeting.status]
               return (
                 <div
-                  key={meeting.teacherImg}
+                  key={meeting.meetId}
                   className="meeting-card mt-4 mb-4 rounded-md bg-sky bg-opacity-20 py-4 px-4 lg:px-8"
                 >
                   <div className="flex flex-col sm:flex-row sm:space-x-4">
@@ -192,7 +192,7 @@ const DashboardTeacherMeetsContent = () => {
               )
             })}
           </div>
-        </>
+        </div>
       ))}
     </div>
   )

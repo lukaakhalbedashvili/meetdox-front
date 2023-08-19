@@ -108,17 +108,19 @@ function isMeetTimeExpired(
   time: number,
   durationInMinutes: number,
   timezoneOffset: number
-) {
+): boolean {
   const parsedDate = new Date(
     formatScheduledDate(dateStr, time, timezoneOffset)
   )
+
+  // Get the parsed time components
   const parsedTime = convertToLocalTime(dateStr, time, timezoneOffset).split(
     ':'
   )
-  const hours = parseInt(parsedTime[0])
   const minutes = parseInt(parsedTime[1])
 
-  parsedDate.setHours(hours)
+  // Set the hour and minutes on the parsedDate
+  parsedDate.setHours(time)
   parsedDate.setMinutes(minutes)
 
   const expirationTime = new Date(

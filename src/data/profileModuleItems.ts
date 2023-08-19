@@ -1,5 +1,6 @@
 import { IconType } from 'react-icons'
 import { BiUser, BiMessageError } from 'react-icons/bi'
+import { MdOutlineContactPage } from 'react-icons/md'
 import { IoAddOutline } from 'react-icons/io5'
 
 interface ProfileModuleItem {
@@ -9,20 +10,22 @@ interface ProfileModuleItem {
   Icon: IconType
 }
 
-export const profileBtnsSectionOne: ProfileModuleItem[] = [
-  {
-    id: 1,
-    text: 'Dashboard',
-    url: '/dashboard',
-    Icon: BiUser,
-  },
-  {
-    id: 3,
-    text: 'Become expert',
-    url: '/become-expert',
-    Icon: IoAddOutline,
-  },
-]
+export const profileBtnsSectionOne = (isExpert: boolean, uid: string) => {
+  return [
+    {
+      id: 1,
+      text: 'Dashboard',
+      url: '/dashboard',
+      Icon: BiUser,
+    },
+    {
+      id: 3,
+      text: isExpert ? 'Expert page' : 'Become expert',
+      url: isExpert ? `/expert/${uid}` : '/become-expert',
+      Icon: isExpert ? MdOutlineContactPage : IoAddOutline,
+    },
+  ]
+}
 
 export const profileBtnsSectionTwo: ProfileModuleItem[] = [
   {

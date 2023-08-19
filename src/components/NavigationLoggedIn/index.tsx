@@ -1,7 +1,6 @@
 'use client'
 
 import { BiBell, BiLogOut } from 'react-icons/bi'
-import { MdOutlineContactPage } from 'react-icons/md'
 import NotificationModuleSingleBtn from '@/elements/NotificationModuleSingleBtn'
 import ProfileModuleSingleBtn from '@/elements/ProfileModuleSingleBtn'
 import ProfileCircledPic from '@/elements/ProfileCircledPic'
@@ -12,6 +11,7 @@ import {
 import handleLogout from '@/utils/services/handleLogout'
 import { NotificationStructure } from './navigationLoggedIn.interface'
 import useNavigationLoggedIn from './useNavigationLoggedIn'
+
 interface NavigationLoggedInProps {
   photoUrl: string
   username: string
@@ -124,13 +124,9 @@ const NavigationLoggedIn = ({
               </div>
               <div className="mb-1 mt-2 flex items-start border-b-[1px] border-border_gray px-4"></div>
 
-              {profileBtnsSectionOne.map((btn) => {
+              {profileBtnsSectionOne(isTeacher, uid).map((btn) => {
                 let { Icon } = btn
-                if (isTeacher && btn.id === 3) {
-                  btn.url = `/expert/${uid}`
-                  btn.text = 'Expert page'
-                  Icon = MdOutlineContactPage
-                }
+
                 return (
                   <ProfileModuleSingleBtn
                     onClick={() => {

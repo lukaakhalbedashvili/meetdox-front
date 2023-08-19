@@ -51,13 +51,13 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
   const router = useRouter()
   return (
     <div className="flex h-full flex-col justify-between">
-      <div className="mx-2 lg:relative lg:flex lg:items-start lg:bg-gray lg:px-6 lg:py-10">
-        {isLoading && (
-          <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
-            <ClipLoader color="#36d7b7" />
-          </div>
-        )}
+      {isLoading && (
+        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
+          <ClipLoader color="#36d7b7" />
+        </div>
+      )}
 
+      <div className="mx-2 lg:relative lg:flex lg:items-start lg:bg-gray lg:px-6 lg:py-10">
         <div className="flex flex-col items-center rounded-md border-border_gray bg-white px-3  lg:w-1/3 lg:py-6">
           {image && (
             <div className="relative flex h-44 w-44 max-w-[300px] rounded-full">
@@ -100,55 +100,56 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
           )}
         </div>
 
-        <div className="lg:ml-10 lg:w-1/2">
-          {reviews && (
+        {reviews && location && data && (
+          <div className="h-full lg:ml-10 lg:w-1/2">
             <div className="mt-10 rounded-md bg-white p-4 px-4 lg:mt-0 lg:p-6">
-              {location && data && (
-                <TeacherBasicInformationToDisplay
-                  location={data.country}
-                  rating={data.rate}
-                  totalReviews={reviews.length}
-                  onPrimaryBtnClick={() => {
-                    if (!loggedInUser?.uid) {
-                      setIsLogInPopupOpen(true)
-                      return
-                    }
-                    loggedInUser.uid === params.id
-                      ? router.push('/become-expert')
-                      : setIsModalOpen(true)
-                  }}
-                  primaryBtnText={
-                    loggedInUser?.uid === params.id
-                      ? 'Edit Your Profile'
-                      : 'Schedule a meet'
+              <TeacherBasicInformationToDisplay
+                location={data.country}
+                rating={data.rate}
+                totalReviews={reviews.length}
+                onPrimaryBtnClick={() => {
+                  if (!loggedInUser?.uid) {
+                    setIsLogInPopupOpen(true)
+                    return
                   }
-                />
-              )}
+                  loggedInUser.uid === params.id
+                    ? router.push('/become-expert')
+                    : setIsModalOpen(true)
+                }}
+                primaryBtnText={
+                  loggedInUser?.uid === params.id
+                    ? 'Edit Your Profile'
+                    : 'Schedule a meet'
+                }
+              />
             </div>
-          )}
 
-          <div className="mt-10 rounded-md bg-white p-4 px-6">
-            <ContentSeparator
-              sections={[TeacherSections.EXPERIENCE, TeacherSections.EDUCATION]}
-              activeSection={activeSection}
-              handleChange={(section) => {
-                setActiveSection(section)
-              }}
-            >
-              {activeSection === TeacherSections.EXPERIENCE &&
-                teacherExperience && (
-                  <TeacherExperienceSeparatorItem
-                    experiences={teacherExperience}
-                  />
-                )}
+            <div className="mt-10 rounded-md bg-white p-4 px-6">
+              <ContentSeparator
+                sections={[
+                  TeacherSections.EXPERIENCE,
+                  TeacherSections.EDUCATION,
+                ]}
+                activeSection={activeSection}
+                handleChange={(section) => {
+                  setActiveSection(section)
+                }}
+              >
+                {activeSection === TeacherSections.EXPERIENCE &&
+                  teacherExperience && (
+                    <TeacherExperienceSeparatorItem
+                      experiences={teacherExperience}
+                    />
+                  )}
 
-              {activeSection === TeacherSections.EDUCATION &&
-                teacherEducation && (
-                  <TeacherEducationSeparator educations={teacherEducation} />
-                )}
-            </ContentSeparator>
+                {activeSection === TeacherSections.EDUCATION &&
+                  teacherEducation && (
+                    <TeacherEducationSeparator educations={teacherEducation} />
+                  )}
+              </ContentSeparator>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {data && isModalOpen && perHour && category && name && lastName && (

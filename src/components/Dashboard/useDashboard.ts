@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import { useZustandStore } from '@/zustand'
@@ -13,18 +13,21 @@ const useDashboard = () => {
   const { setAlert, setIsLogInPopupOpen } = useZustandStore()
   const { refetch } = useFetchLoggedInUserData()
 
-  refetch().then((returnedData) => {
-    if (!returnedData.data) {
-      router.push('/')
-      setAlert({
-        message: 'Sign in first',
-        type: AlertType.ERROR,
-        onClick: () => {},
-        duration: 2000,
-      })
-      setIsLogInPopupOpen(true)
-    }
-  })
+  useEffect(() => {
+    refetch().then((returnedData) => {
+      if (!returnedData.data) {
+        router.push('/')
+        setAlert({
+          message: 'Sign in first',
+          type: AlertType.ERROR,
+          onClick: () => {},
+          duration: 2000,
+        })
+        setIsLogInPopupOpen(true)
+      }
+    })
+  }, [])
+
   return {
     currentTab,
     setCurrentTab,

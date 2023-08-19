@@ -16,7 +16,7 @@ const DashboardClientMeetsContent = () => {
     useDashboardClientMeetsContent()
 
   return (
-    <div className="scheduled-meetings">
+    <div className="flex min-h-screen flex-col justify-between">
       {[currentMeets, completedMeets].map((meetings, index) => (
         <div key={index}>
           <h1 className="title mb-4 text-xl font-medium">

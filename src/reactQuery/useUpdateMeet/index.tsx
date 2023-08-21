@@ -9,6 +9,9 @@ export const useUpdateMeet = () => {
       teacherUid: string
       meetId: string
       newStatus: ScheduleStepStatus | string
+      refundComment?: string
+      reviewComment?: string
+      reviewRate?: number
     }) => {
       await updateMeet(payload)
     },

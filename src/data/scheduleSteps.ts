@@ -53,6 +53,26 @@ export const scheduleSteps: ScheduleSteps = {
     completed: {
       title1: 'Meeting completed',
       title2: '',
+      buttonRed: 'Refund',
+      buttonGreen: 'Rate',
+      onButtonRedClick: (setIsRefundPopupOpen: Function) => {
+        setIsRefundPopupOpen()
+      },
+      onButtonGreenClick: (setIsRatePopupOpen: Function) => {
+        setIsRatePopupOpen()
+      },
+    },
+    refundAsked: {
+      title1: 'Refund asked by client',
+      title2: 'Waiting for moderators review and decision...',
+      buttonRed: '',
+      buttonGreen: '',
+      onButtonRedClick: '',
+      onButtonGreenClick: '',
+    },
+    reviewed: {
+      title1: 'This meet is reviewed by client',
+      title2: '',
       buttonRed: '',
       buttonGreen: '',
       onButtonRedClick: '',
@@ -112,6 +132,22 @@ export const scheduleSteps: ScheduleSteps = {
     },
     completed: {
       title1: 'Meeting completed',
+      title2: '',
+      buttonRed: '',
+      buttonGreen: '',
+      onButtonRedClick: '',
+      onButtonGreenClick: '',
+    },
+    refundAsked: {
+      title1: 'Refund asked by client',
+      title2: 'Waiting for moderators review and decision...',
+      buttonRed: '',
+      buttonGreen: '',
+      onButtonRedClick: '',
+      onButtonGreenClick: '',
+    },
+    reviewed: {
+      title1: 'This meet is reviewed by client',
       title2: '',
       buttonRed: '',
       buttonGreen: '',

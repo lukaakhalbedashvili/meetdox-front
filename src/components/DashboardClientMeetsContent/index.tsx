@@ -11,7 +11,18 @@ import {
 import { scheduleSteps } from '@/data/scheduleSteps'
 import useDashboardClientMeetsContent from './useDashboardClientMeetsContent'
 
-const DashboardClientMeetsContent = () => {
+interface DashboardClientMeetsContentProps {
+  handleDashboardPopupOpen: (
+    popup: string,
+    teacherUid: string,
+    meetId: string,
+    clientUid: string
+  ) => void
+}
+
+const DashboardClientMeetsContent = ({
+  handleDashboardPopupOpen,
+}: DashboardClientMeetsContentProps) => {
   const { completedMeets, currentMeets, mutate, refetch } =
     useDashboardClientMeetsContent()
 
@@ -135,7 +146,16 @@ const DashboardClientMeetsContent = () => {
                                   }
                                 )
                               } else {
-                                currMeet.onButtonRedClick()
+                                handleDashboardPopupOpen
+                                  ? currMeet.onButtonRedClick(() =>
+                                      handleDashboardPopupOpen(
+                                        'refund',
+                                        meeting.teacherUid,
+                                        meeting.meetId,
+                                        meeting.clientUid
+                                      )
+                                    )
+                                  : currMeet.onButtonRedClick()
                               }
                             }}
                             customTailwindClasses="bg-error bg-opacity-20 border-border_gray w-1/2"
@@ -169,7 +189,16 @@ const DashboardClientMeetsContent = () => {
                                   }
                                 )
                               } else {
-                                currMeet.onButtonGreenClick(meeting)
+                                handleDashboardPopupOpen
+                                  ? currMeet.onButtonGreenClick(() =>
+                                      handleDashboardPopupOpen(
+                                        'rate',
+                                        meeting.teacherUid,
+                                        meeting.meetId,
+                                        meeting.clientUid
+                                      )
+                                    )
+                                  : currMeet.onButtonGreenClick(meeting)
                               }
                             }}
                             customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"

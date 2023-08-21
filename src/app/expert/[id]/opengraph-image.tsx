@@ -21,7 +21,7 @@ const og = async (props: Props) => {
 
   const data: TeacherData = jsonData.data
 
-  const image = (await fetch(new URL('./cow2.png', import.meta.url)).then(
+  const image = (await fetch(new URL('./cow.png', import.meta.url)).then(
     (res) => res.arrayBuffer()
   )) as string
 

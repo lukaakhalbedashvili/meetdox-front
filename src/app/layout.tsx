@@ -27,7 +27,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'MeetDox',
+  title: 'Meetdox',
   description:
     "Do you have a question? Let's schedule a call with an expert to get your answer",
   alternates: {

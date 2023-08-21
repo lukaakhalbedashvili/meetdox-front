@@ -30,6 +30,13 @@ export const metadata: Metadata = {
   title: 'MeetDox',
   description:
     "Do you have a question? Let's schedule a call with an expert to get your answer",
+  alternates: {
+    canonical: 'meetdox.com',
+  },
+  verification: {
+    google:
+      'google-site- verification=-hgu1-kSQmU-ucbQtDHrTPiz5puuqz3635K5kJjBCbI',
+  },
 }
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {

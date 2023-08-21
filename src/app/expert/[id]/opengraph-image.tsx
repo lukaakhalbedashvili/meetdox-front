@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/server'
-// import { fetchTeacherPublicDataApiReq } from '@/utils/api/fetchTeacherPublicDataApiReq'
+import { API_URL } from '@/utils/consts/consts'
+import { TeacherData } from '@/components/Catalog/catalog.interface'
 
 export const contentType = 'image/png'
 
@@ -12,27 +13,41 @@ interface Props {
 export const runtime = 'edge'
 
 const og = async (props: Props) => {
-  // const yy = await fetchTeacherPublicDataApiReq(props.params.id)
+  const response = await fetch(
+    `${API_URL}/users/teacher/get-teacher?uid=${props.params.id}`
+  )
 
-  console.error('props', props)
+  const jsonData = await response.json()
 
-  const image = (await fetch(new URL('./cow.png', import.meta.url)).then(
+  const data: TeacherData = jsonData.data
+
+  const image = (await fetch(new URL('./cow2.png', import.meta.url)).then(
     (res) => res.arrayBuffer()
   )) as string
 
   return new ImageResponse(
     (
-      <div tw="text-black w-full h-full flex items-start justify-center">
-        <div tw="flex items-center justify-center bg-black w-full h-1/2 justify-start">
-          <img src={image} tw="w-1/5" alt="aa" />
+      <div tw="text-black w-full h-full flex items-start justify-between bg-black flex-col">
+        <div tw="flex items-start m-10 mb-0 h-1/2">
+          <img
+            src={data.image}
+            tw="w-[300px] h-[300px] rounded-full"
+            style={{ objectFit: 'cover' }}
+            alt="profile"
+          />
 
-          <div tw="text-white flex flex-col">
-            <p tw="text-3xl">Have a question?</p>
-            <p>Schedule a meet</p>
+          <div tw="flex flex-col items-start ml-14">
+            <h1 tw="text-white text-8xl m-0">{data.personalDetails.name}</h1>
+
+            <h2 tw="text-white text-6xl m-0">{data.domain.category}</h2>
           </div>
         </div>
 
-        {/* <img src={yy.image} tw="w-[400-px] h-[200px]" /> */}
+        <div tw="flex m-10 mt-0 items-center h-1/2">
+          <h1 tw="text-white text-7xl m-0">Meetdox</h1>
+
+          <img src={image} tw="w-1/6 ml-10" alt="aa" />
+        </div>
       </div>
     )
   )

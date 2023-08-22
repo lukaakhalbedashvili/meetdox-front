@@ -148,12 +148,16 @@ const DashboardClientMeetsContent = () => {
                                   }
                                 )
                               } else {
-                                setIsRefundPopupOpen(true)
-                                setMeetInfo({
-                                  teacherUid: meeting.teacherUid,
-                                  meetId: meeting.meetId,
-                                  clientUid: meeting.clientUid,
-                                })
+                                if (currMeet.buttonGreen === 'Refund') {
+                                  setIsRefundPopupOpen(true)
+                                  setMeetInfo({
+                                    teacherUid: meeting.teacherUid,
+                                    meetId: meeting.meetId,
+                                    clientUid: meeting.clientUid,
+                                  })
+                                } else {
+                                  currMeet.onButtonRedClick(meeting)
+                                }
                               }
                             }}
                             customTailwindClasses="bg-error bg-opacity-20 border-border_gray w-1/2"
@@ -187,12 +191,15 @@ const DashboardClientMeetsContent = () => {
                                   }
                                 )
                               } else {
-                                setIsRatePopupOpen(true)
-                                setMeetInfo({
-                                  teacherUid: meeting.teacherUid,
-                                  meetId: meeting.meetId,
-                                  clientUid: meeting.clientUid,
-                                })
+                                if (currMeet.buttonGreen === 'Rate') {
+                                  setIsRatePopupOpen(true)
+                                  setMeetInfo({
+                                    teacherUid: meeting.teacherUid,
+                                    meetId: meeting.meetId,
+                                    clientUid: meeting.clientUid,
+                                  })
+                                }
+                                currMeet.onButtonGreenClick(meeting)
                               }
                             }}
                             customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"

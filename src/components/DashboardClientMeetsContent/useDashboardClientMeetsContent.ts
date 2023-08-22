@@ -19,6 +19,15 @@ const useDashboardClientMeetsContent = () => {
   >([])
   const [currentMeets, setCurrentMeets] = useState<ScheduledMeetStructure[]>([])
 
+  const [meetInfo, setMeetInfo] = useState({
+    teacherUid: '',
+    meetId: '',
+    clientUid: '',
+  })
+
+  const [isRefundPopupOpen, setIsRefundPopupOpen] = useState(false)
+  const [isRatePopupOpen, setIsRatePopupOpen] = useState(false)
+
   const { data, refetch } = useFetchMyMeetings(ScheduleTypes.MEETINGS_AS_CLIENT)
   const { mutate } = useUpdateMeet()
 
@@ -57,6 +66,12 @@ const useDashboardClientMeetsContent = () => {
     currentMeets,
     mutate,
     refetch,
+    isRefundPopupOpen,
+    setIsRefundPopupOpen,
+    isRatePopupOpen,
+    setIsRatePopupOpen,
+    meetInfo,
+    setMeetInfo,
   }
 }
 

@@ -161,16 +161,14 @@ const CatalogSidebar = ({
               className={`h-full w-full rounded-md border-[1px] border-border_gray pl-4 text-sm text-black focus:outline-none`}
               value={country}
             >
-              {[{ value: 'All', flag: '🏳️' }, ...countriesList].map(
-                (item: any) => {
-                  return (
-                    <option value={item.value} key={item.value}>
-                      {item.flag}&emsp;
-                      {item.value}
-                    </option>
-                  )
-                }
-              )}
+              {[{ value: 'All', flag: '🏳️' }, ...countriesList].map((item) => {
+                return (
+                  <option value={item.value} key={item.value}>
+                    {item.flag}&emsp;
+                    {item.value}
+                  </option>
+                )
+              })}
             </select>
           </div>
         )}

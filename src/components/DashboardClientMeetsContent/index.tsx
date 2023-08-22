@@ -10,10 +10,23 @@ import {
 } from '@/utils/services/time'
 import { scheduleSteps } from '@/data/scheduleSteps'
 import useDashboardClientMeetsContent from './useDashboardClientMeetsContent'
+import PopupItemWrapper from '../PopupItemWrapper'
+import RateTeacherPopup from '../RateTeacherPopup'
+import RefundTeacherPopup from '../RefundTeacherPopup'
 
 const DashboardClientMeetsContent = () => {
-  const { completedMeets, currentMeets, mutate, refetch } =
-    useDashboardClientMeetsContent()
+  const {
+    completedMeets,
+    currentMeets,
+    mutate,
+    refetch,
+    isRatePopupOpen,
+    isRefundPopupOpen,
+    setIsRatePopupOpen,
+    setIsRefundPopupOpen,
+    meetInfo,
+    setMeetInfo,
+  } = useDashboardClientMeetsContent()
 
   return (
     <div className="flex min-h-screen flex-col justify-between">
@@ -209,6 +222,28 @@ const DashboardClientMeetsContent = () => {
           )}
         </div>
       ))}
+
+      {isRatePopupOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsRatePopupOpen(false)}
+        >
+          <RateTeacherPopup
+            onClose={() => setIsRatePopupOpen(false)}
+            meetInfo={meetInfo}
+          />
+        </PopupItemWrapper>
+      )}
+
+      {isRefundPopupOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsRefundPopupOpen(false)}
+        >
+          <RefundTeacherPopup
+            onClose={() => setIsRefundPopupOpen(false)}
+            meetInfo={meetInfo}
+          />
+        </PopupItemWrapper>
+      )}
     </div>
   )
 }

@@ -24,6 +24,8 @@ export enum ScheduleStepStatus {
   PAID_BY_USER = 'paidByUser',
   COMPLETED = 'completed',
   EXPIRED = 'expired',
+  REVIEWED = 'reviewed',
+  REFUND_ASKED = 'refundAsked',
 }
 
 export enum ScheduleTypes {
@@ -48,6 +50,8 @@ export interface MeetingSteps {
   paidByUser: ScheduleComponentStructure
   completed: ScheduleComponentStructure
   expired: ScheduleComponentStructure
+  reviewed: ScheduleComponentStructure
+  refundAsked: ScheduleComponentStructure
 }
 
 export interface ScheduleSteps {

@@ -10,4 +10,5 @@ export const useGetLandingTeachers = () =>
       return response
     },
     refetchOnWindowFocus: false,
+    staleTime: Infinity,
   })

@@ -85,7 +85,7 @@ const DashboardTeacherMeetsContent = () => {
                         </div>
 
                         <div className="mt-3 flex w-full items-center justify-center space-x-1 sm:justify-start">
-                          <span className="w-1/3 rounded-xl bg-green_label bg-opacity-20 px-3 py-2 text-xs font-medium text-green_label">
+                          <span className="flex w-1/3 items-center justify-center whitespace-nowrap rounded-xl bg-green_label bg-opacity-20 px-3 py-2 text-xs font-medium text-green_label">
                             {meeting.duration} min
                           </span>
 

@@ -198,8 +198,9 @@ const DashboardClientMeetsContent = () => {
                                     meetId: meeting.meetId,
                                     clientUid: meeting.clientUid,
                                   })
+                                }else{
+                                  currMeet.onButtonGreenClick(meeting)
                                 }
-                                currMeet.onButtonGreenClick(meeting)
                               }
                             }}
                             customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"

@@ -10,24 +10,26 @@ import {
 } from '@/utils/services/time'
 import { scheduleSteps } from '@/data/scheduleSteps'
 import useDashboardClientMeetsContent from './useDashboardClientMeetsContent'
+import PopupItemWrapper from '../PopupItemWrapper'
+import RateTeacherPopup from '../RateTeacherPopup'
+import RefundTeacherPopup from '../RefundTeacherPopup'
 
-interface DashboardClientMeetsContentProps {
-  handleDashboardPopupOpen: (
-    popup: string,
-    teacherUid: string,
-    meetId: string,
-    clientUid: string
-  ) => void
-}
-
-const DashboardClientMeetsContent = ({
-  handleDashboardPopupOpen,
-}: DashboardClientMeetsContentProps) => {
-  const { completedMeets, currentMeets, mutate, refetch } =
-    useDashboardClientMeetsContent()
+const DashboardClientMeetsContent = () => {
+  const {
+    completedMeets,
+    currentMeets,
+    mutate,
+    refetch,
+    isRatePopupOpen,
+    isRefundPopupOpen,
+    setIsRatePopupOpen,
+    setIsRefundPopupOpen,
+    meetInfo,
+    setMeetInfo,
+  } = useDashboardClientMeetsContent()
 
   return (
-    <div className="scheduled-meetings">
+    <div className="flex min-h-screen flex-col justify-between">
       {[currentMeets, completedMeets].map((meetings, index) => (
         <div key={index}>
           <h1 className="title mb-4 text-xl font-medium">
@@ -146,16 +148,12 @@ const DashboardClientMeetsContent = ({
                                   }
                                 )
                               } else {
-                                handleDashboardPopupOpen
-                                  ? currMeet.onButtonRedClick(() =>
-                                      handleDashboardPopupOpen(
-                                        'refund',
-                                        meeting.teacherUid,
-                                        meeting.meetId,
-                                        meeting.clientUid
-                                      )
-                                    )
-                                  : currMeet.onButtonRedClick()
+                                setIsRefundPopupOpen(true)
+                                setMeetInfo({
+                                  teacherUid: meeting.teacherUid,
+                                  meetId: meeting.meetId,
+                                  clientUid: meeting.clientUid,
+                                })
                               }
                             }}
                             customTailwindClasses="bg-error bg-opacity-20 border-border_gray w-1/2"
@@ -189,16 +187,12 @@ const DashboardClientMeetsContent = ({
                                   }
                                 )
                               } else {
-                                handleDashboardPopupOpen
-                                  ? currMeet.onButtonGreenClick(() =>
-                                      handleDashboardPopupOpen(
-                                        'rate',
-                                        meeting.teacherUid,
-                                        meeting.meetId,
-                                        meeting.clientUid
-                                      )
-                                    )
-                                  : currMeet.onButtonGreenClick(meeting)
+                                setIsRatePopupOpen(true)
+                                setMeetInfo({
+                                  teacherUid: meeting.teacherUid,
+                                  meetId: meeting.meetId,
+                                  clientUid: meeting.clientUid,
+                                })
                               }
                             }}
                             customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"
@@ -221,6 +215,28 @@ const DashboardClientMeetsContent = ({
           </div>
         </div>
       ))}
+
+      {isRatePopupOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsRatePopupOpen(false)}
+        >
+          <RateTeacherPopup
+            onClose={() => setIsRatePopupOpen(false)}
+            meetInfo={meetInfo}
+          />
+        </PopupItemWrapper>
+      )}
+
+      {isRefundPopupOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsRefundPopupOpen(false)}
+        >
+          <RefundTeacherPopup
+            onClose={() => setIsRefundPopupOpen(false)}
+            meetInfo={meetInfo}
+          />
+        </PopupItemWrapper>
+      )}
     </div>
   )
 }

@@ -35,9 +35,9 @@ const useNavigationLoggedIn = ({
     const userDocRef = doc(usersCol, uid)
     const notificationColRef = collection(userDocRef, 'notifications')
 
-    const unsubscribe = onSnapshot(notificationColRef, (snapshot: any) => {
+    const unsubscribe = onSnapshot(notificationColRef, (snapshot) => {
       const notifs = snapshot.docs.map(
-        (doc: any) => doc.data() as NotificationStructure
+        (doc) => doc.data() as NotificationStructure
       )
       const unreadNotifs = notifs.filter(
         (notif: NotificationStructure) => !notif.read

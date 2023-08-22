@@ -80,13 +80,14 @@ const Catalog = ({
             <div className="pt-4 pb-6">
               <hr className="border-border_gray" />
             </div>
+
             {isLoading ? (
               <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
                 <ClipLoader color="#36d7b7" />
               </div>
             ) : teachersData.length > 0 ? (
               <>
-                <div className="relative z-20 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="relative z-10 grid grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {teachersData.map((item) => {
                     return (
                       <TeacherPublicPreview
@@ -104,6 +105,7 @@ const Catalog = ({
                     )
                   })}
                 </div>
+
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPaginationPages}

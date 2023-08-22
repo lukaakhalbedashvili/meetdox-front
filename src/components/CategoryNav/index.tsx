@@ -22,6 +22,7 @@ const CategoryNav = () => {
                 {category.name}
               </p>
             </Link>
+
             {activeCategory === category.name && (
               <div
                 className={`absolute top-full  ${

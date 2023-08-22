@@ -13,7 +13,7 @@ export interface DashboardItemStructure {
   id: number
   title: DashboardItemsNames
   icon: IconType
-  tab: (handleDashboardItemChange: any) => ReactNode
+  tab: () => ReactNode
 }
 
 export enum ScheduleStepStatus {

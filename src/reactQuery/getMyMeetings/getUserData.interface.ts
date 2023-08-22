@@ -22,5 +22,4 @@ export interface ScheduledMeetStructure {
     transactionId: string
     transactionUrl: string
   }
-  googleMeetingDetails: any
 }

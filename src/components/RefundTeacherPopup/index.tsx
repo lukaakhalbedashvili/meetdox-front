@@ -16,7 +16,9 @@ const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
   meetInfo,
 }) => {
   const [comment, setComment] = useState('')
+
   const { mutate, refetch } = useDashboardClientMeetsContent()
+
   const handleCommentChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
@@ -56,11 +58,13 @@ const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
       <div className="flex items-center justify-center">
         <h1 className="text-xl text-text_gray">Ask For Refund Expert</h1>
       </div>
+
       <p className="mt-4 text-center text-xs text-text_gray">
         Please explain why you want to refund this meet. We will review your
         request and get back to you within 24 hours. be consider that if you ask
         for refund we got permission to watch your meeting video.
       </p>
+
       <div className="mt-8 ">
         <textarea
           className="h-24 w-full resize-none rounded border p-2 outline-none"
@@ -73,7 +77,7 @@ const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
             className={`rounded-xl ${
               comment === '' ? 'bg-text_gray' : 'bg-sky'
             } px-8 py-3 text-white`}
-            onClick={() => (comment === '' ? null : handleSubmit())}
+            onClick={() => (comment ? null : handleSubmit())}
           >
             Submit
           </button>

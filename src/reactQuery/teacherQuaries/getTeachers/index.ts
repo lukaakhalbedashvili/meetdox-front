@@ -13,4 +13,5 @@ export const useGetTeachers = (filter: TeacherFilter) =>
       return response
     },
     refetchOnWindowFocus: false,
+    staleTime: Infinity,
   })

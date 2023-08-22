@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useRef } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import useOnOutsideClick from '@/hooks/useDetectOutsideClick'
 
 interface PopupItemWrapperPros {
@@ -14,25 +15,32 @@ const PopupItemWrapper: FC<PopupItemWrapperPros> = ({
 
   useOnOutsideClick([childrenWrapperRef], onOutsideClickHandler)
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden'
+  const [isMounted, setIsMounted] = useState(false)
 
-    window.scrollTo(0, 0)
+  useEffect(() => {
+    setIsMounted(true)
+
+    document.body.style.overflow = 'hidden'
 
     return () => {
       document.body.style.overflow = 'unset'
     }
   }, [])
 
-  return (
-    <div className="absolute top-0 z-20 flex h-screen w-screen items-center justify-center bg-black md:bg-opacity-50">
-      <div
-        ref={childrenWrapperRef}
-        className="h-screen w-screen lg:h-fit lg:w-fit "
-      >
-        {children}
-      </div>
-    </div>
+  return isMounted ? (
+    createPortal(
+      <div className="fixed top-0 z-40 flex h-screen w-screen items-center justify-center bg-black md:bg-opacity-50">
+        <div
+          ref={childrenWrapperRef}
+          className="h-screen w-screen lg:h-fit lg:w-fit "
+        >
+          {children}
+        </div>
+      </div>,
+      document.body
+    )
+  ) : (
+    <></>
   )
 }
 

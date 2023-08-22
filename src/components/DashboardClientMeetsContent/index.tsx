@@ -114,17 +114,123 @@ const DashboardClientMeetsContent = () => {
                         </p>
                       </div>
 
-                      <div className="flex flex-col justify-between sm:ml-2 sm:w-1/3">
-                        {currMeet.title1 && (
-                          <span className="mb-2 w-full rounded-xl bg-blue_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-blue_label">
-                            {currMeet.title1}
-                          </span>
+                      <div className="mt-3 flex w-full items-center justify-center space-x-1 sm:justify-start">
+                        <span className="w-1/3 rounded-xl bg-green_label bg-opacity-20 px-3 py-2 text-xs font-medium text-green_label">
+                          {meeting.duration} min
+                        </span>
+
+                        <span className="w-1/3 rounded-xl bg-blue_label bg-opacity-20 px-3 py-2 text-xs font-medium text-blue_label">
+                          ${(meeting.perHour / 60) * meeting.duration}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="mb-2 mt-2 flex-col rounded-xl bg-green_label bg-opacity-20 p-3 sm:mt-0 sm:mb-0 sm:ml-2 sm:flex sm:w-1/3">
+                      <p className="text-xs font-medium text-green_label">
+                        {meeting.comment}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col justify-between sm:ml-2 sm:w-1/3">
+                      {currMeet.title1 && (
+                        <span className="mb-2 w-full rounded-xl bg-blue_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-blue_label">
+                          {currMeet.title1}
+                        </span>
+                      )}
+
+                      {currMeet.title2 && (
+                        <span className="mb-2 w-full rounded-xl bg-orange_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-orange_label">
+                          {currMeet.title2}
+                        </span>
+                      )}
+
+                      <div className="flex w-full justify-center sm:space-x-2">
+                        {currMeet.buttonRed && (
+                          <Button
+                            onClickHandler={() => {
+                              if (
+                                typeof currMeet.onButtonRedClick === 'string'
+                              ) {
+                                mutate(
+                                  {
+                                    newStatus: currMeet.onButtonRedClick,
+                                    meetId: meeting.meetId,
+                                    teacherUid: meeting.teacherUid,
+                                    clientUid: meeting.clientUid,
+                                  },
+                                  {
+                                    onSuccess: () => {
+                                      refetch()
+                                    },
+                                    onError: () => {},
+                                  }
+                                )
+                              } else {
+                                if (currMeet.buttonGreen === 'Refund') {
+                                  setIsRefundPopupOpen(true)
+                                  setMeetInfo({
+                                    teacherUid: meeting.teacherUid,
+                                    meetId: meeting.meetId,
+                                    clientUid: meeting.clientUid,
+                                  })
+                                } else {
+                                  currMeet.onButtonRedClick(meeting)
+                                }
+                              }
+                            }}
+                            customTailwindClasses="bg-error bg-opacity-20 border-border_gray w-1/2"
+                          >
+                            <div className="flex h-[35px] items-center justify-center">
+                              <p className="flex items-center justify-center text-sm font-medium text-error">
+                                {currMeet.buttonRed}
+                              </p>
+                            </div>
+                          </Button>
                         )}
 
-                        {currMeet.title2 && (
-                          <span className="mb-2 w-full rounded-xl bg-orange_label bg-opacity-20 px-3 py-2 text-center text-sm font-medium text-orange_label">
-                            {currMeet.title2}
-                          </span>
+                        {currMeet.buttonGreen && (
+                          <Button
+                            onClickHandler={() => {
+                              if (
+                                typeof currMeet.onButtonGreenClick === 'string'
+                              ) {
+                                mutate(
+                                  {
+                                    newStatus: currMeet.onButtonGreenClick,
+                                    meetId: meeting.meetId,
+                                    teacherUid: meeting.teacherUid,
+                                    clientUid: meeting.clientUid,
+                                  },
+                                  {
+                                    onSuccess: () => {
+                                      refetch()
+                                    },
+                                    onError: () => {},
+                                  }
+                                )
+                              } else {
+                                if (currMeet.buttonGreen === 'Rate') {
+                                  setIsRatePopupOpen(true)
+                                  setMeetInfo({
+                                    teacherUid: meeting.teacherUid,
+                                    meetId: meeting.meetId,
+                                    clientUid: meeting.clientUid,
+                                  })
+                                } else {
+                                  currMeet.onButtonGreenClick(meeting)
+                                }
+                              }
+                            }}
+                            customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"
+                          >
+                            <div className="flex h-[35px]  items-center justify-center">
+                              <p
+                                className={`flex items-center justify-center text-sm font-medium text-success_border_green`}
+                              >
+                                {currMeet.buttonGreen}
+                              </p>
+                            </div>
+                          </Button>
                         )}
 
                         <div className="flex w-full justify-center sm:space-x-2">

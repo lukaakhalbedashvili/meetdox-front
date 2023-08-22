@@ -29,7 +29,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Meetdox',
   description:
-    "Do you have a question? Let's schedule a call with an expert to get your answer",
+    "Do you have a question? Let's schedule a meeting with an expert to get your answer.",
   alternates: {
     canonical: 'meetdox.com',
   },

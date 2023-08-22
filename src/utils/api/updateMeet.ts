@@ -8,6 +8,9 @@ export const updateMeet = async (data: {
   teacherUid: string
   meetId: string
   newStatus: ScheduleStepStatus | string
+  refundComment?: string
+  reviewComment?: string
+  reviewRate?: number
 }) => {
   const token = await auth.currentUser?.getIdToken()
 

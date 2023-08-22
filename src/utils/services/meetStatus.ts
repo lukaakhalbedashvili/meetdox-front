@@ -15,6 +15,8 @@ const isItExpiredMeet = (meet: ScheduledMeetStructure) => {
     meet.status !== ScheduleStepStatus.CANCELED_BY_TEACHER &&
     meet.status !== ScheduleStepStatus.CANCELED_BY_USER &&
     meet.status !== ScheduleStepStatus.PAID_BY_USER &&
+    meet.status !== ScheduleStepStatus.REVIEWED &&
+    meet.status !== ScheduleStepStatus.REFUND_ASKED &&
     isMeetTimeExpired(meet.date, meet.time, meet.duration, meet.timeZone)
   ) {
     return true
@@ -24,7 +26,9 @@ const isItExpiredMeet = (meet: ScheduledMeetStructure) => {
 const isItCanceledMeet = (meet: ScheduledMeetStructure) => {
   if (
     meet.status === ScheduleStepStatus.CANCELED_BY_TEACHER ||
-    meet.status === ScheduleStepStatus.CANCELED_BY_USER
+    meet.status === ScheduleStepStatus.CANCELED_BY_USER ||
+    meet.status === ScheduleStepStatus.REVIEWED ||
+    meet.status === ScheduleStepStatus.REFUND_ASKED
   ) {
     return true
   }

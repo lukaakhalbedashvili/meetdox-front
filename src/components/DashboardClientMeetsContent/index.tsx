@@ -146,7 +146,7 @@ const DashboardClientMeetsContent = ({
                                   }
                                 )
                               } else {
-                                handleDashboardPopupOpen
+                                currMeet.buttonRed === 'Refund'
                                   ? currMeet.onButtonRedClick(() =>
                                       handleDashboardPopupOpen(
                                         'refund',
@@ -189,7 +189,7 @@ const DashboardClientMeetsContent = ({
                                   }
                                 )
                               } else {
-                                handleDashboardPopupOpen
+                                currMeet.buttonGreen === 'Rate'
                                   ? currMeet.onButtonGreenClick(() =>
                                       handleDashboardPopupOpen(
                                         'rate',

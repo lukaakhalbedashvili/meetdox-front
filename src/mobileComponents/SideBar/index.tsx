@@ -10,9 +10,10 @@ import Button from '@/elements/Button'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import { categories } from '@/data/categoryItems'
 import handleLogout from '@/utils/services/handleLogout'
+import { UserFromUserData } from '@/reactQuery/getUserData/getUserData.interface'
 
 interface Props {
-  loggedInUser: any
+  loggedInUser: UserFromUserData | undefined
   pathname: string
   setIsSignupPopupOpen: (payload: boolean) => void
   setIsLogInPopupOpen: (isPopupOpen: boolean) => void

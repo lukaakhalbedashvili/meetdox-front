@@ -31,6 +31,7 @@
     }
   },
   "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
     "prettier/prettier": "error",
     "@next/next/no-img-element": "off",
     "react/prop-types": "off",

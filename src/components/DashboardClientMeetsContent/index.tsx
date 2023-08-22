@@ -198,7 +198,7 @@ const DashboardClientMeetsContent = () => {
                                     meetId: meeting.meetId,
                                     clientUid: meeting.clientUid,
                                   })
-                                }else{
+                                } else {
                                   currMeet.onButtonGreenClick(meeting)
                                 }
                               }

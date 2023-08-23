@@ -87,10 +87,7 @@ const useTeacherSkills = (
 
   useEffect(() => {
     if (!defaultValues) return
-    const defaultSkills = Object.keys(defaultValues as object)
-    defaultSkills &&
-      defaultSkills?.length > 0 &&
-      setSelectedSkills(defaultSkills)
+    setSelectedSkills(defaultValues)
   }, [defaultValues])
 
   return {

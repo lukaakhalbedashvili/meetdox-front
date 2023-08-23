@@ -43,19 +43,19 @@ export const metadata: Metadata = {
       "Do you have a question? Let's schedule a meeting with an expert to get your answer.",
     url: 'https://nextjs.org',
     siteName: 'Meetdox',
-    images: [
-      {
-        url: 'https://avatars.githubusercontent.com/u/78295585?s=400&u=264e2164e82b643b3a36cf8568a6ad8d8cd2785c&v=4',
-        width: 800,
-        height: 600,
-      },
-      {
-        url: 'https://avatars.githubusercontent.com/u/78295585?s=400&u=264e2164e82b643b3a36cf8568a6ad8d8cd2785c&v=4',
-        width: 1800,
-        height: 1600,
-        alt: 'My custom alt',
-      },
-    ],
+    // images: [
+    //   {
+    //     url: 'https://avatars.githubusercontent.com/u/78295585?s=400&u=264e2164e82b643b3a36cf8568a6ad8d8cd2785c&v=4',
+    //     width: 800,
+    //     height: 600,
+    //   },
+    //   {
+    //     url: 'https://avatars.githubusercontent.com/u/78295585?s=400&u=264e2164e82b643b3a36cf8568a6ad8d8cd2785c&v=4',
+    //     width: 1800,
+    //     height: 1600,
+    //     alt: 'My custom alt',
+    //   },
+    // ],
     locale: 'en_US',
     type: 'website',
   },

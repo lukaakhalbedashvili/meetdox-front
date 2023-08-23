@@ -1,23 +1,16 @@
 import React, { FC, useState } from 'react'
 import { FaTimes } from 'react-icons/fa'
-import useDashboardClientMeetsContent from '../DashboardClientMeetsContent/useDashboardClientMeetsContent'
+import { useSendFeedback } from '@/reactQuery/useSendFeedback'
 
-interface RefundTeacherPopupProps {
+interface SendFeedbackPopupProps {
   onClose: () => void
-  meetInfo: {
-    teacherUid: string
-    meetId: string
-    clientUid: string
-  }
+  uid: string
 }
 
-const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
-  onClose,
-  meetInfo,
-}) => {
+const SendFeedbackPopup: FC<SendFeedbackPopupProps> = ({ onClose, uid }) => {
   const [comment, setComment] = useState('')
 
-  const { mutate, refetch } = useDashboardClientMeetsContent()
+  const { mutate } = useSendFeedback()
 
   const handleCommentChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -28,15 +21,11 @@ const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
   const handleSubmit = () => {
     mutate(
       {
-        newStatus: 'refundAsked',
-        meetId: meetInfo.meetId,
-        teacherUid: meetInfo.teacherUid,
-        clientUid: meetInfo.clientUid,
-        refundComment: comment,
+        uid: uid,
+        feedback: comment,
       },
       {
         onSuccess: () => {
-          refetch()
           onClose()
         },
         onError: () => {
@@ -56,13 +45,12 @@ const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
       </div>
 
       <div className="flex items-center justify-center">
-        <h1 className="text-xl text-text_gray">Ask For Refund Expert</h1>
+        <h1 className="text-xl text-text_gray">Send Feedback</h1>
       </div>
 
       <p className="mt-4 text-center text-xs text-text_gray">
-        Please explain why you want to refund this meet. We will review your
-        request and get back to you within 24 hours. be consider that if you ask
-        for refund we got permission to watch your meeting video.
+        Share your experience with us. We will use your feedback to improve our
+        service.
       </p>
 
       <div className="mt-8 ">
@@ -87,4 +75,4 @@ const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
   )
 }
 
-export default RefundTeacherPopup
+export default SendFeedbackPopup

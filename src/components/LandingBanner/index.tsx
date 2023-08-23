@@ -20,7 +20,7 @@ const LandingBanner: FC<LandingBannerProps> = ({ itemsRef }) => {
         </h1>
 
         <p className="mt-2 px-5 text-center text-sm font-thin text-text_gray sm:mt-5 sm:text-lg ">
-          Connect with expert experts. Schedule personalized online meetings for
+          Connect with experts. Schedule personalized online meetings for
           career, skills, and insights.
         </p>
 

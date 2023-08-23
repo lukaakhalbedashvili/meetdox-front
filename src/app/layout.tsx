@@ -35,7 +35,16 @@ export const metadata: Metadata = {
   },
   verification: {
     google:
-      'google-site- verification=-hgu1-kSQmU-ucbQtDHrTPiz5puuqz3635K5kJjBCbI',
+      'google-site-verification=-hgu1-kSQmU-ucbQtDHrTPiz5puuqz3635K5kJjBCbI',
+  },
+  openGraph: {
+    title: 'Meetdox | Schedule a meeting with an expert',
+    description:
+      "Do you have a question? Let's schedule a meeting with an expert to get your answer.",
+    url: 'https://nextjs.org',
+    siteName: 'Meetdox',
+    locale: 'en_US',
+    type: 'website',
   },
 }
 

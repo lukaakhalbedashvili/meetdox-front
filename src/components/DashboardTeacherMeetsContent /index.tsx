@@ -24,13 +24,13 @@ const DashboardTeacherMeetsContent = () => {
           </h1>
 
           {meetings.length > 0 ? (
-            <div className="lg: mb-8 rounded-md">
+            <div className="rounded-md lg:mb-8">
               {meetings.map((meeting) => {
                 const currMeet = scheduleSteps.meetingsAsTeacher[meeting.status]
                 return (
                   <div
                     key={meeting.meetId}
-                    className="meeting-card mt-4 mb-4 rounded-md bg-sky bg-opacity-20 py-4 px-4 lg:px-8"
+                    className="mt-4 mb-4 rounded-md bg-sky bg-opacity-20 py-4 px-4 lg:px-8"
                   >
                     <div className="flex flex-col sm:flex-row sm:space-x-4">
                       <div className="mb-2 flex w-full justify-center overflow-hidden rounded-full sm:h-16 sm:w-16">

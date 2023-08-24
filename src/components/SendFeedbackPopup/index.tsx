@@ -1,23 +1,16 @@
 import React, { FC } from 'react'
 import { FaTimes } from 'react-icons/fa'
-import useRefundTeacherPopup from './useRefundTeacherPopup'
+import useSendFeedbackPopup from './useSendFeedbackPopup'
 
-interface RefundTeacherPopupProps {
+interface SendFeedbackPopupProps {
   onClose: () => void
-  meetInfo: {
-    teacherUid: string
-    meetId: string
-    clientUid: string
-  }
+  uid: string
 }
 
-const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
-  onClose,
-  meetInfo,
-}) => {
-  const { comment, handleCommentChange, handleSubmit } = useRefundTeacherPopup({
-    meetInfo,
+const SendFeedbackPopup: FC<SendFeedbackPopupProps> = ({ onClose, uid }) => {
+  const { comment, handleCommentChange, handleSubmit } = useSendFeedbackPopup({
     onClose,
+    uid,
   })
 
   return (
@@ -30,13 +23,12 @@ const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
       </div>
 
       <div className="flex items-center justify-center">
-        <h1 className="text-xl text-text_gray">Ask For Refund Expert</h1>
+        <h1 className="text-xl text-text_gray">Send Feedback</h1>
       </div>
 
       <p className="mt-4 text-center text-xs text-text_gray">
-        Please explain why you want to refund this meet. We will review your
-        request and get back to you within 24 hours. be consider that if you ask
-        for refund we got permission to watch your meeting video.
+        Share your experience with us. We will use your feedback to improve our
+        service.
       </p>
 
       <div className="mt-8 ">
@@ -61,4 +53,4 @@ const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
   )
 }
 
-export default RefundTeacherPopup
+export default SendFeedbackPopup

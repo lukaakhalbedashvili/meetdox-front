@@ -11,6 +11,8 @@ import {
 import handleLogout from '@/utils/services/handleLogout'
 import { NotificationStructure } from './navigationLoggedIn.interface'
 import useNavigationLoggedIn from './useNavigationLoggedIn'
+import PopupItemWrapper from '../PopupItemWrapper'
+import SendFeedbackPopup from '../SendFeedbackPopup'
 
 interface NavigationLoggedInProps {
   photoUrl: string
@@ -43,6 +45,8 @@ const NavigationLoggedIn = ({
     notificationsList,
     unreadNotificationsNum,
     setLoggedInUser,
+    isSendFeedbackModalOpen,
+    setIsSendFeedbackModalOpen,
   } = useNavigationLoggedIn({ uid, notifications })
   return (
     <>
@@ -149,7 +153,11 @@ const NavigationLoggedIn = ({
                     key={btn.id}
                     text={btn.text}
                     onClick={() => {
-                      router.push(btn.url)
+                      if (btn.id === 5) {
+                        setIsSendFeedbackModalOpen(true)
+                      } else {
+                        router.push(btn.url)
+                      }
                       setIsProfileOpen(false)
                     }}
                   >
@@ -173,6 +181,16 @@ const NavigationLoggedIn = ({
           )}
         </div>
       </div>
+      {isSendFeedbackModalOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsSendFeedbackModalOpen(false)}
+        >
+          <SendFeedbackPopup
+            onClose={() => setIsSendFeedbackModalOpen(false)}
+            uid={uid}
+          />
+        </PopupItemWrapper>
+      )}
     </>
   )
 }

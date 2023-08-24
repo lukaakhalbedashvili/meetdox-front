@@ -18,6 +18,7 @@ const useNavigationLoggedIn = ({
   const [unreadNotificationsNum, setUnreadNotificationsNum] = useState(
     notifications.filter((notif) => !notif.read).length
   )
+  const [isSendFeedbackModalOpen, setIsSendFeedbackModalOpen] = useState(false)
   const router = useRouter()
   const profileDropdownRef = useRef<HTMLDivElement>(null)
   const notificationsDropDownRef = useRef<HTMLDivElement>(null)
@@ -92,6 +93,8 @@ const useNavigationLoggedIn = ({
     unreadNotificationsNum,
     setUnreadNotificationsNum,
     setLoggedInUser,
+    isSendFeedbackModalOpen,
+    setIsSendFeedbackModalOpen,
   }
 }
 

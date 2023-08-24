@@ -1,7 +1,7 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import { BsFillStarFill } from 'react-icons/bs'
-import useDashboardClientMeetsContent from '../DashboardClientMeetsContent/useDashboardClientMeetsContent'
+import useRateTeacherPopup from './useRateTeacherPopup'
 
 interface RateTeacherPopupProps {
   onClose: () => void
@@ -13,42 +13,13 @@ interface RateTeacherPopupProps {
 }
 
 const RateTeacherPopup: FC<RateTeacherPopupProps> = ({ onClose, meetInfo }) => {
-  const [comment, setComment] = useState('')
-  const [rating, setRating] = useState(0)
-  const { mutate, refetch } = useDashboardClientMeetsContent()
-
-  const handleCommentChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setComment(event.target.value)
-  }
-
-  const handleRatingChange = (newRating: number) => {
-    setRating(newRating)
-  }
-
-  const handleSubmit = () => {
-    mutate(
-      {
-        newStatus: 'reviewed',
-        reviewRate: rating,
-        meetId: meetInfo.meetId,
-        teacherUid: meetInfo.teacherUid,
-        clientUid: meetInfo.clientUid,
-        reviewComment: comment,
-      },
-      {
-        onSuccess: () => {
-          refetch()
-          onClose()
-        },
-        onError: () => {
-          onClose()
-        },
-      }
-    )
-  }
-
+  const {
+    comment,
+    handleCommentChange,
+    handleSubmit,
+    handleRatingChange,
+    rating,
+  } = useRateTeacherPopup({ meetInfo, onClose })
   return (
     <div className="rounded-md bg-white px-6 py-2 sm:w-[500px]">
       <div className="flex items-center justify-end">
@@ -86,9 +57,7 @@ const RateTeacherPopup: FC<RateTeacherPopupProps> = ({ onClose, meetInfo }) => {
             className={`rounded-xl ${
               comment === '' || rating === 0 ? 'bg-text_gray' : 'bg-sky'
             } px-8 py-3 text-white`}
-            onClick={() =>
-              comment === '' || rating === 0 ? null : handleSubmit()
-            }
+            onClick={() => comment !== '' && rating !== 0 && handleSubmit()}
           >
             Submit
           </button>

@@ -22,8 +22,6 @@ interface NavigationLoggedInProps {
   uid: string
   teacherBalance: number
   isTeacher: boolean
-  isCashOutModalOpen: boolean
-  setIsCashOutModalOpen: (value: boolean) => void
 }
 
 const NavigationLoggedIn = ({

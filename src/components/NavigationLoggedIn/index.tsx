@@ -13,6 +13,7 @@ import { NotificationStructure } from './navigationLoggedIn.interface'
 import useNavigationLoggedIn from './useNavigationLoggedIn'
 import PopupItemWrapper from '../PopupItemWrapper'
 import SendFeedbackPopup from '../SendFeedbackPopup'
+import CashOutPopup from '../CashOutPopup'
 
 interface NavigationLoggedInProps {
   photoUrl: string
@@ -21,6 +22,8 @@ interface NavigationLoggedInProps {
   uid: string
   teacherBalance: number
   isTeacher: boolean
+  isCashOutModalOpen: boolean
+  setIsCashOutModalOpen: (value: boolean) => void
 }
 
 const NavigationLoggedIn = ({
@@ -47,6 +50,8 @@ const NavigationLoggedIn = ({
     setLoggedInUser,
     isSendFeedbackModalOpen,
     setIsSendFeedbackModalOpen,
+    isCashOutModalOpen,
+    setIsCashOutModalOpen,
   } = useNavigationLoggedIn({ uid, notifications })
   return (
     <>
@@ -134,8 +139,12 @@ const NavigationLoggedIn = ({
                 return (
                   <ProfileModuleSingleBtn
                     onClick={() => {
+                      if (btn.id === 4) {
+                        setIsCashOutModalOpen(true)
+                      } else {
+                        router.push(btn.url)
+                      }
                       setIsProfileOpen(false)
-                      router.push(btn.url)
                     }}
                     key={btn.id}
                     text={btn.text}
@@ -181,6 +190,13 @@ const NavigationLoggedIn = ({
           )}
         </div>
       </div>
+      {isCashOutModalOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsCashOutModalOpen(false)}
+        >
+          <CashOutPopup onClose={() => setIsCashOutModalOpen(false)} />
+        </PopupItemWrapper>
+      )}
       {isSendFeedbackModalOpen && (
         <PopupItemWrapper
           onOutsideClickHandler={() => setIsSendFeedbackModalOpen(false)}

@@ -1,5 +1,6 @@
 import { IconType } from 'react-icons'
 import { BiUser, BiMessageError } from 'react-icons/bi'
+import { AiOutlineDollarCircle } from 'react-icons/ai'
 import { MdOutlineContactPage } from 'react-icons/md'
 import { IoAddOutline } from 'react-icons/io5'
 
@@ -20,9 +21,15 @@ export const profileBtnsSectionOne = (isExpert: boolean, uid: string) => {
     },
     {
       id: 3,
-      text: isExpert ? 'Expert page' : 'Become expert',
+      text: isExpert ? 'Expert Profile' : 'Become expert',
       url: isExpert ? `/expert/${uid}` : '/become-expert',
       Icon: isExpert ? MdOutlineContactPage : IoAddOutline,
+    },
+    {
+      id: 4,
+      text: 'Cash Out',
+      url: '/cash-out',
+      Icon: AiOutlineDollarCircle,
     },
   ]
 }

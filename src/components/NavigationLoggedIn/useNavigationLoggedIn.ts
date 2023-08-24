@@ -19,6 +19,8 @@ const useNavigationLoggedIn = ({
     notifications.filter((notif) => !notif.read).length
   )
   const [isSendFeedbackModalOpen, setIsSendFeedbackModalOpen] = useState(false)
+  const [isCashOutModalOpen, setIsCashOutModalOpen] = useState(false)
+
   const router = useRouter()
   const profileDropdownRef = useRef<HTMLDivElement>(null)
   const notificationsDropDownRef = useRef<HTMLDivElement>(null)
@@ -95,6 +97,8 @@ const useNavigationLoggedIn = ({
     setLoggedInUser,
     isSendFeedbackModalOpen,
     setIsSendFeedbackModalOpen,
+    isCashOutModalOpen,
+    setIsCashOutModalOpen,
   }
 }
 

@@ -20,7 +20,7 @@ export const profileBtnsSectionOne = (isExpert: boolean, uid: string) => {
     },
     {
       id: 3,
-      text: isExpert ? 'Expert page' : 'Become expert',
+      text: isExpert ? 'Expert Profile' : 'Become expert',
       url: isExpert ? `/expert/${uid}` : '/become-expert',
       Icon: isExpert ? MdOutlineContactPage : IoAddOutline,
     },

@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { FaTimes } from 'react-icons/fa'
-import useDashboardClientMeetsContent from '../DashboardClientMeetsContent/useDashboardClientMeetsContent'
+import useRefundTeacherPopup from './useRefundTeacherPopup'
 
 interface RefundTeacherPopupProps {
   onClose: () => void
@@ -15,36 +15,10 @@ const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
   onClose,
   meetInfo,
 }) => {
-  const [comment, setComment] = useState('')
-
-  const { mutate, refetch } = useDashboardClientMeetsContent()
-
-  const handleCommentChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setComment(event.target.value)
-  }
-
-  const handleSubmit = () => {
-    mutate(
-      {
-        newStatus: 'refundAsked',
-        meetId: meetInfo.meetId,
-        teacherUid: meetInfo.teacherUid,
-        clientUid: meetInfo.clientUid,
-        refundComment: comment,
-      },
-      {
-        onSuccess: () => {
-          refetch()
-          onClose()
-        },
-        onError: () => {
-          onClose()
-        },
-      }
-    )
-  }
+  const { comment, handleCommentChange, handleSubmit } = useRefundTeacherPopup({
+    meetInfo,
+    onClose,
+  })
 
   return (
     <div className="rounded-md bg-white px-6 py-2 sm:w-[500px]">
@@ -77,7 +51,7 @@ const RefundTeacherPopup: FC<RefundTeacherPopupProps> = ({
             className={`rounded-xl ${
               comment === '' ? 'bg-text_gray' : 'bg-sky'
             } px-8 py-3 text-white`}
-            onClick={() => (comment ? handleSubmit() : null)}
+            onClick={() => comment && handleSubmit()}
           >
             Submit
           </button>

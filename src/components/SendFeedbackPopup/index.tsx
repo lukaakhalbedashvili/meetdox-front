@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { FaTimes } from 'react-icons/fa'
-import { useSendFeedback } from '@/reactQuery/useSendFeedback'
+import useSendFeedbackPopup from './useSendFeedbackPopup'
 
 interface SendFeedbackPopupProps {
   onClose: () => void
@@ -8,32 +8,10 @@ interface SendFeedbackPopupProps {
 }
 
 const SendFeedbackPopup: FC<SendFeedbackPopupProps> = ({ onClose, uid }) => {
-  const [comment, setComment] = useState('')
-
-  const { mutate } = useSendFeedback()
-
-  const handleCommentChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setComment(event.target.value)
-  }
-
-  const handleSubmit = () => {
-    mutate(
-      {
-        uid: uid,
-        feedback: comment,
-      },
-      {
-        onSuccess: () => {
-          onClose()
-        },
-        onError: () => {
-          onClose()
-        },
-      }
-    )
-  }
+  const { comment, handleCommentChange, handleSubmit } = useSendFeedbackPopup({
+    onClose,
+    uid,
+  })
 
   return (
     <div className="rounded-md bg-white px-6 py-2 sm:w-[500px]">
@@ -65,7 +43,7 @@ const SendFeedbackPopup: FC<SendFeedbackPopupProps> = ({ onClose, uid }) => {
             className={`rounded-xl ${
               comment === '' ? 'bg-text_gray' : 'bg-sky'
             } px-8 py-3 text-white`}
-            onClick={() => (comment ? handleSubmit() : null)}
+            onClick={() => comment && handleSubmit()}
           >
             Submit
           </button>

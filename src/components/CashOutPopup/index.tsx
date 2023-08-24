@@ -7,7 +7,7 @@ interface CashOutPopupProps {
 
 const CashOutPopup: FC<CashOutPopupProps> = ({ onClose }) => {
   return (
-    <div className="rounded-md bg-white px-6 py-2 sm:w-[500px]">
+    <div className="h-screen bg-white px-6 py-2 sm:h-auto sm:w-[500px] sm:rounded-md">
       <div className="flex items-center justify-end">
         <FaTimes
           className="mr-3 mt-3 h-6 w-6 cursor-pointer"

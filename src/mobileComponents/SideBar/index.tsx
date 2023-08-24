@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import navigationBarItems from '@/data/navigationBarItems'
 import {
   profileBtnsSectionOne,
@@ -11,6 +12,9 @@ import NavigationBarItem from '@/elements/NavigationBarItem'
 import { categories } from '@/data/categoryItems'
 import handleLogout from '@/utils/services/handleLogout'
 import { UserFromUserData } from '@/reactQuery/getUserData/getUserData.interface'
+import PopupItemWrapper from '@/components/PopupItemWrapper'
+import CashOutPopup from '@/components/CashOutPopup'
+import SendFeedbackPopup from '@/components/SendFeedbackPopup'
 
 interface Props {
   loggedInUser: UserFromUserData | undefined
@@ -29,6 +33,10 @@ const SideBar = ({
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(
     null
   )
+  const [isSendFeedbackModalOpen, setIsSendFeedbackModalOpen] = useState(false)
+  const [isCashOutModalOpen, setIsCashOutModalOpen] = useState(false)
+
+  const router = useRouter()
 
   return (
     <div className="md:hidden	">
@@ -159,7 +167,18 @@ const SideBar = ({
               .concat(profileBtnsSectionTwo)
               .map((item: { id: number; text: string; url: string }) => {
                 return (
-                  <Link key={item.url} href={item.url}>
+                  <div
+                    key={item.url}
+                    onClick={() => {
+                      if (item.id === 4) {
+                        setIsCashOutModalOpen(true)
+                      } else if (item.id === 5) {
+                        setIsSendFeedbackModalOpen(true)
+                      } else {
+                        router.push(item.url)
+                      }
+                    }}
+                  >
                     <div className="relative z-0">
                       <p
                         className={`hover:text-gray-400 relative block rounded px-4 py-2 text-sm font-medium transition duration-200 ${
@@ -169,7 +188,7 @@ const SideBar = ({
                         {item.text}
                       </p>
                     </div>
-                  </Link>
+                  </div>
                 )
               })}
             <div className="px-4 py-2">
@@ -213,6 +232,23 @@ const SideBar = ({
           </>
         )}
       </div>
+      {isCashOutModalOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsCashOutModalOpen(false)}
+        >
+          <CashOutPopup onClose={() => setIsCashOutModalOpen(false)} />
+        </PopupItemWrapper>
+      )}
+      {isSendFeedbackModalOpen && (
+        <PopupItemWrapper
+          onOutsideClickHandler={() => setIsSendFeedbackModalOpen(false)}
+        >
+          <SendFeedbackPopup
+            onClose={() => setIsSendFeedbackModalOpen(false)}
+            uid={loggedInUser!.uid}
+          />
+        </PopupItemWrapper>
+      )}
     </div>
   )
 }

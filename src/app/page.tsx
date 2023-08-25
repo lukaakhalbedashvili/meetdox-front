@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 
 const Home = () => {
   return (
-    <main className="flex h-full flex-col justify-between bg-white font-ubuntu">
+    <main className="relative  flex h-screen flex-col justify-between bg-white font-ubuntu">
       <LandingTeachersContent />
 
       <Footer />

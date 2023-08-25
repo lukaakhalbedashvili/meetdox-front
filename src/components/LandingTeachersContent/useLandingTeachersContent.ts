@@ -1,17 +1,24 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useGetLandingTeachers } from '@/reactQuery/teacherQuaries/getLandingTeachers'
-import { useZustandStore } from '@/zustand'
+import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 
 const useLandingTeachersContent = () => {
+  const loggedInUser = useFetchLoggedInUserData()
   const { data, isLoading } = useGetLandingTeachers()
-  const loggedInUser = useZustandStore((state) => state.loggedInUser)
   const categoriesSwiperSectionRef = useRef<HTMLDivElement>(null)
+
+  const [isLoggedInUserLoading, setIsLoggedInUserLoading] = useState(true)
+
+  loggedInUser.refetch().then(() => {
+    setIsLoggedInUserLoading(false)
+  })
 
   return {
     data,
     categoriesSwiperSectionRef,
     loggedInUser,
     isLoading,
+    isLoggedInUserLoading,
   }
 }
 

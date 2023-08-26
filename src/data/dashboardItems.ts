@@ -4,7 +4,6 @@ import DashboardPasswordChangeContent from '@/components/DashboardPasswordChange
 import { DashboardItemsNames } from '@/components/Dashboard/dashboard.interface'
 import DashboardClientMeetsContent from '@/components/DashboardClientMeetsContent'
 import DashboardTeacherMeetsContent from '@/components/DashboardTeacherMeetsContent '
-import DashboardBillingContent from '@/components/DashboardBillingContent'
 
 const clientDashboardItems = [
   {
@@ -35,18 +34,12 @@ const teacherDashboardItems = [
     icon: AiOutlineSchedule,
     tab: DashboardTeacherMeetsContent,
   },
-  {
-    id: 4,
-    title: DashboardItemsNames.PAYMENTS,
-    icon: FiLock,
-    tab: DashboardBillingContent,
-  },
-  {
-    id: 2,
-    title: DashboardItemsNames.PASSWORD,
-    icon: FiLock,
-    tab: DashboardPasswordChangeContent,
-  },
+  // {
+  //   id: 2,
+  //   title: DashboardItemsNames.PASSWORD,
+  //   icon: FiLock,
+  //   tab: DashboardPasswordChangeContent,
+  // },
 ]
 
 export { clientDashboardItems, teacherDashboardItems }

@@ -1,6 +1,4 @@
-import { FiLock } from 'react-icons/fi'
 import { AiOutlineSchedule } from 'react-icons/ai'
-import DashboardPasswordChangeContent from '@/components/DashboardPasswordChangeContent'
 import { DashboardItemsNames } from '@/components/Dashboard/dashboard.interface'
 import DashboardClientMeetsContent from '@/components/DashboardClientMeetsContent'
 import DashboardTeacherMeetsContent from '@/components/DashboardTeacherMeetsContent '
@@ -12,12 +10,12 @@ const clientDashboardItems = [
     icon: AiOutlineSchedule,
     tab: DashboardClientMeetsContent,
   },
-  {
-    id: 2,
-    title: DashboardItemsNames.PASSWORD,
-    icon: FiLock,
-    tab: DashboardPasswordChangeContent,
-  },
+  // {
+  //   id: 2,
+  //   title: DashboardItemsNames.PASSWORD,
+  //   icon: FiLock,
+  //   tab: DashboardPasswordChangeContent,
+  // },
 ]
 
 const teacherDashboardItems = [

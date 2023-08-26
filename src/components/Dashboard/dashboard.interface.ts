@@ -4,9 +4,9 @@ import { ReactNode } from 'react'
 export enum DashboardItemsNames {
   PROFILE = 'Profile',
   PASSWORD = 'Password',
-  MEETINGS = 'Meetings',
+  MEETINGS = 'Personal Meetings',
   PAYMENTS = 'Payments',
-  MEETINGS_AS_TEACHER = 'Meetings as expert',
+  MEETINGS_AS_TEACHER = 'Expert Meetings',
 }
 
 export interface DashboardItemStructure {

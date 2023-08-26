@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useGetLandingTeachers } from '@/reactQuery/teacherQuaries/getLandingTeachers'
 import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 
@@ -9,10 +9,11 @@ const useLandingTeachersContent = () => {
 
   const [isLoggedInUserLoading, setIsLoggedInUserLoading] = useState(true)
 
-  loggedInUser.refetch().then(() => {
-    setIsLoggedInUserLoading(false)
-  })
-
+  useEffect(() => {
+    loggedInUser.refetch().then(() => {
+      setIsLoggedInUserLoading(false)
+    })
+  }, [])
   return {
     data,
     categoriesSwiperSectionRef,

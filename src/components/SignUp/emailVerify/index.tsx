@@ -109,21 +109,21 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
                     }}
                   >
                     {' '}
-                    &nbsp; Resend
+                    &nbsp;Resend
                   </span>
                 </small>
               </div>
 
               <div className="mt-3">
                 <small className="text-center text-text_gray">
-                  By clicking verify you agree to our &nbsp;
+                  By clicking verify you agree to our&nbsp;
                   <Link
                     className="cursor-pointer text-sky"
                     href="/terms-and-conditions"
                   >
                     Terms and conditions{' '}
                   </Link>
-                  and &nbsp;
+                  and&nbsp;
                   <Link
                     className="cursor-pointer text-sky"
                     href="/privacy-policy"

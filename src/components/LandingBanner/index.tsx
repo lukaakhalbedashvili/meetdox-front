@@ -26,7 +26,7 @@ const LandingBanner: FC<LandingBannerProps> = ({ itemsRef }) => {
 
         <div className="mt-8 flex   flex-col items-center justify-center sm:flex-row sm:items-start sm:justify-start">
           <button
-            className="mb-4 w-64 rounded-full bg-text_gray py-4 px-8 text-xs font-medium text-white hover:bg-sky sm:mr-2"
+            className="mb-4 w-64 rounded-full bg-text_gray px-8 py-4 text-xs font-medium text-white hover:bg-sky sm:mr-2"
             onClick={() => {
               setIsSignupPopupOpen(true)
               router.push('?redirect-to=become-expert')
@@ -36,7 +36,7 @@ const LandingBanner: FC<LandingBannerProps> = ({ itemsRef }) => {
           </button>
 
           <button
-            className="w-64 whitespace-nowrap  rounded-full bg-text_gray py-4 px-8 text-xs font-medium text-white hover:bg-sky sm:ml-2"
+            className="w-64 whitespace-nowrap  rounded-full bg-text_gray px-8 py-4 text-xs font-medium text-white hover:bg-sky sm:ml-2"
             onClick={() => {
               if (itemsRef?.current) {
                 itemsRef.current.scrollIntoView({

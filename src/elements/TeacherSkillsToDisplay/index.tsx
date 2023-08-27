@@ -15,7 +15,7 @@ const TeacherSkillsToDisplay: FC<TeacherSkillsToDisplayProps> = ({
             return (
               <p
                 key={item}
-                className="mt-2 mr-2 rounded bg-info_notification_bg px-3   pt-1 pb-1 text-sm text-info_icon_blue
+                className="mr-2 mt-2 rounded bg-info_notification_bg px-3   pb-1 pt-1 text-sm text-info_icon_blue
               "
               >
                 {item}

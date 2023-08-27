@@ -38,7 +38,7 @@ const SendFeedbackPopup: FC<SendFeedbackPopupProps> = ({ onClose, uid }) => {
           value={comment}
           onChange={handleCommentChange}
         />
-        <div className="mt-7 mb-8 flex items-center justify-center">
+        <div className="mb-8 mt-7 flex items-center justify-center">
           <button
             className={`rounded-xl ${
               comment === '' ? 'bg-text_gray' : 'bg-sky'

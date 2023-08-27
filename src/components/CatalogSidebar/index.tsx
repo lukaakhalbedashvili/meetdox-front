@@ -147,7 +147,7 @@ const CatalogSidebar = ({
             />
           ) : (
             <HiChevronUp
-              className="mb-2 -mr-2 h-6 w-6 cursor-pointer text-text_gray"
+              className="-mr-2 mb-2 h-6 w-6 cursor-pointer text-text_gray"
               onClick={() => setExpandedCountry(!isExpandedCountry)}
             />
           )}

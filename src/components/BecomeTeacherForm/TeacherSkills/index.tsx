@@ -46,7 +46,7 @@ const TeacherSkills: FC<TeacherSkillsProps> = ({
       <div className="flex flex-wrap">
         {selectedSkills.map((item) => {
           return (
-            <div key={item} className="mt-2 mr-2">
+            <div key={item} className="mr-2 mt-2">
               <SkillItem
                 onClose={(skill) =>
                   setSelectedSkills((state) =>

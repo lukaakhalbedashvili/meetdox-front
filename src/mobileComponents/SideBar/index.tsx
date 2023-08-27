@@ -40,7 +40,7 @@ const SideBar = ({
 
   return (
     <div className="md:hidden	">
-      <div className="min-h-screen space-y-1 pt-2 pb-3 ">
+      <div className="min-h-screen space-y-1 pb-3 pt-2 ">
         <div>
           {loggedInUser && (
             <div className="flex items-center px-4 py-2">
@@ -195,7 +195,7 @@ const SideBar = ({
               <hr className="border-border_gray" />
             </div>
             <div
-              className="flex cursor-pointer items-start px-4 pt-2 pb-2 hover:bg-gray"
+              className="flex cursor-pointer items-start px-4 pb-2 pt-2 hover:bg-gray"
               onClick={handleLogout}
             >
               <p className="text-sm ">Logout</p>

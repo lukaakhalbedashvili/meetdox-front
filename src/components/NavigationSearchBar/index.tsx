@@ -21,17 +21,17 @@ const NavigationSearchBar = () => {
         autoComplete="off"
         type="text"
         placeholder="Who are you looking for?"
-        className="z-20 w-full rounded-l-md rounded-r-none border-[1px] border-border_gray py-2 px-4 pl-10 text-sm font-medium focus:outline-none md:w-[250px] xl:w-[300px]"
+        className="z-20 w-full rounded-l-md rounded-r-none border-[1px] border-border_gray px-4 py-2 pl-10 text-sm font-medium focus:outline-none md:w-[250px] xl:w-[300px]"
         ref={inputElement}
       />
       <button
-        className="hover:bg-blue-600 focus:bg-blue-600 z-20 rounded-r-md rounded-l-none bg-sky px-4 text-sm font-medium text-white focus:outline-none"
+        className="hover:bg-blue-600 focus:bg-blue-600 z-20 rounded-l-none rounded-r-md bg-sky px-4 text-sm font-medium text-white focus:outline-none"
         onClick={() => handleInputChange()}
       >
         Search
       </button>
       {isShowDropdown && (
-        <div className="absolute top-[32px] left-0 z-10 w-full rounded-b-md border border-t-0 border-border_gray bg-white pt-2 pb-2">
+        <div className="absolute left-0 top-[32px] z-10 w-full rounded-b-md border border-t-0 border-border_gray bg-white pb-2 pt-2">
           {dropdownItems.map((item, index) => (
             <div
               key={index}

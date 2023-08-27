@@ -13,7 +13,7 @@ const ProfileModuleSingleBtn: FC<ProfileModuleSingleBtnProps> = ({
 }) => {
   return (
     <div
-      className="flex cursor-pointer items-start px-4 pt-2 pb-2 hover:bg-gray"
+      className="flex cursor-pointer items-start px-4 pb-2 pt-2 hover:bg-gray"
       onClick={onClick}
     >
       {children}

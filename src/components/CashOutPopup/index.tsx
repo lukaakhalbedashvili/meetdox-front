@@ -22,7 +22,7 @@ const CashOutPopup: FC<CashOutPopupProps> = ({ onClose }) => {
       <p className="mt-4 text-center text-xs text-text_gray">
         We are working hard to bring this feature to you soon. Stay tuned!
       </p>
-      <p className="mt-4 mb-12 text-center text-xs text-text_gray">
+      <p className="mb-12 mt-4 text-center text-xs text-text_gray">
         But if you would like cash out now, please contact us at
         admin@meetdox.com
       </p>

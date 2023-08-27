@@ -35,7 +35,7 @@ const Pagination: FC<PaginationProps> = ({
   }
 
   return (
-    <div className="mt-8 mb-12 flex items-center justify-center ">
+    <div className="mb-12 mt-8 flex items-center justify-center ">
       <button
         className="h-10 rounded-l-full border border-r-[0px] border-border_gray px-4 py-2  text-text_gray hover:text-disable_gray"
         disabled={currentPage === 1}

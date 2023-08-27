@@ -42,11 +42,11 @@ const NotificationModuleSingleBtn: FC<NotificationModuleSingleBtnProps> = ({
       className={`${type} relative
       flex cursor-pointer flex-col border-b-[1px] border-solid border-border_gray hover:bg-white ${
         isRead ? 'bg-white' : 'bg-gray'
-      } py-2  px-4 `}
+      } px-4  py-2 `}
     >
       <h3 className="text-sm font-medium">{title}</h3>
       <div className="flex items-center justify-between">
-        <p className="mb-5 w-80 text-sm text-text_gray line-clamp-3">{text}</p>
+        <p className="mb-5 line-clamp-3 w-80 text-sm text-text_gray">{text}</p>
       </div>
       <div className="absolute bottom-1 flex items-center justify-between">
         <p className="mt-[2px] text-xs text-lite">{getTimeAgo(msTime)}</p>

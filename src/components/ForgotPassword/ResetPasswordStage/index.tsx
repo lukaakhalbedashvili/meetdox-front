@@ -29,7 +29,7 @@ const ResetPasswordStage: FC<ResetPasswordStageProps> = ({
   return (
     <div className="h-full w-full rounded-md bg-white sm:h-[420px] sm:w-[400px] ">
       {isPending && (
-        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform ">
           <ClipLoader color="#36d7b7" />
         </div>
       )}

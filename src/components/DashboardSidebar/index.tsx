@@ -41,7 +41,7 @@ const DashboardSidebar = ({
         </button>
 
         {isDropdownOpen && (
-          <div className="flex-col justify-center rounded-md border border-border_gray bg-white py-4 px-4">
+          <div className="flex-col justify-center rounded-md border border-border_gray bg-white px-4 py-4">
             {dashboardItems.map((item) => (
               <DashboardSidebarButton
                 key={item.id}

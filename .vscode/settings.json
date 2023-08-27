@@ -2,8 +2,5 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "vue.codeActions.enabled": false,
-  "cSpell.words": [
-    "consts",
-    "Quaries"
-  ]
+  "cSpell.words": ["consts", "Quaries"]
 }

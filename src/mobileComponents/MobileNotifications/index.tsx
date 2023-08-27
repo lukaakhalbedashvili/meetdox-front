@@ -23,7 +23,7 @@ const MobileNotifications: FC<MobileNotificationsProps> = ({
     <div className="flex w-full flex-col">
       <div className="flex items-center justify-start border-b-[1px] border-border_gray pb-4">
         <IoIosArrowForward
-          className="ml-3 mt-4 mr-2 h-6 w-6 cursor-pointer"
+          className="ml-3 mr-2 mt-4 h-6 w-6 cursor-pointer"
           onClick={onClose}
         />
 

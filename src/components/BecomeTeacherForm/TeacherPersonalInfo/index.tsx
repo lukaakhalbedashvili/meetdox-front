@@ -157,7 +157,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
               />
 
               {!isUploadImageModalOpen && (
-                <div className="absolute top-3/4 left-1/2 z-50 block  max-w-[300px] -translate-x-1/2 -translate-y-1/2 transform sm:opacity-0 sm:group-hover:opacity-100">
+                <div className="absolute left-1/2 top-3/4 z-50 block  max-w-[300px] -translate-x-1/2 -translate-y-1/2 transform sm:opacity-0 sm:group-hover:opacity-100">
                   <Button
                     type="button"
                     customTailwindClasses="bg-sky border-sky text-white"

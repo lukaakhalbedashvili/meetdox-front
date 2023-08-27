@@ -1,6 +1,7 @@
 import React, { Dispatch, FC, SetStateAction } from 'react'
 import { FaTimes, FaArrowLeft } from 'react-icons/fa'
 import { ClipLoader } from 'react-spinners'
+import Link from 'next/link'
 import Button from '@/elements/Button'
 import Input from '@/elements/Input'
 import useEmailVerify from './useEmailVerifyInSignup'
@@ -33,7 +34,7 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
   return (
     <div className=" h-[420px] w-[400px] rounded-md bg-white ">
       {isPending && (
-        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform ">
           <ClipLoader color="#36d7b7" />
         </div>
       )}
@@ -108,21 +109,27 @@ const EmailVerifyStage: FC<EmailVerifyStageProps> = ({
                     }}
                   >
                     {' '}
-                    &nbsp; Resend
+                    &nbsp;Resend
                   </span>
                 </small>
               </div>
 
               <div className="mt-3">
                 <small className="text-center text-text_gray">
-                  By clicking verify you agree to our &nbsp;
-                  <span className="cursor-pointer text-sky">
-                    Terms of Service{' '}
-                  </span>
-                  &nbsp; and &nbsp;
-                  <span className="cursor-pointer text-sky">
-                    Privacy Policy
-                  </span>
+                  By clicking verify you agree to our&nbsp;
+                  <Link
+                    className="cursor-pointer text-sky"
+                    href="/terms-and-conditions"
+                  >
+                    Terms and conditions{' '}
+                  </Link>
+                  and&nbsp;
+                  <Link
+                    className="cursor-pointer text-sky"
+                    href="/privacy-policy"
+                  >
+                    Privacy policy
+                  </Link>
                 </small>
               </div>
             </form>

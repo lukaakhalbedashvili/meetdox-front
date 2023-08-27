@@ -117,7 +117,7 @@ const NavigationLoggedIn = ({
               className="absolute right-0 z-20 mt-1 w-64 rounded-sm border-[1px] border-border_gray bg-white py-2"
               ref={profileDropdownRef}
             >
-              <div className="flex flex-col items-center bg-white px-4 pt-2  pb-2">
+              <div className="flex flex-col items-center bg-white px-4 pb-2  pt-2">
                 <button className="relative h-10 w-10">
                   <ProfileCircledPic photoUrl={photoUrl} />
                 </button>
@@ -175,7 +175,7 @@ const NavigationLoggedIn = ({
 
               <div className="mb-1 mt-1 flex items-start border-b-[1px] border-border_gray px-4"></div>
               <div
-                className="flex cursor-pointer items-start px-4 pt-2 pb-2 hover:bg-gray"
+                className="flex cursor-pointer items-start px-4 pb-2 pt-2 hover:bg-gray"
                 onClick={() => {
                   handleLogout()
                   setLoggedInUser(undefined)

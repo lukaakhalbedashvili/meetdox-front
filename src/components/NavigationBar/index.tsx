@@ -40,7 +40,7 @@ const NavigationBar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 z-20  w-full bg-white ">
+      <nav className="fixed left-0 top-0 z-20  w-full bg-white ">
         <div className="mx-auto h-[50px] border-b-[1px] border-border_gray px-4 sm:px-6 lg:px-12">
           <div className="flex h-full w-full justify-between">
             <div className="flex items-center">
@@ -112,7 +112,7 @@ const NavigationBar = () => {
             <div
               className={`${
                 isShowSearchScreen ? 'translate-x-0' : 'translate-x-full'
-              } fixed top-0 right-0 bottom-0 left-0 z-50 flex h-[60px] border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden`}
+              } fixed bottom-0 left-0 right-0 top-0 z-50 flex h-[60px] border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden`}
             >
               <SearchScreen onClose={() => setIsShowSearchScreen(false)} />
             </div>
@@ -122,7 +122,7 @@ const NavigationBar = () => {
                   isShowNotificationScreen
                     ? 'translate-x-0'
                     : 'translate-x-full'
-                } fixed top-0 right-0 bottom-0 left-0 z-50 flex h-full w-full border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden `}
+                } fixed bottom-0 left-0 right-0 top-0 z-50 flex h-full w-full border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden `}
               >
                 <MobileNotifications
                   uid={loggedInUser.uid}
@@ -143,7 +143,7 @@ const NavigationBar = () => {
                       className={` h-6 w-6 text-text_gray transition-colors duration-300 `}
                     />
 
-                    <div className="relative right-1 -top-3 h-2 w-2 rounded-full bg-error"></div>
+                    <div className="relative -top-3 right-1 h-2 w-2 rounded-full bg-error"></div>
                   </button>
                 </div>
               )}

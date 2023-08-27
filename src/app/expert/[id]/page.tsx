@@ -52,7 +52,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
   return (
     <div className="flex h-full flex-col justify-between">
       {isLoading && (
-        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform ">
           <ClipLoader color="#36d7b7" />
         </div>
       )}

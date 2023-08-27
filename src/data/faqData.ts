@@ -26,7 +26,7 @@ const faqData = [
   },
   {
     question: `How can I withdraw the money I've earned?`,
-    answer: `When your earnings reach a minimum of $30, you can initiate a cash out request. Simply access the cash out section, fill in the required details, and submit the request. Our administrators will review and confirm the request within 3-5 working days. Once approved, the funds will be transferred to your chosen account. Please note that there might be a cash out fee associated with the chosen platform or withdrawal method, which varies depending on the specific method you use. We're committed to providing you a secure and convenient way to access your earned money.`,
+    answer: `When your earnings reach a minimum of $50, you can initiate a cash out request. Simply access the cash out section, fill in the required details, and submit the request. Our administrators will review and confirm the request within 3-5 working days. Once approved, the funds will be transferred to your chosen account. Please note that there might be a cash out fee associated with the chosen platform or withdrawal method, which varies depending on the specific method you use. We're committed to providing you a secure and convenient way to access your earned money.`,
   },
 ]
 export default faqData

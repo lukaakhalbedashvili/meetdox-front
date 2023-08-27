@@ -77,12 +77,12 @@ const Catalog = ({
               </div>
             </div>
 
-            <div className="pt-4 pb-6">
+            <div className="pb-6 pt-4">
               <hr className="border-border_gray" />
             </div>
 
             {isLoading ? (
-              <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform ">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform ">
                 <ClipLoader color="#36d7b7" />
               </div>
             ) : teachersData.length > 0 ? (

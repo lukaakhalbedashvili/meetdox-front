@@ -4,7 +4,7 @@ import Link from 'next/link'
 const Footer = () => {
   return (
     <footer className="w-full bg-footer_blue font-normal">
-      <div className="w-full py-4  px-6 sm:px-12">
+      <div className="w-full px-6  py-4 sm:px-12">
         <div className="flex flex-wrap justify-start">
           <div className="mb-8 w-full md:mb-0 md:w-1/3 lg:w-auto">
             <div className="flex items-center">
@@ -19,32 +19,74 @@ const Footer = () => {
               <span className="text-lg font-normal text-white">Meetdox</span>
             </div>
 
-            <p className="mt-2 w-1/2 text-sm text-footer_text sm:w-80">
+            <p className="mt-2 text-sm text-footer_text sm:w-80">
               Welcome to Meetdox, your ultimate online destination for
               connecting with experts across a wide range of fields!
             </p>
           </div>
 
-          <div className="mb-8 w-full sm:ml-20 md:mb-0 md:w-1/4 lg:w-auto">
-            <h3 className=" mb-4 text-base font-normal text-white">Contact</h3>
+          <div className="mb-8 mt-3 w-full sm:ml-20 md:mb-0 md:w-1/4 lg:w-auto">
+            <h3 className=" mb-4 text-base font-normal text-white">About Us</h3>
 
             <ul className="list-none text-sm text-footer_text">
               <li className="mt-3">
                 <Link
-                  href="/category1"
+                  href="/about"
                   className="transition duration-300 hover:text-white"
                 >
-                  +995 595 20 62 09
+                  About
                 </Link>
               </li>
 
               <li className="mt-3">
                 <Link
-                  href="/category2"
+                  href="/faq"
                   className="transition duration-300 hover:text-white"
                 >
-                  admin@meetdox.com
+                  FAQ
                 </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="mb-8 mt-3 w-full sm:ml-20 md:mb-0 md:w-1/4 lg:w-auto">
+            <h3 className=" mb-4 text-base font-normal text-white">
+              Documents
+            </h3>
+
+            <ul className="list-none text-sm text-footer_text">
+              <li className="mt-3">
+                <Link
+                  href="/terms-and-conditions"
+                  className="transition duration-300 hover:text-white"
+                >
+                  Terms and conditions
+                </Link>
+              </li>
+
+              <li className="mt-3">
+                <Link
+                  href="/privacy-policy"
+                  className="transition duration-300 hover:text-white"
+                >
+                  Privacy policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="mb-8 mt-3 w-full sm:ml-20 md:mb-0 md:w-1/4 lg:w-auto">
+            <h3 className=" mb-4 text-base font-normal text-white">Contact</h3>
+
+            <ul className="list-none text-sm text-footer_text">
+              <li className="mt-3">
+                <div className="transition duration-300 hover:text-white">
+                  +995 595 20 62 09
+                </div>
+              </li>
+
+              <li className="mt-3">
+                <div className="transition duration-300 hover:text-white">
+                  admin@meetdox.com
+                </div>
               </li>
             </ul>
           </div>
@@ -53,7 +95,7 @@ const Footer = () => {
         <div className="mt-10 border-t border-footer_text pt-4 sm:items-center md:flex md:justify-between">
           <div>
             <p className="text-sm text-footer_text">
-              All rights reserved &copy; 2023 My Website
+              All rights reserved &copy; 2023 LLC MEETDOX
             </p>
           </div>
 

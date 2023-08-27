@@ -11,7 +11,7 @@ const SearchScreen: FC<ResetPasswordStageProps> = ({ onClose }) => {
     <div>
       <div className="flex items-center justify-start">
         <IoIosArrowForward
-          className="ml-3 mt-3 mr-2 h-6 w-6 cursor-pointer"
+          className="ml-3 mr-2 mt-3 h-6 w-6 cursor-pointer"
           onClick={onClose}
         />
         <div className="mt-3">

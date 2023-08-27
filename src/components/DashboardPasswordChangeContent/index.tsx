@@ -23,7 +23,7 @@ const DashboardPasswordChangeContent = () => {
             <div className="form-group relative mb-12 h-10 flex-row sm:mb-8 sm:flex">
               <label
                 htmlFor="current-password"
-                className="label mt-2 mr-8 w-1/3"
+                className="label mr-8 mt-2 w-1/3"
               >
                 Current Password
               </label>
@@ -65,7 +65,7 @@ const DashboardPasswordChangeContent = () => {
             <div className="form-group relative h-10 flex-row sm:flex">
               <label
                 htmlFor="confirm-password"
-                className="label mt-2 mr-8 w-1/3"
+                className="label mr-8 mt-2 w-1/3"
               >
                 Confirm Password
               </label>

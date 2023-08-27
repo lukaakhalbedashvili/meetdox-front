@@ -52,7 +52,7 @@ const RateTeacherPopup: FC<RateTeacherPopupProps> = ({ onClose, meetInfo }) => {
             </button>
           ))}
         </div>
-        <div className="mt-7 mb-8 flex items-center justify-center">
+        <div className="mb-8 mt-7 flex items-center justify-center">
           <button
             className={`rounded-xl ${
               comment === '' || rating === 0 ? 'bg-text_gray' : 'bg-sky'

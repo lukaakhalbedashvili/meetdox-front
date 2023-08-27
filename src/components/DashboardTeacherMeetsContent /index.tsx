@@ -30,7 +30,7 @@ const DashboardTeacherMeetsContent = () => {
                 return (
                   <div
                     key={meeting.meetId}
-                    className="mt-4 mb-4 rounded-md bg-sky bg-opacity-20 py-4 px-4 lg:px-8"
+                    className="mb-4 mt-4 rounded-md bg-sky bg-opacity-20 px-4 py-4 lg:px-8"
                   >
                     <div className="flex flex-col sm:flex-row sm:space-x-4">
                       <div className="mb-2 flex w-full justify-center overflow-hidden rounded-full sm:h-16 sm:w-16">
@@ -95,7 +95,7 @@ const DashboardTeacherMeetsContent = () => {
                         </div>
                       </div>
 
-                      <div className="mb-2 mt-2 flex-col rounded-xl bg-green_label bg-opacity-20 p-3 sm:mt-0 sm:mb-0 sm:ml-2 sm:flex sm:w-1/3">
+                      <div className="mb-2 mt-2 flex-col rounded-xl bg-green_label bg-opacity-20 p-3 sm:mb-0 sm:ml-2 sm:mt-0 sm:flex sm:w-1/3">
                         <p className="text-xs font-medium text-green_label">
                           {meeting.comment}
                         </p>

@@ -39,14 +39,14 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
           {tags.map((tag, i) => (
             <p
               key={`${tag}-${i}`}
-              className="mr-1 whitespace-nowrap rounded bg-info_notification_bg pt-1 pb-1 pl-3 pr-3 text-xs text-info_icon_blue"
+              className="mr-1 whitespace-nowrap rounded bg-info_notification_bg pb-1 pl-3 pr-3 pt-1 text-xs text-info_icon_blue"
             >
               {tag}
             </p>
           ))}
 
           {tags.length === 0 && (
-            <p className="mr-1 rounded bg-info_notification_bg pt-1 pb-1 pl-3 pr-3 text-center text-xs text-error">
+            <p className="mr-1 rounded bg-info_notification_bg pb-1 pl-3 pr-3 pt-1 text-center text-xs text-error">
               No Skills Provided
             </p>
           )}

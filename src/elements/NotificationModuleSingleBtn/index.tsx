@@ -46,7 +46,7 @@ const NotificationModuleSingleBtn: FC<NotificationModuleSingleBtnProps> = ({
     >
       <h3 className="text-sm font-medium">{title}</h3>
       <div className="flex items-center justify-between">
-        <p className="mb-5 line-clamp-3 w-80 text-sm text-text_gray">{text}</p>
+        <p className="mb-5 w-80 text-sm text-text_gray line-clamp-3">{text}</p>
       </div>
       <div className="absolute bottom-1 flex items-center justify-between">
         <p className="mt-[2px] text-xs text-lite">{getTimeAgo(msTime)}</p>

@@ -56,7 +56,7 @@ const TeacherPublicPreview: FC<TeacherPublicPreviewProps> = ({
           {name} {lastName}
         </p>
 
-        <p className="line-clamp-2 h-10 text-sm text-icon_gray">{title}</p>
+        <p className="h-10 text-sm text-icon_gray line-clamp-2">{title}</p>
 
         <div className="mt-2 flex items-center justify-between">
           <div className="flex items-center">

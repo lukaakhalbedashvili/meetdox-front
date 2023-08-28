@@ -6,13 +6,20 @@ import { days, monthNames } from '@/utils/consts/consts'
 import { meetDurationsObject } from '@/data/teachersDummyData'
 import { useSendScheduleMeet } from '@/reactQuery/useSendScheduleMeet'
 import { useZustandStore } from '@/zustand'
+import { useGetTeacherUnavailableTimeSlots } from '@/reactQuery/teacherQuaries/getTeacherUnavailableTimeSlots'
 
 export interface TimeRange {
   value: number
   isChosen: boolean
 }
 
-const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
+const useScheduleMeetPopup = ({
+  pricePerHour,
+  teacherUid,
+}: {
+  pricePerHour: number
+  teacherUid: string
+}) => {
   const { setAlert } = useZustandStore()
 
   const router = useRouter()
@@ -25,6 +32,7 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
 
   const [selectedTimeOffset, setSelectedTimeOffset] =
     useState('(UTC-01:00) Azores')
+
   useEffect(() => {
     setSelectedTimeOffset(
       timeZones.find(
@@ -33,20 +41,26 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     )
   }, [])
 
-  useEffect(() => {
-    setMeetDate(getRemainingTimeSlots(selectedTimeOffset))
-  }, [selectedTimeOffset])
-
   const offset = timeZones.find((item) => item.text === selectedTimeOffset)
     ?.offset!
+
+  const unavailableTimeSlots = useGetTeacherUnavailableTimeSlots(
+    teacherUid,
+    offset
+  )
+
+  useEffect(() => {
+    setMeetDate(getRemainingTimeSlots(selectedTimeOffset))
+    offset && unavailableTimeSlots.refetch()
+  }, [selectedTimeOffset, offset])
 
   const [meetTimeRange, setMeetTimeRange] = useState<TimeRange[]>()
 
   useEffect(() => {
-    if (!meetDate) return
+    if (!meetDate || !unavailableTimeSlots.data) return
 
-    setMeetTimeRange(get24Hours(meetDate))
-  }, [meetDate, selectedTimeOffset])
+    setMeetTimeRange(get24Hours(meetDate, unavailableTimeSlots.data))
+  }, [meetDate, unavailableTimeSlots.data])
 
   const maxDate = new Date()
 
@@ -93,6 +107,7 @@ const useScheduleMeetPopup = ({ pricePerHour }: { pricePerHour: number }) => {
     setDescription,
     setAlert,
     isPending,
+    unavailableTimeSlots,
   }
 }
 

@@ -54,7 +54,8 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
     setDescription,
     setAlert,
     isPending,
-  } = useScheduleMeetPopup({ pricePerHour })
+    unavailableTimeSlots,
+  } = useScheduleMeetPopup({ pricePerHour, teacherUid })
 
   return (
     <>
@@ -128,7 +129,7 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
               {meetDayInWords}, {meetDay} {meetMonth}
             </h2>
 
-            {meetTimeRange && (
+            {meetTimeRange && unavailableTimeSlots.data && (
               <ScheduleMeetTimeSlots
                 meetTimeRange={meetTimeRange}
                 setMeetTimeRange={setMeetTimeRange}

@@ -148,12 +148,12 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
 
         {userImage && (
           <div className="relative mt-4 h-fit w-full cursor-pointer rounded-full">
-            <div className="group relative h-40 w-full max-w-[300px] overflow-hidden">
+            <div className="group relative h-40 w-40 max-w-[200px] overflow-hidden">
               <Image
                 src={userImage}
                 fill
                 alt="your profile image"
-                className="rounded-md border-2 border-sky"
+                className="rounded-md border-2 border-sky object-cover"
               />
 
               {!isUploadImageModalOpen && (

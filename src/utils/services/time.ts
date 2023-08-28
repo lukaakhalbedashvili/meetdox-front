@@ -1,4 +1,5 @@
 import { timeZones } from '@/data/timeZones'
+import { UnavailableTimeSlots } from '../api/fetchTeacherUnavailableTimeSlots'
 
 const getTimeAgo = (timeMs: number) => {
   const now = Date.now()
@@ -34,24 +35,42 @@ const getRemainingTimeSlots = (selectedTimeOffset: string) => {
   return daySelected
 }
 
-const get24Hours = (daySelected: Date) => {
+const get24Hours = (
+  daySelected: Date,
+  unavailableTimeSlots: UnavailableTimeSlots[]
+) => {
   const TimeRange = []
+
+  const myCurrentTime = new Date()
 
   const month = daySelected.getMonth() + 1
   const day = daySelected.getDate()
+  const year = daySelected.getFullYear()
+
   const selectedTime = [month, day].join('/')
 
-  const monthNow = daySelected.getMonth() + 1
-  const dayNow = daySelected.getDate()
-  const nowTime = [monthNow, dayNow].join('/')
+  const nowTimeBackendFormat = [day, month, year].join('-')
 
-  const isITToday = selectedTime === nowTime
+  const isITToday =
+    selectedTime ===
+    [myCurrentTime.getMonth() + 1, myCurrentTime.getDate()].join('/')
 
   const startTime = isITToday ? daySelected.getHours() + 2 : 1
 
+  const unavailableTimeSlotsToday = unavailableTimeSlots
+    .filter((item) => item.date === nowTimeBackendFormat)
+    .map((item) => item.time)
+
   for (let i = startTime; i <= 24; i++) {
-    TimeRange.push({ value: i, isChosen: i === startTime ? true : false })
+    let isUnavailable = unavailableTimeSlotsToday.includes(i)
+
+    !isUnavailable &&
+      TimeRange.push({
+        value: i,
+        isChosen: i === startTime,
+      })
   }
+
   return TimeRange
 }
 

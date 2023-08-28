@@ -5,4 +5,5 @@ export enum QueryKey {
   GET_TEACHERS_LIST = 'getTeachersList',
   GET_TEACHER_PUBLIC_DATA = 'getTeacherPublicData',
   GET_LANDING_TEACHER_LIST = 'getLandingTeacherList',
+  GET_TEACHER_AVAILABLE_TIME_SLOTS = 'getTeacherAvailableTimeSlots',
 }

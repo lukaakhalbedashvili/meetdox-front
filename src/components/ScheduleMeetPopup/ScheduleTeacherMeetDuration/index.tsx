@@ -27,22 +27,19 @@ const ScheduleTeacherMeetDuration: FC<ScheduleTeacherMeetDurationProps> = ({
           return (
             <div
               key={item.value}
-              className="mr-4 flex items-center whitespace-nowrap lg:mr-8"
+              className="mr-4 flex cursor-pointer items-center whitespace-nowrap lg:mr-8"
+              onClick={() =>
+                setMeetDuration(
+                  meetDurations.map((item2) => {
+                    return {
+                      ...item2,
+                      isChecked: item2.value === item.value,
+                    }
+                  })
+                )
+              }
             >
-              <Checkbox
-                isChecked={item.isChecked}
-                id={item.value}
-                onChange={(value) =>
-                  setMeetDuration(
-                    meetDurations.map((item) => {
-                      return {
-                        ...item,
-                        isChecked: item.value === value,
-                      }
-                    })
-                  )
-                }
-              />
+              <Checkbox isChecked={item.isChecked} id={item.value} />
 
               <p className="ml-3 lg:text-sm">{item.text}</p>
             </div>

@@ -51,7 +51,7 @@ const ScheduleTeacherPersonalInfo: FC<ScheduleTeacherPersonalInfoProps> = ({
         <div className="mt-6 flex items-center">
           <AiFillDollarCircle className="h-6 w-6 fill-text_gray" />
 
-          <p className="ml-2 lg:text-sm">${totalPrice}.0</p>
+          <p className="ml-2 lg:text-sm">${totalPrice}</p>
         </div>
       </div>
     </div>

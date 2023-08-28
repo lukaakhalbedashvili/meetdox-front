@@ -59,13 +59,13 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
 
   return (
     <>
-      {isPending && (
+      {isPending && !meetTimeRange && (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
           <ClipLoader color="#36d7b7" />
         </div>
       )}
 
-      {!isPending && (
+      {!isPending && meetTimeRange && (
         <div className="h-full overflow-scroll bg-white pt-4 lg:relative lg:flex lg:h-[700px] lg:w-fit lg:overflow-hidden lg:rounded-md lg:p-10">
           <IoIosClose
             className="absolute right-2 top-2 h-10 w-10 cursor-pointer fill-black lg:right-0 lg:top-0 lg:h-8 lg:w-8"

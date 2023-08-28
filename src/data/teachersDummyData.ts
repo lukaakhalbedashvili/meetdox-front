@@ -206,13 +206,13 @@ export const meetDurationsObject = [
     isChecked: true,
   },
   {
-    value: 60,
-    text: '1h',
+    value: 45,
+    text: '45m',
     isChecked: false,
   },
   {
-    value: 120,
-    text: '2h',
+    value: 60,
+    text: '1h',
     isChecked: false,
   },
 ]

@@ -27,3 +27,16 @@ export interface FormValues {
   about: AboutTeacherForm
   perHour: string | number
 }
+
+export interface BecomeExpertForm {
+  // personalDetails: TeacherPersonalInfoForm
+  name: string
+  lastName: string
+  birthMonth: string
+  birthYear: string | number
+  image?: string | null
+  // teacherEducation: TeacherEducationInfoValidationForm[]
+  teacherEducation0?: TeacherEducationInfoValidationForm
+  teacherEducation1?: TeacherEducationInfoValidationForm
+  teacherEducation2?: TeacherEducationInfoValidationForm
+}

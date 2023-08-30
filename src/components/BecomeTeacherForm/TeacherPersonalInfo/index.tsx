@@ -1,56 +1,39 @@
 'use client'
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import React, { FC } from 'react'
+import { FormikProps } from 'formik'
 import Image from 'next/image'
 import Input from '@/elements/Input'
 import DropDownInput from '@/elements/DropDownInput'
 import { getAgeRange } from '@/utils/services/getTeacherAgeRange'
 import { months } from '@/data/teachersDummyData'
 import Button from '@/elements/Button'
-import { PersonalDetails } from '@/components/Catalog/catalog.interface'
 import { uploadImageToFirebase } from '@/utils/firebase/uploadImageToFirebase'
+import {
+  TeacherPersonalInfoForm,
+  TeacherPersonalInfoFormInputNames,
+} from './teacherPersonalInfo.interface'
 import useTeacherPersonalInfo from './useTeacherPersonalInfo'
-import { TeacherPersonalInfoFormInputNames } from './teacherPersonalInfo.interface'
 import PhotoEditor from '../../../elements/PhotoEditor'
 import PopupItemWrapper from '../../PopupItemWrapper'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../becomeTeacher.interface'
+import { placeholderBirthMonth, placeholderBirthYear } from '../data'
 
 interface TeacherPersonalInfoProps {
-  isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
-  setFormValues: Dispatch<SetStateAction<FormValues>>
-  defaultValues?: { data?: PersonalDetails; image?: string }
+  becomeExpertValidation: FormikProps<TeacherPersonalInfoForm>
 }
 
 const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
-  isFormSubmitted,
-  setErroredSections,
-  setFormValues,
-  defaultValues,
+  becomeExpertValidation,
 }) => {
   const {
-    teacherPersonalInfoValidation,
-    placeholderBirthMonth,
-    placeholderBirthYear,
-    isUploadImageModalOpen,
-    setIsUploadImageModalOpen,
-    userImage,
-    setUserImage,
-    handleUpload,
-    uploadedImage,
     fileInputRef,
+    setIsUploadImageModalOpen,
+    handleUpload,
+    isUploadImageModalOpen,
+    uploadedImage,
+    setUserImage,
     setUploadedImage,
-    isImageError,
     userId,
-    setImageFromFirebase,
-  } = useTeacherPersonalInfo(
-    isFormSubmitted,
-    setErroredSections,
-    setFormValues,
-    defaultValues
-  )
+  } = useTeacherPersonalInfo()
 
   return (
     <>
@@ -63,14 +46,14 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
               <Input
                 placeholder="First Name"
                 type="text"
-                onChange={teacherPersonalInfoValidation.handleChange}
+                onChange={becomeExpertValidation.handleChange}
                 name={TeacherPersonalInfoFormInputNames.NAME}
-                onBlurHandler={teacherPersonalInfoValidation.handleBlur}
+                onBlurHandler={becomeExpertValidation.handleBlur}
                 errorMessage={
-                  teacherPersonalInfoValidation.touched.name &&
-                  teacherPersonalInfoValidation.errors.name
+                  becomeExpertValidation.touched.name &&
+                  becomeExpertValidation.errors.name
                 }
-                value={teacherPersonalInfoValidation.values.name}
+                value={becomeExpertValidation.values.name}
               />
             </div>
 
@@ -78,14 +61,14 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
               <Input
                 placeholder="Last Name"
                 type="text"
-                onChange={teacherPersonalInfoValidation.handleChange}
+                onChange={becomeExpertValidation.handleChange}
                 name={TeacherPersonalInfoFormInputNames.LAST_NAME}
-                onBlurHandler={teacherPersonalInfoValidation.handleBlur}
+                onBlurHandler={becomeExpertValidation.handleBlur}
                 errorMessage={
-                  teacherPersonalInfoValidation.touched.lastName &&
-                  teacherPersonalInfoValidation.errors.lastName
+                  becomeExpertValidation.touched.lastName &&
+                  becomeExpertValidation.errors.lastName
                 }
-                value={teacherPersonalInfoValidation.values.lastName}
+                value={becomeExpertValidation.values.lastName}
               />
             </div>
           </div>
@@ -95,13 +78,13 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
               <DropDownInput
                 options={months}
                 name={TeacherPersonalInfoFormInputNames.BIRTH_MONTH}
-                onBlurHandler={teacherPersonalInfoValidation.handleBlur}
+                onBlurHandler={becomeExpertValidation.handleBlur}
                 errorMessage={
-                  teacherPersonalInfoValidation.touched.birthMonth &&
-                  teacherPersonalInfoValidation.errors.birthMonth
+                  becomeExpertValidation.touched.birthMonth &&
+                  becomeExpertValidation.errors.birthMonth
                 }
-                onChange={teacherPersonalInfoValidation.handleChange}
-                value={teacherPersonalInfoValidation.values.birthMonth}
+                onChange={becomeExpertValidation.handleChange}
+                value={becomeExpertValidation.values.birthMonth}
                 placeHolderValue={placeholderBirthMonth}
               />
             </div>
@@ -110,20 +93,20 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
               <DropDownInput
                 options={getAgeRange()}
                 name={TeacherPersonalInfoFormInputNames.BIRTH_YEAR}
-                onBlurHandler={teacherPersonalInfoValidation.handleBlur}
+                onBlurHandler={becomeExpertValidation.handleBlur}
                 errorMessage={
-                  teacherPersonalInfoValidation.touched.birthYear &&
-                  teacherPersonalInfoValidation.errors.birthYear
+                  becomeExpertValidation.touched.birthYear &&
+                  becomeExpertValidation.errors.birthYear
                 }
-                onChange={teacherPersonalInfoValidation.handleChange}
-                value={teacherPersonalInfoValidation.values.birthYear}
+                onChange={becomeExpertValidation.handleChange}
+                value={becomeExpertValidation.values.birthYear}
                 placeHolderValue={placeholderBirthYear}
               />
             </div>
           </div>
         </div>
 
-        {!userImage && (
+        {!becomeExpertValidation.values.image && (
           <div className="mt-3">
             <Button
               type="button"
@@ -138,19 +121,20 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
               </p>
             </Button>
 
-            {isImageError && (
-              <p className="w-fit bg-white px-1 text-sm text-error">
-                Photo is required
-              </p>
-            )}
+            {becomeExpertValidation.errors.image &&
+              becomeExpertValidation.submitCount > 0 && (
+                <p className="w-fit bg-white px-1 text-sm text-error">
+                  Photo is required
+                </p>
+              )}
           </div>
         )}
 
-        {userImage && (
+        {becomeExpertValidation.values.image && (
           <div className="relative mt-4 h-fit w-full cursor-pointer rounded-full">
             <div className="group relative h-40 w-40 max-w-[200px] overflow-hidden">
               <Image
-                src={userImage}
+                src={becomeExpertValidation.values.image}
                 fill
                 alt="your profile image"
                 className="rounded-md border-2 border-sky object-cover"
@@ -200,7 +184,10 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
                   userId,
                   imageToUpload: image.blob,
                   onSuccessHandler: (url) => {
-                    setImageFromFirebase(url)
+                    becomeExpertValidation.setFieldValue(
+                      TeacherPersonalInfoFormInputNames.IMAGE,
+                      url
+                    )
                   },
                 })
               setIsUploadImageModalOpen(false)

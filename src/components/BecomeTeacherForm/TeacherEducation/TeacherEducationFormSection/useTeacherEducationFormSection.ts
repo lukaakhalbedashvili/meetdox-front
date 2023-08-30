@@ -1,94 +1,22 @@
-import { useFormik } from 'formik'
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
-import * as Yup from 'yup'
+import { FormikProps } from 'formik'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import debounce from 'lodash.debounce'
 import { useGetCollegeList } from '@/reactQuery/becomeTeacherQueries/getCollegeList'
 import { search } from '@/utils/services/search'
 import { majors } from '@/data/majors'
-import { TeacherEducation as TeacherEduType } from '@/components/Catalog/catalog.interface'
-import {
-  TeacherEducationInfoValidationForm,
-  TeacherEducationInfoValidationFormInputNames,
-} from './teacherEducation.interface'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../../becomeTeacher.interface'
+import { TeacherEducationInfoValidationFormInputNames } from './teacherEducation.interface'
+import { BecomeExpertForm } from '../../becomeTeacher.interface'
+import { EducationValidationKeys } from '../../utils'
 
 const useTeacherEducation = (
-  isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
-  setFormValues: Dispatch<SetStateAction<FormValues>>,
-  formId: number,
-  defaultValue?: TeacherEduType
+  becomeExpertValidation: FormikProps<BecomeExpertForm>,
+  formKey: EducationValidationKeys
 ) => {
   const [collegeSearchResults, setCollegeSearchResults] = useState<string[]>()
   const [majorSearchResults, setMajorSearchResults] = useState<string[]>()
 
-  const placeholderStartDate = 'Start date'
-  const placeholderEndDate = 'End date'
-  const CurrentlyAttending = 'Currently Attending'
-
-  const validationSchema: Yup.ObjectSchema<TeacherEducationInfoValidationForm> =
-    Yup.object({
-      university: Yup.string().required('required'),
-      major: Yup.string().required('required'),
-      startDate: Yup.string()
-        .required('required')
-        .test('is it valid month', 'required', function (value) {
-          return value !== placeholderStartDate
-        }),
-      endDate: Yup.string()
-        .required('required')
-        .test('is it valid month', 'required', function (value) {
-          return value !== placeholderEndDate
-        }),
-
-      id: Yup.number().required('required'),
-    })
-
-  const teacherEducationInfoValidation =
-    useFormik<TeacherEducationInfoValidationForm>({
-      initialValues: {
-        id: 0,
-        university: '',
-        major: '',
-        startDate: placeholderStartDate,
-        endDate: placeholderEndDate,
-      },
-
-      validationSchema,
-
-      onSubmit: async (values) => {
-        setErroredSections((prevState) => ({
-          ...prevState,
-          education: false,
-        }))
-
-        setFormValues((state) => {
-          const returnOtherInCaseOf = state.teacherEducation.filter(
-            (item) => item.id !== formId
-          )
-          return {
-            ...state,
-            teacherEducation: [
-              ...returnOtherInCaseOf,
-              { ...values, id: formId },
-            ],
-          }
-        })
-      },
-    })
-
   const { data, refetch } = useGetCollegeList(
-    teacherEducationInfoValidation.values.university
+    becomeExpertValidation.values[formKey]?.university
   )
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,17 +35,24 @@ const useTeacherEducation = (
     []
   )
 
-  const onCollegeChange = (value: ChangeEvent<HTMLInputElement>) => {
-    teacherEducationInfoValidation.setFieldValue(
-      TeacherEducationInfoValidationFormInputNames.UNIVERSITY,
+  const onCollegeChange = (
+    value: ChangeEvent<HTMLInputElement>,
+    formKey: string
+  ) => {
+    becomeExpertValidation.setFieldValue(
+      `${formKey}.${TeacherEducationInfoValidationFormInputNames.UNIVERSITY}`,
       value.target.value
     )
+
     sendApiRequest(value.target.value)
   }
 
-  const onMajorChange = (value: ChangeEvent<HTMLInputElement>) => {
-    teacherEducationInfoValidation.setFieldValue(
-      TeacherEducationInfoValidationFormInputNames.MAJOR,
+  const onMajorChange = (
+    value: ChangeEvent<HTMLInputElement>,
+    formKey: string
+  ) => {
+    becomeExpertValidation.setFieldValue(
+      `${formKey}.${TeacherEducationInfoValidationFormInputNames.MAJOR}`,
       value.target.value
     )
     handleMajorFilter(value.target.value)
@@ -127,32 +62,11 @@ const useTeacherEducation = (
     data && setCollegeSearchResults(data)
   }, [data])
 
-  useEffect(() => {
-    isFormSubmitted && teacherEducationInfoValidation.submitForm()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFormSubmitted])
-
-  useEffect(() => {
-    defaultValue &&
-      teacherEducationInfoValidation.setValues({
-        endDate: defaultValue.endDate,
-        id: defaultValue.id,
-        major: defaultValue.major,
-        startDate: defaultValue.startDate,
-        university: defaultValue.university,
-      })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultValue])
-
   return {
-    teacherEducationInfoValidation,
     onCollegeChange,
     collegeSearchResults,
     onMajorChange,
     majorSearchResults,
-    placeholderStartDate,
-    placeholderEndDate,
-    CurrentlyAttending,
   }
 }
 

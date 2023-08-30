@@ -1,43 +1,26 @@
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import React, { FC } from 'react'
+import { FormikProps } from 'formik'
 import DropDownInput from '@/elements/DropDownInput'
 import { getNumberArray } from '@/utils/services/getNumberArray'
 import TextArea from '@/elements/Textarea'
 import Input from '@/elements/Input'
-import { TeacherExperience as TeacherExpType } from '@/components/Catalog/catalog.interface'
 import useTeacherExperience from './useTeacherExperienceFormSection'
 import { TeacherExperienceInfoValidationFormInputNames } from './teacherExperience.interface'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../../becomeTeacher.interface'
+import { BecomeExpertForm } from '../../becomeTeacher.interface'
 
 interface TeacherExperienceFormSectioProps {
-  isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
-  setFormValues: Dispatch<SetStateAction<FormValues>>
-  formId: number
-  defaultValue?: TeacherExpType
+  becomeExpertValidation: FormikProps<BecomeExpertForm>
 }
 
 const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
-  isFormSubmitted,
-  setErroredSections,
-  formId,
-  setFormValues,
-  defaultValue,
+  becomeExpertValidation,
 }) => {
-  const {
-    teacherExperienceValidation,
-    placeholderStartDate,
-    placeholderEndDate,
-    CurrentlyJob,
-  } = useTeacherExperience(
-    isFormSubmitted,
-    setErroredSections,
-    formId,
-    setFormValues,
-    defaultValue
-  )
+  // const {
+  //   teacherExperienceValidation,
+  //   placeholderStartDate,
+  //   placeholderEndDate,
+  //   CurrentlyJob,
+  // } = useTeacherExperience()
 
   return (
     <div className="flex flex-col">

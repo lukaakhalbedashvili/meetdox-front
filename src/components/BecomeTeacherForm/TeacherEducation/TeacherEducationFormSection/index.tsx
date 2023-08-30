@@ -1,66 +1,61 @@
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import React, { FC } from 'react'
+import { FormikProps } from 'formik'
 import DropDownInput from '@/elements/DropDownInput'
 import TypeAheadInput from '@/elements/TypeAheadInput'
 import { getNumberArray } from '@/utils/services/getNumberArray'
-import { TeacherEducation as TeacherEduType } from '@/components/Catalog/catalog.interface'
 import useTeacherEducation from './useTeacherEducationFormSection'
-import { TeacherEducationInfoValidationFormInputNames } from './teacherEducation.interface'
 import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../../becomeTeacher.interface'
+  TeacherEducationInfoValidationForm,
+  TeacherEducationInfoValidationFormInputNames,
+} from './teacherEducation.interface'
+import { BecomeExpertForm } from '../../becomeTeacher.interface'
+import { EducationValidationKeys } from '../../utils'
+import { placeholderEndDate, placeholderStartDate } from '../../data'
 
 interface TeacherEducationFormSectionProps {
-  isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
-  setFormValues: Dispatch<SetStateAction<FormValues>>
-  formId: number
-  defaultValue?: TeacherEduType
+  becomeExpertValidation: FormikProps<BecomeExpertForm>
+  formKey: EducationValidationKeys
 }
 
 const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
-  isFormSubmitted,
-  setErroredSections,
-  setFormValues,
-  formId,
-  defaultValue,
+  becomeExpertValidation,
+  formKey,
 }) => {
   const {
-    teacherEducationInfoValidation,
+    // teacherEducationInfoValidation,
     collegeSearchResults,
     onCollegeChange,
     onMajorChange,
     majorSearchResults,
-    placeholderStartDate,
-    placeholderEndDate,
-    CurrentlyAttending,
-  } = useTeacherEducation(
-    isFormSubmitted,
-    setErroredSections,
-    setFormValues,
-    formId,
-    defaultValue
-  )
+  } = useTeacherEducation(becomeExpertValidation, formKey)
+
+  //every key in Formik validationSchema has error object as a string.
+  //  even if it's object, like in this case
+
+  const errorObject: TeacherEducationInfoValidationForm = becomeExpertValidation
+    .errors[formKey] as unknown as TeacherEducationInfoValidationForm
+
+  const touchedObject: TeacherEducationInfoValidationForm =
+    becomeExpertValidation.touched[
+      formKey
+    ] as unknown as TeacherEducationInfoValidationForm
 
   return (
     <div className="flex flex-col">
       <div className="mt-2">
         <TypeAheadInput
-          onBlurHandler={teacherEducationInfoValidation.handleBlur}
-          value={teacherEducationInfoValidation.values.university}
-          onChange={onCollegeChange}
-          name={TeacherEducationInfoValidationFormInputNames.UNIVERSITY}
+          onBlurHandler={becomeExpertValidation.handleBlur}
+          value={becomeExpertValidation.values[formKey]?.university}
+          onChange={(e) => onCollegeChange(e, formKey)}
+          name={`${formKey}.${TeacherEducationInfoValidationFormInputNames.UNIVERSITY}`}
           results={collegeSearchResults}
           onSelect={(value) =>
-            teacherEducationInfoValidation.setFieldValue(
+            becomeExpertValidation.setFieldValue(
               TeacherEducationInfoValidationFormInputNames.UNIVERSITY,
               value
             )
           }
-          errorMessage={
-            teacherEducationInfoValidation.touched.university &&
-            teacherEducationInfoValidation.errors.university
-          }
+          errorMessage={touchedObject?.university && errorObject?.university}
           placeHolder={TeacherEducationInfoValidationFormInputNames.UNIVERSITY}
         />
       </div>
@@ -68,50 +63,49 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
       <div className=" mt-2">
         <TypeAheadInput
           placeHolder={TeacherEducationInfoValidationFormInputNames.MAJOR}
-          onBlurHandler={teacherEducationInfoValidation.handleBlur}
-          value={teacherEducationInfoValidation.values.major}
-          onChange={onMajorChange}
-          name={TeacherEducationInfoValidationFormInputNames.MAJOR}
+          onBlurHandler={becomeExpertValidation.handleBlur}
+          value={becomeExpertValidation.values[formKey]?.major}
+          onChange={(e) => onMajorChange(e, formKey)}
+          name={`${formKey}.${TeacherEducationInfoValidationFormInputNames.MAJOR}`}
           results={majorSearchResults}
           onSelect={(value) =>
-            teacherEducationInfoValidation.setFieldValue(
+            becomeExpertValidation.setFieldValue(
               TeacherEducationInfoValidationFormInputNames.MAJOR,
               value
             )
           }
-          errorMessage={
-            teacherEducationInfoValidation.touched.major &&
-            teacherEducationInfoValidation.errors.major
-          }
+          errorMessage={touchedObject?.major && errorObject?.major}
         />
       </div>
 
       <div className="mt-2 h-10">
         <DropDownInput
           options={getNumberArray({})}
-          name={TeacherEducationInfoValidationFormInputNames.START_DATE}
-          onBlurHandler={teacherEducationInfoValidation.handleBlur}
-          errorMessage={
-            teacherEducationInfoValidation.touched.startDate &&
-            teacherEducationInfoValidation.errors.startDate
+          name={`${formKey}.${TeacherEducationInfoValidationFormInputNames.START_DATE}`}
+          onBlurHandler={becomeExpertValidation.handleBlur}
+          errorMessage={touchedObject?.startDate && errorObject?.startDate}
+          onChange={(e) =>
+            becomeExpertValidation.setFieldValue(
+              e.target.value,
+              `${formKey}.${TeacherEducationInfoValidationFormInputNames.START_DATE}`
+            )
           }
-          onChange={teacherEducationInfoValidation.handleChange}
-          value={teacherEducationInfoValidation.values.startDate}
+          value={becomeExpertValidation.values[formKey]?.startDate}
           placeHolderValue={placeholderStartDate}
         />
       </div>
 
       <div className="mt-2 h-10">
         <DropDownInput
-          options={[...getNumberArray({}), CurrentlyAttending]}
-          name={TeacherEducationInfoValidationFormInputNames.END_DATE}
-          onBlurHandler={teacherEducationInfoValidation.handleBlur}
-          errorMessage={
-            teacherEducationInfoValidation.touched.endDate &&
-            teacherEducationInfoValidation.errors.endDate
-          }
-          onChange={teacherEducationInfoValidation.handleChange}
-          value={teacherEducationInfoValidation.values.endDate}
+          options={[
+            ...getNumberArray({}),
+            // CurrentlyAttending
+          ]}
+          name={`${formKey}.${TeacherEducationInfoValidationFormInputNames.END_DATE}`}
+          onBlurHandler={becomeExpertValidation.handleBlur}
+          errorMessage={touchedObject?.endDate && errorObject?.endDate}
+          onChange={becomeExpertValidation.handleChange}
+          value={becomeExpertValidation.values[formKey]?.endDate}
           placeHolderValue={placeholderEndDate}
         />
       </div>

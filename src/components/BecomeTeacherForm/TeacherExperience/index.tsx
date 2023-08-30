@@ -1,27 +1,18 @@
 'use client'
-import { Dispatch, FC, SetStateAction } from 'react'
+import { FC } from 'react'
 import { IoIosClose } from 'react-icons/io'
+import { FormikProps } from 'formik'
 import Button from '@/elements/Button'
-import { TeacherExperience as TeacherExpType } from '@/components/Catalog/catalog.interface'
 import TeacherExperienceFormSection from './TeacherExperienceFormSection'
 import useTeacherExperience from './useTeacherExperience'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../becomeTeacher.interface'
+import { BecomeExpertForm } from '../becomeTeacher.interface'
 
 interface TeacherExperienceProps {
-  isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
-  setFormValues: Dispatch<SetStateAction<FormValues>>
-  defaultValues?: TeacherExpType[]
+  becomeExpertValidation: FormikProps<BecomeExpertForm>
 }
 
 const TeacherExperience: FC<TeacherExperienceProps> = ({
-  isFormSubmitted,
-  setErroredSections,
-  setFormValues,
-  defaultValues,
+  becomeExpertValidation,
 }) => {
   const { experiences, setExperiences } = useTeacherExperience()
 
@@ -49,11 +40,7 @@ const TeacherExperience: FC<TeacherExperienceProps> = ({
             </div>
 
             <TeacherExperienceFormSection
-              formId={item}
-              setFormValues={setFormValues}
-              isFormSubmitted={isFormSubmitted}
-              setErroredSections={setErroredSections}
-              defaultValue={defaultValues?.find((item2) => item2.id === item)}
+              becomeExpertValidation={becomeExpertValidation}
             />
           </div>
         )

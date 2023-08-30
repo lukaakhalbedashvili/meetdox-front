@@ -5,10 +5,10 @@ interface DropDownInputProps {
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void
   name: string
   onBlurHandler?: (e: React.FocusEvent<HTMLSelectElement>) => void
-  errorMessage?: string | undefined | false
-  value: string | number
+  errorMessage?: string | undefined | false | number
+  value?: string | number
   options: (string | number)[]
-  placeHolderValue?: string
+  placeHolderValue?: string | number
 }
 
 const DropDownInput: FC<DropDownInputProps> = ({

@@ -29,14 +29,22 @@ export interface FormValues {
 }
 
 export interface BecomeExpertForm {
-  // personalDetails: TeacherPersonalInfoForm
   name: string
   lastName: string
   birthMonth: string
   birthYear: string | number
   image?: string | null
-  // teacherEducation: TeacherEducationInfoValidationForm[]
   teacherEducation0?: TeacherEducationInfoValidationForm
   teacherEducation1?: TeacherEducationInfoValidationForm
   teacherEducation2?: TeacherEducationInfoValidationForm
+  teacherEducation3?: TeacherEducationInfoValidationForm
+  teacherEducation4?: TeacherEducationInfoValidationForm
+  teacherEducation5?: TeacherEducationInfoValidationForm
+  // experiences
+  teacherExperience0?: TeacherExperienceForm
+  teacherExperience1?: TeacherExperienceForm
+  teacherExperience2?: TeacherExperienceForm
+  teacherExperience3?: TeacherExperienceForm
+  teacherExperience4?: TeacherExperienceForm
+  teacherExperience5?: TeacherExperienceForm
 }

@@ -20,6 +20,9 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
     EducationValidationKeys.TEACHER_EDUCATION0,
     EducationValidationKeys.TEACHER_EDUCATION1,
     EducationValidationKeys.TEACHER_EDUCATION2,
+    EducationValidationKeys.TEACHER_EDUCATION3,
+    EducationValidationKeys.TEACHER_EDUCATION4,
+    EducationValidationKeys.TEACHER_EDUCATION5,
   ]
 
   const [activeFormCount, setActiveFormCount] = useState<number>(0)
@@ -60,7 +63,7 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
         type="button"
         customTailwindClasses="bg-sky border-sky text-white mt-3"
         onClickHandler={() => {
-          if (activeFormCount > 2) return
+          if (activeFormCount > educations.length - 1) return
 
           becomeExpertValidation.setFieldValue(educations[activeFormCount], {
             id: '',
@@ -71,7 +74,7 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
           })
           setActiveFormCount(activeFormCount + 1)
         }}
-        isDisabled={activeFormCount > 2}
+        isDisabled={activeFormCount > educations.length - 1}
       >
         <p className="flex h-[36px] w-32 items-center justify-center text-sm">
           {becomeExpertValidation.values.teacherEducation0?.startDate

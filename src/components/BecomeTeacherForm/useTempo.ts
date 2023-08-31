@@ -4,7 +4,10 @@ import { useEffect, useState } from 'react'
 import { useZustandStore } from '@/zustand'
 import { useGetTeacherPublicData } from '@/reactQuery/teacherQuaries/getTeacherPublicData'
 import { BecomeExpertForm } from './becomeTeacher.interface'
-import { generateEducationValidationObjects } from './utils'
+import {
+  generateEducationValidationObjects,
+  generateExperienceValidationObjects,
+} from './utils'
 import { placeholderBirthMonth, placeholderBirthYear } from './data'
 import { TeacherData } from '../Catalog/catalog.interface'
 
@@ -39,6 +42,7 @@ const useTempo = () => {
     image: Yup.string().required('required'),
 
     ...generateEducationValidationObjects(),
+    ...generateExperienceValidationObjects(),
   })
 
   const becomeExpertValidation: FormikProps<BecomeExpertForm> =
@@ -53,9 +57,20 @@ const useTempo = () => {
         lastName: expertDataFromBack?.personalDetails.lastName || '',
         name: expertDataFromBack?.personalDetails.name || '',
         image: expertDataFromBack?.image || null,
+        // education
         teacherEducation0: undefined,
         teacherEducation1: undefined,
         teacherEducation2: undefined,
+        teacherEducation3: undefined,
+        teacherEducation4: undefined,
+        teacherEducation5: undefined,
+        // experiences
+        teacherExperience0: undefined,
+        teacherExperience1: undefined,
+        teacherExperience2: undefined,
+        teacherExperience3: undefined,
+        teacherExperience4: undefined,
+        teacherExperience5: undefined,
       },
 
       validationSchema,

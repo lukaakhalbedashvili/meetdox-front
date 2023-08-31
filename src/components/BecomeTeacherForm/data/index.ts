@@ -6,4 +6,6 @@ export const placeholderStartDate = 'Start date'
 
 export const placeholderEndDate = 'End date'
 
-export const CurrentlyAttending = 'Currently Attending'
+export const currentlyAttending = 'Currently Attending'
+
+export const currentlyJob = 'Currently Job'

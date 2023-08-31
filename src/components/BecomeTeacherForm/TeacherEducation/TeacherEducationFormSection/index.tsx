@@ -10,7 +10,11 @@ import {
 } from './teacherEducation.interface'
 import { BecomeExpertForm } from '../../becomeTeacher.interface'
 import { EducationValidationKeys } from '../../utils'
-import { placeholderEndDate, placeholderStartDate } from '../../data'
+import {
+  currentlyAttending,
+  placeholderEndDate,
+  placeholderStartDate,
+} from '../../data'
 
 interface TeacherEducationFormSectionProps {
   becomeExpertValidation: FormikProps<BecomeExpertForm>
@@ -22,7 +26,6 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
   formKey,
 }) => {
   const {
-    // teacherEducationInfoValidation,
     collegeSearchResults,
     onCollegeChange,
     onMajorChange,
@@ -97,10 +100,7 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
 
       <div className="mt-2 h-10">
         <DropDownInput
-          options={[
-            ...getNumberArray({}),
-            // CurrentlyAttending
-          ]}
+          options={[...getNumberArray({}), currentlyAttending]}
           name={`${formKey}.${TeacherEducationInfoValidationFormInputNames.END_DATE}`}
           onBlurHandler={becomeExpertValidation.handleBlur}
           errorMessage={touchedObject?.endDate && errorObject?.endDate}

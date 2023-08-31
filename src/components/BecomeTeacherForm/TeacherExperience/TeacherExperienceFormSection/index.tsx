@@ -4,23 +4,34 @@ import DropDownInput from '@/elements/DropDownInput'
 import { getNumberArray } from '@/utils/services/getNumberArray'
 import TextArea from '@/elements/Textarea'
 import Input from '@/elements/Input'
-import useTeacherExperience from './useTeacherExperienceFormSection'
-import { TeacherExperienceInfoValidationFormInputNames } from './teacherExperience.interface'
+import {
+  TeacherExperienceForm,
+  TeacherExperienceInfoValidationFormInputNames,
+} from './teacherExperience.interface'
 import { BecomeExpertForm } from '../../becomeTeacher.interface'
+import { ExperienceValidationKeys } from '../../utils'
+import {
+  currentlyJob,
+  placeholderEndDate,
+  placeholderStartDate,
+} from '../../data'
 
-interface TeacherExperienceFormSectioProps {
+interface TeacherExperienceFormSectionProps {
   becomeExpertValidation: FormikProps<BecomeExpertForm>
+  formKey: ExperienceValidationKeys
 }
 
-const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
+const TeacherExperienceFormSection: FC<TeacherExperienceFormSectionProps> = ({
   becomeExpertValidation,
+  formKey,
 }) => {
-  // const {
-  //   teacherExperienceValidation,
-  //   placeholderStartDate,
-  //   placeholderEndDate,
-  //   CurrentlyJob,
-  // } = useTeacherExperience()
+  const errorObject: TeacherExperienceForm = becomeExpertValidation.errors[
+    formKey
+  ] as unknown as TeacherExperienceForm
+
+  const touchedObject: TeacherExperienceForm = becomeExpertValidation.touched[
+    formKey
+  ] as unknown as TeacherExperienceForm
 
   return (
     <div className="flex flex-col">
@@ -28,14 +39,16 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
         <Input
           placeholder={TeacherExperienceInfoValidationFormInputNames.COMPANY}
           type="text"
-          value={teacherExperienceValidation.values.company}
-          name={TeacherExperienceInfoValidationFormInputNames.COMPANY}
-          onChange={teacherExperienceValidation.handleChange}
-          onBlurHandler={teacherExperienceValidation.handleBlur}
-          errorMessage={
-            teacherExperienceValidation.touched.company &&
-            teacherExperienceValidation.errors.company
-          }
+          value={becomeExpertValidation.values[formKey]?.company}
+          name={`${formKey}.${TeacherExperienceInfoValidationFormInputNames.COMPANY}`}
+          onChange={(e) => {
+            becomeExpertValidation.setFieldValue(
+              `${formKey}.${TeacherExperienceInfoValidationFormInputNames.COMPANY}`,
+              e.target.value
+            )
+          }}
+          onBlurHandler={becomeExpertValidation.handleBlur}
+          errorMessage={touchedObject?.company && errorObject?.company}
         />
       </div>
 
@@ -43,14 +56,16 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
         <Input
           placeholder={TeacherExperienceInfoValidationFormInputNames.POSITION}
           type="text"
-          value={teacherExperienceValidation.values.position}
-          name={TeacherExperienceInfoValidationFormInputNames.POSITION}
-          onChange={teacherExperienceValidation.handleChange}
-          onBlurHandler={teacherExperienceValidation.handleBlur}
-          errorMessage={
-            teacherExperienceValidation.touched.position &&
-            teacherExperienceValidation.errors.position
-          }
+          value={becomeExpertValidation.values[formKey]?.position}
+          name={`${formKey}.${TeacherExperienceInfoValidationFormInputNames.POSITION}`}
+          onChange={(e) => {
+            becomeExpertValidation.setFieldValue(
+              `${formKey}.${TeacherExperienceInfoValidationFormInputNames.POSITION}`,
+              e.target.value
+            )
+          }}
+          onBlurHandler={becomeExpertValidation.handleBlur}
+          errorMessage={touchedObject?.position && errorObject?.position}
         />
       </div>
 
@@ -59,43 +74,49 @@ const TeacherExperienceFormSection: FC<TeacherExperienceFormSectioProps> = ({
           placeholder={
             TeacherExperienceInfoValidationFormInputNames.DESCRIPTION
           }
-          value={teacherExperienceValidation.values.description}
-          name={TeacherExperienceInfoValidationFormInputNames.DESCRIPTION}
-          onChange={teacherExperienceValidation.handleChange}
-          onBlurHandler={teacherExperienceValidation.handleBlur}
-          errorMessage={
-            teacherExperienceValidation.touched.description &&
-            teacherExperienceValidation.errors.description
-          }
+          value={becomeExpertValidation.values[formKey]?.description}
+          name={`${formKey}.${TeacherExperienceInfoValidationFormInputNames.DESCRIPTION}`}
+          onChange={(e) => {
+            becomeExpertValidation.setFieldValue(
+              `${formKey}.${TeacherExperienceInfoValidationFormInputNames.DESCRIPTION}`,
+              e.target.value
+            )
+          }}
+          onBlurHandler={becomeExpertValidation.handleBlur}
+          errorMessage={touchedObject?.description && errorObject?.description}
         />
       </div>
 
       <div className="mt-2 h-10">
         <DropDownInput
           options={getNumberArray({})}
-          name={TeacherExperienceInfoValidationFormInputNames.START_DATE}
-          onBlurHandler={teacherExperienceValidation.handleBlur}
-          errorMessage={
-            teacherExperienceValidation.touched.startDate &&
-            teacherExperienceValidation.errors.startDate
-          }
-          onChange={teacherExperienceValidation.handleChange}
-          value={teacherExperienceValidation.values.startDate}
+          name={`${formKey}.${TeacherExperienceInfoValidationFormInputNames.START_DATE}`}
+          onBlurHandler={becomeExpertValidation.handleBlur}
+          errorMessage={touchedObject?.startDate && errorObject?.startDate}
+          onChange={(e) => {
+            becomeExpertValidation.setFieldValue(
+              `${formKey}.${TeacherExperienceInfoValidationFormInputNames.START_DATE}`,
+              e.target.value
+            )
+          }}
+          value={becomeExpertValidation.values[formKey]?.startDate}
           placeHolderValue={placeholderStartDate}
         />
       </div>
 
       <div className="mt-2 h-10">
         <DropDownInput
-          options={[...getNumberArray({}), CurrentlyJob]}
-          name={TeacherExperienceInfoValidationFormInputNames.END_DATE}
-          onBlurHandler={teacherExperienceValidation.handleBlur}
-          errorMessage={
-            teacherExperienceValidation.touched.endDate &&
-            teacherExperienceValidation.errors.endDate
-          }
-          onChange={teacherExperienceValidation.handleChange}
-          value={teacherExperienceValidation.values.endDate}
+          options={[...getNumberArray({}), currentlyJob]}
+          name={`${formKey}.${TeacherExperienceInfoValidationFormInputNames.END_DATE}`}
+          onBlurHandler={becomeExpertValidation.handleBlur}
+          errorMessage={touchedObject?.endDate && errorObject?.endDate}
+          onChange={(e) => {
+            becomeExpertValidation.setFieldValue(
+              `${formKey}.${TeacherExperienceInfoValidationFormInputNames.END_DATE}`,
+              e.target.value
+            )
+          }}
+          value={becomeExpertValidation.values[formKey]?.endDate}
           placeHolderValue={placeholderEndDate}
         />
       </div>

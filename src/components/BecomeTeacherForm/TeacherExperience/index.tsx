@@ -1,9 +1,10 @@
 'use client'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { IoIosClose } from 'react-icons/io'
 import { FormikProps } from 'formik'
 import Button from '@/elements/Button'
 import TeacherExperienceFormSection from './TeacherExperienceFormSection'
+import useTeacherExperience from './useTeacherExperience'
 import { BecomeExpertForm } from '../becomeTeacher.interface'
 import { ExperienceValidationKeys } from '../utils'
 import { placeholderEndDate, placeholderStartDate } from '../data'
@@ -24,7 +25,7 @@ const experiences = [
 const TeacherExperience: FC<TeacherExperienceProps> = ({
   becomeExpertValidation,
 }) => {
-  const [activeFormCount, setActiveFormCount] = useState<number>(0)
+  const { activeFormCount, setActiveFormCount } = useTeacherExperience()
 
   return (
     <div className="mx-4 mt-5 border-t-[1px] border-border_gray pt-5  sm:mx-12">

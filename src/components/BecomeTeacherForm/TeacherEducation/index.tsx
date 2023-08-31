@@ -1,10 +1,11 @@
 'use client'
 
 import { FormikProps } from 'formik'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
 import TeacherEducationFormSection from './TeacherEducationFormSection'
+import useTeacherEducation from './useTeacherEducation'
 import { BecomeExpertForm } from '../becomeTeacher.interface'
 import { EducationValidationKeys } from '../utils'
 import { placeholderEndDate, placeholderStartDate } from '../data'
@@ -25,7 +26,7 @@ const TeacherEducation: FC<TeacherEducationProps> = ({
     EducationValidationKeys.TEACHER_EDUCATION5,
   ]
 
-  const [activeFormCount, setActiveFormCount] = useState<number>(0)
+  const { activeFormCount, setActiveFormCount } = useTeacherEducation()
 
   return (
     <div className="mx-4 mt-5 border-t-[1px] border-border_gray pt-5 sm:mx-12">

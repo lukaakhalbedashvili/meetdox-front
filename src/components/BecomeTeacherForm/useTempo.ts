@@ -54,6 +54,8 @@ const useTempo = () => {
       category: Yup.string().required('required'),
       subCategories: Yup.array().required('required'),
     }),
+
+    skills: Yup.array(),
   })
 
   const becomeExpertValidation: FormikProps<BecomeExpertForm> =
@@ -88,6 +90,7 @@ const useTempo = () => {
             expertDataFromBack?.domain.category || placeholderCategoryValue,
           subCategories: expertDataFromBack?.domain.subCategories || [],
         },
+        skills: [],
       },
 
       validationSchema,

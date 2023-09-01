@@ -50,4 +50,6 @@ export interface BecomeExpertForm {
   teacherExperience5?: TeacherExperienceForm
 
   domain: TeacherDomainInfoValidationForm
+
+  skills?: string[]
 }

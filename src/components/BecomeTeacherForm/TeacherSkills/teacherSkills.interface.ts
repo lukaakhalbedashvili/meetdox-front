@@ -3,5 +3,5 @@ export interface TeacherSkillsForm {
 }
 
 export enum TeacherSkillsInputNames {
-  SKILLS = 'skill',
+  SKILLS = 'skills',
 }

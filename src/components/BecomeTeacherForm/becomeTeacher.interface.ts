@@ -52,4 +52,6 @@ export interface BecomeExpertForm {
   domain: TeacherDomainInfoValidationForm
 
   skills?: string[]
+
+  description: string
 }

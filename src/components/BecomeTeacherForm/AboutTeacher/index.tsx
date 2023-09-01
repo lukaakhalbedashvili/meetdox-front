@@ -1,32 +1,14 @@
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import React, { FC } from 'react'
+import { FormikProps } from 'formik'
 import TextArea from '@/elements/Textarea'
-
 import { AboutTeacherInputNames } from './AboutTeacher.interface'
-import useAboutTeacher from './useAboutTeacher'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../becomeTeacher.interface'
+import { BecomeExpertForm } from '../becomeTeacher.interface'
 
 interface AboutTeacherProps {
-  isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
-  setFormValues: Dispatch<SetStateAction<FormValues>>
-  defaultValue?: string
+  becomeExpertValidation: FormikProps<BecomeExpertForm>
 }
 
-const AboutTeacher: FC<AboutTeacherProps> = ({
-  isFormSubmitted,
-  setErroredSections,
-  setFormValues,
-  defaultValue,
-}) => {
-  const { aboutTeacherValidation } = useAboutTeacher({
-    isFormSubmitted,
-    setErroredSections,
-    setFormValues,
-    defaultValue,
-  })
+const AboutTeacher: FC<AboutTeacherProps> = ({ becomeExpertValidation }) => {
   return (
     <div className="mx-4 mt-5 border-t-[1px] border-border_gray pt-5  sm:mx-12">
       <h2 className="text-xl">About you</h2>
@@ -35,13 +17,13 @@ const AboutTeacher: FC<AboutTeacherProps> = ({
         <div className="mt-2 h-36">
           <TextArea
             placeholder={AboutTeacherInputNames.DESCRIPTION}
-            value={aboutTeacherValidation.values.description}
+            value={becomeExpertValidation.values.description}
             name={AboutTeacherInputNames.DESCRIPTION}
-            onChange={aboutTeacherValidation.handleChange}
-            onBlurHandler={aboutTeacherValidation.handleBlur}
+            onChange={becomeExpertValidation.handleChange}
+            onBlurHandler={becomeExpertValidation.handleBlur}
             errorMessage={
-              aboutTeacherValidation.touched.description &&
-              aboutTeacherValidation.errors.description
+              becomeExpertValidation.touched.description &&
+              becomeExpertValidation.errors.description
             }
           />
         </div>

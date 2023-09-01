@@ -58,6 +58,11 @@ const useTempo = () => {
     skills: Yup.array(),
 
     description: Yup.string().required('required'),
+
+    contact: Yup.object().shape({
+      country: Yup.string().required('required'),
+      phone: Yup.string().required('required'),
+    }),
   })
 
   const becomeExpertValidation: FormikProps<BecomeExpertForm> =
@@ -96,7 +101,9 @@ const useTempo = () => {
 
         skills: [],
 
-        description: '',
+        description: expertDataFromBack?.description || '',
+
+        contact: { country: '', phone: '' },
       },
 
       validationSchema,

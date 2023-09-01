@@ -54,4 +54,6 @@ export interface BecomeExpertForm {
   skills?: string[]
 
   description: string
+
+  contact: { country: string; phone: string }
 }

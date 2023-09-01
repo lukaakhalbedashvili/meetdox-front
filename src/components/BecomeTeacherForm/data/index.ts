@@ -11,3 +11,5 @@ export const currentlyAttending = 'Currently Attending'
 export const currentlyJob = 'Currently Job'
 
 export const placeholderCategoryValue = 'Choose Category'
+
+export const defaultCountry = 'Georgia'

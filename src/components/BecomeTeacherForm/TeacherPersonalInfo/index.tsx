@@ -8,17 +8,15 @@ import { getAgeRange } from '@/utils/services/getTeacherAgeRange'
 import { months } from '@/data/teachersDummyData'
 import Button from '@/elements/Button'
 import { uploadImageToFirebase } from '@/utils/firebase/uploadImageToFirebase'
-import {
-  TeacherPersonalInfoForm,
-  TeacherPersonalInfoFormInputNames,
-} from './teacherPersonalInfo.interface'
+import { TeacherPersonalInfoFormInputNames } from './teacherPersonalInfo.interface'
 import useTeacherPersonalInfo from './useTeacherPersonalInfo'
 import PhotoEditor from '../../../elements/PhotoEditor'
 import PopupItemWrapper from '../../PopupItemWrapper'
 import { placeholderBirthMonth, placeholderBirthYear } from '../data'
+import { BecomeExpertForm } from '../becomeTeacher.interface'
 
 interface TeacherPersonalInfoProps {
-  becomeExpertValidation: FormikProps<TeacherPersonalInfoForm>
+  becomeExpertValidation: FormikProps<BecomeExpertForm>
 }
 
 const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({

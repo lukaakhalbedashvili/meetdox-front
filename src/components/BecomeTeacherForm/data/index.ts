@@ -9,3 +9,5 @@ export const placeholderEndDate = 'End date'
 export const currentlyAttending = 'Currently Attending'
 
 export const currentlyJob = 'Currently Job'
+
+export const placeholderCategoryValue = 'Choose Category'

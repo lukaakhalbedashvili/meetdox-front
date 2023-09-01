@@ -1,6 +1,13 @@
 import * as Yup from 'yup'
-import { TeacherEducationInfoValidationForm } from '../TeacherEducation/TeacherEducationFormSection/teacherEducation.interface'
-import { TeacherExperienceForm } from '../TeacherExperience/TeacherExperienceFormSection/teacherExperience.interface'
+import {
+  TeacherEducationInfoValidationForm,
+  TeacherEducationInfoValidationFormInputNames,
+} from '../TeacherEducation/TeacherEducationFormSection/teacherEducation.interface'
+import {
+  TeacherExperienceForm,
+  TeacherExperienceInfoValidationFormInputNames,
+} from '../TeacherExperience/TeacherExperienceFormSection/teacherExperience.interface'
+import { BecomeExpertForm } from '../becomeTeacher.interface'
 
 export enum EducationValidationKeys {
   TEACHER_EDUCATION0 = 'teacherEducation0',
@@ -39,12 +46,12 @@ export const generateEducationValidationObjects = () => {
 
   for (let key in eduValidations) {
     const object = {
-      arraySchema: Yup.object().shape({
-        university: Yup.string().required('required'),
-        major: Yup.string().required('required'),
-        startDate: Yup.string().required('required'),
-        endDate: Yup.string().required('required'),
-        id: Yup.number().required(),
+      arraySchema: Yup.object().notRequired().shape({
+        university: Yup.string(),
+        major: Yup.string(),
+        startDate: Yup.string(),
+        endDate: Yup.string(),
+        id: Yup.number(),
       }),
     }
 
@@ -91,11 +98,10 @@ export const generateExperienceValidationObjects = () => {
   for (let key in experienceValidations) {
     const object = {
       arraySchema: Yup.object().shape({
-        company: Yup.string().required('required'),
-        position: Yup.string().required('required'),
-        startDate: Yup.string().required('required'),
-        endDate: Yup.string().required('required'),
-        id: Yup.number().required(),
+        position: Yup.string(),
+        startDate: Yup.string(),
+        endDate: Yup.string(),
+        id: Yup.number(),
       }),
     }
 
@@ -103,4 +109,118 @@ export const generateExperienceValidationObjects = () => {
       object.arraySchema!
   }
   return experienceValidations as ExperienceValidations
+}
+
+export const customValidation = (values: BecomeExpertForm) => {
+  interface ErrorObject {
+    [key: string]: {
+      [key: string]: string
+    }
+  }
+
+  let errorObject: ErrorObject = {}
+
+  const {
+    teacherEducation0,
+    teacherEducation1,
+    teacherEducation2,
+    teacherEducation3,
+    teacherEducation4,
+    teacherEducation5,
+
+    teacherExperience0,
+    teacherExperience1,
+    teacherExperience2,
+    teacherExperience3,
+    teacherExperience4,
+    teacherExperience5,
+  } = values
+
+  const education = [
+    { form: teacherEducation0, key: 'teacherEducation0' },
+    { form: teacherEducation1, key: 'teacherEducation1' },
+    { form: teacherEducation2, key: 'teacherEducation2' },
+    { form: teacherEducation3, key: 'teacherEducation3' },
+    { form: teacherEducation4, key: 'teacherEducation4' },
+    { form: teacherEducation5, key: 'teacherEducation5' },
+  ]
+
+  const experience = [
+    { form: teacherExperience0, key: 'teacherExperience0' },
+    { form: teacherExperience1, key: 'teacherExperience1' },
+    { form: teacherExperience2, key: 'teacherExperience2' },
+    { form: teacherExperience3, key: 'teacherExperience3' },
+    { form: teacherExperience4, key: 'teacherExperience4' },
+    { form: teacherExperience5, key: 'teacherExperience5' },
+  ]
+
+  education.forEach((item) => {
+    if (item.form) {
+      const fields = [
+        {
+          key: TeacherEducationInfoValidationFormInputNames.UNIVERSITY,
+          value: item.form.university,
+        },
+        {
+          key: TeacherEducationInfoValidationFormInputNames.MAJOR,
+          value: item.form.major,
+        },
+        {
+          key: TeacherEducationInfoValidationFormInputNames.START_DATE,
+          value: item.form.startDate,
+        },
+        {
+          key: TeacherEducationInfoValidationFormInputNames.END_DATE,
+          value: item.form.endDate,
+        },
+      ]
+
+      fields.forEach((element) => {
+        if (!element.value) {
+          errorObject = {
+            ...errorObject,
+            [item.key]: {
+              [element.key]: 'required',
+            },
+          }
+        }
+      })
+    }
+  })
+
+  experience.forEach((item) => {
+    if (item.form) {
+      const fields = [
+        {
+          key: TeacherExperienceInfoValidationFormInputNames.COMPANY,
+          value: item.form.company,
+        },
+        {
+          key: TeacherExperienceInfoValidationFormInputNames.DESCRIPTION,
+          value: item.form.description,
+        },
+        {
+          key: TeacherExperienceInfoValidationFormInputNames.START_DATE,
+          value: item.form.startDate,
+        },
+        {
+          key: TeacherExperienceInfoValidationFormInputNames.END_DATE,
+          value: item.form.endDate,
+        },
+      ]
+
+      fields.forEach((element) => {
+        if (!element.value) {
+          errorObject = {
+            ...errorObject,
+            [item.key]: {
+              [element.key]: 'required',
+            },
+          }
+        }
+      })
+    }
+  })
+
+  return errorObject
 }

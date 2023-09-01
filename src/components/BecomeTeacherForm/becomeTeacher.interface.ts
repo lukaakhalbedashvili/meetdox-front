@@ -34,6 +34,7 @@ export interface BecomeExpertForm {
   birthMonth: string
   birthYear: string | number
   image?: string | null
+
   teacherEducation0?: TeacherEducationInfoValidationForm
   teacherEducation1?: TeacherEducationInfoValidationForm
   teacherEducation2?: TeacherEducationInfoValidationForm
@@ -47,4 +48,6 @@ export interface BecomeExpertForm {
   teacherExperience3?: TeacherExperienceForm
   teacherExperience4?: TeacherExperienceForm
   teacherExperience5?: TeacherExperienceForm
+
+  domain: TeacherDomainInfoValidationForm
 }

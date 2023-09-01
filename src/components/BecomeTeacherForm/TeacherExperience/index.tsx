@@ -31,7 +31,7 @@ const TeacherExperience: FC<TeacherExperienceProps> = ({
     <div className="mx-4 mt-5 border-t-[1px] border-border_gray pt-5  sm:mx-12">
       <h2 className="text-xl">Experience details</h2>
 
-      {experiences.map((item) => {
+      {experiences.map((item, index) => {
         return (
           becomeExpertValidation?.values[item] && (
             <div
@@ -40,7 +40,13 @@ const TeacherExperience: FC<TeacherExperienceProps> = ({
             >
               <div
                 className="absolute -top-4 right-0 bg-white"
-                onClick={() => {}}
+                onClick={() => {
+                  becomeExpertValidation.setFieldValue(
+                    experiences[index],
+                    undefined
+                  )
+                  setActiveFormCount(activeFormCount - 1)
+                }}
               >
                 <IoIosClose className="h-7 w-7 cursor-pointer" />
               </div>

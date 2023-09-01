@@ -6,6 +6,7 @@ import TeacherPersonalInfo from './TeacherPersonalInfo'
 import useTempo from './useTempo'
 import TeacherEducation from './TeacherEducation'
 import TeacherExperience from './TeacherExperience'
+import TeacherDomain from './TeacherDomain'
 
 const BecomeTeacherForm = () => {
   const { becomeExpertValidation, expertDataFromBack } = useTempo()
@@ -30,15 +31,11 @@ const BecomeTeacherForm = () => {
 
           <TeacherExperience becomeExpertValidation={becomeExpertValidation} />
 
+          <TeacherDomain becomeExpertValidation={becomeExpertValidation} />
+
           {/* 
 
 
-          <TeacherDomain
-            setFormValues={setValues}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
-            defaultValue={teacherData?.domain}
-          />
 
           {(values.domain.category || teacherData?.domain?.category) && (
             <TeacherSkills

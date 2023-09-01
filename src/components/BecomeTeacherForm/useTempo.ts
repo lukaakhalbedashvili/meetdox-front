@@ -5,10 +5,15 @@ import { useZustandStore } from '@/zustand'
 import { useGetTeacherPublicData } from '@/reactQuery/teacherQuaries/getTeacherPublicData'
 import { BecomeExpertForm } from './becomeTeacher.interface'
 import {
+  customValidation,
   generateEducationValidationObjects,
   generateExperienceValidationObjects,
 } from './utils'
-import { placeholderBirthMonth, placeholderBirthYear } from './data'
+import {
+  placeholderBirthMonth,
+  placeholderBirthYear,
+  placeholderCategoryValue,
+} from './data'
 import { TeacherData } from '../Catalog/catalog.interface'
 
 const useTempo = () => {
@@ -42,12 +47,19 @@ const useTempo = () => {
     image: Yup.string().required('required'),
 
     ...generateEducationValidationObjects(),
+
     ...generateExperienceValidationObjects(),
+
+    domain: Yup.object().shape({
+      category: Yup.string().required('required'),
+      subCategories: Yup.array().required('required'),
+    }),
   })
 
   const becomeExpertValidation: FormikProps<BecomeExpertForm> =
     useFormik<BecomeExpertForm>({
       enableReinitialize: true,
+      validate: customValidation,
       initialValues: {
         birthMonth:
           expertDataFromBack?.personalDetails.birthMonth ||
@@ -71,6 +83,11 @@ const useTempo = () => {
         teacherExperience3: expertDataFromBack?.teacherExperience?.[3],
         teacherExperience4: expertDataFromBack?.teacherExperience?.[4],
         teacherExperience5: expertDataFromBack?.teacherExperience?.[5],
+        domain: {
+          category:
+            expertDataFromBack?.domain.category || placeholderCategoryValue,
+          subCategories: expertDataFromBack?.domain.subCategories || [],
+        },
       },
 
       validationSchema,

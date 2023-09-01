@@ -6,4 +6,5 @@ export interface TeacherDomainInfoValidationForm {
 export enum DomainNames {
   CATEGORY = 'category',
   SUB_CATEGORY = 'subCategories',
+  DOMAIN = 'domain',
 }

@@ -76,7 +76,7 @@ const useTempo = () => {
       phoneExtension: Yup.string().required('required'),
     }),
 
-    perHour: Yup.string().required('required'),
+    perHour: Yup.number().min(5, 'min is 5/h').required('required'),
   })
 
   const becomeExpertValidation: FormikProps<BecomeExpertForm> =
@@ -124,15 +124,12 @@ const useTempo = () => {
             expertDataFromBack?.contactDetails.phoneExtension || '',
         },
 
-        perHour: expertDataFromBack?.perHour || '',
+        perHour: expertDataFromBack?.perHour || undefined,
       },
 
       validationSchema,
 
       onSubmit: async (values) => {
-        // function isPresent<T>(t: T | undefined | null | void): t is T {
-        //   return t !== undefined && t !== null
-        // }
         const educations = [
           values.teacherEducation0!,
           values.teacherEducation1!,
@@ -162,7 +159,8 @@ const useTempo = () => {
             category: values.domain.category,
             subCategories: values.domain.subCategories,
           },
-          perHour: values.perHour,
+          perHour: Number(values.perHour),
+
           personalDetails: {
             birthMonth: values.birthMonth,
             birthYear: values.birthYear,

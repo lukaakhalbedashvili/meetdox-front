@@ -20,7 +20,6 @@ interface TeacherEducationFormSectionProps {
   becomeExpertValidation: FormikProps<BecomeExpertForm>
   formKey: EducationValidationKeys
 }
-
 const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
   becomeExpertValidation,
   formKey,
@@ -87,12 +86,12 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
           name={`${formKey}.${TeacherEducationInfoValidationFormInputNames.START_DATE}`}
           onBlurHandler={becomeExpertValidation.handleBlur}
           errorMessage={touchedObject?.startDate && errorObject?.startDate}
-          onChange={(e) =>
+          onChange={(e) => {
             becomeExpertValidation.setFieldValue(
-              e.target.value,
-              `${formKey}.${TeacherEducationInfoValidationFormInputNames.START_DATE}`
+              `${formKey}.${TeacherEducationInfoValidationFormInputNames.START_DATE}`,
+              e.target.value
             )
-          }
+          }}
           value={becomeExpertValidation.values[formKey]?.startDate}
           placeHolderValue={placeholderStartDate}
         />
@@ -104,7 +103,12 @@ const TeacherEducationFormSection: FC<TeacherEducationFormSectionProps> = ({
           name={`${formKey}.${TeacherEducationInfoValidationFormInputNames.END_DATE}`}
           onBlurHandler={becomeExpertValidation.handleBlur}
           errorMessage={touchedObject?.endDate && errorObject?.endDate}
-          onChange={becomeExpertValidation.handleChange}
+          onChange={(e) => {
+            becomeExpertValidation.setFieldValue(
+              `${formKey}.${TeacherEducationInfoValidationFormInputNames.END_DATE}`,
+              e.target.value
+            )
+          }}
           value={becomeExpertValidation.values[formKey]?.endDate}
           placeHolderValue={placeholderEndDate}
         />

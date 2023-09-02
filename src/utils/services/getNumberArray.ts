@@ -7,7 +7,7 @@ const date = new Date()
 
 export const getNumberArray = ({
   start = 1970,
-  end = date.getFullYear(),
+  end = date.getFullYear() + 1,
 }: GetNumberArrayProps) => {
   let years = []
 

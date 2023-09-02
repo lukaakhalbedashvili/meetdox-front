@@ -57,5 +57,5 @@ export interface BecomeExpertForm {
 
   contact: { country: string; phone: string; phoneExtension: string }
 
-  perHour: string | number
+  perHour?: number
 }

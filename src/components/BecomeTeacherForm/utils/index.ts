@@ -8,6 +8,7 @@ import {
   TeacherExperienceInfoValidationFormInputNames,
 } from '../TeacherExperience/TeacherExperienceFormSection/teacherExperience.interface'
 import { BecomeExpertForm } from '../becomeTeacher.interface'
+import { placeholderEndDate, placeholderStartDate } from '../data'
 
 export enum EducationValidationKeys {
   TEACHER_EDUCATION0 = 'teacherEducation0',
@@ -176,10 +177,15 @@ export const customValidation = (values: BecomeExpertForm) => {
       ]
 
       fields.forEach((element) => {
-        if (!element.value) {
+        if (
+          !element.value ||
+          element.value === placeholderStartDate ||
+          element.value === placeholderEndDate
+        ) {
           errorObject = {
             ...errorObject,
             [item.key]: {
+              ...errorObject[item.key],
               [element.key]: 'required',
             },
           }
@@ -200,6 +206,10 @@ export const customValidation = (values: BecomeExpertForm) => {
           value: item.form.description,
         },
         {
+          key: TeacherExperienceInfoValidationFormInputNames.POSITION,
+          value: item.form.position,
+        },
+        {
           key: TeacherExperienceInfoValidationFormInputNames.START_DATE,
           value: item.form.startDate,
         },
@@ -210,10 +220,15 @@ export const customValidation = (values: BecomeExpertForm) => {
       ]
 
       fields.forEach((element) => {
-        if (!element.value) {
+        if (
+          !element.value ||
+          element.value === placeholderStartDate ||
+          element.value === placeholderEndDate
+        ) {
           errorObject = {
             ...errorObject,
             [item.key]: {
+              ...errorObject[item.key],
               [element.key]: 'required',
             },
           }

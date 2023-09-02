@@ -31,6 +31,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
     setUserImage,
     setUploadedImage,
     userId,
+    userImage,
   } = useTeacherPersonalInfo()
 
   return (
@@ -104,7 +105,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
           </div>
         </div>
 
-        {!becomeExpertValidation.values.image && (
+        {!userImage && (
           <div className="mt-3">
             <Button
               type="button"
@@ -128,11 +129,11 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
           </div>
         )}
 
-        {becomeExpertValidation.values.image && (
+        {userImage && (
           <div className="relative mt-4 h-fit w-full cursor-pointer rounded-full">
             <div className="group relative h-40 w-40 max-w-[200px] overflow-hidden">
               <Image
-                src={becomeExpertValidation.values.image}
+                src={userImage}
                 fill
                 alt="your profile image"
                 className="rounded-md border-2 border-sky object-cover"
@@ -177,6 +178,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
             onCloseHandler={() => setIsUploadImageModalOpen(false)}
             onSaveHandler={(image) => {
               setUserImage(image.dataUrl)
+
               userId &&
                 uploadImageToFirebase({
                   userId,

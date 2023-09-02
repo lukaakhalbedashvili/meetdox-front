@@ -40,6 +40,8 @@ const useTeacherSkills = (
         ? [...becomeExpertValidation.values.skills, skill]
         : [skill]
     )
+
+    setSkillInInput('')
   }
 
   return {

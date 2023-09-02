@@ -67,7 +67,7 @@ const useTempo = () => {
     domain: Yup.object().shape({
       category: Yup.string().required('required'),
       subCategories: Yup.array()
-        .min(1, 'choose at least one subcategory')
+        .min(1, 'choose at least one')
         .required('required'),
     }),
 
@@ -118,7 +118,7 @@ const useTempo = () => {
           subCategories: expertDataFromBack?.domain.subCategories || [],
         },
 
-        skills: [],
+        skills: expertDataFromBack?.skills || [],
 
         description: expertDataFromBack?.description || '',
 

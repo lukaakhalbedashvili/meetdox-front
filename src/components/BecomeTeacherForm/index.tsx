@@ -56,9 +56,10 @@ const BecomeTeacherForm = () => {
           />
 
           <div className="flex h-full items-center justify-end py-8">
-            {Object.keys(becomeExpertValidation.errors).length > 0 && (
-              <p className="mr-10 text-error">scroll up for errors</p>
-            )}
+            {Object.keys(becomeExpertValidation.errors).length > 0 &&
+              becomeExpertValidation.submitCount > 0 && (
+                <p className="mr-10 text-error">scroll up for errors</p>
+              )}
 
             {Object.keys(becomeExpertValidation.errors).length === 0 &&
               isFormSubmitting && (
@@ -68,12 +69,16 @@ const BecomeTeacherForm = () => {
               )}
 
             <Button
-              isDisabled={Object.keys(becomeExpertValidation.errors).length > 0}
+              isDisabled={
+                Object.keys(becomeExpertValidation.errors).length > 0 &&
+                becomeExpertValidation.submitCount > 0
+              }
               type="button"
               customTailwindClasses="bg-sky border-sky text-white mr-10"
               onClickHandler={(e) => {
                 e.preventDefault()
-                setIsFormSubmitting(true)
+                becomeExpertValidation.submitCount > 0 &&
+                  setIsFormSubmitting(true)
                 becomeExpertValidation.submitForm()
               }}
             >

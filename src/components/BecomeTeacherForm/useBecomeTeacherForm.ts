@@ -39,8 +39,9 @@ const useTempo = () => {
 
   useEffect(() => {
     refetch().then((data) => {
-      setIsLoading(false)
       data.data?.country && setExpertDataFromBack(data.data)
+
+      data.data?.country && setIsLoading(false)
     })
   }, [refetch, loggedInUser?.uid])
 

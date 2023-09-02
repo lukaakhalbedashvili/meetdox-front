@@ -25,6 +25,8 @@ const useTempo = () => {
 
   const router = useRouter()
 
+  const [isLoading, setIsLoading] = useState(true)
+
   const { mutate } = useSendTeacherCreationQueries()
 
   const [expertDataFromBack, setExpertDataFromBack] = useState<
@@ -35,6 +37,7 @@ const useTempo = () => {
 
   useEffect(() => {
     refetch().then((data) => {
+      setIsLoading(false)
       data.data?.country && setExpertDataFromBack(data.data)
     })
   }, [refetch, loggedInUser?.uid])
@@ -190,7 +193,7 @@ const useTempo = () => {
       },
     })
 
-  return { becomeExpertValidation, expertDataFromBack }
+  return { becomeExpertValidation, expertDataFromBack, isLoading }
 }
 
 export default useTempo

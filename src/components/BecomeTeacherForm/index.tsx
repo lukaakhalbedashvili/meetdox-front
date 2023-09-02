@@ -13,17 +13,17 @@ import TeacherContact from './TeacherContact'
 import TeacherCompensation from './TeacherCompensation'
 
 const BecomeTeacherForm = () => {
-  const { becomeExpertValidation, expertDataFromBack } = useTempo()
+  const { becomeExpertValidation, expertDataFromBack, isLoading } = useTempo()
 
   return (
     <form className="min-h-screen">
-      {!expertDataFromBack && (
+      {!expertDataFromBack && isLoading && (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform ">
           <ClipLoader color="#36d7b7" />
         </div>
       )}
 
-      {expertDataFromBack && (
+      {(expertDataFromBack || !isLoading) && (
         <>
           <TeacherPersonalInfo
             becomeExpertValidation={becomeExpertValidation}

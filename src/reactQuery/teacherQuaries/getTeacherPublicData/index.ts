@@ -8,5 +8,6 @@ export const useGetTeacherPublicData = (uid?: string) => {
     queryFn: () => fetchTeacherPublicDataApiReq(uid),
     refetchOnWindowFocus: false,
     enabled: false,
+    retry: false,
   })
 }

@@ -10,6 +10,7 @@ import TeacherDomain from './TeacherDomain'
 import TeacherSkills from './TeacherSkills'
 import AboutTeacher from './AboutTeacher'
 import TeacherContact from './TeacherContact'
+import TeacherCompensation from './TeacherCompensation'
 
 const BecomeTeacherForm = () => {
   const { becomeExpertValidation, expertDataFromBack } = useTempo()
@@ -44,6 +45,10 @@ const BecomeTeacherForm = () => {
 
           <TeacherContact becomeExpertValidation={becomeExpertValidation} />
 
+          <TeacherCompensation
+            becomeExpertValidation={becomeExpertValidation}
+          />
+
           {/* 
 
 
@@ -52,12 +57,7 @@ const BecomeTeacherForm = () => {
 
          
 
-          <TeacherCompensation
-            defaultValues={teacherData?.perHour}
-            setFormValues={setValues}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
-          />
+        
 
           <div className="my-4 flex justify-end pr-4 sm:px-12">
             <Button

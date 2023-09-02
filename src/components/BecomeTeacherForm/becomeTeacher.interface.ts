@@ -21,7 +21,7 @@ export interface FormValues {
   personalDetails: TeacherPersonalInfoForm
   teacherEducation: TeacherEducationInfoValidationForm[]
   teacherExperience: TeacherExperienceForm[]
-  skills: string[]
+  skills?: string[]
   domain: TeacherDomainInfoValidationForm
   contact: TeacherContactValidationForm
   about: AboutTeacherForm
@@ -41,7 +41,7 @@ export interface BecomeExpertForm {
   teacherEducation3?: TeacherEducationInfoValidationForm
   teacherEducation4?: TeacherEducationInfoValidationForm
   teacherEducation5?: TeacherEducationInfoValidationForm
-  // experiences
+
   teacherExperience0?: TeacherExperienceForm
   teacherExperience1?: TeacherExperienceForm
   teacherExperience2?: TeacherExperienceForm
@@ -55,5 +55,7 @@ export interface BecomeExpertForm {
 
   description: string
 
-  contact: { country: string; phone: string }
+  contact: { country: string; phone: string; phoneExtension: string }
+
+  perHour: string | number
 }

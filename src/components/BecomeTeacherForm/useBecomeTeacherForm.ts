@@ -39,7 +39,7 @@ const useBecameTeacherForm = () => {
     skills: [],
     teacherEducation: [],
     domain: { category: '', subCategories: [] },
-    contact: { country: '', phone: '' },
+    contact: { country: '', phone: '', phoneExtension: '' },
     teacherExperience: [],
     about: { description: '' },
     perHour: '',

@@ -1,15 +1,19 @@
 import * as Yup from 'yup'
 import { FormikProps, useFormik } from 'formik'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useZustandStore } from '@/zustand'
 import { useGetTeacherPublicData } from '@/reactQuery/teacherQuaries/getTeacherPublicData'
-import { BecomeExpertForm } from './becomeTeacher.interface'
+import { AlertType } from '@/zustand/zustand.interface'
+import { useSendTeacherCreationQueries } from '@/reactQuery/becomeTeacherQueries/useSendTeacherCreationQueries'
+import { BecomeExpertForm, FormValues } from './becomeTeacher.interface'
 import {
   customValidation,
   generateEducationValidationObjects,
   generateExperienceValidationObjects,
 } from './utils'
 import {
+  defaultCountry,
   placeholderBirthMonth,
   placeholderBirthYear,
   placeholderCategoryValue,
@@ -17,7 +21,11 @@ import {
 import { TeacherData } from '../Catalog/catalog.interface'
 
 const useTempo = () => {
-  const { loggedInUser } = useZustandStore()
+  const { loggedInUser, setAlert } = useZustandStore()
+
+  const router = useRouter()
+
+  const { mutate } = useSendTeacherCreationQueries()
 
   const [expertDataFromBack, setExpertDataFromBack] = useState<
     TeacherData | undefined
@@ -62,7 +70,10 @@ const useTempo = () => {
     contact: Yup.object().shape({
       country: Yup.string().required('required'),
       phone: Yup.string().required('required'),
+      phoneExtension: Yup.string().required('required'),
     }),
+
+    perHour: Yup.string().required('required'),
   })
 
   const becomeExpertValidation: FormikProps<BecomeExpertForm> =
@@ -78,14 +89,14 @@ const useTempo = () => {
         lastName: expertDataFromBack?.personalDetails.lastName || '',
         name: expertDataFromBack?.personalDetails.name || '',
         image: expertDataFromBack?.image || null,
-        // education
+
         teacherEducation0: expertDataFromBack?.teacherEducation?.[0],
         teacherEducation1: expertDataFromBack?.teacherEducation?.[1],
         teacherEducation2: expertDataFromBack?.teacherEducation?.[2],
         teacherEducation3: expertDataFromBack?.teacherEducation?.[3],
         teacherEducation4: expertDataFromBack?.teacherEducation?.[4],
         teacherEducation5: expertDataFromBack?.teacherEducation?.[5],
-        // experiences
+
         teacherExperience0: expertDataFromBack?.teacherExperience?.[0],
         teacherExperience1: expertDataFromBack?.teacherExperience?.[1],
         teacherExperience2: expertDataFromBack?.teacherExperience?.[2],
@@ -103,13 +114,79 @@ const useTempo = () => {
 
         description: expertDataFromBack?.description || '',
 
-        contact: { country: '', phone: '' },
+        contact: {
+          country: expertDataFromBack?.country || defaultCountry,
+          phone: expertDataFromBack?.contactDetails.phone || '',
+          phoneExtension:
+            expertDataFromBack?.contactDetails.phoneExtension || '',
+        },
+
+        perHour: expertDataFromBack?.perHour || '',
       },
 
       validationSchema,
 
       onSubmit: async (values) => {
-        console.error(values, 'xas')
+        // function isPresent<T>(t: T | undefined | null | void): t is T {
+        //   return t !== undefined && t !== null
+        // }
+        const educations = [
+          values.teacherEducation0!,
+          values.teacherEducation1!,
+          values.teacherEducation2!,
+          values.teacherEducation3!,
+          values.teacherEducation4!,
+          values.teacherEducation5!,
+        ].filter((item) => item)
+
+        const experiences = [
+          values.teacherExperience0!,
+          values.teacherExperience1!,
+          values.teacherExperience2!,
+          values.teacherExperience3!,
+          values.teacherExperience4!,
+          values.teacherExperience5!,
+        ].filter((item) => item)
+
+        const objectToSend: FormValues = {
+          about: { description: values.description },
+          contact: {
+            country: values.contact.country,
+            phone: values.contact.phone,
+            phoneExtension: values.contact.phoneExtension,
+          },
+          domain: {
+            category: values.domain.category,
+            subCategories: values.domain.subCategories,
+          },
+          perHour: values.perHour,
+          personalDetails: {
+            birthMonth: values.birthMonth,
+            birthYear: values.birthYear,
+            lastName: values.lastName,
+            name: values.name,
+            image: values.image,
+          },
+          skills: values.skills,
+          teacherEducation: educations,
+          teacherExperience: experiences,
+        }
+        mutate(
+          {
+            data: objectToSend,
+          },
+          {
+            onSuccess: () => {
+              setAlert({
+                message: 'teacher created successfully',
+                type: AlertType.SUCCESS,
+                onClick: () => {},
+                duration: 5000,
+              })
+              router.push(`expert/${loggedInUser?.uid}`)
+            },
+          }
+        )
       },
     })
 

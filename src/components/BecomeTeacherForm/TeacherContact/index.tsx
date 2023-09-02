@@ -14,7 +14,9 @@ interface TeacherContactProps {
 const TeacherContact: FC<TeacherContactProps> = ({
   becomeExpertValidation,
 }) => {
-  const { updatePhoneExtension, phoneExtension } = useTeacherContact()
+  const { updatePhoneExtension, phoneExtension } = useTeacherContact(
+    becomeExpertValidation
+  )
 
   const countriesList = countries.map((country) => {
     return { value: country.name, flag: country.flag }

@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { FormikProps } from 'formik'
 import Input from '@/elements/Input'
-import useTeacherCompensation from './useTeacherCompensation'
 import { TeacherCompensationFieldsNames } from './teacherCompensation.interface'
 import { BecomeExpertForm } from '../becomeTeacher.interface'
 

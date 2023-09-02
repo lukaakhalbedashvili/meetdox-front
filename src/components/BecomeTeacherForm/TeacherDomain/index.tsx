@@ -6,6 +6,7 @@ import useTeacherDomain from './useTeacherDomain'
 import { DomainNames } from './teacherDomain.interface'
 import { BecomeExpertForm } from '../becomeTeacher.interface'
 import { placeholderCategoryValue } from '../data'
+import { TeacherSkillsInputNames } from '../TeacherSkills/teacherSkills.interface'
 
 interface TeacherDomainProps {
   becomeExpertValidation: FormikProps<BecomeExpertForm>
@@ -17,8 +18,15 @@ const TeacherDomain: FC<TeacherDomainProps> = ({ becomeExpertValidation }) => {
 
   return (
     <div className="mx-4 mt-5  border-t-[1px] border-border_gray pt-5 sm:mx-12">
-      <h2 className="text-xl">Domain</h2>
+      <div className="flex items-center">
+        <h2 className="text-xl">Category</h2>
 
+        {becomeExpertValidation.errors.domain?.subCategories && (
+          <p className="ml-5 text-base text-error">
+            {becomeExpertValidation.errors.domain?.subCategories}
+          </p>
+        )}
+      </div>
       <div className="sm:w-1/2">
         <div className="mt-2 h-10">
           <DropDownInput
@@ -33,6 +41,11 @@ const TeacherDomain: FC<TeacherDomainProps> = ({ becomeExpertValidation }) => {
               becomeExpertValidation.setFieldValue(
                 `domain.${DomainNames.CATEGORY}`,
                 e.target.value
+              )
+
+              becomeExpertValidation.setFieldValue(
+                TeacherSkillsInputNames.SKILLS,
+                []
               )
 
               becomeExpertValidation.setFieldValue(
@@ -61,15 +74,29 @@ const TeacherDomain: FC<TeacherDomainProps> = ({ becomeExpertValidation }) => {
                   })
                 )
 
-                becomeExpertValidation.setFieldValue(
-                  `${DomainNames.DOMAIN}.${DomainNames.SUB_CATEGORY}`,
-                  [
-                    ...becomeExpertValidation.values.domain.subCategories,
-                    ...subCategoriesData
-                      .filter((item2) => item2.name === item.name)
-                      .map((item3) => item3.name),
-                  ]
-                )
+                if (
+                  !becomeExpertValidation.values.domain.subCategories.includes(
+                    item.name
+                  )
+                ) {
+                  becomeExpertValidation.setFieldValue(
+                    `${DomainNames.DOMAIN}.${DomainNames.SUB_CATEGORY}`,
+
+                    subCategoriesData
+                      .filter((subCat) =>
+                        item === subCat ? !item.checked : subCat.checked
+                      )
+                      .map((item3) => item3.name)
+                  )
+                } else {
+                  becomeExpertValidation.setFieldValue(
+                    `${DomainNames.DOMAIN}.${DomainNames.SUB_CATEGORY}`,
+
+                    becomeExpertValidation.values.domain.subCategories.filter(
+                      (subCat) => item.name !== subCat
+                    )
+                  )
+                }
               }}
             >
               <Checkbox

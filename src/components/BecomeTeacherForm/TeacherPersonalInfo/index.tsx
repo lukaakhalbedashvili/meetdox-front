@@ -105,7 +105,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
           </div>
         </div>
 
-        {!userImage && (
+        {!userImage && !becomeExpertValidation.values.image && (
           <div className="mt-3">
             <Button
               type="button"
@@ -129,11 +129,11 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
           </div>
         )}
 
-        {userImage && (
+        {(userImage || becomeExpertValidation.values.image) && (
           <div className="relative mt-4 h-fit w-full cursor-pointer rounded-full">
             <div className="group relative h-40 w-40 max-w-[200px] overflow-hidden">
               <Image
-                src={userImage}
+                src={userImage || becomeExpertValidation.values.image || ''}
                 fill
                 alt="your profile image"
                 className="rounded-md border-2 border-sky object-cover"

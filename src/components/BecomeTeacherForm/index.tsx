@@ -3,7 +3,7 @@ import React from 'react'
 import { ClipLoader } from 'react-spinners'
 import Button from '@/elements/Button'
 import TeacherPersonalInfo from './TeacherPersonalInfo'
-import useTempo from './useTempo'
+import useBecomeTeacherForm from './useBecomeTeacherForm'
 import TeacherEducation from './TeacherEducation'
 import TeacherExperience from './TeacherExperience'
 import TeacherDomain from './TeacherDomain'
@@ -13,7 +13,13 @@ import TeacherContact from './TeacherContact'
 import TeacherCompensation from './TeacherCompensation'
 
 const BecomeTeacherForm = () => {
-  const { becomeExpertValidation, expertDataFromBack, isLoading } = useTempo()
+  const {
+    becomeExpertValidation,
+    expertDataFromBack,
+    isLoading,
+    isFormSubmitting,
+    setIsFormSubmitting,
+  } = useBecomeTeacherForm()
 
   return (
     <form className="min-h-screen">
@@ -49,42 +55,33 @@ const BecomeTeacherForm = () => {
             becomeExpertValidation={becomeExpertValidation}
           />
 
-          {/* 
+          <div className="flex h-full items-center justify-end py-8">
+            {Object.keys(becomeExpertValidation.errors).length > 0 && (
+              <p className="mr-10 text-error">scroll up for errors</p>
+            )}
 
+            {Object.keys(becomeExpertValidation.errors).length === 0 &&
+              isFormSubmitting && (
+                <span className="mr-10">
+                  <ClipLoader color="#36d7b7" />
+                </span>
+              )}
 
-
-
-
-         
-
-        
-
-          <div className="my-4 flex justify-end pr-4 sm:px-12">
             <Button
+              isDisabled={Object.keys(becomeExpertValidation.errors).length > 0}
               type="button"
-              customTailwindClasses="bg-sky border-sky text-white"
+              customTailwindClasses="bg-sky border-sky text-white mr-10"
               onClickHandler={(e) => {
                 e.preventDefault()
-                setIsFormSubmitted(true)
+                setIsFormSubmitting(true)
+                becomeExpertValidation.submitForm()
               }}
             >
               <p className="flex h-[36px] w-32 items-center justify-center text-sm">
                 Save
               </p>
             </Button>
-          </div> */}
-          <Button
-            type="button"
-            customTailwindClasses="bg-sky border-sky text-white"
-            onClickHandler={(e) => {
-              e.preventDefault()
-              becomeExpertValidation.submitForm()
-            }}
-          >
-            <p className="flex h-[36px] w-32 items-center justify-center text-sm">
-              Save
-            </p>
-          </Button>
+          </div>
         </>
       )}
     </form>

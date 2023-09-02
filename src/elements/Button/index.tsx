@@ -19,7 +19,7 @@ const Button: FC<ButtonProps> = ({
     className={`flex items-center justify-center rounded-md border-2 sm:text-sm ${customTailwindClasses} ${
       isDisabled && 'border-none bg-opacity-50'
     }`}
-    onClick={onClickHandler}
+    onClick={(e) => !isDisabled && onClickHandler && onClickHandler(e)}
   >
     {children}
   </button>

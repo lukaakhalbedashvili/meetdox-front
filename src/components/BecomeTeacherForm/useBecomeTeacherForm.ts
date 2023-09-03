@@ -41,7 +41,7 @@ const useTempo = () => {
     refetch().then((data) => {
       data.data?.country && setExpertDataFromBack(data.data)
 
-      data.data?.country && setIsLoading(false)
+      if (data.data?.country || data.status === 'error') setIsLoading(false)
     })
   }, [refetch, loggedInUser?.uid])
 

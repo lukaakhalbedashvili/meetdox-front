@@ -77,8 +77,10 @@ const BecomeTeacherForm = () => {
               customTailwindClasses="bg-sky border-sky text-white mr-10"
               onClickHandler={(e) => {
                 e.preventDefault()
-                becomeExpertValidation.submitCount > 0 &&
+
+                Object.keys(becomeExpertValidation.errors).length === 0 &&
                   setIsFormSubmitting(true)
+
                 becomeExpertValidation.submitForm()
               }}
             >

@@ -23,7 +23,8 @@ const TeacherDomain: FC<TeacherDomainProps> = ({ becomeExpertValidation }) => {
 
         {becomeExpertValidation.errors.domain?.subCategories && (
           <p className="ml-5 text-base text-error">
-            {becomeExpertValidation.errors.domain?.subCategories}
+            {becomeExpertValidation.touched.domain &&
+              becomeExpertValidation.errors.domain?.subCategories}
           </p>
         )}
       </div>

@@ -130,7 +130,7 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
         )}
 
         {(userImage || becomeExpertValidation.values.image) && (
-          <div className="relative mt-4 h-fit w-full cursor-pointer rounded-full">
+          <div className="relative mt-4 h-fit w-fit cursor-pointer rounded-full">
             <div className="group relative h-40 w-40 max-w-[200px] overflow-hidden">
               <Image
                 src={userImage || becomeExpertValidation.values.image || ''}

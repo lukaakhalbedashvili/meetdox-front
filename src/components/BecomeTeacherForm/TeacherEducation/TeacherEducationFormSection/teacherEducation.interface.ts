@@ -11,6 +11,8 @@ export enum TeacherEducationInfoValidationFormInputNames {
   MAJOR = 'major',
   START_DATE = 'startDate',
   END_DATE = 'endDate',
+  ID = 'id',
+  TEACHER_EDUCATION = 'teacherEducation',
 }
 
 export interface Suggestion {

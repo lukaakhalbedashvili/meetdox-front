@@ -1,35 +1,22 @@
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import React, { FC } from 'react'
+import { FormikProps } from 'formik'
 import { countries } from '@/data/countries'
 import CountriesDropDown from '@/elements/CountriesDropDown'
 import CountriesInput from '@/elements/CountriesInput'
-import { ContactDetails } from '@/components/Catalog/catalog.interface'
 import { ContactName } from './teacherContact.interface'
 import useTeacherContact from './useTeacherContact'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../becomeTeacher.interface'
+import { BecomeExpertForm } from '../becomeTeacher.interface'
 
 interface TeacherContactProps {
-  setFormValues: Dispatch<React.SetStateAction<FormValues>>
-  isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
-  defaultValues?: ContactDetails
+  becomeExpertValidation: FormikProps<BecomeExpertForm>
 }
 
 const TeacherContact: FC<TeacherContactProps> = ({
-  isFormSubmitted,
-  setErroredSections,
-  setFormValues,
-  defaultValues,
+  becomeExpertValidation,
 }) => {
-  const { teacherContactValidation, updatePhoneExtension, phoneExtension } =
-    useTeacherContact(
-      setFormValues,
-      isFormSubmitted,
-      setErroredSections,
-      defaultValues
-    )
+  const { updatePhoneExtension, phoneExtension } = useTeacherContact(
+    becomeExpertValidation
+  )
 
   const countriesList = countries.map((country) => {
     return { value: country.name, flag: country.flag }
@@ -43,37 +30,35 @@ const TeacherContact: FC<TeacherContactProps> = ({
         <div className="mt-2 h-10 sm:mr-2 sm:w-2/3">
           <CountriesDropDown
             options={countriesList}
-            name={ContactName.COUNTRY}
-            onBlurHandler={teacherContactValidation.handleBlur}
+            name={`contact.${ContactName.COUNTRY}`}
+            onBlurHandler={becomeExpertValidation.handleBlur}
             errorMessage={
-              teacherContactValidation.touched.country &&
-              teacherContactValidation.errors.country
+              becomeExpertValidation.touched.contact?.country &&
+              becomeExpertValidation.errors.contact?.country
             }
             onChange={(e) => {
-              teacherContactValidation.setFieldValue(
-                ContactName.COUNTRY,
+              becomeExpertValidation.setFieldValue(
+                `contact.${ContactName.COUNTRY}`,
                 e.target.value
               )
               updatePhoneExtension(e.target.value)
             }}
-            value={teacherContactValidation.values.country}
+            value={becomeExpertValidation.values.contact.country}
           />
         </div>
 
         <div className="mt-2 h-10 sm:w-full">
           <CountriesInput
             phoneExtension={phoneExtension}
-            placeholder={ContactName.PHONE}
+            name={`contact.${ContactName.PHONE}`}
             type="number"
-            value={teacherContactValidation.values.phone}
-            name={ContactName.PHONE}
-            onChange={(e) => {
-              teacherContactValidation.handleChange(e)
-            }}
-            onBlurHandler={teacherContactValidation.handleBlur}
+            value={becomeExpertValidation.values.contact.phone}
+            placeholder={ContactName.PHONE}
+            onChange={becomeExpertValidation.handleChange}
+            onBlurHandler={becomeExpertValidation.handleBlur}
             errorMessage={
-              teacherContactValidation.touched.phone &&
-              teacherContactValidation.errors.phone
+              becomeExpertValidation.touched.contact?.phone &&
+              becomeExpertValidation.errors.contact?.phone
             }
           />
         </div>

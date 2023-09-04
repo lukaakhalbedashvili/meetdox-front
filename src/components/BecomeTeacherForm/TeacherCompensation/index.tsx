@@ -1,31 +1,16 @@
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import React, { FC } from 'react'
+import { FormikProps } from 'formik'
 import Input from '@/elements/Input'
-import useTeacherCompensation from './useTeacherCompensation'
 import { TeacherCompensationFieldsNames } from './teacherCompensation.interface'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../becomeTeacher.interface'
+import { BecomeExpertForm } from '../becomeTeacher.interface'
 
 interface TeacherCompensationProps {
-  setFormValues: Dispatch<SetStateAction<FormValues>>
-  isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
-  defaultValues?: string | number
+  becomeExpertValidation: FormikProps<BecomeExpertForm>
 }
 
 const TeacherCompensation: FC<TeacherCompensationProps> = ({
-  setFormValues,
-  isFormSubmitted,
-  setErroredSections,
-  defaultValues,
+  becomeExpertValidation,
 }) => {
-  const { teacherCompensationValidation } = useTeacherCompensation(
-    setFormValues,
-    isFormSubmitted,
-    setErroredSections,
-    defaultValues
-  )
   return (
     <div className="mx-4 mt-5  border-t-[1px] border-border_gray pt-5 sm:mx-12">
       <h2 className="text-xl">Compensation</h2>
@@ -40,16 +25,16 @@ const TeacherCompensation: FC<TeacherCompensationProps> = ({
             placeholder="Compensation"
             type="number"
             value={
-              teacherCompensationValidation.values.perHour
-                ? teacherCompensationValidation.values.perHour.toString()
+              becomeExpertValidation.values.perHour
+                ? becomeExpertValidation.values.perHour.toString()
                 : ''
             }
             name={TeacherCompensationFieldsNames.PER_HOUR}
-            onChange={teacherCompensationValidation.handleChange}
-            onBlurHandler={teacherCompensationValidation.handleBlur}
+            onChange={becomeExpertValidation.handleChange}
+            onBlurHandler={becomeExpertValidation.handleBlur}
             errorMessage={
-              teacherCompensationValidation.touched.perHour &&
-              teacherCompensationValidation.errors.perHour
+              becomeExpertValidation.touched.perHour &&
+              becomeExpertValidation.errors.perHour
             }
           />
         </div>

@@ -1,102 +1,55 @@
-import { useFormik } from 'formik'
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
-import * as Yup from 'yup'
+import { FormikProps } from 'formik'
+import { ChangeEvent, useCallback, useState } from 'react'
 import { search } from '@/utils/services/search'
 import { categories } from '@/data/categoryItems'
-import {
-  TeacherSkillsForm,
-  TeacherSkillsInputNames,
-} from './teacherSkills.interface'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../becomeTeacher.interface'
+import { TeacherSkillsInputNames } from './teacherSkills.interface'
+import { BecomeExpertForm } from '../becomeTeacher.interface'
 
 const useTeacherSkills = (
-  isFormSubmitted: boolean,
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>,
-  setFormValues: Dispatch<SetStateAction<FormValues>>,
-  selectedDomain: string,
-  defaultValues?: string[]
+  becomeExpertValidation: FormikProps<BecomeExpertForm>
 ) => {
   const [skills, setSkills] = useState<string[]>([])
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([])
 
-  const validationSchema: Yup.ObjectSchema<TeacherSkillsForm> = Yup.object({
-    skill: Yup.string(),
-  })
-
-  const teacherSkillsValidation = useFormik<TeacherSkillsForm>({
-    initialValues: {
-      skill: '',
-    },
-
-    validationSchema,
-
-    onSubmit: async () => {
-      setErroredSections((prevState) => ({
-        ...prevState,
-        skills: false,
-      }))
-
-      setFormValues((state) => {
-        return { ...state, skills: selectedSkills }
-      })
-    },
-  })
+  const [skillInInput, setSkillInInput] = useState<string>('')
 
   const handleSearch = useCallback(
     (searchParam: string) => {
       setSkills(
         search(
           searchParam,
-          categories.find((item) => item.name === selectedDomain)?.skills || []
+          categories.find(
+            (item) =>
+              item.name === becomeExpertValidation.values.domain.category
+          )?.skills || []
         )
       )
     },
-    [selectedDomain]
+    [becomeExpertValidation.values.domain.category]
   )
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    teacherSkillsValidation.setFieldValue(
-      TeacherSkillsInputNames.SKILLS,
-      e.target.value
-    )
-
     handleSearch(e.target.value)
   }
 
   const onSelectHandler = (skill: string) => {
-    if (selectedSkills.includes(skill)) return
+    if (becomeExpertValidation.values.skills?.includes(skill)) return
 
-    setSelectedSkills([...selectedSkills, skill])
-    teacherSkillsValidation.setFieldValue(TeacherSkillsInputNames.SKILLS, '')
+    becomeExpertValidation.setFieldValue(
+      TeacherSkillsInputNames.SKILLS,
+      becomeExpertValidation.values.skills
+        ? [...becomeExpertValidation.values.skills, skill]
+        : [skill]
+    )
+
+    setSkillInInput('')
   }
 
-  useEffect(() => {
-    isFormSubmitted && teacherSkillsValidation.submitForm()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFormSubmitted])
-
-  useEffect(() => {
-    if (!defaultValues) return
-    setSelectedSkills(defaultValues)
-  }, [defaultValues])
-
   return {
-    teacherSkillsValidation,
     handleChange,
     skills,
-    selectedSkills,
-    setSelectedSkills,
     onSelectHandler,
+    skillInInput,
+    setSkillInInput,
   }
 }
 

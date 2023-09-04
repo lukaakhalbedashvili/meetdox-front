@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react'
-import { TeacherEducation as TeacherEduType } from '@/components/Catalog/catalog.interface'
+import { useGetTeacherPublicData } from '@/reactQuery/teacherQuaries/getTeacherPublicData'
+import { useZustandStore } from '@/zustand'
 
-interface UseTeacherEducation {
-  defaultValues?: TeacherEduType[]
-}
+const useTeacherEducation = () => {
+  const [activeFormCount, setActiveFormCount] = useState<number>(0)
 
-const useTeacherEducation = ({ defaultValues }: UseTeacherEducation) => {
-  const [educationForms, setEducationForms] = useState<number[]>([])
+  const { loggedInUser } = useZustandStore()
+
+  const { refetch } = useGetTeacherPublicData(loggedInUser?.uid)
 
   useEffect(() => {
-    defaultValues &&
-      defaultValues.length > 0 &&
-      setEducationForms(defaultValues.map((_, i) => i))
-  }, [defaultValues])
+    refetch().then((data) => {
+      if (data.data?.teacherEducation) {
+        setActiveFormCount(data?.data?.teacherEducation?.length)
+      }
+    })
+  }, [refetch, loggedInUser?.uid])
 
-  return { educationForms, setEducationForms }
+  return { activeFormCount, setActiveFormCount }
 }
 
 export default useTeacherEducation

@@ -71,7 +71,7 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
           )}
 
           <h2 className="font-semi-bold mt-4 overflow-hidden whitespace-nowrap text-xl">
-            {domain?.category} {name} {lastName}
+            {name} {lastName}
           </h2>
 
           <div className="my-3 flex flex-col items-center text-sm text-icon_gray">

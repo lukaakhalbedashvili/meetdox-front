@@ -21,9 +21,41 @@ export interface FormValues {
   personalDetails: TeacherPersonalInfoForm
   teacherEducation: TeacherEducationInfoValidationForm[]
   teacherExperience: TeacherExperienceForm[]
-  skills: string[]
+  skills?: string[]
   domain: TeacherDomainInfoValidationForm
   contact: TeacherContactValidationForm
   about: AboutTeacherForm
   perHour: string | number
+}
+
+export interface BecomeExpertForm {
+  name: string
+  lastName: string
+  birthMonth: string
+  birthYear: string | number
+  image?: string | null
+
+  teacherEducation0?: TeacherEducationInfoValidationForm
+  teacherEducation1?: TeacherEducationInfoValidationForm
+  teacherEducation2?: TeacherEducationInfoValidationForm
+  teacherEducation3?: TeacherEducationInfoValidationForm
+  teacherEducation4?: TeacherEducationInfoValidationForm
+  teacherEducation5?: TeacherEducationInfoValidationForm
+
+  teacherExperience0?: TeacherExperienceForm
+  teacherExperience1?: TeacherExperienceForm
+  teacherExperience2?: TeacherExperienceForm
+  teacherExperience3?: TeacherExperienceForm
+  teacherExperience4?: TeacherExperienceForm
+  teacherExperience5?: TeacherExperienceForm
+
+  domain: TeacherDomainInfoValidationForm
+
+  skills?: string[]
+
+  description: string
+
+  contact: { country: string; phone: string; phoneExtension: string }
+
+  perHour?: number
 }

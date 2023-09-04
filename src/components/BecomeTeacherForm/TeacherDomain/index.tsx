@@ -1,80 +1,60 @@
-import React, { Dispatch, FC, SetStateAction } from 'react'
+import React, { FC } from 'react'
+import { FormikProps } from 'formik'
 import DropDownInput from '@/elements/DropDownInput'
-import { Domain } from '@/components/Catalog/catalog.interface'
 import Checkbox from '@/elements/Checkbox'
 import useTeacherDomain from './useTeacherDomain'
 import { DomainNames } from './teacherDomain.interface'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../becomeTeacher.interface'
+import { BecomeExpertForm } from '../becomeTeacher.interface'
+import { placeholderCategoryValue } from '../data'
+import { TeacherSkillsInputNames } from '../TeacherSkills/teacherSkills.interface'
 
 interface TeacherDomainProps {
-  isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
-  setFormValues: Dispatch<SetStateAction<FormValues>>
-  defaultValue?: Domain
+  becomeExpertValidation: FormikProps<BecomeExpertForm>
 }
 
-const TeacherDomain: FC<TeacherDomainProps> = ({
-  isFormSubmitted,
-  setErroredSections,
-  setFormValues,
-  defaultValue,
-}) => {
-  const {
-    teacherDomainValidation,
-    placeholderCategoryValue,
-    categoriesData,
-    subCategoriesData,
-    setSubCategoriesData,
-    isDomainFormSubmitted,
-  } = useTeacherDomain(
-    isFormSubmitted,
-    setErroredSections,
-    setFormValues,
-    defaultValue
-  )
+const TeacherDomain: FC<TeacherDomainProps> = ({ becomeExpertValidation }) => {
+  const { subCategoriesData, setSubCategoriesData, categoriesData } =
+    useTeacherDomain(becomeExpertValidation)
+
   return (
     <div className="mx-4 mt-5  border-t-[1px] border-border_gray pt-5 sm:mx-12">
-      <h2 className="text-xl">Domain</h2>
+      <div className="flex items-center">
+        <h2 className="text-xl">Category</h2>
 
-      {subCategoriesData
-        ?.filter((item) => item.checked)
-        .map((item) => item.name).length === 0 &&
-        isDomainFormSubmitted && (
-          <p className="text-sm text-error">
-            you should select at least 1 subdomain
+        {becomeExpertValidation.errors.domain?.subCategories && (
+          <p className="ml-5 text-base text-error">
+            {becomeExpertValidation.touched.domain &&
+              becomeExpertValidation.errors.domain?.subCategories}
           </p>
         )}
-
+      </div>
       <div className="sm:w-1/2">
         <div className="mt-2 h-10">
           <DropDownInput
             options={categoriesData}
             name={DomainNames.CATEGORY}
-            onBlurHandler={teacherDomainValidation.handleBlur}
+            onBlurHandler={becomeExpertValidation.handleBlur}
             errorMessage={
-              teacherDomainValidation.touched.category &&
-              teacherDomainValidation.errors.category
+              becomeExpertValidation.touched.domain?.category &&
+              becomeExpertValidation.errors.domain?.category
             }
             onChange={(e) => {
-              teacherDomainValidation.setFieldValue(
-                DomainNames.CATEGORY,
+              becomeExpertValidation.setFieldValue(
+                `domain.${DomainNames.CATEGORY}`,
                 e.target.value
               )
 
-              setFormValues((prevState): FormValues => {
-                return {
-                  ...prevState,
-                  domain: {
-                    ...prevState.domain,
-                    category: e.target.value,
-                  },
-                }
-              })
+              becomeExpertValidation.setFieldValue(
+                TeacherSkillsInputNames.SKILLS,
+                []
+              )
+
+              becomeExpertValidation.setFieldValue(
+                `${DomainNames.DOMAIN}.${DomainNames.SUB_CATEGORY}`,
+                []
+              )
             }}
-            value={teacherDomainValidation.values.category}
+            value={becomeExpertValidation.values.domain.category}
             placeHolderValue={placeholderCategoryValue}
           />
         </div>
@@ -94,12 +74,36 @@ const TeacherDomain: FC<TeacherDomainProps> = ({
                     }
                   })
                 )
+
+                if (
+                  !becomeExpertValidation.values.domain.subCategories.includes(
+                    item.name
+                  )
+                ) {
+                  becomeExpertValidation.setFieldValue(
+                    `${DomainNames.DOMAIN}.${DomainNames.SUB_CATEGORY}`,
+
+                    subCategoriesData
+                      .filter((subCat) =>
+                        item === subCat ? !item.checked : subCat.checked
+                      )
+                      .map((item3) => item3.name)
+                  )
+                } else {
+                  becomeExpertValidation.setFieldValue(
+                    `${DomainNames.DOMAIN}.${DomainNames.SUB_CATEGORY}`,
+
+                    becomeExpertValidation.values.domain.subCategories.filter(
+                      (subCat) => item.name !== subCat
+                    )
+                  )
+                }
               }}
             >
               <Checkbox
                 id={item.name}
                 isChecked={item.checked}
-                onChange={(id) =>
+                onChange={(id) => {
                   setSubCategoriesData(
                     subCategoriesData.map((item) => {
                       if (item.name === id) {
@@ -111,7 +115,7 @@ const TeacherDomain: FC<TeacherDomainProps> = ({
                       return item
                     })
                   )
-                }
+                }}
               />
 
               <p className="ml-4">{item.name}</p>

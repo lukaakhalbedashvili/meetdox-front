@@ -11,4 +11,5 @@ export enum TeacherPersonalInfoFormInputNames {
   LAST_NAME = 'lastName',
   BIRTH_MONTH = 'birthMonth',
   BIRTH_YEAR = 'birthYear',
+  IMAGE = 'image',
 }

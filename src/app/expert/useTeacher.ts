@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useGetTeacherPublicData } from '@/reactQuery/teacherQuaries/getTeacherPublicData'
 import { useZustandStore } from '@/zustand'
 import { TeacherSections } from './teacher.interface'
@@ -8,7 +8,11 @@ interface UseTeacherProps {
 }
 
 const useTeacher = ({ teacherUid }: UseTeacherProps) => {
-  const { data, isLoading } = useGetTeacherPublicData(teacherUid)
+  const { data, isLoading, refetch } = useGetTeacherPublicData(teacherUid)
+
+  useEffect(() => {
+    refetch()
+  }, [refetch])
 
   const { setIsLogInPopupOpen, loggedInUser } = useZustandStore()
 

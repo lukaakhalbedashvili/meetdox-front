@@ -1,80 +1,86 @@
 'use client'
-import { Dispatch, FC, SetStateAction } from 'react'
+
+import { FormikProps } from 'formik'
+import { FC } from 'react'
 import { IoIosClose } from 'react-icons/io'
 import Button from '@/elements/Button'
-import { TeacherEducation as TeacherEduType } from '@/components/Catalog/catalog.interface'
 import TeacherEducationFormSection from './TeacherEducationFormSection'
 import useTeacherEducation from './useTeacherEducation'
-import {
-  BecomeTeacherSectionsErrors,
-  FormValues,
-} from '../becomeTeacher.interface'
+import { BecomeExpertForm } from '../becomeTeacher.interface'
+import { EducationValidationKeys } from '../utils'
+import { placeholderEndDate, placeholderStartDate } from '../data'
 
 interface TeacherEducationProps {
-  isFormSubmitted: boolean
-  setErroredSections: Dispatch<SetStateAction<BecomeTeacherSectionsErrors>>
-  setFormValues: Dispatch<SetStateAction<FormValues>>
-  defaultValues?: TeacherEduType[]
+  becomeExpertValidation: FormikProps<BecomeExpertForm>
 }
 
 const TeacherEducation: FC<TeacherEducationProps> = ({
-  isFormSubmitted,
-  setErroredSections,
-  setFormValues,
-  defaultValues,
+  becomeExpertValidation,
 }) => {
-  const { educationForms, setEducationForms } = useTeacherEducation({
-    defaultValues,
-  })
+  const educations = [
+    EducationValidationKeys.TEACHER_EDUCATION0,
+    EducationValidationKeys.TEACHER_EDUCATION1,
+    EducationValidationKeys.TEACHER_EDUCATION2,
+    EducationValidationKeys.TEACHER_EDUCATION3,
+    EducationValidationKeys.TEACHER_EDUCATION4,
+    EducationValidationKeys.TEACHER_EDUCATION5,
+  ]
+
+  const { activeFormCount, setActiveFormCount } = useTeacherEducation()
 
   return (
     <div className="mx-4 mt-5 border-t-[1px] border-border_gray pt-5 sm:mx-12">
       <h2 className="text-xl">Education details</h2>
 
-      {educationForms.map((item) => {
+      {educations.map((item, index) => {
         return (
-          <div key={item} className=" border-border_gray pt-2">
-            <div className="relative mt-6 sm:w-1/2">
-              <div
-                className="absolute -top-6 right-0 bg-white"
-                onClick={() => {
-                  setEducationForms(
-                    educationForms.filter(
-                      (educationIndex) => educationIndex !== item
+          becomeExpertValidation.values[item] && (
+            <div key={item} className=" border-border_gray pt-2">
+              <div className="relative mt-6 sm:w-1/2">
+                <div
+                  className="absolute -top-6 right-0 bg-white"
+                  onClick={() => {
+                    becomeExpertValidation.setFieldValue(
+                      educations[index],
+                      undefined
                     )
-                  )
+                    setActiveFormCount(activeFormCount - 1)
+                  }}
+                >
+                  <IoIosClose className="h-7 w-7 cursor-pointer" />
+                </div>
 
-                  setFormValues((state) => {
-                    return { ...state }
-                  })
-                }}
-              >
-                <IoIosClose className="h-7 w-7 cursor-pointer" />
+                <TeacherEducationFormSection
+                  becomeExpertValidation={becomeExpertValidation}
+                  formKey={item}
+                />
               </div>
-
-              <TeacherEducationFormSection
-                formId={item}
-                setFormValues={setFormValues}
-                isFormSubmitted={isFormSubmitted}
-                setErroredSections={setErroredSections}
-                defaultValue={defaultValues?.find((item2) => item2.id === item)}
-              />
             </div>
-          </div>
+          )
         )
       })}
 
       <Button
         type="button"
         customTailwindClasses="bg-sky border-sky text-white mt-3"
-        onClickHandler={() =>
-          setEducationForms((state) =>
-            state.length > 0 ? [...state, state.length + 1] : [1]
-          )
-        }
+        onClickHandler={() => {
+          if (activeFormCount > educations.length - 1) return
+
+          becomeExpertValidation.setFieldValue(educations[activeFormCount], {
+            id: '',
+            university: '',
+            major: '',
+            startDate: placeholderStartDate,
+            endDate: placeholderEndDate,
+          })
+          setActiveFormCount(activeFormCount + 1)
+        }}
+        isDisabled={activeFormCount > educations.length - 1}
       >
         <p className="flex h-[36px] w-32 items-center justify-center text-sm">
-          {educationForms.length === 0 ? 'Add' : 'Add more'}
+          {becomeExpertValidation.values.teacherEducation0?.startDate
+            ? 'Add more'
+            : 'Add'}
         </p>
       </Button>
     </div>

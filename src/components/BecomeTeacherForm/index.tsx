@@ -3,109 +3,81 @@ import React from 'react'
 import { ClipLoader } from 'react-spinners'
 import Button from '@/elements/Button'
 import TeacherPersonalInfo from './TeacherPersonalInfo'
+import useBecomeTeacherForm from './useBecomeTeacherForm'
 import TeacherEducation from './TeacherEducation'
 import TeacherExperience from './TeacherExperience'
-import TeacherSkills from './TeacherSkills'
 import TeacherDomain from './TeacherDomain'
+import TeacherSkills from './TeacherSkills'
+import AboutTeacher from './AboutTeacher'
 import TeacherContact from './TeacherContact'
-import AboutU from './AboutTeacher'
-import useBecameTeacherForm from './useBecomeTeacherForm'
 import TeacherCompensation from './TeacherCompensation'
 
 const BecomeTeacherForm = () => {
   const {
-    setErroredSections,
-    setValues,
-    isFormSubmitted,
-    setIsFormSubmitted,
-    values,
-    teacherData,
-    isTeacherDataLoading,
-  } = useBecameTeacherForm()
+    becomeExpertValidation,
+    expertDataFromBack,
+    isLoading,
+    isFormSubmitting,
+    setIsFormSubmitting,
+  } = useBecomeTeacherForm()
 
   return (
     <form className="min-h-screen">
-      {isTeacherDataLoading && (
+      {isLoading && (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform ">
           <ClipLoader color="#36d7b7" />
         </div>
       )}
 
-      {!isTeacherDataLoading && (
+      {(expertDataFromBack || !isLoading) && (
         <>
           <TeacherPersonalInfo
-            defaultValues={{
-              data: teacherData?.personalDetails,
-              image: teacherData?.image,
-            }}
-            setFormValues={setValues}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
+            becomeExpertValidation={becomeExpertValidation}
           />
 
           <div className="mt-2">
-            <TeacherEducation
-              defaultValues={teacherData?.teacherEducation}
-              setFormValues={setValues}
-              isFormSubmitted={isFormSubmitted}
-              setErroredSections={setErroredSections}
-            />
+            <TeacherEducation becomeExpertValidation={becomeExpertValidation} />
           </div>
 
-          <TeacherExperience
-            defaultValues={teacherData?.teacherExperience}
-            setFormValues={setValues}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
-          />
+          <TeacherExperience becomeExpertValidation={becomeExpertValidation} />
 
-          <TeacherDomain
-            setFormValues={setValues}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
-            defaultValue={teacherData?.domain}
-          />
+          <TeacherDomain becomeExpertValidation={becomeExpertValidation} />
 
-          {(values.domain.category || teacherData?.domain?.category) && (
-            <TeacherSkills
-              defaultValues={teacherData?.skills}
-              selectedDomain={
-                teacherData?.domain.category || values.domain.category
-              }
-              setFormValues={setValues}
-              isFormSubmitted={isFormSubmitted}
-              setErroredSections={setErroredSections}
-            />
+          {becomeExpertValidation.values.domain.category && (
+            <TeacherSkills becomeExpertValidation={becomeExpertValidation} />
           )}
 
-          <AboutU
-            defaultValue={teacherData?.description}
-            setFormValues={setValues}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
-          />
+          <AboutTeacher becomeExpertValidation={becomeExpertValidation} />
 
-          <TeacherContact
-            defaultValues={teacherData?.contactDetails}
-            setFormValues={setValues}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
-          />
+          <TeacherContact becomeExpertValidation={becomeExpertValidation} />
 
           <TeacherCompensation
-            defaultValues={teacherData?.perHour}
-            setFormValues={setValues}
-            isFormSubmitted={isFormSubmitted}
-            setErroredSections={setErroredSections}
+            becomeExpertValidation={becomeExpertValidation}
           />
 
-          <div className="my-4 flex justify-end pr-4 sm:px-12">
+          <div className="flex h-full items-center justify-end py-8">
+            {Object.keys(becomeExpertValidation.errors).length > 0 &&
+              becomeExpertValidation.submitCount > 0 && (
+                <p className="mr-10 text-error">scroll up for errors</p>
+              )}
+
+            {Object.keys(becomeExpertValidation.errors).length === 0 &&
+              isFormSubmitting && (
+                <span className="mr-10">
+                  <ClipLoader color="#36d7b7" />
+                </span>
+              )}
+
             <Button
               type="button"
-              customTailwindClasses="bg-sky border-sky text-white"
+              customTailwindClasses="bg-sky border-sky text-white mr-10"
               onClickHandler={(e) => {
                 e.preventDefault()
-                setIsFormSubmitted(true)
+
+                Object.keys(becomeExpertValidation.errors).length === 0 &&
+                  setIsFormSubmitting(true)
+
+                becomeExpertValidation.submitForm()
               }}
             >
               <p className="flex h-[36px] w-32 items-center justify-center text-sm">

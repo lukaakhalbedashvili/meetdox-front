@@ -221,6 +221,9 @@ export const categories = [
     name: 'Developer',
     url: 'developer',
     skills: [
+      'Next.js',
+      'ReactQuery',
+      'TypeScript',
       'JavaScript',
       'Python',
       'Java',
@@ -586,15 +589,3 @@ export const categories = [
     ],
   },
 ]
-
-// teacher - math, science, language, history, literature, languages
-// doctor - general, pediatrician, gynecologist, neurologist, dermatologist, veterinarian
-// lawyer - criminal, divorce, family, immigration, real estate,
-// accountant - bookkeeper, cpa, tax preparer, auditor, business
-// developer - app, game, software, backend, frontend, fullstack
-// designer - graphic, interior, web, fashion
-// psychologist - child, marriage, clinical, depression
-// life coache - career, relationship, finance, academic, life
-// fitness trainer - gym, yoga, sport
-
-// category names: teacher, doctor, lawyer, accountant, developer, designer, psychologist, life coach, fitness trainer

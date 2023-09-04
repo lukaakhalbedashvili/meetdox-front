@@ -1,9 +1,8 @@
 import { useRef, useState } from 'react'
-import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
+import { useZustandStore } from '@/zustand'
 
 const useTeacherPersonalInfo = () => {
-  const { data } = useFetchLoggedInUserData()
-
+  const { loggedInUser } = useZustandStore()
   const [userImage, setUserImage] = useState<string>()
 
   const [uploadedImage, setUploadedImage] = useState<
@@ -35,7 +34,7 @@ const useTeacherPersonalInfo = () => {
     fileInputRef,
     setUploadedImage,
     isImageError,
-    userId: data?.data.data.uid,
+    loggedInUser,
     setIsImageError,
   }
 }

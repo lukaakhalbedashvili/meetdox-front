@@ -69,10 +69,6 @@ const BecomeTeacherForm = () => {
               )}
 
             <Button
-              isDisabled={
-                Object.keys(becomeExpertValidation.errors).length > 0 &&
-                becomeExpertValidation.submitCount > 0
-              }
               type="button"
               customTailwindClasses="bg-sky border-sky text-white mr-10"
               onClickHandler={(e) => {

@@ -30,8 +30,8 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
     uploadedImage,
     setUserImage,
     setUploadedImage,
-    userId,
     userImage,
+    loggedInUser,
   } = useTeacherPersonalInfo()
 
   return (
@@ -179,9 +179,11 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
             onSaveHandler={(image) => {
               setUserImage(image.dataUrl)
 
-              userId &&
+              setIsUploadImageModalOpen(false)
+
+              loggedInUser?.uid &&
                 uploadImageToFirebase({
-                  userId,
+                  userId: loggedInUser?.uid,
                   imageToUpload: image.blob,
                   onSuccessHandler: (url) => {
                     becomeExpertValidation.setFieldValue(
@@ -190,7 +192,6 @@ const TeacherPersonalInfo: FC<TeacherPersonalInfoProps> = ({
                     )
                   },
                 })
-              setIsUploadImageModalOpen(false)
               setUploadedImage(undefined)
             }}
           />

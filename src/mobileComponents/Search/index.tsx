@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-// back icon
 import { IoIosArrowForward } from 'react-icons/io'
 import NavigationSearchBar from '@/components/NavigationSearchBar'
 

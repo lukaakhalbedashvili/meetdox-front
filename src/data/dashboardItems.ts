@@ -10,12 +10,6 @@ const clientDashboardItems = [
     icon: AiOutlineSchedule,
     tab: DashboardClientMeetsContent,
   },
-  // {
-  //   id: 2,
-  //   title: DashboardItemsNames.PASSWORD,
-  //   icon: FiLock,
-  //   tab: DashboardPasswordChangeContent,
-  // },
 ]
 
 const teacherDashboardItems = [
@@ -32,12 +26,6 @@ const teacherDashboardItems = [
     icon: AiOutlineSchedule,
     tab: DashboardTeacherMeetsContent,
   },
-  // {
-  //   id: 2,
-  //   title: DashboardItemsNames.PASSWORD,
-  //   icon: FiLock,
-  //   tab: DashboardPasswordChangeContent,
-  // },
 ]
 
 export { clientDashboardItems, teacherDashboardItems }

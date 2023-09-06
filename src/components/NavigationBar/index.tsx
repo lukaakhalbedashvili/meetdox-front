@@ -2,12 +2,10 @@
 import Link from 'next/link'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import Image from 'next/image'
-import { AiOutlineSearch } from 'react-icons/ai'
 import { BiBell } from 'react-icons/bi'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import navigationBarItems from '@/data/navigationBarItems'
 import Button from '@/elements/Button'
-import SearchScreen from '@/mobileComponents/Search'
 import SideBar from '@/mobileComponents/SideBar'
 import MobileNotifications from '@/mobileComponents/MobileNotifications'
 import useNavigationBar from './useNavigationBar'
@@ -16,7 +14,6 @@ import SignUp from '../SignUp'
 import LogIn from '../LogIn'
 import ForgotPassword from '../ForgotPassword'
 import NavigationLoggedIn from '../NavigationLoggedIn'
-import NavigationSearchBar from '../NavigationSearchBar'
 import CategoryNav from '../CategoryNav'
 
 const NavigationBar = () => {
@@ -30,8 +27,6 @@ const NavigationBar = () => {
     setIsLogInPopupOpen,
     isForgotPasswordPopupOpen,
     setIsForgotPasswordPopupOpen,
-    isShowSearchScreen,
-    setIsShowSearchScreen,
     loggedInUser,
     isShowNotificationScreen,
     setIsShowNotificationScreen,
@@ -67,10 +62,6 @@ const NavigationBar = () => {
                   </NavigationBarItem>
                 ))}
               </div>
-            </div>
-
-            <div className="hidden md:flex md:items-center md:space-x-8">
-              <NavigationSearchBar />
             </div>
 
             {loggedInUser ? (
@@ -109,13 +100,6 @@ const NavigationBar = () => {
               </div>
             )}
 
-            <div
-              className={`${
-                isShowSearchScreen ? 'translate-x-0' : 'translate-x-full'
-              } fixed bottom-0 left-0 right-0 top-0 z-50 flex h-[60px] border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden`}
-            >
-              <SearchScreen onClose={() => setIsShowSearchScreen(false)} />
-            </div>
             {loggedInUser && (
               <div
                 className={`${
@@ -147,13 +131,6 @@ const NavigationBar = () => {
                   </button>
                 </div>
               )}
-
-              <div className="mr-6 flex  items-center">
-                <AiOutlineSearch
-                  className="h-6 w-6"
-                  onClick={() => setIsShowSearchScreen(true)}
-                />
-              </div>
 
               <div className="flex items-center  md:hidden">
                 <div className="flex" onClick={() => setIsOpen(!isOpen)}>

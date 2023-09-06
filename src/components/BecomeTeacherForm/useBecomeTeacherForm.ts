@@ -184,7 +184,7 @@ const useTempo = () => {
           {
             onSuccess: () => {
               setAlert({
-                message: 'teacher created successfully',
+                message: 'expert profile created successfully',
                 type: AlertType.SUCCESS,
                 onClick: () => {},
                 duration: 5000,

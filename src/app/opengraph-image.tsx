@@ -15,7 +15,7 @@ const og = async () => {
         <img
           src={image}
           tw="w-full h-full"
-          style={{ objectFit: 'contain' }}
+          style={{ objectFit: 'cover' }}
           alt="profile"
         />
       </div>

@@ -5,7 +5,7 @@ export const contentType = 'image/png'
 export const runtime = 'edge'
 
 const og = async () => {
-  const image = (await fetch(new URL('./og.png', import.meta.url)).then((res) =>
+  const image = (await fetch(new URL('./og.jpg', import.meta.url)).then((res) =>
     res.arrayBuffer()
   )) as string
 
@@ -15,7 +15,7 @@ const og = async () => {
         <img
           src={image}
           tw="w-full h-full"
-          style={{ objectFit: 'contain' }}
+          style={{ objectFit: 'cover' }}
           alt="profile"
         />
       </div>

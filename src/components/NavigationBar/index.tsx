@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import Image from 'next/image'
-import { AiOutlineSearch } from 'react-icons/ai'
 import { BiBell } from 'react-icons/bi'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import navigationBarItems from '@/data/navigationBarItems'
@@ -133,13 +132,6 @@ const NavigationBar = () => {
                   </button>
                 </div>
               )}
-
-              <div className="mr-6 flex  items-center">
-                <AiOutlineSearch
-                  className="h-6 w-6"
-                  onClick={() => setIsShowSearchScreen(true)}
-                />
-              </div>
 
               <div className="flex items-center  md:hidden">
                 <div className="flex" onClick={() => setIsOpen(!isOpen)}>

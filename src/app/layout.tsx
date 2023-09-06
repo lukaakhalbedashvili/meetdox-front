@@ -3,7 +3,9 @@ import React from 'react'
 import { Inter } from 'next/font/google'
 import dynamic from 'next/dynamic'
 import { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 import NavigationBar from '@/components/NavigationBar'
+
 const ReactQueryWrapper = dynamic(
   () => import('@/components/ReactQueryWrapper'),
   {
@@ -61,6 +63,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 
           {children}
         </ReactQueryWrapper>
+        <Analytics />
       </body>
     </html>
   )

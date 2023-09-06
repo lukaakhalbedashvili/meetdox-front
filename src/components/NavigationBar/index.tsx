@@ -7,7 +7,6 @@ import { BiBell } from 'react-icons/bi'
 import NavigationBarItem from '@/elements/NavigationBarItem'
 import navigationBarItems from '@/data/navigationBarItems'
 import Button from '@/elements/Button'
-import SearchScreen from '@/mobileComponents/Search'
 import SideBar from '@/mobileComponents/SideBar'
 import MobileNotifications from '@/mobileComponents/MobileNotifications'
 import useNavigationBar from './useNavigationBar'
@@ -16,7 +15,6 @@ import SignUp from '../SignUp'
 import LogIn from '../LogIn'
 import ForgotPassword from '../ForgotPassword'
 import NavigationLoggedIn from '../NavigationLoggedIn'
-import NavigationSearchBar from '../NavigationSearchBar'
 import CategoryNav from '../CategoryNav'
 
 const NavigationBar = () => {
@@ -30,7 +28,6 @@ const NavigationBar = () => {
     setIsLogInPopupOpen,
     isForgotPasswordPopupOpen,
     setIsForgotPasswordPopupOpen,
-    isShowSearchScreen,
     setIsShowSearchScreen,
     loggedInUser,
     isShowNotificationScreen,
@@ -69,10 +66,6 @@ const NavigationBar = () => {
               </div>
             </div>
 
-            <div className="hidden md:flex md:items-center md:space-x-8">
-              <NavigationSearchBar />
-            </div>
-
             {loggedInUser ? (
               <NavigationLoggedIn
                 teacherBalance={loggedInUser.teacherBalance}
@@ -109,13 +102,6 @@ const NavigationBar = () => {
               </div>
             )}
 
-            <div
-              className={`${
-                isShowSearchScreen ? 'translate-x-0' : 'translate-x-full'
-              } fixed bottom-0 left-0 right-0 top-0 z-50 flex h-[60px] border-b-[1px] border-border_gray bg-white transition-transform duration-300 md:hidden`}
-            >
-              <SearchScreen onClose={() => setIsShowSearchScreen(false)} />
-            </div>
             {loggedInUser && (
               <div
                 className={`${

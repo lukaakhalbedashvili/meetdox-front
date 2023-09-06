@@ -27,7 +27,6 @@ const NavigationBar = () => {
     setIsLogInPopupOpen,
     isForgotPasswordPopupOpen,
     setIsForgotPasswordPopupOpen,
-    setIsShowSearchScreen,
     loggedInUser,
     isShowNotificationScreen,
     setIsShowNotificationScreen,

@@ -39,7 +39,7 @@ const SideBar = ({
   const router = useRouter()
 
   return (
-    <div className="md:hidden	">
+    <div className="md:hidden ">
       <div className="min-h-screen space-y-1 pb-3 pt-2 ">
         <div>
           {loggedInUser && (
@@ -110,7 +110,7 @@ const SideBar = ({
 
                       {category.subCategories &&
                         category.subCategories.length > 0 && (
-                          <span>
+                          <span className="flex h-8 w-12 items-center justify-end">
                             {selectedSubcategory === category.name ? (
                               <FaChevronUp
                                 className="h-4 w-4"

@@ -31,6 +31,7 @@ const NavigationBar = () => {
     isShowNotificationScreen,
     setIsShowNotificationScreen,
     router,
+    isLoggedInUserLoading,
   } = useNavigationBar()
 
   return (
@@ -63,7 +64,7 @@ const NavigationBar = () => {
               </div>
             </div>
 
-            {loggedInUser ? (
+            {loggedInUser && !isLoggedInUserLoading && (
               <NavigationLoggedIn
                 teacherBalance={loggedInUser.teacherBalance}
                 uid={loggedInUser.uid}
@@ -72,7 +73,9 @@ const NavigationBar = () => {
                 notifications={loggedInUser.notifications}
                 isTeacher={loggedInUser.isTeacher}
               />
-            ) : (
+            )}
+
+            {!loggedInUser && !isLoggedInUserLoading && (
               <div className="flex items-center">
                 <div className="mr-5 hidden md:flex md:items-center md:space-x-4">
                   <Button

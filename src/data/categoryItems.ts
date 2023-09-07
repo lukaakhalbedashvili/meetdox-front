@@ -634,7 +634,7 @@ export const categories = [
         url: 'product',
       },
       {
-        name: 'Electrical engineering',
+        name: 'Electrical Engineering',
         url: 'electrical-engineering',
       },
     ],

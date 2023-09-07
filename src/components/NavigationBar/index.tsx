@@ -44,8 +44,8 @@ const NavigationBar = () => {
                   <Image
                     src="/octopus.svg"
                     alt="My Logo"
-                    width={30}
-                    height={30}
+                    width={45}
+                    height={45}
                   />
                 </div>
               </Link>

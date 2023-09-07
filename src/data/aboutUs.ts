@@ -3,7 +3,7 @@ export const teamMembers = [
     name: 'Lasha Markhvaidze',
     title: 'Co-Founder',
     description:
-      'Experienced Fullstack Developer with a rich 3-year journey, deeply engaged with a spectrum of cutting-edge technologies including React, Next.js, Flutter, Node.js, Drupal, and a diverse array of others',
+      'Fullstack Developer with technologies including React, Next.js, Node.js and a diverse array of others',
     image: '/lasha.jpg',
   },
   {

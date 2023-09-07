@@ -147,12 +147,15 @@ const NavigationBar = () => {
         <CategoryNav />
 
         {isOpen && (
-          <SideBar
-            loggedInUser={loggedInUser}
-            pathname={pathname}
-            setIsSignupPopupOpen={setIsSignupPopupOpen}
-            setIsLogInPopupOpen={setIsLogInPopupOpen}
-          />
+          <PopupItemWrapper>
+            <SideBar
+              setIsOpen={setIsOpen}
+              loggedInUser={loggedInUser}
+              pathname={pathname}
+              setIsSignupPopupOpen={setIsSignupPopupOpen}
+              setIsLogInPopupOpen={setIsLogInPopupOpen}
+            />
+          </PopupItemWrapper>
         )}
       </nav>
 

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { IoCloseOutline } from 'react-icons/io5'
 import navigationBarItems from '@/data/navigationBarItems'
 import {
   profileBtnsSectionOne,
@@ -21,6 +22,7 @@ interface Props {
   pathname: string
   setIsSignupPopupOpen: (payload: boolean) => void
   setIsLogInPopupOpen: (isPopupOpen: boolean) => void
+  setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const SideBar = ({
@@ -28,6 +30,7 @@ const SideBar = ({
   pathname,
   setIsSignupPopupOpen,
   setIsLogInPopupOpen,
+  setIsOpen,
 }: Props) => {
   const [isShowCategories, setIsShowCategories] = useState(false)
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(
@@ -39,9 +42,9 @@ const SideBar = ({
   const router = useRouter()
 
   return (
-    <div className="md:hidden ">
+    <div className="relative h-full overflow-scroll bg-white md:hidden">
       <div className="min-h-screen space-y-1 pb-3 pt-2 ">
-        <div>
+        <div className="flex items-start justify-between">
           {loggedInUser && (
             <div className="flex items-center px-4 py-2">
               <div className="flex-shrink-0">
@@ -51,15 +54,24 @@ const SideBar = ({
                   alt=""
                 />
               </div>
+
               <div className="ml-3">
                 <div className="text-base  text-text_gray">
                   {loggedInUser.username}
                 </div>
+
                 <div className="text-sm  text-lite">{loggedInUser.email}</div>
               </div>
             </div>
           )}
+
+          <IoCloseOutline
+            className=" mr-2 h-8 w-8"
+            color="gray"
+            onClick={() => setIsOpen(false)}
+          />
         </div>
+
         <div>
           {navigationBarItems.map((item) => (
             <NavigationBarItem
@@ -71,6 +83,7 @@ const SideBar = ({
             </NavigationBarItem>
           ))}
         </div>
+
         <div className="px-4 py-2">
           <hr className="border-border_gray" />
         </div>

@@ -25,6 +25,8 @@ const DashboardClientMeetsContent = () => {
     setMeetInfo,
     meetInfo,
     isRatePopupOpen,
+    isButtonLoading,
+    setIsButtonLoading,
     isRefundPopupOpen,
   } = useDashboardClientMeetsContent()
 
@@ -128,12 +130,13 @@ const DashboardClientMeetsContent = () => {
                         )}
 
                         <div className="flex w-full justify-center sm:space-x-2">
-                          {currMeet.buttonRed && (
+                          {currMeet.buttonRed && !isButtonLoading && (
                             <Button
                               onClickHandler={() => {
                                 if (
                                   typeof currMeet.onButtonRedClick === 'string'
                                 ) {
+                                  setIsButtonLoading(true)
                                   mutate(
                                     {
                                       newStatus: currMeet.onButtonRedClick,
@@ -144,6 +147,7 @@ const DashboardClientMeetsContent = () => {
                                     {
                                       onSuccess: () => {
                                         refetch()
+                                        setIsButtonLoading(false)
                                       },
                                       onError: () => {},
                                     }
@@ -171,13 +175,14 @@ const DashboardClientMeetsContent = () => {
                             </Button>
                           )}
 
-                          {currMeet.buttonGreen && (
+                          {currMeet.buttonGreen && !isButtonLoading && (
                             <Button
                               onClickHandler={() => {
                                 if (
                                   typeof currMeet.onButtonGreenClick ===
                                   'string'
                                 ) {
+                                  setIsButtonLoading(true)
                                   mutate(
                                     {
                                       newStatus: currMeet.onButtonGreenClick,
@@ -188,6 +193,7 @@ const DashboardClientMeetsContent = () => {
                                     {
                                       onSuccess: () => {
                                         refetch()
+                                        setIsButtonLoading(false)
                                       },
                                       onError: () => {},
                                     }

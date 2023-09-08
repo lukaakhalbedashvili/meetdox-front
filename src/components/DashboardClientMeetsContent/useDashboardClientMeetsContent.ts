@@ -27,6 +27,7 @@ const useDashboardClientMeetsContent = () => {
 
   const [isRefundPopupOpen, setIsRefundPopupOpen] = useState(false)
   const [isRatePopupOpen, setIsRatePopupOpen] = useState(false)
+  const [isButtonLoading, setIsButtonLoading] = useState(false)
 
   const { data, refetch } = useFetchMyMeetings(ScheduleTypes.MEETINGS_AS_CLIENT)
   const { mutate } = useUpdateMeet()
@@ -72,6 +73,8 @@ const useDashboardClientMeetsContent = () => {
     setIsRatePopupOpen,
     meetInfo,
     setMeetInfo,
+    isButtonLoading,
+    setIsButtonLoading,
   }
 }
 

@@ -2,17 +2,20 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { FiChevronDown as ChevronDownIcon } from 'react-icons/fi'
 
 import DashboardSidebarButton from '@/elements/DashboardSidebarButton'
+import { UserData } from '@/reactQuery/getUserData/getUserData.interface'
 import useDashboardSidebar from './useDashboardSidebar'
 import { DashboardItemsNames } from '../Dashboard/dashboard.interface'
 
 interface DashboardSidebarProps {
   currentTab: DashboardItemsNames
   setCurrentTab: Dispatch<SetStateAction<DashboardItemsNames>>
+  data: UserData | undefined
 }
 
 const DashboardSidebar = ({
   currentTab,
   setCurrentTab,
+  data,
 }: DashboardSidebarProps) => {
   const {
     handleDashboardItemChange,
@@ -20,7 +23,7 @@ const DashboardSidebar = ({
     toggleDropdown,
     ActiveIcon,
     dashboardItems,
-  } = useDashboardSidebar({ currentTab, setCurrentTab })
+  } = useDashboardSidebar({ currentTab, setCurrentTab, data })
 
   return (
     <div className="flex h-full flex-col sm:w-72 sm:flex-col">

@@ -29,7 +29,7 @@ const PopupItemWrapper: FC<PopupItemWrapperPros> = ({
 
   return isMounted ? (
     createPortal(
-      <div className="fixed top-0 z-40 flex h-screen w-screen items-center justify-center bg-black md:bg-opacity-50">
+      <div className="fixed top-0 z-40 flex h-screen w-screen items-center justify-center md:bg-opacity-50">
         <div
           ref={childrenWrapperRef}
           className="h-screen w-screen lg:h-fit lg:w-fit "

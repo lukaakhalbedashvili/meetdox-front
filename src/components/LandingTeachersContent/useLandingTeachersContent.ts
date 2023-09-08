@@ -14,6 +14,7 @@ const useLandingTeachersContent = () => {
       setIsLoggedInUserLoading(false)
     })
   }, [])
+
   return {
     data,
     categoriesSwiperSectionRef,

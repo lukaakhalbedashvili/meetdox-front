@@ -14,7 +14,10 @@ const useNavigationBar = () => {
   const [isShowNotificationScreen, setIsShowNotificationScreen] =
     useState(false)
 
-  const { data, refetch } = useFetchLoggedInUserData()
+  const { refetch } = useFetchLoggedInUserData()
+
+  const [isLoggedInUserLoading, setIsLoggedInUserLoading] =
+    useState<boolean>(true)
 
   const {
     isLogInPopupOpen,
@@ -26,12 +29,12 @@ const useNavigationBar = () => {
   } = useZustandStore()
 
   useEffect(() => {
-    refetch()
-  }, [])
+    refetch().then((data) => {
+      data?.data?.data && setLoggedInUser(data?.data.data.data)
 
-  useEffect(() => {
-    data?.data?.data && setLoggedInUser(data?.data.data)
-  }, [data, setLoggedInUser])
+      setIsLoggedInUserLoading(false)
+    })
+  }, [])
 
   return {
     isOpen,
@@ -49,6 +52,7 @@ const useNavigationBar = () => {
     isShowNotificationScreen,
     setIsShowNotificationScreen,
     router,
+    isLoggedInUserLoading,
   }
 }
 

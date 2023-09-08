@@ -18,7 +18,7 @@ const useDashboardTeacherMeetsContent = () => {
     ScheduledMeetStructure[]
   >([])
   const [currentMeets, setCurrentMeets] = useState<ScheduledMeetStructure[]>([])
-  const [isButtonLoading, setIsButtonLoading] = useState(false)
+  const [loadingMeet, setLoadingMeet] = useState('')
   const { data, refetch } = useFetchMyMeetings(
     ScheduleTypes.MEETINGS_AS_TEACHER
   )
@@ -60,8 +60,8 @@ const useDashboardTeacherMeetsContent = () => {
     currentMeets,
     mutate,
     refetch,
-    isButtonLoading,
-    setIsButtonLoading,
+    loadingMeet,
+    setLoadingMeet,
   }
 }
 

@@ -12,8 +12,14 @@ import { scheduleSteps } from '@/data/scheduleSteps'
 import useDashboardTeacherMeetsContent from './useDashboardTeacherMeetsContent'
 
 const DashboardTeacherMeetsContent = () => {
-  const { completedMeets, currentMeets, mutate, refetch } =
-    useDashboardTeacherMeetsContent()
+  const {
+    completedMeets,
+    currentMeets,
+    mutate,
+    refetch,
+    isButtonLoading,
+    setIsButtonLoading,
+  } = useDashboardTeacherMeetsContent()
 
   return (
     <div className="flex flex-col justify-between">
@@ -115,12 +121,13 @@ const DashboardTeacherMeetsContent = () => {
                         )}
 
                         <div className="flex w-full justify-center sm:space-x-2">
-                          {currMeet.buttonRed && (
+                          {currMeet.buttonRed && !isButtonLoading && (
                             <Button
                               onClickHandler={() => {
                                 if (
                                   typeof currMeet.onButtonRedClick === 'string'
                                 ) {
+                                  setIsButtonLoading(true)
                                   mutate(
                                     {
                                       newStatus: currMeet.onButtonRedClick,
@@ -131,6 +138,7 @@ const DashboardTeacherMeetsContent = () => {
                                     {
                                       onSuccess: () => {
                                         refetch()
+                                        setIsButtonLoading(false)
                                       },
                                       onError: () => {},
                                     }
@@ -151,13 +159,14 @@ const DashboardTeacherMeetsContent = () => {
                             </Button>
                           )}
 
-                          {currMeet.buttonGreen && (
+                          {currMeet.buttonGreen && !isButtonLoading && (
                             <Button
                               onClickHandler={() => {
                                 if (
                                   typeof currMeet.onButtonGreenClick ===
                                   'string'
                                 ) {
+                                  setIsButtonLoading(true)
                                   mutate(
                                     {
                                       newStatus: currMeet.onButtonGreenClick,
@@ -168,6 +177,7 @@ const DashboardTeacherMeetsContent = () => {
                                     {
                                       onSuccess: () => {
                                         refetch()
+                                        setIsButtonLoading(false)
                                       },
                                       onError: () => {},
                                     }

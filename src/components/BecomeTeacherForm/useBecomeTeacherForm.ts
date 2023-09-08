@@ -6,6 +6,7 @@ import { useZustandStore } from '@/zustand'
 import { useGetTeacherPublicData } from '@/reactQuery/teacherQuaries/getTeacherPublicData'
 import { AlertType } from '@/zustand/zustand.interface'
 import { useSendTeacherCreationQueries } from '@/reactQuery/becomeTeacherQueries/useSendTeacherCreationQueries'
+import { useFetchLoggedInUserData } from '@/reactQuery/getUserData'
 import { BecomeExpertForm, FormValues } from './becomeTeacher.interface'
 import {
   customValidation,
@@ -21,9 +22,11 @@ import {
 import { TeacherData } from '../Catalog/catalog.interface'
 
 const useTempo = () => {
-  const { loggedInUser, setAlert } = useZustandStore()
+  const { loggedInUser, setAlert, setIsLogInPopupOpen } = useZustandStore()
 
   const router = useRouter()
+
+  const loggedInUserQuery = useFetchLoggedInUserData()
 
   const [isLoading, setIsLoading] = useState(true)
 
@@ -34,6 +37,21 @@ const useTempo = () => {
   const [expertDataFromBack, setExpertDataFromBack] = useState<
     TeacherData | undefined
   >(undefined)
+
+  useEffect(() => {
+    loggedInUserQuery.refetch().then((returnedData) => {
+      if (!returnedData.data) {
+        router.push('/')
+        setAlert({
+          message: 'Sign in first',
+          type: AlertType.ERROR,
+          onClick: () => {},
+          duration: 2000,
+        })
+        setIsLogInPopupOpen(true)
+      }
+    })
+  }, [])
 
   const { refetch } = useGetTeacherPublicData(loggedInUser?.uid)
 

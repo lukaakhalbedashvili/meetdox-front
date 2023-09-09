@@ -55,13 +55,15 @@ const get24Hours = (
     selectedTime ===
     [myCurrentTime.getMonth() + 1, myCurrentTime.getDate()].join('/')
 
-  const startTime = isITToday ? daySelected.getHours() + 2 : 1
+  const startTime = isITToday ? daySelected.getHours() + 2 : 0
 
   const unavailableTimeSlotsToday = unavailableTimeSlots
     .filter((item) => item.date === nowTimeBackendFormat)
-    .map((item) => item.time)
+    .map((item) => {
+      return item.time
+    })
 
-  for (let i = startTime; i <= 24; i++) {
+  for (let i = startTime; i <= 23; i++) {
     let isUnavailable = unavailableTimeSlotsToday.includes(i)
 
     !isUnavailable &&

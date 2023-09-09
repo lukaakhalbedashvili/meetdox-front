@@ -53,6 +53,7 @@ const useDashboardTeacherMeetsContent = () => {
       })
       setCompletedMeets(completed)
       setCurrentMeets(current)
+      setLoadingMeet('')
     }
   }, [data])
   return {

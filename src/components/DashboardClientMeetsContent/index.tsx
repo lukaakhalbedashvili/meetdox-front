@@ -149,7 +149,6 @@ const DashboardClientMeetsContent = () => {
                                       {
                                         onSuccess: async () => {
                                           await refetch()
-                                          setLoadingMeet('')
                                         },
                                         onError: () => {},
                                       }
@@ -196,7 +195,6 @@ const DashboardClientMeetsContent = () => {
                                       {
                                         onSuccess: async () => {
                                           await refetch()
-                                          setLoadingMeet('')
                                         },
                                         onError: () => {},
                                       }

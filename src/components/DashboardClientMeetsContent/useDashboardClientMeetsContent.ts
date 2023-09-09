@@ -59,6 +59,7 @@ const useDashboardClientMeetsContent = () => {
       })
       setCompletedMeets(completed)
       setCurrentMeets(current)
+      setLoadingMeet('')
     }
   }, [data])
   return {

@@ -140,7 +140,6 @@ const DashboardTeacherMeetsContent = () => {
                                       {
                                         onSuccess: async () => {
                                           await refetch()
-                                          setLoadingMeet('')
                                         },
                                         onError: () => {},
                                       }
@@ -180,7 +179,6 @@ const DashboardTeacherMeetsContent = () => {
                                       {
                                         onSuccess: async () => {
                                           await refetch()
-                                          setLoadingMeet('')
                                         },
                                         onError: () => {},
                                       }

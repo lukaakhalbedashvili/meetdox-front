@@ -12,8 +12,14 @@ import { scheduleSteps } from '@/data/scheduleSteps'
 import useDashboardTeacherMeetsContent from './useDashboardTeacherMeetsContent'
 
 const DashboardTeacherMeetsContent = () => {
-  const { completedMeets, currentMeets, mutate, refetch } =
-    useDashboardTeacherMeetsContent()
+  const {
+    completedMeets,
+    currentMeets,
+    mutate,
+    refetch,
+    loadingMeet,
+    setLoadingMeet,
+  } = useDashboardTeacherMeetsContent()
 
   return (
     <div className="flex flex-col justify-between">
@@ -115,78 +121,83 @@ const DashboardTeacherMeetsContent = () => {
                         )}
 
                         <div className="flex w-full justify-center sm:space-x-2">
-                          {currMeet.buttonRed && (
-                            <Button
-                              onClickHandler={() => {
-                                if (
-                                  typeof currMeet.onButtonRedClick === 'string'
-                                ) {
-                                  mutate(
-                                    {
-                                      newStatus: currMeet.onButtonRedClick,
-                                      meetId: meeting.meetId,
-                                      teacherUid: meeting.teacherUid,
-                                      clientUid: meeting.clientUid,
-                                    },
-                                    {
-                                      onSuccess: () => {
-                                        refetch()
+                          {currMeet.buttonRed &&
+                            loadingMeet !== meeting.meetId && (
+                              <Button
+                                onClickHandler={() => {
+                                  if (
+                                    typeof currMeet.onButtonRedClick ===
+                                    'string'
+                                  ) {
+                                    setLoadingMeet(meeting.meetId)
+                                    mutate(
+                                      {
+                                        newStatus: currMeet.onButtonRedClick,
+                                        meetId: meeting.meetId,
+                                        teacherUid: meeting.teacherUid,
+                                        clientUid: meeting.clientUid,
                                       },
-                                      onError: () => {},
-                                    }
-                                  )
-                                } else {
-                                  currMeet.onButtonRedClick()
-                                }
-                              }}
-                              customTailwindClasses="bg-error bg-opacity-20 border-border_gray w-1/2"
-                            >
-                              <div className="flex h-[35px] items-center justify-center">
-                                <p
-                                  className={`flex items-center justify-center text-sm font-medium text-error`}
-                                >
-                                  {currMeet.buttonRed}
-                                </p>
-                              </div>
-                            </Button>
-                          )}
+                                      {
+                                        onSuccess: async () => {
+                                          await refetch()
+                                        },
+                                        onError: () => {},
+                                      }
+                                    )
+                                  } else {
+                                    currMeet.onButtonRedClick()
+                                  }
+                                }}
+                                customTailwindClasses="bg-error bg-opacity-20 border-border_gray w-1/2"
+                              >
+                                <div className="flex h-[35px] items-center justify-center">
+                                  <p
+                                    className={`flex items-center justify-center text-sm font-medium text-error`}
+                                  >
+                                    {currMeet.buttonRed}
+                                  </p>
+                                </div>
+                              </Button>
+                            )}
 
-                          {currMeet.buttonGreen && (
-                            <Button
-                              onClickHandler={() => {
-                                if (
-                                  typeof currMeet.onButtonGreenClick ===
-                                  'string'
-                                ) {
-                                  mutate(
-                                    {
-                                      newStatus: currMeet.onButtonGreenClick,
-                                      meetId: meeting.meetId,
-                                      teacherUid: meeting.teacherUid,
-                                      clientUid: meeting.clientUid,
-                                    },
-                                    {
-                                      onSuccess: () => {
-                                        refetch()
+                          {currMeet.buttonGreen &&
+                            loadingMeet !== meeting.meetId && (
+                              <Button
+                                onClickHandler={() => {
+                                  if (
+                                    typeof currMeet.onButtonGreenClick ===
+                                    'string'
+                                  ) {
+                                    setLoadingMeet(meeting.meetId)
+                                    mutate(
+                                      {
+                                        newStatus: currMeet.onButtonGreenClick,
+                                        meetId: meeting.meetId,
+                                        teacherUid: meeting.teacherUid,
+                                        clientUid: meeting.clientUid,
                                       },
-                                      onError: () => {},
-                                    }
-                                  )
-                                } else {
-                                  currMeet.onButtonGreenClick(meeting)
-                                }
-                              }}
-                              customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"
-                            >
-                              <div className="flex h-[35px]  items-center justify-center">
-                                <p
-                                  className={`flex items-center justify-center text-sm font-medium text-success_border_green`}
-                                >
-                                  {currMeet.buttonGreen}
-                                </p>
-                              </div>
-                            </Button>
-                          )}
+                                      {
+                                        onSuccess: async () => {
+                                          await refetch()
+                                        },
+                                        onError: () => {},
+                                      }
+                                    )
+                                  } else {
+                                    currMeet.onButtonGreenClick(meeting)
+                                  }
+                                }}
+                                customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"
+                              >
+                                <div className="flex h-[35px]  items-center justify-center">
+                                  <p
+                                    className={`flex items-center justify-center text-sm font-medium text-success_border_green`}
+                                  >
+                                    {currMeet.buttonGreen}
+                                  </p>
+                                </div>
+                              </Button>
+                            )}
                         </div>
                       </div>
                     </div>

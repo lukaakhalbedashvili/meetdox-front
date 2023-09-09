@@ -18,6 +18,7 @@ const useDashboardTeacherMeetsContent = () => {
     ScheduledMeetStructure[]
   >([])
   const [currentMeets, setCurrentMeets] = useState<ScheduledMeetStructure[]>([])
+  const [loadingMeet, setLoadingMeet] = useState('')
   const { data, refetch } = useFetchMyMeetings(
     ScheduleTypes.MEETINGS_AS_TEACHER
   )
@@ -52,6 +53,7 @@ const useDashboardTeacherMeetsContent = () => {
       })
       setCompletedMeets(completed)
       setCurrentMeets(current)
+      setLoadingMeet('')
     }
   }, [data])
   return {
@@ -59,6 +61,8 @@ const useDashboardTeacherMeetsContent = () => {
     currentMeets,
     mutate,
     refetch,
+    loadingMeet,
+    setLoadingMeet,
   }
 }
 

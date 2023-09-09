@@ -25,6 +25,8 @@ const DashboardClientMeetsContent = () => {
     setMeetInfo,
     meetInfo,
     isRatePopupOpen,
+    loadingMeet,
+    setLoadingMeet,
     isRefundPopupOpen,
   } = useDashboardClientMeetsContent()
 
@@ -128,94 +130,99 @@ const DashboardClientMeetsContent = () => {
                         )}
 
                         <div className="flex w-full justify-center sm:space-x-2">
-                          {currMeet.buttonRed && (
-                            <Button
-                              onClickHandler={() => {
-                                if (
-                                  typeof currMeet.onButtonRedClick === 'string'
-                                ) {
-                                  mutate(
-                                    {
-                                      newStatus: currMeet.onButtonRedClick,
-                                      meetId: meeting.meetId,
-                                      teacherUid: meeting.teacherUid,
-                                      clientUid: meeting.clientUid,
-                                    },
-                                    {
-                                      onSuccess: () => {
-                                        refetch()
+                          {currMeet.buttonRed &&
+                            loadingMeet !== meeting.meetId && (
+                              <Button
+                                onClickHandler={() => {
+                                  if (
+                                    typeof currMeet.onButtonRedClick ===
+                                    'string'
+                                  ) {
+                                    setLoadingMeet(meeting.meetId)
+                                    mutate(
+                                      {
+                                        newStatus: currMeet.onButtonRedClick,
+                                        meetId: meeting.meetId,
+                                        teacherUid: meeting.teacherUid,
+                                        clientUid: meeting.clientUid,
                                       },
-                                      onError: () => {},
-                                    }
-                                  )
-                                } else {
-                                  if (currMeet.buttonGreen === 'Refund') {
-                                    setIsRefundPopupOpen(true)
-                                    setMeetInfo({
-                                      teacherUid: meeting.teacherUid,
-                                      meetId: meeting.meetId,
-                                      clientUid: meeting.clientUid,
-                                    })
+                                      {
+                                        onSuccess: async () => {
+                                          await refetch()
+                                        },
+                                        onError: () => {},
+                                      }
+                                    )
                                   } else {
-                                    currMeet.onButtonRedClick(meeting)
+                                    if (currMeet.buttonGreen === 'Refund') {
+                                      setIsRefundPopupOpen(true)
+                                      setMeetInfo({
+                                        teacherUid: meeting.teacherUid,
+                                        meetId: meeting.meetId,
+                                        clientUid: meeting.clientUid,
+                                      })
+                                    } else {
+                                      currMeet.onButtonRedClick(meeting)
+                                    }
                                   }
-                                }
-                              }}
-                              customTailwindClasses="bg-error bg-opacity-20 border-border_gray w-1/2"
-                            >
-                              <div className="flex h-[35px] items-center justify-center">
-                                <p className="flex items-center justify-center text-sm font-medium text-error">
-                                  {currMeet.buttonRed}
-                                </p>
-                              </div>
-                            </Button>
-                          )}
+                                }}
+                                customTailwindClasses="bg-error bg-opacity-20 border-border_gray w-1/2"
+                              >
+                                <div className="flex h-[35px] items-center justify-center">
+                                  <p className="flex items-center justify-center text-sm font-medium text-error">
+                                    {currMeet.buttonRed}
+                                  </p>
+                                </div>
+                              </Button>
+                            )}
 
-                          {currMeet.buttonGreen && (
-                            <Button
-                              onClickHandler={() => {
-                                if (
-                                  typeof currMeet.onButtonGreenClick ===
-                                  'string'
-                                ) {
-                                  mutate(
-                                    {
-                                      newStatus: currMeet.onButtonGreenClick,
-                                      meetId: meeting.meetId,
-                                      teacherUid: meeting.teacherUid,
-                                      clientUid: meeting.clientUid,
-                                    },
-                                    {
-                                      onSuccess: () => {
-                                        refetch()
+                          {currMeet.buttonGreen &&
+                            loadingMeet !== meeting.meetId && (
+                              <Button
+                                onClickHandler={() => {
+                                  if (
+                                    typeof currMeet.onButtonGreenClick ===
+                                    'string'
+                                  ) {
+                                    setLoadingMeet(meeting.meetId)
+                                    mutate(
+                                      {
+                                        newStatus: currMeet.onButtonGreenClick,
+                                        meetId: meeting.meetId,
+                                        teacherUid: meeting.teacherUid,
+                                        clientUid: meeting.clientUid,
                                       },
-                                      onError: () => {},
-                                    }
-                                  )
-                                } else {
-                                  if (currMeet.buttonGreen === 'Rate') {
-                                    setIsRatePopupOpen(true)
-                                    setMeetInfo({
-                                      teacherUid: meeting.teacherUid,
-                                      meetId: meeting.meetId,
-                                      clientUid: meeting.clientUid,
-                                    })
+                                      {
+                                        onSuccess: async () => {
+                                          await refetch()
+                                        },
+                                        onError: () => {},
+                                      }
+                                    )
                                   } else {
-                                    currMeet.onButtonGreenClick(meeting)
+                                    if (currMeet.buttonGreen === 'Rate') {
+                                      setIsRatePopupOpen(true)
+                                      setMeetInfo({
+                                        teacherUid: meeting.teacherUid,
+                                        meetId: meeting.meetId,
+                                        clientUid: meeting.clientUid,
+                                      })
+                                    } else {
+                                      currMeet.onButtonGreenClick(meeting)
+                                    }
                                   }
-                                }
-                              }}
-                              customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"
-                            >
-                              <div className="flex h-[35px]  items-center justify-center">
-                                <p
-                                  className={`flex items-center justify-center text-sm font-medium text-success_border_green`}
-                                >
-                                  {currMeet.buttonGreen}
-                                </p>
-                              </div>
-                            </Button>
-                          )}
+                                }}
+                                customTailwindClasses="bg-success_border_green bg-opacity-20 border-border_gray w-1/2"
+                              >
+                                <div className="flex h-[35px]  items-center justify-center">
+                                  <p
+                                    className={`flex items-center justify-center text-sm font-medium text-success_border_green`}
+                                  >
+                                    {currMeet.buttonGreen}
+                                  </p>
+                                </div>
+                              </Button>
+                            )}
                         </div>
                       </div>
                     </div>

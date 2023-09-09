@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   description:
     "Do you have a question? Let's schedule a meeting with an expert to get your answer.",
   alternates: {
-    canonical: 'meetdox.com',
+    canonical: 'https://meetdox.com',
   },
   verification: {
     google:

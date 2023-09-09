@@ -147,9 +147,8 @@ const ScheduleMeetPopup: FC<ScheduleMeetPopupProps> = ({
 
                   if (
                     selectedMeetDuration &&
-                    chosenTime &&
                     offset &&
-                    chosenTime
+                    (chosenTime || chosenTime === 0)
                   ) {
                     mutate(
                       {

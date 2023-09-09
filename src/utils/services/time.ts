@@ -59,7 +59,12 @@ const get24Hours = (
 
   const unavailableTimeSlotsToday = unavailableTimeSlots
     .filter((item) => item.date === nowTimeBackendFormat)
-    .map((item) => item.time)
+    .map((item) => {
+      if (item.time === 0) {
+        return 24
+      }
+      return item.time
+    })
 
   for (let i = startTime; i <= 24; i++) {
     let isUnavailable = unavailableTimeSlotsToday.includes(i)

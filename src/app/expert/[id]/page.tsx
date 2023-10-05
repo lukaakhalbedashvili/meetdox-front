@@ -11,6 +11,7 @@ import PopupItemWrapper from '@/components/PopupItemWrapper'
 import ScheduleMeetPopup from '@/components/ScheduleMeetPopup'
 import ContentSeparator from '@/elements/ContentSeparator'
 import Footer from '@/components/Footer'
+import HeadData from '@/components/HeadData'
 import { TeacherSections } from '../teacher.interface'
 import useTeacher from '../useTeacher'
 
@@ -51,6 +52,10 @@ const Teacher: FC<TeacherProps> = ({ params }) => {
   const router = useRouter()
   return (
     <div className="flex h-full flex-col justify-between">
+      <HeadData
+        title={`Meetdox - Schedule meeting with ${personalDetails?.name} ${personalDetails?.lastName}`}
+        desc={description!}
+      />
       {isLoading && (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform ">
           <ClipLoader color="#36d7b7" />

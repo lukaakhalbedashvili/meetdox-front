@@ -2,12 +2,17 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import faqData from '@/data/faqData'
+import HeadData from '@/components/HeadData'
 
 const Page = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   return (
     <div className="flex h-full w-full justify-between">
+      <HeadData
+        title="Meetdox - FAQ"
+        desc="Explore Meetdox, your personal expertise hub connecting you with verified experts. Schedule one-on-one online consultations and gain valuable insights on various topics. Elevate your skills and knowledge with our diverse community of mentors. Join us to learn, grow, and achieve your goals!"
+      />
       <div className="relative hidden w-1/2 items-center justify-center lg:flex">
         <div className="relative h-96 w-96">
           <Image src="/meetdox-mockup.png" fill alt="FAQ Image" />

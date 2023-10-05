@@ -3,13 +3,6 @@ import { API_URL } from '@/utils/consts/consts'
 
 const sitemap = async () => {
   const baseUrl = 'https://www.meetdox.com/'
-  const expertUrls: {
-    url: string
-    title: string
-    description?: string
-    image: string
-    lastModified: Date
-  }[] = []
   const staticPages = [
     {
       url: baseUrl,
@@ -37,7 +30,8 @@ const sitemap = async () => {
   const expertsRes = await fetch(
     `${API_URL}/users/teacher/get-teachers-uids-for-seo`
   )
-  const expertsData = await expertsRes.json()
+  const expertsDataJson = await expertsRes.json()
+  const expertsData = expertsDataJson.data
 
   const categoryUrls = categories.map((category) => {
     const categoryUrl = `${baseUrl}${category.url}`
@@ -56,26 +50,33 @@ const sitemap = async () => {
       }
     })
   })
-  expertsData.data.forEach(async (item: string) => {
-    const expertDataRes = await fetch(
-      `${API_URL}/users/teacher/get-teacher?uid=${item}`
-    )
-    const expertData = await expertDataRes.json()
+  const expertUrls = await Promise.all(
+    expertsData.map(async (item: string) => {
+      try {
+        const expertDataRes = await fetch(
+          `${API_URL}/users/teacher/get-teacher?uid=${item}`
+        )
+        const expertDataJs = await expertDataRes.json()
+        const expertData = expertDataJs.data
 
-    const expertUrl = `${baseUrl}expert/${item}`
-    const expertName = `${expertData.personalDetails.name} ${expertData.personalDetails.lastName}`
-    const expertDescription = expertData.description
-    const expertImage = expertData.image
+        const expertUrl = `${baseUrl}expert/${item}`
+        const expertName = `${expertData.personalDetails.name} ${expertData.personalDetails.lastName}`
+        const expertDescription = expertData.description
+        const expertImage = expertData.image
 
-    expertUrls.push({
-      url: expertUrl,
-      title: `Meetdox - Schedule Meet With ${expertName}`,
-      description: expertDescription,
-      image: expertImage,
-      lastModified: new Date(),
+        return {
+          url: expertUrl,
+          title: `Meetdox - Schedule Meet With ${expertName}`,
+          description: expertDescription,
+          image: expertImage,
+          lastModified: new Date(),
+        }
+      } catch (error) {
+        console.error(`Error fetching data for expert with ID ${item}:`, error)
+        return null
+      }
     })
-  })
-
+  )
   return [...staticPages, ...expertUrls, ...categoryUrls, ...subCategoryUrls]
 }
 

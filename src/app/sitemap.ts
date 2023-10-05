@@ -2,28 +2,22 @@ import { categories } from '@/data/categoryItems'
 import { API_URL } from '@/utils/consts/consts'
 
 const sitemap = async () => {
-  const baseUrl = 'https://www.meetdox.com/'
+  const baseUrl = 'https://meetdox.com/'
   const staticPages = [
     {
       url: baseUrl,
       title: 'Meetdox - Your Expertise Hub',
       description:
-        'Your Personalized Expertise Hub. Explore tailored expertise and guidance from verified experts across diverse fields. Schedule one-on-one online consultations, gain valuable insights, and accelerate your learning journey. Elevate your skills, career, and aspirations with Meetdox.',
-      image: 'https://www.meetdox.com/oct.jpg',
+        'Explore Meetdox, your personal expertise hub connecting you with verified experts. Schedule one-on-one online consultations and gain valuable insights on various topics. Elevate your skills and knowledge with our diverse community of mentors. Join us to learn, grow, and achieve your goals!',
+      image: 'https://meetdox.com/oct.jpg',
       lastModified: new Date(),
     },
     {
       url: `${baseUrl}about`,
       title: 'About Meetdox',
-      image: 'https://www.meetdox.com/oct.jpg',
+      image: 'https://meetdox.com/oct.jpg',
       description:
         'Meetdox is a platform that connects experts and learners. We believe that everyone has something to learn and something to teach. Meetdox is a place where you can find the right expert for your needs and schedule a meeting with them.',
-      lastModified: new Date(),
-    },
-    {
-      url: `${baseUrl}become-expert`,
-      title: 'Become an Expert on Meetdox',
-      description: 'Join Meetdox as an expert and start earning today!',
       lastModified: new Date(),
     },
   ]

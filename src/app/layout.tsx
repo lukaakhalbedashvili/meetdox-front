@@ -31,7 +31,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Meetdox',
   description:
-    "Do you have a question? Let's schedule a meeting with an expert to get your answer.",
+    'Explore Meetdox, your personal expertise hub connecting you with verified experts. Schedule one-on-one online consultations and gain valuable insights on various topics. Elevate your skills and knowledge with our diverse community of mentors. Join us to learn, grow, and achieve your goals!',
   alternates: {
     canonical: 'https://meetdox.com/',
   },
@@ -40,10 +40,10 @@ export const metadata: Metadata = {
       'google-site-verification=-hgu1-kSQmU-ucbQtDHrTPiz5puuqz3635K5kJjBCbI',
   },
   openGraph: {
-    title: 'Meetdox | Schedule a meeting with an expert',
+    title: 'Meetdox - Schedule a meeting with an expert',
     description:
-      "Do you have a question? Let's schedule a meeting with an expert to get your answer.",
-    url: 'https://nextjs.org',
+      'Do you have a question? Schedule a meeting with an expert to get your answer.',
+    url: 'https://meetdox.com/',
     siteName: 'Meetdox',
     locale: 'en_US',
     type: 'website',

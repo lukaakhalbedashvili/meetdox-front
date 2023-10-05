@@ -1,10 +1,15 @@
 import React from 'react'
 import Image from 'next/image'
 import { teamMembers } from '@/data/aboutUs'
+import HeadData from '@/components/HeadData'
 
 const Page = () => {
   return (
     <div className="flex flex-col items-center justify-center px-4 pt-8 sm:px-8">
+      <HeadData
+        title="Meetdox - About us"
+        desc="Explore Meetdox, your personal expertise hub connecting you with verified experts. Schedule one-on-one online consultations and gain valuable insights on various topics. Elevate your skills and knowledge with our diverse community of mentors. Join us to learn, grow, and achieve your goals!"
+      />
       <p className="mb-16  text-2xl font-light">Our team</p>
 
       <div className="flex flex-col items-center sm:flex-row">

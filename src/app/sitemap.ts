@@ -34,14 +34,14 @@ const sitemap = async () => {
   const expertsData = expertsDataJson.data
 
   const categoryUrls = categories.map((category) => {
-    const categoryUrl = `${baseUrl}${category.url}`
+    const categoryUrl = `${baseUrl}category/${category.url}`
     const categoryTitle = `Meetdox - ${category.name}s`
     return { url: categoryUrl, title: categoryTitle, lastModified: new Date() }
   })
 
   const subCategoryUrls = categories.flatMap((category) => {
     return category.subCategories.map((subCategory) => {
-      const subCategoryUrl = `${baseUrl}${category.url}/${subCategory.url}`
+      const subCategoryUrl = `${baseUrl}category/${category.url}?sub-categories=${subCategory.url}`
       const subCategoryTitle = `Meetdox - ${subCategory.name}s`
       return {
         url: subCategoryUrl,

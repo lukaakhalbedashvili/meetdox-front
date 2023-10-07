@@ -1,8 +1,8 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 export const API_URL = isProd
-  ? 'https://meetdoxxx-269708a18044.herokuapp.com/api'
-  : 'https://meetdoxxx-269708a18044.herokuapp.com/api'
+  ? 'https://tipppbackkk.onrender.com/api'
+  : 'https://tipppbackkk.onrender.com/api'
 
 //http://localhost:8000/api
 
